@@ -11,6 +11,7 @@ interface Project {
     description: string;
     image: string;
     slug: string;
+    backgroundColor?: string;
 }
 
 interface ProjectCardProps {
@@ -28,7 +29,10 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             className="group cursor-pointer"
         >
             <Link href={`/work/${project.slug}`}>
-                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-200 dark:bg-neutral-800">
+                <div
+                    className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-200 dark:bg-neutral-800"
+                    style={{ backgroundColor: project.backgroundColor }}
+                >
                     <div
                         className="absolute inset-0 bg-contain bg-center bg-no-repeat transition-transform duration-500 group-hover:scale-105"
                         style={{ backgroundImage: `url(${(project as any).thumbnailImage || project.image})` }}

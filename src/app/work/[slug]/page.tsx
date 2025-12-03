@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useParams } from "next/navigation";
 import { projects } from "@/lib/data";
 import { ImageLightbox } from "@/components/ui/image-lightbox";
+import { NetworkIntelligenceProject } from "@/components/projects/network-intelligence";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -16,6 +17,10 @@ export default function ProjectPage() {
 
     if (!project) {
         notFound();
+    }
+
+    if (slug === "network-intelligence") {
+        return <NetworkIntelligenceProject project={project} />;
     }
 
     return (
