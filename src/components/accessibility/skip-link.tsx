@@ -1,0 +1,12 @@
+"use client";
+
+export function SkipLink() {
+    return (
+        <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-purple-600 focus:text-white focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-700 transition-all"
+        >
+            Skip to main content
+        </a>
+    );
+}
