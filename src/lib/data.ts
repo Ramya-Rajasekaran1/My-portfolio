@@ -14,3 +14,5 @@ export const projects = [
     contentVerifyProject
 ];
 
+
+export type Project = typeof projects[number];
