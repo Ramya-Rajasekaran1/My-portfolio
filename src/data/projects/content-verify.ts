@@ -4,16 +4,17 @@ export const contentVerifyProject = {
     category: "AI / UX Design",
     description: "A Content Verification AI Tool that analyzes text in real-time to highlight controversial claims, surface potential bias, and link to opposing sources to promote critical thinking.",
     image: "https://images.unsplash.com/photo-1555421689-491722925294?q=80&w=2070&auto=format&fit=crop",
+    misinfoMeme: "/images/content-verify/misinfo-meme.png",
     slug: "content-verify",
     sections: [
         {
-            title: "OBJECTIVE",
+            title: "PROJECT OBJECTIVE:",
             content: [
-                "Information warfare and misinformation, whichever is deemed vital, often stem from cognitive biases that skew how content is written and consumed.",
-                "The prime objective of this tool is to help users recognize when what they are reading is influenced by bias or incomplete reporting.",
-                "It summarizes the debunking process for them, providing immediate nuances from credible sources. For example: instead of labeling an article 'False', it effectively frames missing context, ensuring that readers are alerted to misinformation or missing perspectives before they form an uninformed opinion."
+                "Flag problematic sections of an article to help users recognize when they are being influenced by biased or incomplete reporting.",
+                "It automates the exhausting process of fact-checking, providing immediate context that would otherwise require manual research and high cognitive effort.",
+                "Ultimately, ensuring that readers are alerted to misinformation or missing perspectives before they form an uninformed opinion."
             ],
-            chips: ["AI INTEGRATION", "UX RESEARCH", "CHROME EXTENSION", "CRITICAL THINKING"],
+            chips: ["Neutralize Misinformation", "Bridge the Trust Gap", "Inform Sentiment"],
             glassCard: true
         },
         {

@@ -13,19 +13,14 @@ const articles = [
     description: "An intriguing study and understanding of UX through the lens of behavioural economics.",
     url: "https://crramya06.medium.com/behavioural-economics-e60a10d44ddc",
   },
-  {
-    title: "Published in Bootcamp | Medium",
-    description: "Articles published during a design bootcamp, showcased on Medium.",
-    url: "#", // placeholder – replace with actual link if available
-  },
 ];
 
 export const Articles: React.FC = () => {
   return (
-    <section className="py-24 px-4 bg-[#0a0a0a]">
+    <section className="py-6 px-4 bg-[#0a0a0a]">
       <div className="container mx-auto max-w-6xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-white uppercase tracking-widest">Writing Articles</h2>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
           {articles.map((article, idx) => (
             <div key={idx} className="group relative">
               <a

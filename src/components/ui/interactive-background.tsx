@@ -167,7 +167,7 @@ export const InteractiveBackground = React.memo(function InteractiveBackground({
             <div className="container mx-auto h-full relative">
                 {/* Animated gradient orbs - Purple and Blue */}
                 <div
-                    className="absolute rounded-full bg-gradient-to-r from-purple-500/25 to-pink-500/25 blur-3xl transition-transform duration-1000 ease-out will-change-transform"
+                    className="absolute rounded-full bg-gradient-to-r from-purple-500/35 to-pink-500/35 blur-3xl transition-transform duration-1000 ease-out will-change-transform"
                     style={{
                         width: `${SPHERE_CONFIG.gradients.purple.size}px`,
                         height: `${SPHERE_CONFIG.gradients.purple.size}px`,
@@ -177,7 +177,7 @@ export const InteractiveBackground = React.memo(function InteractiveBackground({
                     }}
                 />
                 <div
-                    className="absolute rounded-full bg-gradient-to-r from-blue-500/[0.18] to-cyan-500/[0.18] blur-3xl transition-transform duration-1500 ease-out will-change-transform"
+                    className="absolute rounded-full bg-gradient-to-r from-blue-500/30 to-cyan-500/30 blur-3xl transition-transform duration-1500 ease-out will-change-transform"
                     style={{
                         width: `${SPHERE_CONFIG.gradients.blue.size}px`,
                         height: `${SPHERE_CONFIG.gradients.blue.size}px`,

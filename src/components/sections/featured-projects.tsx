@@ -13,7 +13,7 @@ export function FeaturedProjects() {
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                     <div>
-                        <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">Selected Work</h2>
+                        <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">Selected work</h2>
                         <p className="text-neutral-600 dark:text-neutral-400 max-w-xl">
                             A collection of projects that showcase my passion for creating intuitive and impactful user experiences.
                         </p>

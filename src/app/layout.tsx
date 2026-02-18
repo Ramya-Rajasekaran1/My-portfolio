@@ -11,6 +11,7 @@ import { AccessibilityWidget } from "@/components/accessibility/accessibility-wi
 import { ReaderView } from "@/components/accessibility/reader-view";
 import { InteractiveCursor } from "@/components/ui/interactive-cursor";
 import { ConditionalBackground } from "@/components/ui/conditional-background";
+import { NoiseOverlay } from "@/components/ui/noise-overlay";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
@@ -46,6 +47,7 @@ export default function RootLayout({
         >
           <SkipLink />
           <ConditionalBackground />
+          <NoiseOverlay />
 
           <Navbar />
           <div id="main-content">
