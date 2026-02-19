@@ -9,6 +9,8 @@ export function ContentVerifyProject({ project }: { project: Project }) {
     const [selectedPainPoint, setSelectedPainPoint] = React.useState<string | null>('fatigue');
     const [showDesignLogic, setShowDesignLogic] = React.useState(true);
     const [showCategories, setShowCategories] = React.useState(false);
+    const [focusedBox, setFocusedBox] = React.useState<string | null>(null);
+    const [showMethodology, setShowMethodology] = React.useState(false);
 
     // Helper to find sections by title
     const getSection = (title: string) => project.sections?.find((s: any) => s.title === title);
@@ -16,7 +18,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
     const objective = getSection("PROJECT OBJECTIVE:");
     const existing = getSection("EXISTING MECHANISM VS OUR TOOL");
     const research = getSection("RESEARCH");
-    const summary = getSection("SUMMARY GENERATION CRITERIA");
+    const summary = getSection("CONTROVERSY DETECTION");
     const task = getSection("TASK INTERPRETATION");
     const personas = getSection("PERSONAS");
     const feedback = getSection("DISCOVERY FEEDBACK");
@@ -461,53 +463,93 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                 </section>
 
                 {/* Secondary Research & Insights */}
-                <section className="max-w-6xl mx-auto mb-24 px-4 pt-12">
-                    <div className="bg-neutral-900 rounded-[3rem] p-8 md:p-16 border border-white/10 relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 blur-[120px] -z-10" />
-                        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#39FF14]/5 blur-[120px] -z-10" />
+                <section
+                    className="max-w-6xl mx-auto mb-24 px-4 pt-12 relative"
+                    onClick={() => focusedBox && setFocusedBox(null)}
+                >
+                    <div className="flex flex-col gap-8">
+                        <div className="max-w-3xl">
+                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6">
+                                <Search className="w-3.5 h-3.5 text-[#39FF14]" />
+                                <span className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-white">Secondary Research</span>
+                            </div>
+                            <h2 className="text-3xl md:text-5xl font-serif font-bold text-white leading-tight mb-8">
+                                Uncovering the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-emerald-400">Invisible Layers</span> of Digital Information
+                            </h2>
+                        </div>
 
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                            <div className="lg:col-span-12 mb-8">
-                                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6">
-                                    <Search className="w-3.5 h-3.5 text-blue-400" />
-                                    <span className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-white">Secondary Research</span>
-                                </div>
-                                <h2 className="text-3xl md:text-5xl font-serif font-bold text-white leading-tight mb-8">
-                                    Uncovering the <span className="text-blue-400">Invisible Layers</span> of Digital Information
-                                </h2>
-
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    <div className="flex gap-4">
-                                        <div className="mt-1"><AlertTriangle className="w-5 h-5 text-blue-400" /></div>
-                                        <p className="text-lg md:text-xl font-serif text-neutral-300 leading-relaxed italic">
-                                            "Existing bias detection tools are often slow, opaque, or academic-focused, lacking real-time assistance."
-                                        </p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 items-stretch">
+                            {/* Insight Box 1 */}
+                            <div
+                                onClick={(e) => { e.stopPropagation(); setFocusedBox(focusedBox === 'insight1' ? null : 'insight1'); }}
+                                className={`lg:col-span-6 p-8 rounded-[2rem] bg-neutral-900 border border-white/10 transition-all duration-500 cursor-pointer group flex flex-col justify-center gap-6 relative overflow-hidden ${focusedBox === 'insight1' ? 'scale-105 z-20 ring-2 ring-[#39FF14]/50 shadow-[0_0_50px_rgba(57,255,20,0.2)]' :
+                                    (focusedBox ? 'blur-md opacity-20 scale-95' : 'hover:border-[#39FF14]/30 hover:bg-neutral-800/50')
+                                    }`}
+                            >
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-[#39FF14]/5 blur-[60px] -z-10" />
+                                <div className="flex items-center gap-4">
+                                    <div className="p-3 rounded-2xl bg-[#39FF14]/10 border border-[#39FF14]/20">
+                                        <AlertTriangle className="w-6 h-6 text-[#39FF14]" />
                                     </div>
-                                    <div className="flex gap-4">
-                                        <div className="mt-1"><Eye className="w-5 h-5 text-[#39FF14]" /></div>
-                                        <p className="text-lg md:text-xl font-serif text-neutral-300 leading-relaxed italic">
-                                            "Users remain unaware of controversies, revisions, and editorial conflicts that shape seemingly factual information."
-                                        </p>
-                                    </div>
+                                    <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-neutral-500">Problem Space 01</span>
                                 </div>
+                                <p className="text-xl md:text-2xl font-serif text-neutral-200 leading-relaxed italic antialiased">
+                                    "Existing bias detection tools are often slow, opaque, or academic-focused, lacking real-time assistance."
+                                </p>
                             </div>
 
-                            <div className="lg:col-span-12 pt-8">
-                                <div className="relative group/img cursor-pointer" onClick={() => setLightboxImage({ src: "/images/content-verify/scouting-ui.jpg", alt: "Scouting for UI interactions and Ideation" })}>
-                                    <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 to-[#39FF14]/20 rounded-3xl blur opacity-25 group-hover/img:opacity-50 transition duration-1000" />
-                                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/10">
-                                        <img
-                                            src="/images/content-verify/scouting-ui.jpg"
-                                            alt="Scouting for UI interactions and Ideation"
-                                            className="w-full h-full object-cover transition-transform duration-1000 group-hover/img:scale-105"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/40 via-transparent to-transparent" />
-                                        <div className="absolute bottom-6 left-6 flex items-center gap-3">
-                                            <div className="p-2 rounded-full bg-black/40 backdrop-blur-md border border-white/10">
-                                                <Lightbulb className="w-4 h-4 text-[#39FF14]" />
+                            {/* Insight Box 2 */}
+                            <div
+                                onClick={(e) => { e.stopPropagation(); setFocusedBox(focusedBox === 'insight2' ? null : 'insight2'); }}
+                                className={`lg:col-span-6 p-8 rounded-[2rem] bg-neutral-900 border border-white/10 transition-all duration-500 cursor-pointer group flex flex-col justify-center gap-6 relative overflow-hidden ${focusedBox === 'insight2' ? 'scale-105 z-20 ring-2 ring-blue-500/50 shadow-[0_0_50px_rgba(59,130,246,0.2)]' :
+                                    (focusedBox ? 'blur-md opacity-20 scale-95' : 'hover:border-blue-500/30 hover:bg-neutral-800/50')
+                                    }`}
+                            >
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 blur-[60px] -z-10" />
+                                <div className="flex items-center gap-4">
+                                    <div className="p-3 rounded-2xl bg-blue-500/10 border border-blue-500/20">
+                                        <Eye className="w-6 h-6 text-blue-400" />
+                                    </div>
+                                    <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-neutral-500">Problem Space 02</span>
+                                </div>
+                                <p className="text-xl md:text-2xl font-serif text-neutral-200 leading-relaxed italic antialiased">
+                                    "Users remain unaware of controversies, revisions, and editorial conflicts that shape seemingly factual information."
+                                </p>
+                            </div>
+
+                            {/* Large Image Bento Box */}
+                            <div
+                                onClick={(e) => { e.stopPropagation(); setFocusedBox(focusedBox === 'image' ? null : 'image'); }}
+                                className={`lg:col-span-12 rounded-[3rem] bg-neutral-900 border border-white/10 overflow-hidden transition-all duration-500 cursor-pointer relative group/img ${focusedBox === 'image' ? 'scale-[1.02] z-20 ring-2 ring-[#39FF14]/30 shadow-[0_40px_100px_rgba(0,0,0,0.6)]' :
+                                    (focusedBox ? 'blur-md opacity-20 scale-[0.98]' : 'hover:border-white/20')
+                                    }`}
+                            >
+                                <div className="relative aspect-[16/9] md:aspect-[21/9]">
+                                    <img
+                                        src="/images/content-verify/scouting-ui.jpg"
+                                        alt="Scouting for UI interactions and Ideation"
+                                        className="w-full h-full object-cover transition-transform duration-1000 group-hover/img:scale-105"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+
+                                    <div className="absolute bottom-6 left-6 right-6 p-8 rounded-[2rem] bg-black/40 backdrop-blur-2xl border border-white/10 shadow-2xl flex flex-col md:flex-row md:items-end justify-between gap-6 animate-in slide-in-from-bottom-4 duration-1000">
+                                        <div className="max-w-xl">
+                                            <div className="flex items-center gap-3 mb-4">
+                                                <div className="p-2.5 rounded-full bg-[#39FF14]/10 border border-[#39FF14]/20">
+                                                    <Lightbulb className="w-5 h-5 text-[#39FF14]" />
+                                                </div>
+                                                <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-[#39FF14]">Ideation Board</span>
                                             </div>
-                                            <span className="text-xs font-sans font-bold uppercase tracking-widest text-white/90">Scouting for UI interactions & Ideation</span>
+                                            <h3 className="text-2xl font-serif font-bold text-white mb-2">Scouting for UI interactions & Ideation</h3>
+                                            <p className="text-neutral-300 text-sm font-sans tracking-wide leading-relaxed">Synthesizing common UI patterns and identifying friction points in existing detection tools to build a more intuitive real-time verification experience.</p>
                                         </div>
+
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); setLightboxImage({ src: "/images/content-verify/scouting-ui.jpg", alt: "Scouting for UI interactions and Ideation" }); }}
+                                            className="px-6 py-3 rounded-full bg-[#39FF14] text-black text-[10px] font-sans font-bold uppercase tracking-widest hover:bg-[#39FF14]/90 transition-all hover:scale-105 shadow-[0_0_20px_rgba(57,255,20,0.3)] shrink-0"
+                                        >
+                                            View Full Board
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -516,29 +558,155 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                 </section>
 
 
-
-                {/* Criteria - High Tech/Minimalist List */}
+                {/* Controversy Detection - Methodology Section */}
                 {summary && (
-                    <section className="max-w-3xl mx-auto mb-4">
-                        <div className="border-t-4 border-black dark:border-white pt-8">
-                            <h2 className="text-4xl font-serif font-bold mb-12">Generative Criteria</h2>
-                            <div className="space-y-8">
-                                {Array.isArray(summary.content) && summary.content.filter((l: string) => l.startsWith("-")).map((line: string, i: number) => {
-                                    const [term, def] = line.substring(1).split(":").map((s: string) => s.trim());
-                                    return (
-                                        <div key={i} className="flex flex-col md:flex-row md:items-baseline gap-4">
-                                            <span className="font-sans font-bold uppercase tracking-wider text-sm w-32 shrink-0">{term}</span>
-                                            <span className="font-serif text-lg text-neutral-600 dark:text-neutral-400">{def}</span>
+                    <section className="max-w-4xl mx-auto mb-20 px-4">
+                        <div className="bg-neutral-50 dark:bg-neutral-900 overflow-hidden rounded-[2.5rem] border border-neutral-200 dark:border-neutral-800 shadow-sm relative group hover:shadow-xl transition-all duration-700">
+                            <div className="absolute top-8 right-8 opacity-5">
+                                <Zap className="w-32 h-32" />
+                            </div>
+
+                            <div className="p-8 md:p-14">
+                                <div className="flex items-center gap-3 mb-10">
+                                    <div className="w-10 h-10 rounded-full bg-black dark:bg-white flex items-center justify-center text-white dark:text-black">
+                                        <ShieldCheck className="w-5 h-5" />
+                                    </div>
+                                    <h2 className="text-2xl font-sans font-bold uppercase tracking-widest">{summary.title}</h2>
+                                </div>
+
+                                <p className="text-xl font-serif text-neutral-600 dark:text-neutral-400 mb-8 leading-relaxed italic">
+                                    "{summary.content?.[0]}"
+                                </p>
+
+                                {!showMethodology ? (
+                                    <button
+                                        onClick={() => setShowMethodology(true)}
+                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black font-sans font-bold uppercase tracking-widest hover:scale-105 transition-all shadow-lg group"
+                                    >
+                                        Dive into Methodology
+                                        <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                    </button>
+                                ) : (
+                                    <div className="animate-in fade-in slide-in-from-top-4 duration-700">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 mb-12">
+                                            {Array.isArray(summary.content) && summary.content.filter((l: string) => l.startsWith("-")).map((line: string, i: number) => {
+                                                const [term, def] = line.substring(1).split(":").map((s: string) => s.trim());
+                                                return (
+                                                    <div key={term} className="group/item">
+                                                        <div className="flex items-center gap-3 mb-2">
+                                                            <span className="w-2 h-2 rounded-full bg-[#39FF14]" />
+                                                            <h3 className="font-sans font-bold uppercase tracking-wider text-sm">{term}</h3>
+                                                        </div>
+                                                        <p className="font-serif text-neutral-600 dark:text-neutral-400 leading-relaxed pl-5 border-l border-neutral-200 dark:border-neutral-800 group-hover/item:border-[#39FF14] transition-colors">{def}</p>
+                                                    </div>
+                                                );
+                                            })}
                                         </div>
-                                    );
-                                })}
+
+                                        <div className="pt-10 border-t border-neutral-200 dark:border-neutral-800">
+                                            <div className="flex items-start gap-4">
+                                                <Info className="w-5 h-5 text-neutral-400 mt-1 shrink-0" />
+                                                <p className="font-serif text-sm text-neutral-500 italic leading-relaxed">
+                                                    {summary.content?.[summary.content.length - 1]}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <button
+                                            onClick={() => setShowMethodology(false)}
+                                            className="mt-10 px-6 py-2.5 rounded-full border border-neutral-200 dark:border-neutral-800 text-xs font-sans font-bold uppercase tracking-widest text-neutral-500 hover:text-black dark:hover:text-white hover:border-black dark:hover:border-white transition-all"
+                                        >
+                                            Collapse Methodology
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </section>
                 )}
 
+                {/* UX Discovery & Audit - Bento Layout */}
+                <section
+                    className="max-w-6xl mx-auto mb-24 px-4 pt-12 relative"
+                    onClick={() => focusedBox && setFocusedBox(null)}
+                >
+                    <div className="flex flex-col gap-8">
+                        <div className="max-w-3xl">
+                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6">
+                                <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />
+                                <span className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-white">Project Discovery</span>
+                            </div>
+                            <h2 className="text-3xl md:text-5xl font-serif font-bold text-white leading-tight mb-8">
+                                UX Strategy & <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Accessibility Audit</span>
+                            </h2>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
+                            {/* UX Audit Box */}
+                            <div
+                                onClick={(e) => { e.stopPropagation(); setFocusedBox(focusedBox === 'ux-audit' ? null : 'ux-audit'); }}
+                                className={`lg:col-span-8 rounded-[2.5rem] bg-neutral-900 border border-white/10 overflow-hidden transition-all duration-500 cursor-pointer relative group/img ${focusedBox === 'ux-audit' ? 'scale-[1.02] z-20 ring-2 ring-blue-500/30 shadow-[0_40px_100px_rgba(0,0,0,0.6)]' :
+                                    (focusedBox ? 'blur-md opacity-20 scale-[0.98]' : 'hover:border-white/20')
+                                    }`}
+                            >
+                                <div className="relative aspect-[16/10]">
+                                    <img
+                                        src="/images/content-verify/ux-audit.png"
+                                        alt="UX Audit"
+                                        className="w-full h-full object-cover transition-transform duration-1000 group-hover/img:scale-105"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+
+                                    <div className="absolute bottom-10 left-10 right-10">
+                                        <div className="flex items-center gap-3 mb-4">
+                                            <div className="p-2 rounded-full bg-blue-500/10 border border-blue-500/20 backdrop-blur-md">
+                                                <Search className="w-4 h-4 text-blue-400" />
+                                            </div>
+                                            <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-blue-400">Heuristic Evaluation</span>
+                                        </div>
+                                        <h3 className="text-2xl font-serif font-bold text-white mb-2">Detailed UX Audit</h3>
+                                        <p className="text-neutral-400 text-sm font-sans tracking-wide leading-relaxed max-w-xl">
+                                            Mapping the cognitive load of existing verification workflows to identify critical drop-off points.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Accessibility Box */}
+                            <div
+                                onClick={(e) => { e.stopPropagation(); setFocusedBox(focusedBox === 'accessibility' ? null : 'accessibility'); }}
+                                className={`lg:col-span-4 rounded-[2.5rem] bg-neutral-900 border border-white/10 overflow-hidden transition-all duration-500 cursor-pointer relative group/img ${focusedBox === 'accessibility' ? 'scale-[1.02] z-20 ring-2 ring-[#39FF14]/30 shadow-[0_40px_100px_rgba(0,0,0,0.6)]' :
+                                    (focusedBox ? 'blur-md opacity-20 scale-[0.98]' : 'hover:border-white/20')
+                                    }`}
+                            >
+                                <div className="relative h-full flex flex-col">
+                                    <div className="flex-1 min-h-[300px]">
+                                        <img
+                                            src="/images/content-verify/accessibility.png"
+                                            alt="Accessibility Standards"
+                                            className="w-full h-full object-cover transition-transform duration-1000 group-hover/img:scale-105"
+                                        />
+                                    </div>
+                                    <div className="p-8 bg-neutral-900 border-t border-white/5">
+                                        <div className="flex items-center gap-3 mb-4">
+                                            <div className="p-2 rounded-full bg-[#39FF14]/10 border border-[#39FF14]/20">
+                                                <Layers className="w-4 h-4 text-[#39FF14]" />
+                                            </div>
+                                            <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-[#39FF14]">AA/AAA Compliance</span>
+                                        </div>
+                                        <h3 className="text-xl font-serif font-bold text-white mb-2">Accessibility Guardrails</h3>
+                                        <p className="text-neutral-500 text-xs font-sans tracking-wide leading-relaxed">
+                                            Ensuring high color contrast and semantic structure for screen readers.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 {/* Task Interpretation + Persona - Two Columns */}
-                <section className="max-w-5xl mx-auto mb-4 grid grid-cols-1 md:grid-cols-2 gap-16">
+                <section className="max-w-5xl mx-auto mb-24 grid grid-cols-1 md:grid-cols-2 gap-16 px-4">
                     <div>
                         <h3 className="font-sans font-bold uppercase tracking-widest mb-8 border-b border-neutral-200 dark:border-neutral-800 pb-4">Task Interpretation</h3>
                         <div className="space-y-6">
@@ -564,18 +732,17 @@ export function ContentVerifyProject({ project }: { project: Project }) {
 
                 {/* Discovery Feedback - Sticky Note Style */}
                 {feedback && (
-                    <section className="max-w-4xl mx-auto mb-4 p-8 md:p-12 bg-[#fffdf5] dark:bg-[#1a1a1a] shadow-sm border border-neutral-200 dark:border-neutral-800 transform -rotate-1">
+                    <section className="max-w-4xl mx-auto mb-32 p-8 md:p-12 bg-[#fffdf5] dark:bg-[#1a1a1a] shadow-sm border border-neutral-200 dark:border-neutral-800 transform -rotate-1 mx-4">
                         <h2 className="font-sans font-bold uppercase tracking-widest mb-8 text-neutral-400">Discovery Feedback</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             {Array.isArray(feedback.content) && feedback.content.filter((l: string) => l.startsWith("-")).map((line: string, i: number) => (
-                                <div key={i} className="font-serif text-lg leading-relaxed">
+                                <div key={i} className="font-serif text-lg leading-relaxed italic">
                                     "{line.substring(1).trim()}"
                                 </div>
                             ))}
                         </div>
                     </section>
                 )}
-
             </article>
 
             {lightboxImage && (

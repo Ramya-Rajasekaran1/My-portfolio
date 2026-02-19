@@ -56,17 +56,17 @@ export const contentVerifyProject = {
             topMargin: true
         },
         {
-            title: "SUMMARY GENERATION CRITERIA",
+            title: "CONTROVERSY DETECTION",
             content: [
-                "We defined criteria for computational modeling capturing 'Truth-Agnostic' analysis:",
+                "We defined five criteria to operationalize showing opposing views in text:",
                 "",
-                "- Significance: Is the claim influential or central to the argument?",
-                "- Consensus: Is the claim widely accepted or disputed?",
-                "- Balance: Does the article present multiple viewpoints?",
-                "- Framing: Is the language neutral or emotionally charged?",
-                "- Sourcing: Are the sources credible and diverse?",
+                "- Significance: The statement makes a claim with implications for the real world.",
+                "- Consensus: The issue lacks public agreement or is under debate.",
+                "- Balance: Alternative points of view are missing or unevenly represented.",
+                "- Framing: The language reflects rhetorical or moral bias.",
+                "- Verifiability: The claim is disputable or difficult to confirm with credible sources.",
                 "",
-                "Therefore, users develop a critical lens for interpretation, understanding the 'how' and 'why' behind specific coverage, encouraging deeper analysis on nuanced topics and less polarization."
+                "These criteria were iteratively refined for the prototype system during the initial testing to balance sensitivity and precision in dozens of articles on many topics and media outlets."
             ],
             glassCard: true,
             showDivider: true,
