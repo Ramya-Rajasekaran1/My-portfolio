@@ -42,6 +42,15 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                         <ArrowUpRight className="w-5 h-5 text-neutral-900 dark:text-white" />
                     </div>
 
+                    {/* Mild Noise Effect */}
+                    <div
+                        className="absolute inset-0 opacity-[0.1] dark:opacity-[0.05] pointer-events-none mix-blend-overlay z-0"
+                        style={{
+                            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                            backgroundRepeat: "repeat",
+                        }}
+                    />
+
                     {/* Glass Overlay with Additional Details on Hover */}
                     <div className="absolute bottom-0 left-0 right-0 p-6 glass border-t border-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                         <span className="text-xs font-medium uppercase tracking-wider text-purple-600 dark:text-purple-400 mb-2 block">

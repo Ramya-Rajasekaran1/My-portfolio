@@ -19,12 +19,12 @@ const SPHERE_CONFIG = {
 
     // Oscillation (breathing effect)
     oscillation: {
-        speed: 1.5,      // Speed of breathing (higher = faster)
-        amplitude: 0.2,  // How much it breathes (0.2 = ±20% of base size)
+        speed: 2.5,      // Speed of breathing (higher = faster)
+        amplitude: 0.25,  // How much it breathes (0.25 = ±25% of base size)
     },
 
     // Rotation
-    rotationSpeed: 0.3,  // Speed of sphere rotation
+    rotationSpeed: 0.8,  // Speed of sphere rotation
 
     // Cursor following
     cursorFollowSpeed: 0.03, // How fast sphere follows cursor (0.01 = slow, 0.1 = fast)
@@ -132,11 +132,11 @@ export const InteractiveBackground = React.memo(function InteractiveBackground({
         const time = timeRef.current;
         const center = sphereCenterRef.current;
 
-        // Calculate base radius (60% of smaller viewport dimension)
+        // Calculate base radius (75% of smaller viewport dimension for better visibility)
         const minDimension = typeof window !== 'undefined' ? Math.min(window.innerWidth, window.innerHeight) : 1000;
-        const baseRadius = (minDimension * SPHERE_CONFIG.sphereSize.min) / 200; // Divide by 200 for percentage units
+        const baseRadius = (minDimension * 0.75) / 2; // Increase base size slightly
 
-        // Oscillation (breathing effect) - always active
+        // Oscillation (breathing effect)
         const oscillation = Math.sin(time * SPHERE_CONFIG.oscillation.speed) * SPHERE_CONFIG.oscillation.amplitude;
         const currentRadius = baseRadius * (1 + oscillation);
 
@@ -148,12 +148,8 @@ export const InteractiveBackground = React.memo(function InteractiveBackground({
         const y3d = currentRadius * Math.cos(particle.phi);
         const z3d = currentRadius * Math.sin(particle.phi) * Math.sin(rotatedTheta);
 
-        // Aspect ratio correction for perfect circle
-        const aspectRatio = typeof window !== 'undefined' ? window.innerWidth / window.innerHeight : 1;
-        const correctedX3d = x3d * aspectRatio;
-
-        // Project to 2D (percentage units)
-        const x = center.x + (correctedX3d / (typeof window !== 'undefined' ? window.innerWidth : 1000)) * 100;
+        // Convert pixel coordinates to viewport percentages
+        const x = center.x + (x3d / (typeof window !== 'undefined' ? window.innerWidth : 1000)) * 100;
         const y = center.y + (y3d / (typeof window !== 'undefined' ? window.innerHeight : 1000)) * 100;
 
         // Depth for size/opacity variation
@@ -177,7 +173,17 @@ export const InteractiveBackground = React.memo(function InteractiveBackground({
                     }}
                 />
                 <div
-                    className="absolute rounded-full bg-gradient-to-r from-blue-500/30 to-cyan-500/30 blur-3xl transition-transform duration-1500 ease-out will-change-transform"
+                    className="absolute rounded-full bg-gradient-to-r from-orange-500/25 to-yellow-500/25 blur-3xl transition-transform duration-2000 ease-out will-change-transform"
+                    style={{
+                        width: `700px`,
+                        height: `700px`,
+                        left: `${50 + Math.sin(timeRef.current * 0.2) * 20}%`,
+                        top: `${50 + Math.cos(timeRef.current * 0.15) * 20}%`,
+                        transform: "translate(-50%, -50%)",
+                    }}
+                />
+                <div
+                    className="absolute rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 blur-3xl transition-transform duration-1500 ease-out will-change-transform"
                     style={{
                         width: `${SPHERE_CONFIG.gradients.blue.size}px`,
                         height: `${SPHERE_CONFIG.gradients.blue.size}px`,
@@ -203,7 +209,8 @@ export const InteractiveBackground = React.memo(function InteractiveBackground({
                                     cx={`${pos.x}%`}
                                     cy={`${pos.y}%`}
                                     r={depthSize}
-                                    fill="rgba(255, 255, 255, 0.8)"
+                                    fill="currentColor"
+                                    className="text-purple-400/80 dark:text-purple-300/60"
                                     opacity={depthOpacity}
                                 />
                             );

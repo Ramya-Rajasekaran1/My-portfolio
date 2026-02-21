@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Playfair_Display, Outfit } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -15,6 +15,7 @@ import { NoiseOverlay } from "@/components/ui/noise-overlay";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
   title: "Ramya Rajsekaran | UX Designer",
@@ -37,7 +38,8 @@ export default function RootLayout({
       <body className={cn(
         "min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 antialiased transition-colors duration-300",
         inter.variable,
-        playfair.variable
+        playfair.variable,
+        outfit.variable
       )}>
         <ThemeProvider
           attribute="class"

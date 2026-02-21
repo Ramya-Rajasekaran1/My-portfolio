@@ -126,7 +126,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
             </nav>
 
             {/* Hero Section - Editorial Style */}
-            <header className="pt-24 pb-12 md:pt-32 md:pb-16 border-b border-neutral-200 dark:border-neutral-800">
+            <header className="pt-24 pb-8 md:pt-32 md:pb-10 border-b border-neutral-200 dark:border-neutral-800">
                 <div className="container mx-auto px-4 max-w-4xl text-center">
                     <span className="inline-block py-1 px-3 border border-neutral-900 dark:border-neutral-100 rounded-full text-xs font-sans font-bold uppercase tracking-widest mb-6">
                         {project.category}
@@ -141,16 +141,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
             </header>
 
             {/* Main Content Area - Single Column Reading Flow */}
-            <article className="container mx-auto px-4 py-8 md:py-12">
-
-                {/* Large visual breakout */}
-                <div className="w-full aspect-video relative rounded-none md:rounded-lg overflow-hidden mb-12 grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl">
-                    <div
-                        className="absolute inset-0 bg-cover bg-center"
-                        style={{ backgroundImage: `url(${project.image})` }}
-                    />
-                </div>
-
+            <article className="container mx-auto px-4 py-6 md:py-8">
                 {/* Introduction / Objective */}
                 <section className="max-w-4xl mx-auto mb-16 bg-neutral-900 rounded-3xl p-8 md:p-12 border border-neutral-800">
                     <div className="mb-10 flex items-center gap-4">
@@ -200,25 +191,91 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                     </div>
                 </section>
 
-                {/* Stats Grid */}
-                <section className="max-w-4xl mx-auto mb-24">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {stats.map((stat) => {
-                            const IconComponent = stat.icon;
-                            return (
-                                <div key={stat.id} className="flex flex-col gap-3 p-6 bg-neutral-900/5 dark:bg-neutral-100/5 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-lg hover:border-[#39FF14]/40 hover:shadow-[0_4px_16px_rgba(57,255,20,0.15)] transition-all duration-300 min-h-[200px] group">
-                                    <div className="flex items-center justify-between">
-                                        <span className="text-sm font-sans font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">{stat.label}</span>
-                                        <IconComponent className="w-5 h-5 text-[#39FF14] drop-shadow-[0_0_8px_rgba(57,255,20,0.5)]" strokeWidth={2.5} />
+                {/* Outcome-Based Usability Metrics */}
+                <section className="max-w-6xl mx-auto mb-24 px-4">
+                    <div className="flex flex-col items-center mb-16 px-4 text-center">
+                        <span className="text-[10px] font-sans font-bold uppercase tracking-[0.4em] text-[#39FF14] mb-4">Results</span>
+                        <h2 className="text-4xl md:text-6xl font-serif font-bold text-center mb-6">Did our solution make any change?</h2>
+                        <h3 className="text-2xl md:text-3xl font-serif font-bold text-center text-neutral-300">Outcome-Based Usability Metrics</h3>
+                        <p className="mt-4 text-neutral-400 font-sans tracking-wide">In-depth statistical analysis (Chi-Square method)</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {/* Metric 1 */}
+                        <div className="flex flex-col items-center text-center p-8 bg-neutral-900 rounded-[2rem] border border-[#39FF14]/20 hover:border-[#39FF14]/50 transition-colors group">
+                            <div className="flex flex-col items-center justify-center text-4xl md:text-5xl font-bold font-serif text-[#39FF14] mb-6 drop-shadow-[0_0_15px_rgba(57,255,20,0.3)] transition-all">
+                                <div className="flex items-center justify-center gap-3">
+                                    <span>Chi² = 4.6</span>
+                                    <div className="relative group/tooltip cursor-help flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
+                                        <Info className="w-5 h-5 text-neutral-400 group-hover/tooltip:text-[#39FF14] transition-colors" />
+                                        {/* Tooltip Content */}
+                                        <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 p-5 rounded-[1.5rem] bg-neutral-800 text-white font-sans text-xs shadow-2xl opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-300 pointer-events-none border border-white/10 text-left cursor-default">
+                                            <div className="font-bold mb-2 pb-2 border-b border-white/10 text-[#39FF14] uppercase tracking-widest text-[10px]">What does this mean?</div>
+                                            <p className="text-neutral-300 mt-3 mb-3 leading-relaxed font-normal normal-case">
+                                                A score above <strong className="text-white">3.8 (the baseline)</strong> means the tool made a real difference, rather than just random chance.
+                                            </p>
+                                            <p className="text-neutral-300 leading-relaxed font-normal normal-case">
+                                                <strong className="text-white">p &lt; 0.05</strong> means we are <strong className="text-white">95% confident</strong> these improvements are real.
+                                            </p>
+                                            <p className="text-[#39FF14] leading-relaxed font-bold normal-case mt-3 pt-3 border-t border-white/10 text-center text-[10px] tracking-wider uppercase">
+                                                ~20 Formal controlled tests
+                                            </p>
+                                            {/* Bottom triangle */}
+                                            <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-neutral-800 border-b border-r border-white/10 rotate-45"></div>
+                                        </div>
                                     </div>
-                                    <span className="text-5xl md:text-6xl font-bold font-serif text-neutral-900 dark:text-neutral-100 block">{stat.number}</span>
-                                    <p className="text-sm font-sans text-neutral-600 dark:text-neutral-400 leading-relaxed flex-1">
-                                        {stat.text}
-                                    </p>
-                                    <span className="text-xs font-sans text-neutral-400 uppercase tracking-wider">{stat.source}</span>
                                 </div>
-                            );
-                        })}
+                                <span className="block text-sm font-sans text-[#39FF14]/60 mt-2 tracking-widest uppercase text-center w-full">p &lt; 0.05</span>
+                            </div>
+                            <h3 className="text-lg font-bold font-sans uppercase tracking-widest text-white mb-4">Bias Recognition</h3>
+                            <p className="text-neutral-400 font-serif leading-relaxed italic text-sm">
+                                Participants using the tool were significantly more likely to correctly identify biased or controversial statements compared to the baseline.
+                            </p>
+                        </div>
+
+                        {/* Metric 2 */}
+                        <div className="flex flex-col items-center text-center p-8 bg-neutral-900 rounded-[2rem] border border-[#39FF14]/20 hover:border-[#39FF14]/50 transition-colors group">
+                            <div className="flex flex-col items-center justify-center text-4xl md:text-5xl font-bold font-serif text-[#39FF14] mb-6 drop-shadow-[0_0_15px_rgba(57,255,20,0.3)] transition-all">
+                                <div className="flex items-center justify-center gap-3">
+                                    <span>Chi² = 16.4</span>
+                                    <div className="relative group/tooltip cursor-help flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
+                                        <Info className="w-5 h-5 text-neutral-400 group-hover/tooltip:text-[#39FF14] transition-colors" />
+                                        {/* Tooltip Content */}
+                                        <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 p-5 rounded-[1.5rem] bg-neutral-800 text-white font-sans text-xs shadow-2xl opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-300 pointer-events-none border border-white/10 text-left cursor-default">
+                                            <div className="font-bold mb-2 pb-2 border-b border-white/10 text-[#39FF14] uppercase tracking-widest text-[10px]">What does this mean?</div>
+                                            <p className="text-neutral-300 mt-3 mb-3 leading-relaxed font-normal normal-case">
+                                                A score above <strong className="text-white">6.6 (the high baseline)</strong> means the tool had an exceptionally strong impact compared to random chance.
+                                            </p>
+                                            <p className="text-neutral-300 leading-relaxed font-normal normal-case">
+                                                <strong className="text-white">p &lt; 0.005</strong> means we are <strong className="text-white">99.5% confident</strong> these improvements are real.
+                                            </p>
+                                            <p className="text-[#39FF14] leading-relaxed font-bold normal-case mt-3 pt-3 border-t border-white/10 text-center text-[10px] tracking-wider uppercase">
+                                                ~20 Formal controlled tests
+                                            </p>
+                                            {/* Bottom triangle */}
+                                            <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-neutral-800 border-b border-r border-white/10 rotate-45"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span className="block text-sm font-sans text-[#39FF14]/60 mt-2 tracking-widest uppercase text-center w-full">p &lt; 0.005</span>
+                            </div>
+                            <h3 className="text-lg font-bold font-sans uppercase tracking-widest text-white mb-4">User Engagement</h3>
+                            <p className="text-neutral-400 font-serif leading-relaxed italic text-sm">
+                                There was a substantial increase in interaction with contested content, meaning the highlights successfully drew focus to controversial areas.
+                            </p>
+                        </div>
+
+                        {/* Metric 3 */}
+                        <div className="flex flex-col items-center text-center p-8 bg-neutral-900 rounded-[2rem] border border-[#39FF14]/20 hover:border-[#39FF14]/50 transition-colors group">
+                            <div className="text-4xl md:text-5xl font-bold font-serif text-[#39FF14] mb-6 drop-shadow-[0_0_15px_rgba(57,255,20,0.3)] group-hover:drop-shadow-[0_0_25px_rgba(57,255,20,0.6)] transition-all flex items-baseline justify-center gap-2">
+                                19%<span className="text-2xl text-neutral-500 font-sans tracking-widest uppercase">to</span>50%
+                            </div>
+                            <span className="block text-sm font-sans text-[#39FF14]/60 tracking-widest uppercase mb-6 drop-shadow-[0_0_15px_rgba(57,255,20,0.3)] group-hover:drop-shadow-[0_0_25px_rgba(57,255,20,0.6)] transition-all">Shift</span>
+                            <h3 className="text-lg font-bold font-sans uppercase tracking-widest text-white mb-4">Cognitive Impact</h3>
+                            <p className="text-neutral-400 font-serif leading-relaxed italic text-sm">
+                                Measured opinion shifts across different topics indicate that exposure to alternative viewpoints via the tool meaningfully altered reader perspectives.
+                            </p>
+                        </div>
                     </div>
                 </section>
 
@@ -407,9 +464,17 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                     <h3 className="text-xl font-bold font-serif">Wikipedia's System</h3>
                                     <span className="px-3 py-1 rounded-full bg-red-500/10 text-red-500 text-[10px] font-bold uppercase tracking-widest border border-red-500/20">Old UX</span>
                                 </div>
-                                <div className="aspect-video relative rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-800 grayscale group-hover:grayscale-0 transition-all duration-700">
-                                    <img src="/images/content-verify/wiki-criteria.png" alt="Wikipedia Logic" className="w-full h-full object-cover" />
-                                    <div className="absolute inset-0 bg-red-500/5" />
+                                <div className="space-y-4">
+                                    <div className="aspect-[3/1] relative rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-800 grayscale group-hover:grayscale-0 transition-all duration-700 cursor-pointer bg-neutral-50 dark:bg-neutral-900"
+                                        onClick={() => setLightboxImage({ src: "/images/content-verify/wiki-timeline.png", alt: "Wikipedia Article Status Timeline" })}>
+                                        <img src="/images/content-verify/wiki-timeline.png" alt="Wikipedia Timeline" className="w-full h-full object-contain" />
+                                        <div className="absolute inset-0 bg-red-500/5 mix-blend-multiply dark:mix-blend-overlay" />
+                                    </div>
+                                    <div className="aspect-[4/3] relative rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-800 grayscale group-hover:grayscale-0 transition-all duration-700 cursor-pointer"
+                                        onClick={() => setLightboxImage({ src: "/images/content-verify/wiki-criteria.jpg", alt: "Wikipedia Quality Criteria Table" })}>
+                                        <img src="/images/content-verify/wiki-criteria.jpg" alt="Wikipedia Criteria" className="w-full h-full object-cover" />
+                                        <div className="absolute inset-0 bg-red-500/5 mix-blend-multiply dark:mix-blend-overlay" />
+                                    </div>
                                 </div>
                             </div>
                             <div className="p-8 space-y-6 flex-1">
@@ -437,9 +502,9 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                     <h3 className="text-xl font-bold font-serif text-white">Content Verify</h3>
                                     <span className="px-3 py-1 rounded-full bg-[#39FF14]/10 text-[#39FF14] text-[10px] font-bold uppercase tracking-widest border border-[#39FF14]/20">New UX</span>
                                 </div>
-                                <div className="aspect-video relative rounded-xl overflow-hidden border border-white/10 group-hover:border-[#39FF14]/50 transition-colors duration-700">
-                                    <img src="/images/content-verify/wiki-timeline.png" alt="Content Verify Logic" className="w-full h-full object-cover" />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                                <div className="relative rounded-xl overflow-hidden border border-white/10 group-hover:border-[#39FF14]/50 transition-all duration-700 cursor-pointer bg-white"
+                                    onClick={() => setLightboxImage({ src: "/images/content-verify/new-ux-alert.png", alt: "Context Alert UI View" })}>
+                                    <img src="/images/content-verify/new-ux-alert.png" alt="Context Alert UI" className="w-full h-auto object-contain" />
                                 </div>
                             </div>
                             <div className="p-8 space-y-6 flex-1 shadow-[inset_0_0_100px_rgba(57,255,20,0.02)]">
@@ -474,11 +539,18 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                 <span className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-white">Secondary Research</span>
                             </div>
                             <h2 className="text-3xl md:text-5xl font-serif font-bold text-white leading-tight mb-8">
-                                Uncovering the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-emerald-400">Invisible Layers</span> of Digital Information
+                                Uncovering <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-emerald-400">UI and interactions</span>
                             </h2>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 items-stretch">
+                        {/* Backdrop for click outside */}
+                        {focusedBox && (
+                            <div
+                                className="fixed inset-0 z-10 cursor-pointer"
+                                onClick={(e) => { e.stopPropagation(); setFocusedBox(null); }}
+                            />
+                        )}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 items-stretch relative">
                             {/* Insight Box 1 */}
                             <div
                                 onClick={(e) => { e.stopPropagation(); setFocusedBox(focusedBox === 'insight1' ? null : 'insight1'); }}
@@ -520,11 +592,13 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                             {/* Large Image Bento Box */}
                             <div
                                 onClick={(e) => { e.stopPropagation(); setFocusedBox(focusedBox === 'image' ? null : 'image'); }}
-                                className={`lg:col-span-12 rounded-[3rem] bg-neutral-900 border border-white/10 overflow-hidden transition-all duration-500 cursor-pointer relative group/img ${focusedBox === 'image' ? 'scale-[1.02] z-20 ring-2 ring-[#39FF14]/30 shadow-[0_40px_100px_rgba(0,0,0,0.6)]' :
-                                    (focusedBox ? 'blur-md opacity-20 scale-[0.98]' : 'hover:border-white/20')
+                                className={`lg:col-span-12 rounded-[3rem] bg-neutral-900 border border-white/10 overflow-hidden transition-all duration-500 cursor-pointer relative group/img 
+                                    ${focusedBox === 'image' ? 'scale-[1.02] z-20 ring-2 ring-[#39FF14]/30 shadow-[0_40px_100px_rgba(0,0,0,0.6)] flex flex-col lg:flex-row' :
+                                        (focusedBox ? 'blur-md opacity-20 scale-[0.98] flex flex-col' : 'hover:border-white/20 flex flex-col')
                                     }`}
                             >
-                                <div className="relative aspect-[16/9] md:aspect-[21/9]">
+                                {/* Image Container */}
+                                <div className={`relative transition-all duration-500 ${focusedBox === 'image' ? 'w-full lg:w-[60%] aspect-[16/9]' : 'w-full aspect-[16/9] md:aspect-[21/9]'}`}>
                                     <img
                                         src="/images/content-verify/scouting-ui.jpg"
                                         alt="Scouting for UI interactions and Ideation"
@@ -532,7 +606,8 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
-                                    <div className="absolute bottom-6 left-6 right-6 p-8 rounded-[2rem] bg-black/40 backdrop-blur-2xl border border-white/10 shadow-2xl flex flex-col md:flex-row md:items-end justify-between gap-6 animate-in slide-in-from-bottom-4 duration-1000">
+                                    {/* Overlay text that only shows when not expanded fully on some screens, or hide on lg when expanded */}
+                                    <div className={`absolute bottom-6 left-6 right-6 p-8 rounded-[2rem] bg-black/40 backdrop-blur-2xl border border-white/10 shadow-2xl flex flex-col md:flex-row md:items-end justify-between gap-6 transition-all duration-500 ${focusedBox === 'image' ? 'opacity-0 invisible' : 'opacity-100 visible'}`}>
                                         <div className="max-w-xl">
                                             <div className="flex items-center gap-3 mb-4">
                                                 <div className="p-2.5 rounded-full bg-[#39FF14]/10 border border-[#39FF14]/20">
@@ -551,14 +626,68 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                             View Full Board
                                         </button>
                                     </div>
+
+                                    {/* Keep View Full Board button when expanded */}
+                                    {focusedBox === 'image' && (
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); setLightboxImage({ src: "/images/content-verify/scouting-ui.jpg", alt: "Scouting for UI interactions and Ideation" }); }}
+                                            className="absolute bottom-6 right-6 px-6 py-3 rounded-full bg-[#39FF14] text-black text-[10px] font-sans font-bold uppercase tracking-widest hover:bg-[#39FF14]/90 transition-all hover:scale-105 shadow-[0_0_20px_rgba(57,255,20,0.3)] shrink-0 z-10 animate-in fade-in duration-500"
+                                        >
+                                            Expand Image
+                                        </button>
+                                    )}
                                 </div>
+
+                                {/* Side Text Container (Only shown when focused) */}
+                                {focusedBox === 'image' && (
+                                    <div className="w-full lg:w-[40%] p-8 bg-black/50 backdrop-blur-md border-t lg:border-t-0 lg:border-l border-white/10 flex flex-col justify-center animate-in fade-in slide-in-from-right-8 duration-700 relative">
+
+                                        <div className="flex items-center gap-3 mb-6">
+                                            <div className="p-2.5 rounded-full bg-[#39FF14]/10 border border-[#39FF14]/20">
+                                                <Lightbulb className="w-5 h-5 text-[#39FF14]" />
+                                            </div>
+                                            <h3 className="text-xl font-serif font-bold text-white">Scouting Insights</h3>
+                                        </div>
+
+                                        <ul className="space-y-6">
+                                            <li className="flex gap-4 items-start group/item">
+                                                <span className="text-[#39FF14] mt-1 shrink-0 font-bold tracking-widest">01</span>
+                                                <div>
+                                                    <strong className="text-white font-sans text-sm block mb-1 uppercase tracking-wider">Grammarly</strong>
+                                                    <span className="text-neutral-400 font-serif text-sm leading-relaxed block">Visual cues on the screen right corner for non-obstructive access. Clear categories for fixes.</span>
+                                                </div>
+                                            </li>
+                                            <li className="flex gap-4 items-start group/item">
+                                                <span className="text-[#39FF14] mt-1 shrink-0 font-bold tracking-widest">02</span>
+                                                <div>
+                                                    <strong className="text-white font-sans text-sm block mb-1 uppercase tracking-wider">Copyleaks</strong>
+                                                    <span className="text-neutral-400 font-serif text-sm leading-relaxed block">Dig in for more analytics with numerical proof. Direct manipulation by clicking links inside.</span>
+                                                </div>
+                                            </li>
+                                            <li className="flex gap-4 items-start group/item">
+                                                <span className="text-[#39FF14] mt-1 shrink-0 font-bold tracking-widest">03</span>
+                                                <div>
+                                                    <strong className="text-white font-sans text-sm block mb-1 uppercase tracking-wider">Gamification</strong>
+                                                    <span className="text-neutral-400 font-serif text-sm leading-relaxed block">Adding engaging scoring systems and highlighting disputed text to keep users active.</span>
+                                                </div>
+                                            </li>
+                                            <li className="flex gap-4 items-start group/item">
+                                                <span className="text-[#39FF14] mt-1 shrink-0 font-bold tracking-widest">04</span>
+                                                <div>
+                                                    <strong className="text-white font-sans text-sm block mb-1 uppercase tracking-wider">Intergrito</strong>
+                                                    <span className="text-neutral-400 font-serif text-sm leading-relaxed block">Only shows one pop-up at a time. Compact tab design limiting screen overload.</span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
                 </section>
 
 
-                {/* Controversy Detection - Methodology Section */}
+                {/* Controversy Detection - Methodology Section 
                 {summary && (
                     <section className="max-w-4xl mx-auto mb-20 px-4">
                         <div className="bg-neutral-50 dark:bg-neutral-900 overflow-hidden rounded-[2.5rem] border border-neutral-200 dark:border-neutral-800 shadow-sm relative group hover:shadow-xl transition-all duration-700">
@@ -624,6 +753,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                         </div>
                     </section>
                 )}
+                */}
 
                 {/* UX Discovery & Audit - Bento Layout */}
                 <section
@@ -637,7 +767,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                 <span className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-white">Project Discovery</span>
                             </div>
                             <h2 className="text-3xl md:text-5xl font-serif font-bold text-white leading-tight mb-8">
-                                UX Strategy & <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Accessibility Audit</span>
+                                UX Strategy & <span className="text-[#39FF14]">Accessibility Audit</span>
                             </h2>
                         </div>
 
@@ -645,49 +775,109 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                             {/* UX Audit Box */}
                             <div
                                 onClick={(e) => { e.stopPropagation(); setFocusedBox(focusedBox === 'ux-audit' ? null : 'ux-audit'); }}
-                                className={`lg:col-span-8 rounded-[2.5rem] bg-neutral-900 border border-white/10 overflow-hidden transition-all duration-500 cursor-pointer relative group/img ${focusedBox === 'ux-audit' ? 'scale-[1.02] z-20 ring-2 ring-blue-500/30 shadow-[0_40px_100px_rgba(0,0,0,0.6)]' :
-                                    (focusedBox ? 'blur-md opacity-20 scale-[0.98]' : 'hover:border-white/20')
+                                className={`rounded-[2.5rem] bg-neutral-900 border border-white/10 overflow-hidden transition-all duration-500 cursor-pointer relative group/img 
+                                    ${focusedBox === 'ux-audit' ? 'lg:col-span-12 scale-[1.02] z-20 ring-2 ring-blue-500/30 shadow-[0_40px_100px_rgba(0,0,0,0.6)] flex flex-col lg:flex-row' :
+                                        (focusedBox === 'accessibility' ? 'lg:col-span-4 blur-md opacity-20 scale-[0.98] flex flex-col hidden lg:flex' : 'lg:col-span-8 hover:border-white/20 flex flex-col')
                                     }`}
                             >
-                                <div className="relative aspect-[16/10]">
+                                {/* Image Container */}
+                                <div className={`relative transition-all duration-500 ${focusedBox === 'ux-audit' ? 'w-full lg:w-[60%] aspect-[16/10]' : 'w-full aspect-[16/10]'}`}>
                                     <img
                                         src="/images/content-verify/ux-audit.png"
                                         alt="UX Audit"
                                         className="w-full h-full object-cover transition-transform duration-1000 group-hover/img:scale-105"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
-                                    <div className="absolute bottom-10 left-10 right-10">
+                                    <div className={`absolute bottom-6 left-6 right-6 p-8 rounded-[2rem] bg-black/40 backdrop-blur-2xl border border-white/10 shadow-2xl flex flex-col transition-all duration-500 ${focusedBox === 'ux-audit' ? 'opacity-0 invisible' : 'opacity-100 visible'}`}>
                                         <div className="flex items-center gap-3 mb-4">
-                                            <div className="p-2 rounded-full bg-blue-500/10 border border-blue-500/20 backdrop-blur-md">
-                                                <Search className="w-4 h-4 text-blue-400" />
+                                            <div className="p-2.5 rounded-full bg-[#39FF14]/10 border border-[#39FF14]/40 backdrop-blur-md">
+                                                <Search className="w-5 h-5 text-[#39FF14]" />
                                             </div>
-                                            <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-blue-400">Heuristic Evaluation</span>
+                                            <span className="bg-slate-500/40 border border-[#39FF14]/50 px-4 py-2 rounded-full text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-[#39FF14] shadow-[0_0_15px_rgba(57,255,20,0.2)]">
+                                                Heuristic Analysis
+                                            </span>
                                         </div>
                                         <h3 className="text-2xl font-serif font-bold text-white mb-2">Detailed UX Audit</h3>
-                                        <p className="text-neutral-400 text-sm font-sans tracking-wide leading-relaxed max-w-xl">
+                                        <p className="text-neutral-300 text-sm font-sans tracking-wide leading-relaxed">
                                             Mapping the cognitive load of existing verification workflows to identify critical drop-off points.
                                         </p>
                                     </div>
+
+                                    {/* Expand Image Button */}
+                                    {focusedBox === 'ux-audit' && (
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); setLightboxImage({ src: "/images/content-verify/ux-audit.png", alt: "UX Audit" }); }}
+                                            className="absolute bottom-6 right-6 px-6 py-3 rounded-full bg-blue-500 text-white text-[10px] font-sans font-bold uppercase tracking-widest hover:bg-blue-600 transition-all hover:scale-105 shadow-[0_0_20px_rgba(59,130,246,0.3)] shrink-0 z-10 animate-in fade-in duration-500"
+                                        >
+                                            Expand Image
+                                        </button>
+                                    )}
                                 </div>
+
+                                {/* Side Text Container */}
+                                {focusedBox === 'ux-audit' && (
+                                    <div className="w-full lg:w-[40%] p-8 bg-black/50 backdrop-blur-md border-t lg:border-t-0 lg:border-l border-white/10 flex flex-col justify-center animate-in fade-in slide-in-from-right-8 duration-700 relative">
+                                        <div className="flex items-center gap-3 mb-6">
+                                            <div className="p-2.5 rounded-full bg-blue-500/10 border border-blue-500/20">
+                                                <Search className="w-5 h-5 text-blue-400" />
+                                            </div>
+                                            <h3 className="text-xl font-serif font-bold text-white">Heuristic Insights</h3>
+                                        </div>
+
+                                        <ul className="space-y-4">
+                                            <li className="flex gap-4 items-start group/item">
+                                                <span className="text-blue-400 mt-1 shrink-0 font-bold tracking-widest">01</span>
+                                                <div>
+                                                    <strong className="text-white font-sans text-sm block mb-1 uppercase tracking-wider">Navigational Friction</strong>
+                                                    <span className="text-neutral-400 font-serif text-sm leading-relaxed block">Unreadable 10px fonts, forced scrolling to find referenced content, and unclickable cursors create unnecessary effort.</span>
+                                                </div>
+                                            </li>
+                                            <li className="flex gap-4 items-start group/item">
+                                                <span className="text-blue-400 mt-1 shrink-0 font-bold tracking-widest">02</span>
+                                                <div>
+                                                    <strong className="text-white font-sans text-sm block mb-1 uppercase tracking-wider">Confusing Visual Cues</strong>
+                                                    <span className="text-neutral-400 font-serif text-sm leading-relaxed block">Conflicting color schemes—such as green elements justifying red highlights—leave users lost and confused.</span>
+                                                </div>
+                                            </li>
+                                            <li className="flex gap-4 items-start group/item">
+                                                <span className="text-blue-400 mt-1 shrink-0 font-bold tracking-widest">03</span>
+                                                <div>
+                                                    <strong className="text-white font-sans text-sm block mb-1 uppercase tracking-wider">Overwhelming Analysis</strong>
+                                                    <span className="text-neutral-400 font-serif text-sm leading-relaxed block">Explanations are wordy and modals overlap. Reasoning desperately needs structured formatting, like for/against bullet points.</span>
+                                                </div>
+                                            </li>
+                                            <li className="flex gap-4 items-start group/item">
+                                                <span className="text-blue-400 mt-1 shrink-0 font-bold tracking-widest">04</span>
+                                                <div>
+                                                    <strong className="text-white font-sans text-sm block mb-1 uppercase tracking-wider">Poor Contextualization</strong>
+                                                    <span className="text-neutral-400 font-serif text-sm leading-relaxed block">Entire pages are heavily marked controversial over minor details, and previews fail to correlate specifically to the text.</span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                )}
                             </div>
 
                             {/* Accessibility Box */}
                             <div
                                 onClick={(e) => { e.stopPropagation(); setFocusedBox(focusedBox === 'accessibility' ? null : 'accessibility'); }}
-                                className={`lg:col-span-4 rounded-[2.5rem] bg-neutral-900 border border-white/10 overflow-hidden transition-all duration-500 cursor-pointer relative group/img ${focusedBox === 'accessibility' ? 'scale-[1.02] z-20 ring-2 ring-[#39FF14]/30 shadow-[0_40px_100px_rgba(0,0,0,0.6)]' :
-                                    (focusedBox ? 'blur-md opacity-20 scale-[0.98]' : 'hover:border-white/20')
+                                className={`rounded-[2.5rem] bg-neutral-900 border border-white/10 overflow-hidden transition-all duration-500 cursor-pointer relative group/img 
+                                    ${focusedBox === 'accessibility' ? 'lg:col-span-8 scale-[1.02] z-20 ring-2 ring-[#39FF14]/30 shadow-[0_40px_100px_rgba(0,0,0,0.6)] flex flex-col lg:flex-row' :
+                                        (focusedBox === 'ux-audit' ? 'lg:col-span-4 blur-md overflow-hidden opacity-0 scale-[0.98] hidden lg:flex flex-col' : 'lg:col-span-4 hover:border-white/20 flex flex-col')
                                     }`}
                             >
-                                <div className="relative h-full flex flex-col">
-                                    <div className="flex-1 min-h-[300px]">
+                                {/* Image Container */}
+                                <div className={`relative transition-all duration-500 flex flex-col ${focusedBox === 'accessibility' ? 'w-full lg:w-[60%] min-h-[400px]' : 'w-full h-full'}`}>
+                                    <div className="flex-1 relative min-h-[300px]">
                                         <img
                                             src="/images/content-verify/accessibility.png"
                                             alt="Accessibility Standards"
-                                            className="w-full h-full object-cover transition-transform duration-1000 group-hover/img:scale-105"
+                                            className="w-full h-full object-cover transition-transform duration-1000 group-hover/img:scale-105 absolute inset-0"
                                         />
                                     </div>
-                                    <div className="p-8 bg-neutral-900 border-t border-white/5">
+
+                                    <div className={`p-8 bg-neutral-900 border-t border-white/5 transition-all duration-500 ${focusedBox === 'accessibility' ? 'hidden' : 'block'}`}>
                                         <div className="flex items-center gap-3 mb-4">
                                             <div className="p-2 rounded-full bg-[#39FF14]/10 border border-[#39FF14]/20">
                                                 <Layers className="w-4 h-4 text-[#39FF14]" />
@@ -699,50 +889,193 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                             Ensuring high color contrast and semantic structure for screen readers.
                                         </p>
                                     </div>
+
+                                    {/* Expand Image Button */}
+                                    {focusedBox === 'accessibility' && (
+                                        <>
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                                            <button
+                                                onClick={(e) => { e.stopPropagation(); setLightboxImage({ src: "/images/content-verify/accessibility.png", alt: "Accessibility Standards" }); }}
+                                                className="absolute bottom-6 right-6 px-6 py-3 rounded-full bg-[#39FF14] text-black text-[10px] font-sans font-bold uppercase tracking-widest hover:bg-[#39FF14]/90 transition-all hover:scale-105 shadow-[0_0_20px_rgba(57,255,20,0.3)] shrink-0 z-10 animate-in fade-in duration-500"
+                                            >
+                                                Expand Image
+                                            </button>
+                                        </>
+                                    )}
                                 </div>
+
+                                {/* Side Text Container */}
+                                {focusedBox === 'accessibility' && (
+                                    <div className="w-full lg:w-[40%] p-8 bg-black/50 backdrop-blur-md border-t lg:border-t-0 lg:border-l border-white/10 flex flex-col justify-center animate-in fade-in slide-in-from-right-8 duration-700 relative">
+                                        <div className="flex items-center gap-3 mb-6">
+                                            <div className="p-2.5 rounded-full bg-[#39FF14]/10 border border-[#39FF14]/20">
+                                                <Layers className="w-5 h-5 text-[#39FF14]" />
+                                            </div>
+                                            <h3 className="text-xl font-serif font-bold text-white">Accessibility Focus</h3>
+                                        </div>
+
+                                        <div className="bg-[#39FF14]/5 border border-[#39FF14]/10 rounded-2xl p-6 relative overflow-hidden group">
+                                            <div className="absolute top-0 right-0 w-24 h-24 bg-[#39FF14]/10 blur-[40px] -z-10 group-hover:bg-[#39FF14]/20 transition-colors" />
+                                            <p className="text-neutral-300 font-serif text-lg leading-relaxed italic pr-4">
+                                                "Accessibility color contrast analysis across different texts in the UI."
+                                            </p>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* Task Interpretation + Persona - Two Columns */}
-                <section className="max-w-5xl mx-auto mb-24 grid grid-cols-1 md:grid-cols-2 gap-16 px-4">
-                    <div>
-                        <h3 className="font-sans font-bold uppercase tracking-widest mb-8 border-b border-neutral-200 dark:border-neutral-800 pb-4">Task Interpretation</h3>
-                        <div className="space-y-6">
-                            {Array.isArray(task?.content) && task?.content.filter((l: string) => /^\d\./.test(l)).map((line: string, i: number) => (
-                                <div key={i} className="flex gap-4">
-                                    <span className="font-serif font-bold text-2xl text-neutral-300">0{i + 1}</span>
-                                    <p className="font-serif text-lg pt-1">{line.replace(/^\d\.\s*/, '')}</p>
-                                </div>
-                            ))}
-                        </div>
+                {/* Stats Grid - Metrics on Secondary Research */}
+                <section className="max-w-4xl mx-auto mb-24 px-4">
+                    <div className="flex flex-col items-center mb-12 flex-center text-center">
+                        <span className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-[#39FF14] mb-4">Alert Fatigue Metrics</span>
+                        <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-2">Metrics on Secondary Research</h2>
                     </div>
-                    <div>
-                        <h3 className="font-sans font-bold uppercase tracking-widest mb-8 border-b border-neutral-200 dark:border-neutral-800 pb-4">Personas</h3>
-                        <div className="space-y-4">
-                            {Array.isArray(personas?.content) && personas?.content.filter((l: string) => l.startsWith("-")).map((line: string, i: number) => (
-                                <p key={i} className="font-serif text-lg bg-neutral-50 dark:bg-neutral-900 p-4 rounded-lg">
-                                    {line.substring(1).trim()}
-                                </p>
-                            ))}
-                        </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {stats.map((stat) => {
+                            const IconComponent = stat.icon;
+                            return (
+                                <div key={stat.id} className="flex flex-col gap-3 p-6 bg-neutral-900/5 dark:bg-neutral-100/5 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-lg hover:border-[#39FF14]/40 hover:shadow-[0_4px_16px_rgba(57,255,20,0.15)] transition-all duration-300 min-h-[200px] group">
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-sm font-sans font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">{stat.label}</span>
+                                        <IconComponent className="w-5 h-5 text-[#39FF14] drop-shadow-[0_0_8px_rgba(57,255,20,0.5)]" strokeWidth={2.5} />
+                                    </div>
+                                    <span className="text-5xl md:text-6xl font-bold font-serif text-neutral-900 dark:text-neutral-100 block">{stat.number}</span>
+                                    <p className="text-sm font-sans text-neutral-600 dark:text-neutral-400 leading-relaxed flex-1">
+                                        {stat.text}
+                                    </p>
+                                    <span className="text-xs font-sans text-neutral-400 uppercase tracking-wider">{stat.source}</span>
+                                </div>
+                            );
+                        })}
                     </div>
                 </section>
 
-                {/* Discovery Feedback - Sticky Note Style */}
-                {feedback && (
-                    <section className="max-w-4xl mx-auto mb-32 p-8 md:p-12 bg-[#fffdf5] dark:bg-[#1a1a1a] shadow-sm border border-neutral-200 dark:border-neutral-800 transform -rotate-1 mx-4">
-                        <h2 className="font-sans font-bold uppercase tracking-widest mb-8 text-neutral-400">Discovery Feedback</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            {Array.isArray(feedback.content) && feedback.content.filter((l: string) => l.startsWith("-")).map((line: string, i: number) => (
-                                <div key={i} className="font-serif text-lg leading-relaxed italic">
-                                    "{line.substring(1).trim()}"
-                                </div>
-                            ))}
+                {/* Task Interpretation Table */}
+                <section className="max-w-4xl mx-auto mb-24 px-4 relative">
+                    {/* Floating Cursor Comment (Desktop only) */}
+                    <div className="hidden lg:flex absolute top-20 right-0 lg:-mr-12 xl:-mr-24 items-start gap-1 z-10 max-w-[280px] transition-transform duration-500 hover:-translate-y-4 hover:scale-105 hover:rotate-2 cursor-pointer group/comment drop-shadow-2xl">
+                        <MousePointer2 className="w-6 h-6 text-[#39FF14] fill-[#39FF14] drop-shadow-[0_0_8px_rgba(57,255,20,0.6)] shrink-0 z-20 transition-transform duration-500 group-hover/comment:-rotate-12" />
+                        <div className="bg-black/60 border border-[#39FF14]/30 backdrop-blur-md rounded-2xl rounded-tl-none p-5 shadow-[0_20px_40px_rgba(0,0,0,0.5)] mt-4 -ml-2 group-hover/comment:border-[#39FF14]/60 group-hover/comment:bg-black/80 transition-all duration-500">
+                            <p className="text-sm font-sans text-neutral-300 leading-relaxed font-medium">
+                                "This was done as part of the usability study to determine scores on interaction and further used to calculate statistical data."
+                            </p>
                         </div>
-                    </section>
-                )}
+                    </div>
+
+                    <div className="flex flex-col items-center mb-12 flex-center text-center">
+                        <span className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-[#39FF14] mb-4">Task Interpretation</span>
+                        <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">Interacting with Content Verify</h2>
+                        <p className="text-neutral-400 font-sans tracking-wide max-w-xl">This is how scores were determined based on how users interacted with Content Verify.</p>
+                    </div>
+
+                    <div className="bg-neutral-900 border border-white/10 rounded-2xl overflow-hidden shadow-xl">
+                        <table className="w-full text-left font-serif">
+                            <thead className="bg-[#39FF14]/5 border-b border-white/10">
+                                <tr>
+                                    <th className="py-5 px-8 font-sans font-bold uppercase tracking-widest text-xs text-[#39FF14] w-20 hidden md:table-cell">Task</th>
+                                    <th className="py-5 px-6 md:px-8 font-sans font-bold uppercase tracking-widest text-xs text-[#39FF14] w-[35%]">Interaction</th>
+                                    <th className="py-5 px-0 w-24"></th>
+                                    <th className="py-5 px-6 md:px-8 font-sans font-bold uppercase tracking-widest text-xs text-[#39FF14]">Explanation</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-white/5">
+                                {Array.isArray(task?.content) && task?.content.filter((l: string) => /^\d\./.test(l)).map((line: string, i: number) => {
+                                    const parts = line.replace(/^\d\.\s*/, '').split('->');
+                                    const desc = parts[0]?.trim();
+                                    const expl = parts[1]?.trim();
+
+                                    return (
+                                        <tr key={i} className="hover:bg-white/5 transition-colors group">
+                                            <td className="py-6 px-8 font-bold text-neutral-500 group-hover:text-[#39FF14] transition-colors align-middle hidden md:table-cell">0{i + 1}</td>
+                                            <td className="py-6 px-6 md:px-8 leading-relaxed text-white font-medium align-middle">{desc}</td>
+                                            <td className="py-6 px-0 align-middle">
+                                                {expl && (
+                                                    <div className="flex items-center w-full justify-center opacity-60 group-hover:opacity-100 transition-opacity">
+                                                        <div className="w-16 md:w-20 border-t-[3px] border-dotted border-white group-hover:border-[#39FF14] transition-colors" />
+                                                        <ChevronRight className="w-5 h-5 text-white group-hover:text-[#39FF14] transition-colors -ml-2" />
+                                                    </div>
+                                                )}
+                                            </td>
+                                            <td className="py-6 px-6 md:px-8 leading-relaxed text-neutral-400 group-hover:text-neutral-200 transition-colors align-middle">{expl}</td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                {/* Discovery Feedback - Sticky Note Style 
+                <section className="max-w-4xl mx-auto mb-24 p-8 md:p-12 bg-[#fffdf5] dark:bg-[#1a1a1a] shadow-sm border border-neutral-200 dark:border-neutral-800 transform -rotate-1 mx-4">
+                    <h2 className="font-sans font-bold uppercase tracking-widest mb-8 text-neutral-400">UI Interaction Synthesis</h2>
+                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-8 font-serif text-lg leading-relaxed text-neutral-800 dark:text-neutral-200">
+                        <li className="flex gap-4">
+                            <span className="text-red-500 font-bold">•</span>
+                            <span><strong>Grammarly:</strong> Floating visual cues natively embedded and non-obstructive popups with clear, categorized suggestions.</span>
+                        </li>
+                        <li className="flex gap-4">
+                            <span className="text-red-500 font-bold">•</span>
+                            <span><strong>Copyleaks:</strong> Direct manipulation interactions (clicking for drill-downs) paired with hard numerical stats to build transparency.</span>
+                        </li>
+                        <li className="flex gap-4">
+                            <span className="text-red-500 font-bold">•</span>
+                            <span><strong>Gamification:</strong> Inline text highlights and credibility scoring that make passive assessment an engaging experience.</span>
+                        </li>
+                        <li className="flex gap-4">
+                            <span className="text-red-500 font-bold">•</span>
+                            <span><strong>Intergrito:</strong> Limiting overload by ensuring only one contextual drill-down popup appears at a time, anchored to a primary stat.</span>
+                        </li>
+                    </ul>
+                </section>
+                */}
+
+                {/* Comparison of UX Enhancements */}
+                <section className="max-w-5xl mx-auto mb-24 px-4">
+                    <h3 className="font-sans font-bold uppercase tracking-widest mb-8 border-b border-neutral-200 dark:border-neutral-800 pb-4 text-neutral-400">Comparison of User Experience (UX) Enhancements</h3>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="border-b border-neutral-200 dark:border-neutral-800">
+                                    <th className="py-4 font-serif font-bold text-lg text-white">Metric</th>
+                                    <th className="py-4 font-serif font-bold text-lg text-white">Baseline (Without Tool)</th>
+                                    <th className="py-4 font-serif font-bold text-lg text-[#39FF14]">With Content Verify</th>
+                                </tr>
+                            </thead>
+                            <tbody className="font-sans text-sm divide-y divide-neutral-200 dark:divide-neutral-800">
+                                <tr>
+                                    <td className="py-6 font-bold uppercase tracking-wide text-neutral-500">Information Literacy</td>
+                                    <td className="py-6 pr-4 text-neutral-400">Users struggled to identify controversies in long articles.</td>
+                                    <td className="py-6 text-white font-serif italic text-base">Significantly facilitated recognition and saved time.</td>
+                                </tr>
+                                <tr>
+                                    <td className="py-6 font-bold uppercase tracking-wide text-neutral-500">Cognitive Load</td>
+                                    <td className="py-6 pr-4 text-neutral-400">High effort required to evaluate complex topics.</td>
+                                    <td className="py-6 text-white font-serif italic text-base">Reduced cognitive load through on-demand hover interactions.</td>
+                                </tr>
+                                <tr>
+                                    <td className="py-6 font-bold uppercase tracking-wide text-neutral-500">User Autonomy</td>
+                                    <td className="py-6 pr-4 text-neutral-400">Vulnerable to siloed thinking and manipulation.</td>
+                                    <td className="py-6 text-white font-serif italic text-base">Preserved autonomy by offering "Perspective Diversity" rather than binary truth labels.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                {/* Summary for Portfolio */}
+                <section className="max-w-4xl mx-auto mb-16 px-4">
+                    <div className="p-8 md:p-12 bg-neutral-900 rounded-[2.5rem] border border-[#39FF14]/20 shadow-[0_0_30px_rgba(57,255,20,0.05)] text-center relative overflow-hidden group hover:border-[#39FF14]/50 hover:shadow-[0_0_50px_rgba(57,255,20,0.1)] transition-all">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-[#39FF14]/10 blur-[50px] -z-10 group-hover:bg-[#39FF14]/20 transition-colors" />
+                        <h3 className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] mb-6 text-[#39FF14]">Summary for Portfolio</h3>
+                        <p className="font-serif text-xl md:text-2xl leading-relaxed italic text-neutral-200">
+                            "Content Verify transforms passive readers into critical thinkers. By achieving a 50% shift in user perspective and a statistically significant increase in bias recognition, the system proves that AI-driven interventions can reduce susceptibility to misinformation while maintaining a seamless, non-disruptive reading experience."
+                        </p>
+                    </div>
+                </section>
+
             </article>
 
             {lightboxImage && (
