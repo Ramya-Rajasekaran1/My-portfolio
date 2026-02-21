@@ -990,6 +990,17 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                     </div>
                 </section>
 
+                {/* Feedback GIF Preview */}
+                <section className="max-w-4xl mx-auto mb-24 px-4">
+                    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/40 shadow-[0_25px_45px_rgba(0,0,0,0.45)]">
+                        <img
+                            src="/images/content-verify/ScreenRecording2026-02-21at11.00.52AM-ezgif.com-video-to-gif-converter.gif"
+                            alt="Content Verify UX highlights animation"
+                            className="w-full h-auto object-cover"
+                        />
+                    </div>
+                </section>
+
                 {/* Task Interpretation Table */}
                 <section className="max-w-4xl mx-auto mb-24 px-4 relative">
                     {/* Floating Cursor Comment (Desktop only) */}
