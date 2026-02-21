@@ -8,7 +8,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
     const [lightboxImage, setLightboxImage] = React.useState<{ src: string; alt: string } | null>(null);
     const [selectedPainPoint, setSelectedPainPoint] = React.useState<string | null>('fatigue');
     const [showDesignLogic, setShowDesignLogic] = React.useState(true);
-    const [showCategories, setShowCategories] = React.useState(false);
+    const [showCategories, setShowCategories] = React.useState(true);
     const [focusedBox, setFocusedBox] = React.useState<string | null>(null);
     const [showMethodology, setShowMethodology] = React.useState(false);
 
@@ -302,7 +302,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                 {/* Interactive Pain Points Section */}
                 <section className="max-w-6xl mx-auto px-4 relative">
                     <div className="flex flex-col items-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-serif font-bold text-center mb-4">The Logic of Intervention</h2>
+                        <h2 className="text-3xl md:text-4xl font-serif font-bold text-center mb-4">The Logic of Intervention: Pain points</h2>
                         <div className="flex items-center gap-2 text-[#39FF14] bg-[#39FF14]/5 px-4 py-1.5 rounded-full border border-[#39FF14]/20 animate-pulse">
                             <MousePointer2 className="w-3.5 h-3.5" />
                             <span className="text-[10px] font-sans font-bold uppercase tracking-widest">Select a friction point to trace the logic</span>
@@ -427,8 +427,8 @@ export function ContentVerifyProject({ project }: { project: Project }) {
 
                     <div className="p-12 md:p-20 text-center relative">
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-10 backdrop-blur-md">
-                            <Target className="w-4 h-4 text-[#39FF14]" />
-                            <span className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-white">The North Star</span>
+                            <Target className="w-5 h-5 text-[#39FF14]" />
+                            <span className="text-xs md:text-sm font-sans font-bold uppercase tracking-[0.3em] text-white">The North Star</span>
                         </div>
 
                         <h2 className="text-3xl md:text-5xl font-serif font-bold text-white leading-tight mb-8">
@@ -488,7 +488,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                         <div className="mt-1"><item.icon className="w-4 h-4 text-red-400" /></div>
                                         <div>
                                             <h4 className="text-sm font-sans font-bold uppercase tracking-wide mb-1 text-neutral-900 dark:text-neutral-100">{item.title}</h4>
-                                            <p className="text-sm font-serif text-neutral-500">{item.desc}</p>
+                                            <p className="text-sm font-serif text-white">{item.desc}</p>
                                         </div>
                                     </div>
                                 ))}
@@ -518,7 +518,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                         <div className="mt-1"><item.icon className="w-4 h-4 text-[#39FF14]" /></div>
                                         <div>
                                             <h4 className="text-sm font-sans font-bold uppercase tracking-wide mb-1 text-white">{item.title}</h4>
-                                            <p className="text-sm font-serif text-neutral-400">{item.desc}</p>
+                                            <p className="text-sm font-serif text-white">{item.desc}</p>
                                         </div>
                                     </div>
                                 ))}
@@ -950,6 +950,43 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                 </div>
                             );
                         })}
+                    </div>
+                </section>
+
+                {/* UI & UX Qualitative Feedback Analysis */}
+                <section className="max-w-4xl mx-auto mb-24 px-4">
+                    <div className="flex flex-col items-center mb-12 flex-center text-center">
+                        <span className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-[#39FF14] mb-4">Feedback Analysis</span>
+                        <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-2">UI & UX Qualitative Feedback Analysis</h2>
+                    </div>
+                    <div className="grid grid-cols-1 gap-6">
+                        <div className="flex flex-col gap-3 p-6 bg-neutral-900/5 dark:bg-neutral-100/5 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-lg hover:border-[#39FF14]/40 hover:shadow-[0_4px_16px_rgba(57,255,20,0.15)] transition-all duration-300">
+                            <h3 className="text-lg font-bold font-serif text-white flex items-center gap-3">
+                                <span className="w-2 h-2 rounded-full bg-[#39FF14]" />
+                                Autonomy over Labels
+                            </h3>
+                            <p className="text-sm font-sans text-neutral-400 leading-relaxed ml-5">
+                                Users preferred optional "Perspective Diversity" over forced truth-labels to maintain their own judgment.
+                            </p>
+                        </div>
+                        <div className="flex flex-col gap-3 p-6 bg-neutral-900/5 dark:bg-neutral-100/5 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-lg hover:border-[#39FF14]/40 hover:shadow-[0_4px_16px_rgba(57,255,20,0.15)] transition-all duration-300">
+                            <h3 className="text-lg font-bold font-serif text-white flex items-center gap-3">
+                                <span className="w-2 h-2 rounded-full bg-[#39FF14]" />
+                                Minimalist Efficiency
+                            </h3>
+                            <p className="text-sm font-sans text-neutral-400 leading-relaxed ml-5">
+                                High-visibility highlights saved reading time, but required a tiny icon interface to avoid distraction.
+                            </p>
+                        </div>
+                        <div className="flex flex-col gap-3 p-6 bg-neutral-900/5 dark:bg-neutral-100/5 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-lg hover:border-[#39FF14]/40 hover:shadow-[0_4px_16px_rgba(57,255,20,0.15)] transition-all duration-300">
+                            <h3 className="text-lg font-bold font-serif text-white flex items-center gap-3">
+                                <span className="w-2 h-2 rounded-full bg-[#39FF14]" />
+                                Precision over Volume
+                            </h3>
+                            <p className="text-sm font-sans text-neutral-400 leading-relaxed ml-5">
+                                To prevent "flagging fatigue," users demanded fewer, high-quality flags backed by specific evidence.
+                            </p>
+                        </div>
                     </div>
                 </section>
 
