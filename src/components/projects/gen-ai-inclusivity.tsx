@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { type Project } from "@/lib/data";
 import Link from "next/link";
-import { ArrowLeft, Sparkles, Zap, Layers, ShieldCheck, BarChart3, Target, Lightbulb, MousePointer2 } from "lucide-react";
+import { ArrowLeft, Sparkles, Zap, Layers, ShieldCheck, BarChart3, Target, Lightbulb, MousePointer2, Check, X } from "lucide-react";
 
 /**
  * Renders lines of text with support for:
@@ -110,16 +110,143 @@ const arrayToList = (content?: string | string[]) => {
     );
 };
 
+const RadarChart = () => {
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d', { alpha: true });
+        if (!ctx) return;
+
+        // High DPI scaling
+        const dpr = window.devicePixelRatio || 1;
+        const size = 480;
+        canvas.width = size * dpr;
+        canvas.height = size * dpr;
+        ctx.scale(dpr, dpr);
+
+        const cx = size / 2;
+        const cy = size / 2;
+        const R = size * 0.35;
+        const labels = ['Feedback', 'Audio', 'Personal', 'Trust', 'Access', 'Theming', 'Error', 'Control'];
+        const N = labels.length;
+
+        const datasets = [
+            { label: 'Gemini', color: '#1A73E8', data: [1, 1, 0.5, 1, 0.5, 1, 0.5, 1] },
+            { label: 'ChatGPT', color: '#9B6FF0', data: [1, 0.5, 1, 1, 0.5, 1, 0, 0.5] },
+            { label: 'Copilot', color: '#E8A020', data: [0.5, 1, 1, 1, 0, 0, 0.5, 1] },
+        ];
+
+        const angleOf = (i: number) => (Math.PI * 2 * i / N) - Math.PI / 2;
+        const point = (i: number, r: number) => {
+            const a = angleOf(i);
+            return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
+        };
+
+        let progress = 0;
+        const duration = 1500;
+        let start: number | null = null;
+
+        const frame = (now: number) => {
+            if (!start) start = now;
+            progress = Math.min((now - start) / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 3);
+
+            ctx.clearRect(0, 0, size, size);
+
+            // Background Rings
+            [0.25, 0.5, 0.75, 1].forEach(frac => {
+                ctx.beginPath();
+                for (let i = 0; i < N; i++) {
+                    const p = point(i, R * frac);
+                    i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+                }
+                ctx.closePath();
+                ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            });
+
+            // Spokes
+            for (let i = 0; i < N; i++) {
+                const p = point(i, R);
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(p.x, p.y);
+                ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+                ctx.stroke();
+            }
+
+            // Labels
+            ctx.font = '900 10px font-mono';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = '#ffffff';
+            for (let i = 0; i < N; i++) {
+                const p = point(i, R + 30);
+                ctx.fillText(labels[i].toUpperCase(), p.x, p.y);
+            }
+
+            // Polygons
+            datasets.forEach(ds => {
+                ctx.beginPath();
+                for (let i = 0; i < N; i++) {
+                    const r = R * ds.data[i] * ease;
+                    const p = point(i, r);
+                    i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+                }
+                ctx.closePath();
+                ctx.fillStyle = ds.color + '11';
+                ctx.fill();
+                ctx.strokeStyle = ds.color;
+                ctx.lineWidth = 2;
+                ctx.setLineDash([]);
+                ctx.stroke();
+
+                // Points
+                for (let i = 0; i < N; i++) {
+                    const r = R * ds.data[i] * ease;
+                    const p = point(i, r);
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+                    ctx.fillStyle = ds.color;
+                    ctx.fill();
+                    ctx.strokeStyle = '#080808';
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            });
+
+            if (progress < 1) requestAnimationFrame(frame);
+        };
+
+        requestAnimationFrame(frame);
+    }, []);
+
+    return (
+        <div className="relative w-full aspect-square max-w-[480px] mx-auto bg-neutral-900/20 rounded-[3rem] border border-neutral-800/50 p-6 backdrop-blur-sm shadow-inner group">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(126,255,160,0.03),transparent)]" />
+            <canvas ref={canvasRef} className="w-full h-full relative z-10" style={{ width: '100%', height: '100%' }} />
+
+            {/* Center Hub */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-neutral-900 border border-neutral-800 z-20 shadow-xl" />
+        </div>
+    );
+};
+
 export function GenAiInclusivityProject({ project }: { project: Project }) {
     const [activeTask, setActiveTask] = useState('t1');
     const [activePlatform, setActivePlatform] = useState('chatgpt');
     const [selectedFinding, setSelectedFinding] = useState<number>(0);
     const [activeBlueprintRow, setActiveBlueprintRow] = useState<number | null>(null);
     const [hoveredBlueprintRow, setHoveredBlueprintRow] = useState<number | null>(null);
-    const [isBehindScenesOpen, setIsBehindScenesOpen] = useState(false);
     const [activeComparisonTab, setActiveComparisonTab] = useState<'chatgpt' | 'gemini' | 'copilot'>('chatgpt');
     const matrixRef = useRef<HTMLDivElement>(null);
     const [showMatrixTags, setShowMatrixTags] = useState(false);
+    const [showAllGemini, setShowAllGemini] = useState(false);
+    const [showAllChatGPT, setShowAllChatGPT] = useState(false);
+    const [showAllCopilot, setShowAllCopilot] = useState(false);
 
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => {
@@ -144,16 +271,27 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
     const futureScope = getSection("FUTURE SCOPE");
     const finalTakeaway = getSection("FINAL TAKEAWAY");
 
-    const methodologyTitles = [
-        "1. COMPARATIVE UX & ACCESSIBILITY AUDIT",
-        "2. TASK-BASED PERFORMANCE STUDY",
-        "3. LITERATURE & STANDARDS REVIEW",
-        "4. FRAMEWORK SYNTHESIS"
+    const methodologyData = [
+        {
+            title: "UX & ACCESSIBILITY AUDIT",
+            content: "Evaluated leading Gen AI tools across keyboard accessibility, screen reader compatibility, and navigation clarity, focusing on prompt guidance and system feedback."
+        },
+        {
+            title: "TASK PERFORMANCE STUDY",
+            content: "Measured user behavior across settings like theme and language changes, tracking completion rates and time metrics for 'Quick finishers' vs 'Stuck' users."
+        },
+        {
+            title: "LITERATURE & STANDARDS REVIEW",
+            content: "Reviewed WCAG 2.x guidelines, conversational agent research, and previous accessibility studies focused on dynamic and generative AI systems."
+        },
+        {
+            title: "FRAMEWORK SYNTHESIS",
+            content: "Organized insights into a four-layer model: Foundational, Usability Enhancement, Disability-Specific, and Customization & Control."
+        }
     ];
-    const methodology = methodologyTitles.map((title) => getSection(title)).filter(Boolean) as any[];
 
     const excludedTitles = [
-        ...methodologyTitles,
+        ...methodologyData.map(m => m.title),
         "EXECUTIVE SNAPSHOT",
         "USABILITY BENCHMARK: SETTINGS DISCOVERABILITY",
         "WHY THIS MATTERS (THE GLOBAL CONTEXT)",
@@ -247,7 +385,7 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                 </div>
             </nav>
 
-            <header className="relative min-h-[50vh] flex items-center overflow-hidden border-b border-neutral-900 bg-[#080810]">
+            <header className="relative min-h-[50vh] flex items-center border-b border-neutral-900 bg-[#080810] z-[30]">
                 {/* Background Image Artifact Aligned Right */}
                 <div
                     className="absolute inset-y-0 right-0 w-full md:w-3/4 opacity-60 md:opacity-100 bg-contain bg-right md:bg-right bg-no-repeat pointer-events-none"
@@ -257,10 +395,12 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                 {/* Left Aligned Content */}
                 <div className="container mx-auto px-4 relative z-10 py-20">
                     <div className="max-w-2xl text-left space-y-6">
-                        <span className="inline-flex items-center gap-3 px-3 py-1 text-[0.6rem] font-mono font-bold uppercase tracking-[0.4em] border border-[#7effa0]/30 rounded-full text-[#7effa0] bg-[#7effa0]/5 backdrop-blur-sm">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#7effa0] animate-pulse" />
-                            {project.category}
-                        </span>
+                        <div className="flex flex-wrap gap-4">
+                            <span className="inline-flex items-center gap-3 px-3 py-1 text-[0.6rem] font-mono font-bold uppercase tracking-[0.4em] border border-[#7effa0]/30 rounded-full text-[#7effa0] bg-[#7effa0]/5 backdrop-blur-sm">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#7effa0] animate-pulse" />
+                                {project.category}
+                            </span>
+                        </div>
 
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-['DM_Serif_Display'] leading-[1.1] text-white">
                             {project.title.split(' ').map((word, i) => (
@@ -275,6 +415,35 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                         </p>
                     </div>
                 </div>
+
+                {/* Technical HUD Academic Badge - Overlapping Position - Hidden for now */}
+                {false && (
+                    <div className="absolute bottom-0 translate-y-1/2 right-0 z-[40] group pointer-events-auto">
+                        <div className="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-blue-500/40 rounded-tl-xl transition-all group-hover:scale-110" />
+                        <div className="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-blue-500/40 rounded-br-xl transition-all group-hover:scale-110" />
+
+                        <div className="absolute inset-0 bg-blue-600/10 blur-2xl group-hover:bg-blue-600/20 transition-all duration-1000" />
+
+                        <div className="relative bg-black/95 border border-white/20 p-5 md:p-6 rounded-2xl flex items-center gap-6 shadow-[0_20px_80px_rgba(0,0,0,0.9)] backdrop-blur-3xl transition-all group-hover:border-blue-500/50 group-hover:scale-[1.02]">
+                            <div className="flex flex-col items-center">
+                                <div className="p-3 bg-blue-600 rounded-xl shadow-[0_0_25px_rgba(37,99,235,0.6)] mb-2 animate-pulse">
+                                    <ShieldCheck className="w-5 h-5 md:w-6 md:h-6 text-white" />
+                                </div>
+                                <span className="text-[0.45rem] font-mono font-black text-blue-400 uppercase tracking-tighter">Verified</span>
+                            </div>
+
+                            <div className="flex flex-col border-l border-white/10 pl-6">
+                                <div className="flex items-center gap-2 mb-1">
+                                    <span className="text-[0.55rem] font-mono font-black text-blue-400 uppercase tracking-[0.25em]">Research Abstract</span>
+                                </div>
+                                <h4 className="text-lg md:text-2xl font-['DM_Serif_Display'] text-white leading-tight">
+                                    IEEE <span className="text-blue-400 italic">Publication</span> <br />
+                                    <span className="text-[0.7rem] font-sans font-bold uppercase tracking-[0.2em] text-neutral-400">Archival Research</span>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 {/* Bottom Gradient Overlay */}
                 <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#080808] to-transparent" />
@@ -781,14 +950,14 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                             <div className="md:col-span-8 group relative overflow-hidden rounded-[2rem] border border-neutral-800 bg-neutral-900 shadow-2xl">
                                 <img src="/images/gen-ai/UX - AI Research.jpg" alt="Research Audit Board" className="w-full h-auto opacity-80 group-hover:opacity-100 transition-opacity duration-700" />
-                                <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/90 to-transparent">
-                                    <span className="text-[0.65rem] font-mono text-neutral-400 uppercase tracking-widest">Feature mapping & UI annotation board — Gemini, ChatGPT, Copilot</span>
+                                <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black to-transparent">
+                                    <span className="text-[0.65rem] font-mono text-white font-bold uppercase tracking-widest">Feature mapping & UI annotation board — Gemini, ChatGPT, Copilot</span>
                                 </div>
                             </div>
                             <div className="md:col-span-4 group relative overflow-hidden rounded-[2rem] border border-neutral-800 bg-neutral-900 shadow-2xl">
                                 <img src="/images/gen-ai/UX - AI Research1.jpg" alt="Feature Taxonomy" className="w-full h-auto opacity-80 group-hover:opacity-100 transition-opacity duration-700" />
-                                <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/90 to-transparent">
-                                    <span className="text-[0.65rem] font-mono text-neutral-400 uppercase tracking-widest">Comprehensive taxonomy</span>
+                                <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black to-transparent">
+                                    <span className="text-[0.65rem] font-mono text-white font-bold uppercase tracking-widest">Comprehensive taxonomy</span>
                                 </div>
                             </div>
                         </div>
@@ -799,135 +968,224 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.03),transparent)] pointer-events-none" />
 
                         <div className="relative z-10 space-y-12">
-                            <div className="text-center space-y-4 max-w-2xl mx-auto">
-                                <h3 className="text-4xl font-['DM_Serif_Display'] text-white">Platform-by-platform Feature Matrix</h3>
-                                <p className="text-neutral-500 font-mono text-[0.6rem] uppercase tracking-[0.2em] leading-relaxed">Evaluating toolsets and interaction nodes across the competitive landscape</p>
+                            <div className="flex flex-col items-center text-center space-y-4 max-w-2xl mx-auto">
+                                <div className="px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-[0.6rem] font-black font-mono text-blue-400 uppercase tracking-[0.2em] animate-pulse">
+                                    Based on Published IEEE Research Paper
+                                </div>
+                                <h3 className="text-4xl md:text-5xl font-['DM_Serif_Display'] text-white">Platform-by-platform Feature Matrix</h3>
+                                <p className="text-neutral-500 font-mono text-[0.65rem] uppercase tracking-[0.2em] leading-relaxed">Systematic evaluation of 49+ distinct interaction nodes</p>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 {/* Gemini Card */}
-                                <div className="bg-[#13151A]/50 border border-neutral-800/50 rounded-[2.5rem] p-8 flex flex-col group hover:border-blue-500/30 transition-all duration-500">
+                                <div className="bg-[#13151A]/50 border border-neutral-800/50 rounded-[2.5rem] p-8 flex flex-col group hover:border-[#7effa0]/30 transition-all duration-500 h-fit">
                                     <div className="flex flex-col items-center text-center gap-4 mb-8 border-b border-neutral-800/50 pb-8">
-                                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-400 p-4 shadow-xl shadow-blue-500/10">
-                                            <div className="w-full h-full flex items-center justify-center text-white font-black text-xl font-['Syne']">Gm</div>
+                                        <div className="w-16 h-16 rounded-2xl bg-white p-3 shadow-xl shadow-blue-500/5 transition-transform group-hover:scale-110 duration-500 flex items-center justify-center overflow-hidden">
+                                            <img src="/images/gen-ai/gemini_icon-logo_brandlogos.net_aacx5-512x512.png" alt="Gemini" className="w-full h-full object-contain" />
                                         </div>
                                         <div className="space-y-1">
                                             <h4 className="text-2xl font-['DM_Serif_Display'] text-white">Google Gemini</h4>
                                             <span className="text-[0.6rem] font-mono text-blue-400 uppercase tracking-widest font-black">14 Features</span>
                                         </div>
                                     </div>
-                                    <div className="flex flex-col gap-2.5">
+
+                                    <div className="space-y-8">
                                         {[
-                                            "Drafts option & refresh", "Rating & Feedback Loop", "Audio Output", "Audio Input",
-                                            "Activity history", "Prompts to kickstart", "Evaluation of results", "Seamless sharing",
-                                            "Source shown", "Stop option", "Visual — Dark/light", "Extensions to apps",
-                                            "Double check response", "Edit drafts"
-                                        ].map((f, i) => (
-                                            <span key={f}
-                                                className={`px-4 py-2.5 rounded-xl bg-blue-500/5 border border-blue-500/10 text-[0.7rem] text-blue-300/80 hover:text-blue-300 hover:bg-blue-500/10 transition-all duration-300 ${showMatrixTags ? 'animate-in fade-in slide-in-from-bottom-2' : 'opacity-0'}`}
-                                                style={{ animationDelay: `${i * 50}ms`, animationFillMode: 'both' }}
-                                            >
-                                                {f}
-                                            </span>
+                                            { cat: "Input & Output", items: ["Drafts option & refresh", "Audio Output", "Audio Input", "Stop option", "Visual Theme", "Edit drafts"] },
+                                            { cat: "Intelligence Models", items: ["Prompts to kickstart", "Evaluation of results", "Source shown", "Double check response", "Rating & Feedback Loop"] },
+                                            { cat: "Tooling/Privacy", items: ["Activity history", "Seamless sharing", "Extensions to apps"] }
+                                        ].slice(0, showAllGemini ? undefined : 1).map((category, cIdx) => (
+                                            <div key={category.cat} className="space-y-3">
+                                                <div className="flex items-center gap-2">
+                                                    <span className="w-1 h-3 bg-blue-500 rounded-full" />
+                                                    <span className="text-[0.6rem] font-black uppercase tracking-widest text-neutral-500">{category.cat}</span>
+                                                </div>
+                                                <div className="flex flex-col gap-2">
+                                                    {category.items.slice(0, showAllGemini ? undefined : 2).map((f, i) => (
+                                                        <span key={f}
+                                                            className={`px-4 py-2.5 rounded-xl bg-blue-500/5 border border-blue-500/10 text-[0.7rem] text-blue-300/80 transition-all duration-300 ${showMatrixTags ? 'animate-in fade-in slide-in-from-bottom-2' : 'opacity-0'}`}
+                                                            style={{ animationDelay: `${(cIdx * 3 + i) * 50}ms` }}
+                                                        >
+                                                            {f}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
                                         ))}
+                                        <button
+                                            onClick={() => setShowAllGemini(!showAllGemini)}
+                                            className="w-full py-4 rounded-xl bg-blue-600/10 border border-blue-500/20 text-[0.7rem] font-black text-blue-400 uppercase tracking-[0.2em] shadow-lg hover:bg-blue-600/20 hover:border-blue-500/40 transition-all group/btn flex items-center justify-center gap-2"
+                                        >
+                                            {showAllGemini ? 'Show Less' : 'View All 14 Features'}
+                                            <ArrowLeft className={`w-4 h-4 transition-transform duration-500 ${showAllGemini ? 'rotate-90' : '-rotate-90'}`} />
+                                        </button>
                                     </div>
                                 </div>
 
                                 {/* ChatGPT Card */}
-                                <div className="bg-[#13151A]/50 border border-neutral-800/50 rounded-[2.5rem] p-8 flex flex-col group hover:border-purple-500/30 transition-all duration-500">
+                                <div className="bg-[#13151A]/50 border border-neutral-800/50 rounded-[2.5rem] p-8 flex flex-col group hover:border-[#7effa0]/30 transition-all duration-500 h-fit">
                                     <div className="flex flex-col items-center text-center gap-4 mb-8 border-b border-neutral-800/50 pb-8">
-                                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-600 to-purple-400 p-4 shadow-xl shadow-purple-500/10">
-                                            <div className="w-full h-full flex items-center justify-center text-white font-black text-xl font-['Syne']">GPT</div>
+                                        <div className="w-16 h-16 rounded-2xl bg-white p-2 shadow-xl shadow-purple-500/5 transition-transform group-hover:scale-110 duration-500 flex items-center justify-center overflow-hidden">
+                                            <img src="/images/gen-ai/ChatGPT-Logo.png" alt="ChatGPT" className="w-[85%] h-auto" />
                                         </div>
                                         <div className="space-y-1">
                                             <h4 className="text-2xl font-['DM_Serif_Display'] text-white">OpenAI ChatGPT</h4>
                                             <span className="text-[0.6rem] font-mono text-purple-400 uppercase tracking-widest font-black">21 Features</span>
                                         </div>
                                     </div>
-                                    <div className="flex flex-col gap-2.5">
+
+                                    <div className="space-y-8">
                                         {[
-                                            "Pause option", "Keyboard accessibility", "Link to Support", "Feedback Revise",
-                                            "Starting Convos", "Conversation starters", "Color contrast issues", "Preferences",
-                                            "Dark / Light", "Personalisation", "Disappearing chat", "Connectivity",
-                                            "Analyse source"
-                                        ].map((f, i) => {
-                                            const isWarning = f.includes("issues");
-                                            return (
-                                                <span key={f}
-                                                    className={`px-4 py-2.5 rounded-xl border text-[0.7rem] transition-all duration-300 ${showMatrixTags ? 'animate-in fade-in slide-in-from-bottom-2' : 'opacity-0'} ${isWarning ? 'bg-red-500/10 border-red-500/20 text-red-400' : 'bg-purple-500/5 border-purple-500/10 text-purple-300/80 hover:text-purple-300 hover:bg-purple-500/10'}`}
-                                                    style={{ animationDelay: `${i * 50}ms`, animationFillMode: 'both' }}
-                                                >
-                                                    {f}
-                                                </span>
-                                            );
-                                        })}
+                                            { cat: "Input & Output", items: ["Pause option", "Keyboard accessibility", "Option to change voices", "Dark / Light", "Disappearing chat", "Customise UI"] },
+                                            { cat: "Assistance & Loop", items: ["Link to Support", "Feedback", "Revise output", "Starting Convos", "Conversation starters", "Analyse source", "Feedback chips"] },
+                                            { cat: "Preferences/Pain", items: ["Color contrast issues", "Preferences", "Personalisation", "Language", "Connectivity", "Long-term preferences", "Customise results", "Error handling"] }
+                                        ].slice(0, showAllChatGPT ? undefined : 1).map((category, cIdx) => (
+                                            <div key={category.cat} className="space-y-3">
+                                                <div className="flex items-center gap-2">
+                                                    <span className="w-1 h-3 bg-purple-500 rounded-full" />
+                                                    <span className="text-[0.6rem] font-black uppercase tracking-widest text-neutral-500">{category.cat}</span>
+                                                </div>
+                                                <div className="flex flex-col gap-2">
+                                                    {category.items.slice(0, showAllChatGPT ? undefined : 2).map((f, i) => {
+                                                        const isWarning = f.includes("issues") || f.includes("Pain");
+                                                        return (
+                                                            <span key={f}
+                                                                className={`px-4 py-2.5 rounded-xl border text-[0.7rem] transition-all duration-300 ${showMatrixTags ? 'animate-in fade-in slide-in-from-bottom-2' : 'opacity-0'} ${isWarning ? 'bg-red-500/10 border-red-500/20 text-red-400' : 'bg-purple-500/5 border-purple-500/10 text-purple-300/80'}`}
+                                                                style={{ animationDelay: `${(cIdx * 3 + i) * 50}ms` }}
+                                                            >
+                                                                {f}
+                                                            </span>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </div>
+                                        ))}
+                                        <button
+                                            onClick={() => setShowAllChatGPT(!showAllChatGPT)}
+                                            className="w-full py-4 rounded-xl bg-purple-600/10 border border-purple-500/20 text-[0.7rem] font-black text-purple-400 uppercase tracking-[0.2em] shadow-lg hover:bg-purple-600/20 hover:border-purple-500/40 transition-all group/btn flex items-center justify-center gap-2"
+                                        >
+                                            {showAllChatGPT ? 'Show Less' : 'View All 21 Features'}
+                                            <ArrowLeft className={`w-4 h-4 transition-transform duration-500 ${showAllChatGPT ? 'rotate-90' : '-rotate-90'}`} />
+                                        </button>
                                     </div>
                                 </div>
 
                                 {/* Copilot Card */}
-                                <div className="bg-[#13151A]/50 border border-neutral-800/50 rounded-[2.5rem] p-8 flex flex-col group hover:border-orange-500/30 transition-all duration-500">
+                                <div className="bg-[#13151A]/50 border border-neutral-800/50 rounded-[2.5rem] p-8 flex flex-col group hover:border-[#7effa0]/30 transition-all duration-500 h-fit">
                                     <div className="flex flex-col items-center text-center gap-4 mb-8 border-b border-neutral-800/50 pb-8">
-                                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-600 to-orange-400 p-4 shadow-xl shadow-orange-500/10">
-                                            <div className="w-full h-full flex items-center justify-center text-white font-black text-xl font-['Syne']">Co</div>
+                                        <div className="w-16 h-16 rounded-2xl bg-white p-3 shadow-xl shadow-orange-500/5 transition-transform group-hover:scale-110 duration-500 flex items-center justify-center overflow-hidden">
+                                            <img src="/images/gen-ai/copilot-color.png" alt="Copilot" className="w-full h-full object-contain" />
                                         </div>
                                         <div className="space-y-1">
                                             <h4 className="text-2xl font-['DM_Serif_Display'] text-white">Microsoft Copilot</h4>
                                             <span className="text-[0.6rem] font-mono text-orange-400 uppercase tracking-widest font-black">14 Features</span>
                                         </div>
                                     </div>
-                                    <div className="flex flex-col gap-2.5">
+
+                                    <div className="space-y-8">
                                         {[
-                                            "Stop / Pause action", "Image & Audio Input", "New chat button", "Language options",
-                                            "Source links", "Advertisements", "Feedback upfront", "Personalisation",
-                                            "Country customisation", "Voice features", "Chat Preference"
-                                        ].map((f, i) => (
-                                            <span key={f}
-                                                className={`px-4 py-2.5 rounded-xl bg-orange-500/5 border border-orange-500/10 text-[0.7rem] text-orange-300/80 hover:text-orange-300 hover:bg-orange-500/10 transition-all duration-300 ${showMatrixTags ? 'animate-in fade-in slide-in-from-bottom-2' : 'opacity-0'}`}
-                                                style={{ animationDelay: `${i * 50}ms`, animationFillMode: 'both' }}
-                                            >
-                                                {f}
-                                            </span>
+                                            { cat: "Interaction Models", items: ["Stop / Pause action", "Image & Audio Input", "New chat button", "Voice features", "Chat Preference"] },
+                                            { cat: "Context & Feedback", items: ["Feedback upfront", "Source links", "Advertisements", "Relevant Learn more links"] },
+                                            { cat: "Advanced Customisation", items: ["Personalisation", "Language options", "Country customisation"] }
+                                        ].slice(0, showAllCopilot ? undefined : 1).map((category, cIdx) => (
+                                            <div key={category.cat} className="space-y-3">
+                                                <div className="flex items-center gap-2">
+                                                    <span className="w-1 h-3 bg-orange-500 rounded-full" />
+                                                    <span className="text-[0.6rem] font-black uppercase tracking-widest text-neutral-500">{category.cat}</span>
+                                                </div>
+                                                <div className="flex flex-col gap-2">
+                                                    {category.items.slice(0, showAllCopilot ? undefined : 2).map((f, i) => (
+                                                        <span key={f}
+                                                            className={`px-4 py-2.5 rounded-xl bg-orange-500/5 border border-orange-500/10 text-[0.7rem] text-orange-300/80 transition-all duration-300 ${showMatrixTags ? 'animate-in fade-in slide-in-from-bottom-2' : 'opacity-0'}`}
+                                                            style={{ animationDelay: `${(cIdx * 3 + i) * 50}ms` }}
+                                                        >
+                                                            {f}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
                                         ))}
+                                        <button
+                                            onClick={() => setShowAllCopilot(!showAllCopilot)}
+                                            className="w-full py-4 rounded-xl bg-orange-600/10 border border-orange-500/20 text-[0.7rem] font-black text-orange-400 uppercase tracking-[0.2em] shadow-lg hover:bg-orange-600/20 hover:border-orange-500/40 transition-all group/btn flex items-center justify-center gap-2"
+                                        >
+                                            {showAllCopilot ? 'Show Less' : 'View All 14 Features'}
+                                            <ArrowLeft className={`w-4 h-4 transition-transform duration-500 ${showAllCopilot ? 'rotate-90' : '-rotate-90'}`} />
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Comparison Grid */}
+                    {/* Comparison Performance Scorecard */}
                     <div className="space-y-12">
-                        <div className="text-center">
-                            <h3 className="text-4xl font-['DM_Serif_Display'] text-white">Comparative Matrix</h3>
+                        <div className="text-center space-y-6 max-w-2xl mx-auto">
+                            <h3 className="text-4xl md:text-6xl font-['DM_Serif_Display'] text-white">UX Dimension Performance Scorecard</h3>
+                            <p className="text-neutral-400 font-mono text-[0.7rem] md:text-[0.8rem] uppercase tracking-[0.25em] leading-relaxed">Comparative mapping of interaction quality and feature availability</p>
+                            <div className="flex justify-center gap-10 pt-4">
+                                <div className="flex items-center gap-3 text-[0.7rem] font-black text-neutral-400 uppercase tracking-widest">
+                                    <Check className="w-4 h-4 text-green-500" /> Strong
+                                </div>
+                                <div className="flex items-center gap-3 text-[0.7rem] font-black text-neutral-400 uppercase tracking-widest">
+                                    <div className="w-3 h-1 bg-amber-500 rounded-full" /> Partial
+                                </div>
+                                <div className="flex items-center gap-3 text-[0.7rem] font-black text-neutral-400 uppercase tracking-widest">
+                                    <X className="w-4 h-4 text-red-500" /> Absent
+                                </div>
+                            </div>
                         </div>
-                        <div className="overflow-x-auto">
-                            <table className="w-full border-collapse">
-                                <thead>
-                                    <tr className="border-b border-neutral-800">
-                                        <th className="py-6 px-4 text-left text-xs font-mono uppercase tracking-widest text-neutral-500">UX Dimension</th>
-                                        <th className="py-6 px-4 text-left text-xs font-mono uppercase tracking-widest text-[#1A73E8]">Gemini</th>
-                                        <th className="py-6 px-4 text-left text-xs font-mono uppercase tracking-widest text-[#9B6FF0]">ChatGPT</th>
-                                        <th className="py-6 px-4 text-left text-xs font-mono uppercase tracking-widest text-[#E8A020]">Copilot</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="text-sm font-sans">
-                                    {[
-                                        { cat: "Feedback mechanisms", g: "✦ Rating + loop", ch: "✦ Chips + revise", co: "◐ Upfront" },
-                                        { cat: "Audio support", g: "✦ Input + Output", ch: "◐ Voice options", co: "✦ Voice features" },
-                                        { cat: "Personalisation", g: "◐ Extensions", ch: "✦ Deep prefs", co: "✦ Lang + Country" },
-                                        { cat: "Source transparency", g: "✦ Source shown", ch: "✦ Analyze + source", co: "✦ Links + preview" },
-                                        { cat: "Accessibility", g: "◐ Limited info", ch: "◐ Contrast Fail", co: "— Not prominent" },
-                                        { cat: "Dark/Light theme", g: "✦ Yes", ch: "✦ Yes", co: "— Limited" },
-                                        { cat: "Error recovery", g: "◐ Stop option", ch: "— No back", co: "◐ Stop/Pause" }
-                                    ].map((row, i) => (
-                                        <tr key={i} className="border-b border-neutral-800/30 hover:bg-white/5 transition-colors">
-                                            <td className="py-5 px-4 font-bold text-neutral-300 uppercase tracking-tighter text-[0.7rem]">{row.cat}</td>
-                                            <td className="py-5 px-4 text-neutral-400 italic">{row.g}</td>
-                                            <td className="py-5 px-4 text-neutral-400 italic">{row.ch}</td>
-                                            <td className="py-5 px-4 text-neutral-400 italic">{row.co}</td>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                            {/* Radar Visualization */}
+                            <div className="lg:col-span-5 animate-in fade-in slide-in-from-left-8 duration-1000">
+                                <RadarChart />
+                            </div>
+
+                            {/* ScoreTable */}
+                            <div className="lg:col-span-7 overflow-x-auto rounded-[3rem] border border-neutral-800/50 bg-[#0A0B10]/80 backdrop-blur-xl shadow-2xl animate-in fade-in slide-in-from-right-8 duration-1000">
+                                <table className="w-full border-collapse">
+                                    <thead>
+                                        <tr className="bg-neutral-900/80">
+                                            <th className="py-6 px-6 text-left text-[0.65rem] font-mono uppercase tracking-[0.3em] text-neutral-500 border-b border-neutral-800 font-medium">Dimension</th>
+                                            <th className="py-6 px-6 text-center text-[0.75rem] font-medium uppercase tracking-widest text-blue-400/70 border-b border-neutral-800">Gemini</th>
+                                            <th className="py-6 px-6 text-center text-[0.75rem] font-medium uppercase tracking-widest text-purple-400/70 border-b border-neutral-800">ChatGPT</th>
+                                            <th className="py-6 px-6 text-center text-[0.75rem] font-medium uppercase tracking-widest text-orange-400/70 border-b border-neutral-800">Copilot</th>
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody className="text-sm">
+                                        {[
+                                            { cat: "Feedback Mechanisms", g: 1, ch: 1, co: 0.5 },
+                                            { cat: "Audio Modalities", g: 1, ch: 0.5, co: 1 },
+                                            { cat: "Personalisation Depth", g: 0.5, ch: 1, co: 1 },
+                                            { cat: "Source Transparency", g: 1, ch: 1, co: 1 },
+                                            { cat: "Accessibility Compliance", g: 0.5, ch: 0.5, co: 0 },
+                                            { cat: "UI Theming/Customisation", g: 1, ch: 1, co: 0 },
+                                            { cat: "Error Recovery", g: 0.5, ch: 0, co: 0.5 },
+                                            { cat: "Conversation Control", g: 1, ch: 0.5, co: 1 }
+                                        ].map((row, i) => (
+                                            <tr key={i} className="hover:bg-white/[0.04] transition-all border-b border-neutral-800/10 group">
+                                                <td className="py-4 px-6 font-normal text-white uppercase tracking-[0.05em] text-[0.8rem] group-hover:text-[#7effa0] transition-colors">{row.cat}</td>
+                                                <td className="py-4 px-6">
+                                                    <div className="flex justify-center transition-transform group-hover:scale-110 duration-500">
+                                                        {row.g === 1 ? <Check className="w-4 h-4 text-green-500/70" /> : row.g === 0.5 ? <div className="w-3 h-0.5 bg-amber-500/50 rounded-full" /> : <X className="w-4 h-4 text-red-500/70" />}
+                                                    </div>
+                                                </td>
+                                                <td className="py-4 px-6">
+                                                    <div className="flex justify-center transition-transform group-hover:scale-110 duration-500">
+                                                        {row.ch === 1 ? <Check className="w-4 h-4 text-green-500/70" /> : row.ch === 0.5 ? <div className="w-3 h-0.5 bg-amber-500/50 rounded-full" /> : <X className="w-4 h-4 text-red-500/70" />}
+                                                    </div>
+                                                </td>
+                                                <td className="py-4 px-6">
+                                                    <div className="flex justify-center transition-transform group-hover:scale-110 duration-500">
+                                                        {row.co === 1 ? <Check className="w-4 h-4 text-green-500/70" /> : row.co === 0.5 ? <div className="w-3 h-0.5 bg-amber-500/50 rounded-full" /> : <X className="w-4 h-4 text-red-500/70" />}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 
@@ -946,11 +1204,14 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                                 { num: "05", title: "Error recovery is largely absent", text: "ChatGPT has no clear 'go back' from errors. Gemini and Copilot offer stop/pause — but undo and recovery flows are underdeveloped across all three platforms.", cat: "Error Handling" },
                                 { num: "06", title: "Audio is the emerging frontier", text: "Gemini leads with both audio input and output. Copilot has voice features. ChatGPT has voice options. Multi-modal interaction is fast becoming table stakes.", cat: "Modality" }
                             ].map((insight, i) => (
-                                <div key={i} className="bg-neutral-900/60 p-10 border border-neutral-800/50 hover:bg-neutral-800/80 transition-all group">
-                                    <div className="text-6xl font-['DM_Serif_Display'] italic text-white/5 mb-6 group-hover:text-purple-500/10 transition-colors">{insight.num}</div>
-                                    <h5 className="text-xl font-bold text-white mb-4 leading-tight">{insight.title}</h5>
-                                    <p className="text-neutral-400 text-sm leading-relaxed mb-6">{insight.text}</p>
-                                    <span className="text-[0.6rem] font-mono font-black uppercase tracking-widest text-purple-400 border-b border-purple-500/20 pb-1">{insight.cat}</span>
+                                <div key={i} className="bg-neutral-900/60 p-10 border border-neutral-800/50 hover:bg-[#7effa0]/5 hover:border-[#7effa0]/40 transition-all group relative overflow-hidden">
+                                    <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <Sparkles className="w-5 h-5 text-[#7effa0]" />
+                                    </div>
+                                    <div className="text-6xl font-['DM_Serif_Display'] italic text-white/5 mb-6 group-hover:text-[#7effa0]/10 transition-colors">{insight.num}</div>
+                                    <h5 className="text-xl font-bold text-white mb-4 leading-tight group-hover:text-[#7effa0] transition-colors">{insight.title}</h5>
+                                    <p className="text-neutral-400 text-sm leading-relaxed mb-6 group-hover:text-neutral-300 transition-colors">{insight.text}</p>
+                                    <span className="text-[0.6rem] font-mono font-black uppercase tracking-widest text-[#7effa0] border-b border-[#7effa0]/20 pb-1">{insight.cat}</span>
                                 </div>
                             ))}
                         </div>
@@ -1493,66 +1754,51 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                     </div>
                 </section>
 
-                {/* Behind the Scenes - relocated to end and downsized */}
-                <section className="pb-32 pt-20">
-                    <div className="max-w-xl mx-auto bg-neutral-900/40 border border-neutral-800/80 rounded-3xl p-8 text-center flex flex-col items-center gap-6">
-                        <div className="p-3 bg-neutral-800/50 rounded-2xl border border-neutral-700/50">
-                            <Layers className="w-5 h-5 text-neutral-400" />
+                {/* Behind the Scenes - Methodology Progress Bar */}
+                <section className="pb-40 pt-24 border-t border-neutral-800/50 bg-[#080808]/50 overflow-hidden relative">
+                    <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/5 blur-[150px] -z-10" />
+                    <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#7effa0]/5 blur-[150px] -z-10" />
+
+                    <div className="container mx-auto max-w-7xl px-4">
+                        <div className="flex flex-col items-center text-center space-y-4 mb-24">
+                            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#7effa0]/10 border border-[#7effa0]/20 rounded-full text-[0.65rem] font-mono font-bold text-[#7effa0] uppercase tracking-[0.2em]">
+                                <Layers className="w-3.5 h-3.5" /> Research Framework
+                            </div>
+                            <h2 className="text-4xl md:text-6xl font-['DM_Serif_Display'] text-white">Behind the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7effa0] to-teal-400 italic">Scenes</span></h2>
+                            <p className="text-neutral-500 font-sans text-xs uppercase tracking-[0.3em] max-w-md">The Architectural Logic of the Investigation</p>
                         </div>
-                        <div className="space-y-2">
-                            <h3 className="text-lg font-bold text-white tracking-wide font-sans">Behind the Scenes</h3>
-                            <p className="text-neutral-400 text-xs font-sans max-w-sm leading-relaxed">
-                                Research methodology, user testing criteria, and academic frameworks used for this project.
-                            </p>
+
+                        <div className="relative">
+                            {/* Horizontal Progress Line Background */}
+                            <div className="absolute top-12 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-neutral-800 to-transparent hidden md:block" />
+
+                            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
+                                {methodologyData.map((step, idx) => (
+                                    <div key={idx} className="flex flex-col items-center md:items-start space-y-10 group relative h-full">
+                                        {/* Marker Circle */}
+                                        <div className="w-24 h-24 shrink-0 rounded-[2rem] bg-[#0A0B10] border border-neutral-800/80 flex items-center justify-center text-3xl font-['DM_Serif_Display'] text-neutral-600 group-hover:text-[#7effa0] group-hover:border-[#7effa0]/40 group-hover:shadow-[0_0_50px_rgba(126,255,160,0.1)] transition-all duration-700 relative overflow-hidden group-hover:-translate-y-2">
+                                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(126,255,160,0.1),transparent)] opacity-0 group-hover:opacity-100 transition-opacity" />
+                                            0{idx + 1}
+                                        </div>
+
+                                        <div className="space-y-6 text-center md:text-left h-full">
+                                            <div className="space-y-2">
+                                                <h3 className="text-[0.6rem] font-black text-[#7effa0] uppercase tracking-[0.2em] font-mono">Phase {(idx + 1).toString().padStart(2, '0')}</h3>
+                                                <h4 className="text-[0.85rem] font-bold text-white uppercase tracking-[0.1em] border-b border-neutral-800/50 pb-4 min-h-[60px] flex items-end">
+                                                    {step.title}
+                                                </h4>
+                                            </div>
+                                            <div className="text-neutral-400 text-[0.8rem] font-sans leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">
+                                                {step.content}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                        <button
-                            onClick={() => setIsBehindScenesOpen(true)}
-                            className="px-6 py-3 bg-neutral-800 hover:bg-neutral-700 text-white font-bold uppercase tracking-widest text-[0.6rem] rounded-xl transition-all duration-300"
-                        >
-                            Explore Methodology
-                        </button>
                     </div>
                 </section>
             </article>
-
-            {/* MODALS */}
-
-            {/* Methodology Modal */}
-            <div className={`fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 pb-20 transition-all duration-500 ${isBehindScenesOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-                <div className="absolute inset-0 bg-[#080808]/90 backdrop-blur-md" onClick={() => setIsBehindScenesOpen(false)} />
-                <div className={`relative w-full max-w-4xl max-h-[85vh] overflow-y-auto mac-scrollbar bg-[#13151A] border border-neutral-700/50 rounded-3xl shadow-[0_0_60px_rgba(0,0,0,0.6)] transition-all duration-500 delay-100 ${isBehindScenesOpen ? 'translate-y-0 scale-100' : 'translate-y-20 scale-95'}`}>
-                    <div className="sticky top-0 bg-[#1A1C23] border-b border-neutral-800/50 p-6 flex items-center justify-between z-10 shadow-md">
-                        <div className="flex items-center gap-3">
-                            <Layers className="w-5 h-5 text-[#7effa0]" />
-                            <h3 className="font-sans font-bold uppercase tracking-widest text-[#7effa0] text-sm md:text-base">Behind the Scenes</h3>
-                        </div>
-                        <button onClick={() => setIsBehindScenesOpen(false)} className="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-700 transition-colors">
-                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1L13 13M1 13L13 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
-                        </button>
-                    </div>
-
-                    <div className="p-8 md:p-14 space-y-12">
-                        <div className="text-center mb-10">
-                            <h2 className="text-4xl md:text-5xl font-['DM_Serif_Display'] text-white">Methodology</h2>
-                        </div>
-                        <div className="grid grid-cols-1 gap-14">
-                            {methodology?.map((step: any, idx: number) => (
-                                <div key={idx} className="flex flex-col md:flex-row gap-6 md:gap-10">
-                                    <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-[#0A0B10] border border-[#7effa0]/20 flex items-center justify-center text-2xl font-['DM_Serif_Display'] text-[#7effa0] shadow-md">
-                                        0{idx + 1}
-                                    </div>
-                                    <div className="space-y-4 pt-1">
-                                        <h3 className="text-xl md:text-2xl font-bold text-white tracking-wide font-sans">{step.title.replace(/^\d\.\s/, '')}</h3>
-                                        <div className="text-neutral-400 font-serif leading-relaxed text-lg pt-2">
-                                            {renderContentLines(step.content)}
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
         </main>
     );
 }
