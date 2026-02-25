@@ -969,9 +969,11 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
 
                         <div className="relative z-10 space-y-12">
                             <div className="flex flex-col items-center text-center space-y-4 max-w-2xl mx-auto">
-                                <div className="px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-[0.6rem] font-black font-mono text-blue-400 uppercase tracking-[0.2em] animate-pulse">
-                                    Based on Published IEEE Research Paper
-                                </div>
+                                {false && (
+                                    <div className="px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-[0.6rem] font-black font-mono text-blue-400 uppercase tracking-[0.2em] animate-pulse">
+                                        Based on Published IEEE Research Paper
+                                    </div>
+                                )}
                                 <h3 className="text-4xl md:text-5xl font-['DM_Serif_Display'] text-white">Platform-by-platform Feature Matrix</h3>
                                 <p className="text-neutral-500 font-mono text-[0.65rem] uppercase tracking-[0.2em] leading-relaxed">Systematic evaluation of 49+ distinct interaction nodes</p>
                             </div>
