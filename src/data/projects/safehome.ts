@@ -2,7 +2,7 @@ export const safehomeProject = {
     id: 2,
     title: "SafeHome SF",
     category: "Civic Tech",
-    description: "Lead UX Designer transforming San Francisco's earthquake data into a mobile-first safety ecosystem that empowers renters and homeowners to mitigate risk.",
+    description: "Lead UX Designer transforming San Francisco’s earthquake data into a mobile-first safety ecosystem that empowers renters and homeowners to take prepared action before, during, and after a seismic event.",
     image: "/images/safehome/safehome.png",
     slug: "safehome-sf",
     sections: [
@@ -14,133 +14,142 @@ export const safehomeProject = {
             ]
         },
         {
+            title: "PROJECT OBJECTIVE",
+            content: [
+                "Decode fragmented government earthquake data into a mobile-first experience where residents can quickly understand how it impacts their home and neighborhood.",
+                "Translate dense geoscience terminology into actionable, tiered risk cues that don’t require an expert degree to interpret.",
+                "Close the \"action gap\" by guiding renters and homeowners toward immediate preparedness steps rather than leaving them to parse dashboards."
+            ],
+            chips: ["Actionable Data", "Mobile-first Resilience", "Inclusive Access"],
+            glassCard: true,
+            showDivider: true
+        },
+        {
             title: "THE CHALLENGE: BRIDGING THE \"ACTION GAP\"",
-            content: "San Francisco's earthquake data is a goldmine of life-saving information, yet it was historically buried in fragmented government databases. As the Lead UX Designer, I was tasked with transforming this \"data dump\" into a high-utility tool. The mission was clear: move beyond a passive map and create a mobile-first ecosystem that empowers renters and homeowners to mitigate risk before, during, and after a seismic event."
+            content: "San Francisco’s earthquake information sat locked inside fragmented government databases, which made it hard for the average resident to know what to do next. I joined with a mandate to move beyond a passive map and deliver a high-utility ecosystem that feels usable and trustworthy on a phone.",
+            topMargin: true
         },
         {
             title: "STRATEGIC LEADERSHIP & PROCESS",
-            content: "When I joined in 2025, the project was stalled by \"dependency deadlock\"—a lack of a strong product owner led to redundant work and missed deadlines.",
+            content: "In 2025 the effort was stalled by a \"dependency deadlock\": redundant work, missed deliverables, and no clear product owner. I stepped in to clarify ownership, re-prioritize based on impact, and restart momentum.",
             showDivider: true
         },
         {
             title: "OPERATIONAL OVERHAUL",
             content: [
-                "- I designed and implemented a milestone-based tracking system for OKRs",
-                "- By defining clear cross-functional dependencies, I eliminated the \"developer hold-up\" and synchronized the workflows of data scientists and engineers"
+                "- Designed and enforced a milestone-based OKR system so each squad knew their next critical deliverable.",
+                "- Blocked redundant work by clarifying cross-functional dependencies between data science, engineering, and legal teams."
             ],
             glassCard: true
         },
         {
             title: "DATA-DRIVEN ALIGNMENT",
             content: [
-                "- I spearheaded the creation of a shared PostHog dashboard",
-                "- This allowed the Data Science team to see user behavior in real-time, shifting their focus to cleaning \"high-traffic\" datasets"
+                "- Launched a shared PostHog dashboard so Data Science could spot high-traffic datasets and prioritize cleaning them.",
+                "- Enabled engineers to focus on product value instead of waiting for unclear analysis handoffs."
             ],
             glassCard: true
         },
         {
             title: "THE LEGAL & VISUAL INITIATIVE",
             content: [
-                "- Faced with strict legal constraints on government terminology (e.g., \"Liquefaction\"), I launched a color-priority initiative",
-                "- I mapped complex jargon to a 3-tier visual scale (High/Medium/Low risk), providing users with instant cognitive clarity",
-                "- Negotiated a long-term legal path toward terminology uniformity"
+                "- Faced with legal limits on terminology (e.g., \"Liquefaction\"), I introduced a 3-tier visual scale (High/Medium/Low) that provided instant clarity without redefining official language.",
+                "- Negotiated a long-term legal path toward consistent terminology while surface-level visuals handled urgent clarity."
             ],
-            glassCard: true
+            glassCard: true,
+            showDivider: true
         },
         {
             title: "USER RESEARCH",
             content: [
-                "Research methodology included:",
+                "Methodology:",
                 "",
-                "- Stakeholder interviews with SF government officials and emergency response teams",
-                "- User testing with SF renters and homeowners across diverse demographics",
-                "- Accessibility audits focusing on elderly users and people with disabilities",
+                "- Stakeholder interviews with city officials and emergency response teams.",
+                "- User testing with San Francisco renters and homeowners across age and income spectra.",
+                "- Accessibility audits focused on elderly residents and people with disabilities.",
                 "",
-                "Key Insight: Users felt overwhelmed by the map and needed clear, prioritized steps. The technical data portal approach was creating analysis paralysis rather than enabling action."
+                "Key insight: Residents were paralyzed by the technical data portal. They needed prioritized, trustworthy steps instead of raw numbers."
             ],
             topMargin: true,
             showDivider: true
         },
         {
             title: "UI IMPROVEMENTS: BEFORE & AFTER",
-            content: "I shifted the interface from a technical data portal to a human-centric safety tool.",
+            content: "I transformed the experience from a technical data portal into a human-centric safety tool that feels manageable on mobile.",
             showDivider: true
         },
         {
             title: "1. THE MAP & RISK VISUALIZATION",
             content: [
-                "Before: Technical map with uniform markers that provided no visual hierarchy",
-                "",
-                "After: Map with the \"Color Initiative\" implemented, showing clear risk tiers (High/Medium/Low) and mobile-optimized search overlays that allow users to instantly understand their risk level"
+                "Before: Uniform map markers and dense overlays created no visual hierarchy.",
+                "After: Implemented the Color Initiative with High/Medium/Low risk tiers and mobile search overlays so residents can instantly understand their location’s severity."
             ],
-            bottomMargin: true
+            sideBySide: true,
+            image: "/images/safehome/cover.jpg",
+            imageRight: true,
+            chips: ["Color Initiative", "Mobile Search Overlays"],
+            topMargin: true
         },
         {
             title: "2. RESOURCE NAVIGATION",
             content: [
-                "Before: Long lists of text-heavy government links that overwhelmed users",
-                "",
-                "After: Single-page dashboard featuring prioritized \"todo-actions\" and simplified definitions that guide users through preparedness steps"
+                "Before: Long lists of text-heavy government links overwhelmed users.",
+                "After: Introduced a single-page dashboard with prioritized \"todo-actions\" and simplified definitions that guide preparedness steps."
             ],
             bottomMargin: true
         },
         {
             title: "DESIGN EXECUTION: MOBILE-FIRST RESILIENCE",
-            content: "We prioritized mobile responsiveness and accessibility over complex desktop features to serve the \"on-the-go\" citizen.",
+            content: "Prioritized responsive layouts, simplified navigation, and progressive disclosure so users feel confident in high-stress moments.",
             showDivider: true
         },
         {
             title: "THE SINGLE-PAGE DASHBOARD",
             content: [
-                "- We opted for a streamlined, single-page architecture",
-                "- This focused the user's attention on immediate \"todo-actions\" rather than getting lost in a deep map interface",
-                "- Progressive disclosure ensures users aren't overwhelmed while maintaining access to detailed information"
+                "- Streamlined architecture keeps attention on immediate actions instead of getting lost in deep map layers.",
+                "- Progressive disclosure unlocks more detail as users explore without overwhelming the first impression.",
+                "- Designed interactions that work with one thumb so on-the-go citizens can act fast."
             ],
             glassCard: true
         },
         {
             title: "ACCESSIBILITY FOR ALL",
             content: [
-                "- Recognizing that the most vulnerable populations—the elderly and people with disabilities—often face the highest risk",
-                "- I prioritized high-contrast visuals and simplified navigation patterns",
-                "- Implemented WCAG AAA compliance for critical safety information",
-                "- Ensured screen reader compatibility and keyboard navigation throughout"
+                "- Prioritized high-contrast palettes and simplified navigation to support older residents.",
+                "- Ensured WCAG AAA compliance for critical safety information.",
+                "- Implemented screen reader and keyboard navigation coverage across the dashboard."
             ],
-            glassCard: true
+            glassCard: true,
+            showDivider: true
         },
         {
             title: "MEASURABLE IMPACT (BY THE NUMBERS)",
-            content: "Our focus on mobile usability and data clarity yielded significant quantitative gains:",
-            showDivider: true,
+            content: "Making mobile usability and data clarity the North Star unlocked measurable gains.",
             topMargin: true
         },
         {
             title: "KEY METRICS",
             content: [
-                "User Retention: 60% of users return to the tool for resources",
-                "",
-                "Mobile Adoption: 75% of total traffic (reflecting successful \"on-the-go\" design)",
-                "",
-                "Engagement: 15% MoM increase in click-through rates on \"Safety Resources\"",
-                "",
-                "Project Velocity: 2x faster deployment of features post-OKR implementation"
+                "User Retention: 60% of users return for safety resources.",
+                "Mobile Adoption: 75% of traffic is mobile-first.",
+                "Engagement: 15% MoM increase in click-through on \"Safety Resources\".",
+                "Project Velocity: 2x faster feature delivery post-OKR implementation."
             ],
-            glassCard: true
+            glassCard: true,
+            showDivider: true
         },
         {
             title: "THE VISION: BEYOND THE MAP",
             content: [
-                "The current MVP is just the foundation. My roadmap for SafeHome includes a progressive disclosure interface that moves away from a map-first view to a task-first view.",
+                "MVP is the foundation. Roadmap includes:",
                 "",
-                "This future state will feature:",
-                "- A dedicated mobile app specifically designed for extreme ease of use",
-                "- Ensuring that even in high-stress scenarios, users of all ages and abilities can access critical safety steps with zero friction",
-                "- Personalized preparedness checklists based on user location and property type",
-                "- Real-time alerts and emergency response guidance",
-                "- Community-driven resource sharing and neighborhood preparedness networks"
+                "- A dedicated, ultra-simple mobile app for high-stress scenarios.",
+                "- Personalized preparedness checklists tied to property type and location.",
+                "- Real-time alerts and emergency response guidance.",
+                "- Community resource sharing and neighborhood preparedness networks."
             ],
-            showDivider: true,
-            topMargin: true
+            topMargin: true,
+            showDivider: true
         }
     ]
 };

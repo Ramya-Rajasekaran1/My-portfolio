@@ -6,6 +6,7 @@ import { projects } from "@/lib/data";
 import { ImageLightbox } from "@/components/ui/image-lightbox";
 import { NetworkIntelligenceProject } from "@/components/projects/network-intelligence";
 import { ContentVerifyProject } from "@/components/projects/content-verify";
+import { GenAiInclusivityProject } from "@/components/projects/gen-ai-inclusivity";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -26,6 +27,10 @@ export default function ProjectPage() {
 
     if (slug === "content-verify") {
         return <ContentVerifyProject project={project} />;
+    }
+
+    if (slug === "gen-ai-inclusivity") {
+        return <GenAiInclusivityProject project={project} />;
     }
 
     return (

@@ -90,7 +90,7 @@ export function Hero() {
 
                 {/* Mild Noise Effect */}
                 <div
-                    className="absolute inset-0 opacity-[0.15] dark:opacity-[0.1] pointer-events-none mix-blend-overlay"
+                    className="absolute inset-0 opacity-[0.05] dark:opacity-[0.03] pointer-events-none mix-blend-overlay"
                     style={{
                         backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
                         backgroundRepeat: "repeat",
@@ -150,8 +150,8 @@ export function Hero() {
                                 >
                                     <Icon className={`w-5 h-5 ${achievement.color}`} strokeWidth={2} />
                                     <div className="space-y-0.5">
-                                        <p className="text-xl font-bold text-neutral-900 dark:text-white leading-none">{achievement.value}</p>
-                                        <p className="text-[10px] uppercase tracking-widest font-black text-neutral-500/80 dark:text-neutral-400/60">{achievement.label}</p>
+                                        <p className="text-xl font-bold text-white drop-shadow-md leading-none">{achievement.value}</p>
+                                        <p className="text-[10px] uppercase tracking-widest font-black text-white/90 drop-shadow-sm">{achievement.label}</p>
                                     </div>
                                 </motion.div>
                             );
@@ -166,13 +166,13 @@ export function Hero() {
                                 variants={itemVariants}
                                 whileHover={{
                                     y: -2,
-                                    backgroundColor: "rgba(147, 51, 234, 0.1)",
-                                    borderColor: "rgba(147, 51, 234, 0.3)",
+                                    backgroundColor: "rgba(147, 51, 234, 0.15)",
+                                    borderColor: "rgba(147, 51, 234, 0.5)",
                                     transition: { duration: 0.2 }
                                 }}
-                                className="px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.15em] text-neutral-500 dark:text-neutral-400 rounded-full border border-neutral-200 dark:border-white/10 bg-white/50 dark:bg-white/[0.02] backdrop-blur-md transition-all duration-300 cursor-default group"
+                                className="px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-neutral-800 dark:text-neutral-100 rounded-full border border-neutral-300 dark:border-white/20 bg-white/80 dark:bg-white/10 backdrop-blur-md transition-all duration-300 cursor-default group shadow-sm hover:shadow-md"
                             >
-                                <span className="relative z-10 group-hover:text-purple-600 dark:group-hover:text-purple-400">
+                                <span className="relative z-10 group-hover:text-purple-600 dark:group-hover:text-purple-300">
                                     {skill}
                                 </span>
                             </motion.span>

@@ -47,6 +47,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <NoiseOverlay />
           <SkipLink />
           <ConditionalBackground />
 
