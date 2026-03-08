@@ -1,33 +1,46 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 import { ProjectCard } from "@/components/ui/project-card";
 import { projects } from "@/lib/data";
+import { motion } from "framer-motion";
 
 export function FeaturedProjects() {
     const featuredProjects = projects.slice(0, 3);
 
     return (
-        <section className="py-24 bg-neutral-50 dark:bg-neutral-900/50">
-            <div className="container mx-auto px-4">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-                    <div>
-                        <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">Selected work</h2>
-                        <p className="text-neutral-600 dark:text-neutral-400 max-w-xl">
-                            A collection of projects that showcase my passion for creating intuitive and impactful user experiences.
+        <section className="py-40 bg-[var(--background)] relative overflow-hidden">
+            <div className="container mx-auto px-6">
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
+                    className="flex flex-col md:flex-row justify-between items-end mb-24 gap-12 border-b-8 border-black pb-12"
+                >
+                    <div className="space-y-6">
+                        <div className="flex items-center gap-4">
+                            <div className="w-3 h-3 bg-[var(--posthog-orange)] shadow-[0_0_10px_var(--posthog-orange)]" />
+                            <span className="tech-label tracking-[0.4em]">SELECTED CASE STUDIES</span>
+                        </div>
+                        <h2 className="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-[0.8]">
+                            High Impact<br />Case Studies
+                        </h2>
+                        <p className="text-zinc-600 font-bold text-lg max-w-2xl uppercase tracking-tighter leading-tight italic">
+                            A curated selection of end to end design solutions, from deep UX research to scalable design systems.
                         </p>
                     </div>
                     <Link
                         href="/work"
-                        className="group flex items-center gap-2 text-purple-600 dark:text-purple-400 font-medium hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
+                        className="btn-posthog flex items-center gap-4 group px-10 py-5 text-sm"
                     >
-                        View all projects
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        EXPLORE ARCHIVE
+                        <ArrowRight className="w-6 h-6 group-hover:translate-x-3 transition-transform duration-500" />
                     </Link>
-                </div>
+                </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
                     {featuredProjects.map((project, index) => (
                         <ProjectCard key={project.id} project={project} index={index} />
                     ))}

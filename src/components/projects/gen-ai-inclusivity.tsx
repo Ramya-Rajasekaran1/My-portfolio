@@ -370,18 +370,23 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                 }
             `}</style>
 
-            <nav className="fixed inset-x-0 top-0 z-50 bg-[#080808]/90 backdrop-blur border-b border-neutral-900">
-                <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+            <nav className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-xl border-b-4 border-black">
+                <div className="container mx-auto px-6 h-20 flex items-center justify-between">
                     <Link
                         href="/work"
-                        className="inline-flex items-center gap-2 text-sm font-sans font-medium text-neutral-400 hover:text-white transition-colors"
+                        className="inline-flex items-center gap-4 text-sm font-black text-zinc-500 hover:text-black transition-all uppercase tracking-[0.3em] group"
                     >
-                        <ArrowLeft className="w-4 h-4" />
-                        Back to Work
+                        <ArrowLeft className="w-5 h-5 group-hover:-translate-x-2 transition-transform" />
+                        [BACK TO ARCHIVE]
                     </Link>
-                    <span className="text-sm font-sans font-bold uppercase tracking-wider text-neutral-500">
-                        Gen AI Inclusivity Case Study
-                    </span>
+                    <div className="flex items-center gap-6">
+                        <div className="p-2 bg-black text-white shadow-[4px_4px_0_var(--posthog-orange)]">
+                            <Sparkles className="w-5 h-5 animate-spin-slow" />
+                        </div>
+                        <span className="text-[11px] font-black uppercase tracking-[0.4em] text-black hidden md:block">
+                            RESEARCH BRIEF: {project.title.toUpperCase()}
+                        </span>
+                    </div>
                 </div>
             </nav>
 
@@ -514,16 +519,16 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                     </header>
 
                     {/* Mac OS Window Layout */}
-                    <div className="max-w-6xl mx-auto bg-[#13151A] border border-neutral-800 rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)] relative">
+                    <div className="max-w-6xl mx-auto bg-white border-4 border-black rounded-none overflow-hidden shadow-[30px_30px_0px_#000] relative">
                         {/* Mac Toolbar */}
-                        <div className="flex items-center justify-between px-5 py-3 bg-[#1A1C23] border-b border-neutral-800/50 sticky top-0 z-20">
-                            <div className="flex gap-2">
-                                <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
-                                <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
-                                <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
+                        <div className="flex items-center justify-between px-8 py-4 bg-zinc-50 border-b-4 border-black sticky top-0 z-20">
+                            <div className="flex gap-3">
+                                <div className="w-4 h-4 rounded-none border-2 border-black bg-[#FF5F56]" />
+                                <div className="w-4 h-4 rounded-none border-2 border-black bg-[#FFBD2E]" />
+                                <div className="w-4 h-4 rounded-none border-2 border-black bg-[#27C93F]" />
                             </div>
-                            <div className="text-[0.6rem] font-mono text-neutral-500 uppercase tracking-widest">
-                                metrics_dashboard.exe
+                            <div className="text-[11px] font-black font-mono text-black uppercase tracking-[0.4em]">
+                                METRICS BOARD
                             </div>
                             <div className="w-10"></div> {/* Spacer for centering */}
                         </div>
@@ -557,15 +562,15 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                                 <div className="flex gap-4 mb-8 pb-6 border-b border-neutral-800/50">
                                     <button
                                         onClick={() => setActiveTask('t1')}
-                                        className={`px-5 py-2.5 rounded-lg text-[0.65rem] font-mono uppercase tracking-widest shadow-sm transition-all cursor-pointer flex-1 md:flex-none text-center ${activeTask === 't1' ? 'bg-[#1A1C23] border border-[#7effa0] text-[#7effa0] shadow-[0_4px_12px_rgba(126,255,160,0.15)] scale-[1.02]' : 'bg-neutral-900/40 border border-neutral-800 text-neutral-500 hover:text-neutral-300 hover:bg-neutral-800 hover:shadow-md'}`}
+                                        className={`px-6 py-3 border-4 border-black text-[11px] font-black uppercase tracking-[0.3em] transition-all cursor-pointer flex-1 md:flex-none text-center ${activeTask === 't1' ? 'bg-[var(--posthog-orange)] text-black shadow-[8px_8px_0_#000] -translate-x-1 -translate-y-1' : 'bg-white text-zinc-500 hover:text-black hover:bg-zinc-50'}`}
                                     >
-                                        Task 1 · Dark Theme
+                                        PHASE 01 · THEME CONTROL
                                     </button>
                                     <button
                                         onClick={() => setActiveTask('t2')}
-                                        className={`px-5 py-2.5 rounded-lg text-[0.65rem] font-mono uppercase tracking-widest shadow-sm transition-all cursor-pointer flex-1 md:flex-none text-center ${activeTask === 't2' ? 'bg-[#1A1C23] border border-[#7effa0] text-[#7effa0] shadow-[0_4px_12px_rgba(126,255,160,0.15)] scale-[1.02]' : 'bg-neutral-900/40 border border-neutral-800 text-neutral-500 hover:text-neutral-300 hover:bg-neutral-800 hover:shadow-md'}`}
+                                        className={`px-6 py-3 border-4 border-black text-[11px] font-black uppercase tracking-[0.3em] transition-all cursor-pointer flex-1 md:flex-none text-center ${activeTask === 't2' ? 'bg-[var(--posthog-orange)] text-black shadow-[8px_8px_0_#000] -translate-x-1 -translate-y-1' : 'bg-white text-zinc-500 hover:text-black hover:bg-zinc-50'}`}
                                     >
-                                        Task 2 · Change Language
+                                        PHASE 02 · LANGUAGE UNIT
                                     </button>
                                 </div>
 

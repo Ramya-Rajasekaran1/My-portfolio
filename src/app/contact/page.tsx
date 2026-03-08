@@ -1,59 +1,110 @@
 import { Metadata } from "next";
-import { Mail, Linkedin } from "lucide-react";
-import { GlassCard } from "@/components/ui/glass-card";
+import { Mail, Linkedin, Radio, Send, Minus, Square, X, Activity, Compass, MousePointer2, Star } from "lucide-react";
 import { CopyEmail } from "@/components/ui/copy-email";
 
 export const metadata: Metadata = {
-    title: "Contact | Ramya Rajsekaran",
-    description: "Get in touch with Ramya Rajsekaran for collaborations or opportunities.",
+    title: "Contact | STUDIO OS",
+    description: "Launch a collaborative inquiry with Ramya Rajsekaran.",
 };
 
 export default function ContactPage() {
     return (
-        <main className="h-screen pt-24 pb-0 flex flex-col justify-center items-center overflow-hidden">
-            <div className="container mx-auto px-4">
-                <div className="max-w-2xl mx-auto text-center">
-                    <h1 className="text-3xl md:text-4xl font-serif font-bold mb-4">Get in Touch</h1>
-                    <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-8">
-                        I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+        <main className="min-h-screen pt-40 pb-40 flex flex-col justify-center items-center bg-[var(--background)] overflow-hidden px-6 selection:bg-[var(--posthog-orange)]/30 antialiased">
+            <div className="max-w-4xl w-full mx-auto space-y-24">
+
+                {/* Header: Signal Info */}
+                <div className="text-center space-y-8">
+                    <div className="flex items-center justify-center gap-5">
+                        <div className="p-3 bg-black text-white shadow-[8px_8px_0_var(--posthog-orange)]">
+                            <Radio className="w-6 h-6 animate-pulse text-[var(--posthog-orange)]" />
+                        </div>
+                        <span className="tech-label tracking-[0.4em]">COLLABORATIVE INQUIRY</span>
+                    </div>
+                    <h1 className="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-none text-black">
+                        Signal Relay
+                    </h1>
+                    <p className="text-zinc-900 font-bold text-lg uppercase tracking-tight max-w-2xl mx-auto leading-tight italic">
+                        Open for high-impact collaboration, technical strategy consulting, and digital architecture deconstruction.
                     </p>
+                </div>
 
-                    <GlassCard className="p-8 border-white/20 dark:border-white/10 max-w-lg mx-auto">
-                        <div className="flex flex-col items-center gap-6">
-                            {/* Profile Thumbnail Placeholder */}
-                            <div className="w-20 h-20 rounded-full bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center text-neutral-400 border-4 border-white/50 shadow-lg">
-                                <span className="text-xs">Photo</span>
-                            </div>
+                {/* Contact Window */}
+                <div className="os-card bg-white w-full border-4 border-black shadow-[40px_40px_0px_#000] transition-all duration-700 hover:shadow-[40px_40px_0px_var(--posthog-orange)]">
+                    <div className="window-title border-b-4 border-black py-4 px-8 bg-zinc-50/50">
+                        <div className="flex items-center gap-5">
+                            <Send className="w-5 h-5 text-[var(--posthog-orange)]" />
+                            <span className="font-black uppercase tracking-[0.3em] text-[11px]">DIRECT LINE HUB</span>
+                        </div>
+                        <div className="flex items-center gap-4">
+                            <Star className="w-4 h-4 text-black animate-spin-slow opacity-20" />
+                            <Minus className="w-4 h-4 text-black/20" />
+                            <X className="w-5 h-5 text-black/40 hover:text-[var(--posthog-orange)] cursor-pointer transition-colors" />
+                        </div>
+                    </div>
+                    <div className="p-12 md:p-20 space-y-20 relative overflow-hidden">
+                        {/* Status Overlay */}
+                        <div className="absolute top-8 right-8 flex items-center gap-4 group">
+                            <div className="w-3 h-3 bg-green-500 rounded-none border-2 border-black animate-pulse" />
+                            <span className="tech-label text-green-600 font-black tracking-widest">NETWORK ACTIVE</span>
+                        </div>
 
-                            <div className="flex flex-col items-center gap-4 w-full">
-                                <div className="flex flex-col items-center gap-1">
-                                    <h2 className="text-xs font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">Email</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 relative z-10">
+                            {/* Email Section */}
+                            <div className="space-y-8 group">
+                                <div className="flex items-center gap-4">
+                                    <div className="p-2 bg-black text-white shadow-[4px_4px_0_var(--posthog-orange)]">
+                                        <Mail className="w-5 h-5" />
+                                    </div>
+                                    <span className="tech-label text-zinc-400 group-hover:text-black transition-colors tracking-widest font-black">DIRECT LINE</span>
+                                </div>
+                                <div className="p-8 bg-white border-4 border-black group-hover:shadow-[12px_12px_0_var(--posthog-orange)] transition-all">
                                     <CopyEmail email="crramya06@gmail.com" />
                                 </div>
-
-                                <div className="w-full h-px bg-neutral-200 dark:bg-neutral-800 my-1" />
-
-                                <div className="flex flex-col items-center gap-1">
-                                    <h2 className="text-xs font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">LinkedIn</h2>
-                                    <a
-                                        href="https://www.linkedin.com/in/ramyar06/"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center gap-2 text-xl font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                                    >
-                                        <svg className="w-6 h-6 text-[#0077b5]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                                        </svg>
-                                        <span>Ramya Rajasekaran</span>
-                                    </a>
-                                </div>
                             </div>
 
-                            <p className="text-neutral-500 dark:text-neutral-400 text-xs mt-2">
-                                I usually respond within 24 hours.
-                            </p>
+                            {/* LinkedIn Section */}
+                            <div className="space-y-8 group">
+                                <div className="flex items-center gap-4">
+                                    <div className="p-2 bg-black text-white shadow-[4px_4px_0_var(--posthog-orange)]">
+                                        <Linkedin className="w-5 h-5" />
+                                    </div>
+                                    <span className="tech-label text-zinc-400 group-hover:text-black transition-colors tracking-widest font-black">SOCIAL HUB</span>
+                                </div>
+                                <a
+                                    href="https://www.linkedin.com/in/ramyar06/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="block p-8 bg-black text-white border-4 border-black hover:bg-[var(--posthog-orange)] hover:text-black hover:shadow-[12px_12px_0_black] transition-all font-black text-xl uppercase tracking-[0.2em] text-center"
+                                >
+                                    /IN/RAMYAR06
+                                </a>
+                            </div>
                         </div>
-                    </GlassCard>
+
+                        {/* Footer Info */}
+                        <div className="pt-12 border-t-4 border-black/10 border-dashed flex flex-col md:flex-row justify-between items-center gap-10">
+                            <div className="flex items-center gap-6">
+                                <Compass className="w-8 h-8 text-zinc-300 animate-spin-slow" />
+                                <div className="flex flex-col">
+                                    <span className="tech-label opacity-40 tracking-widest">RESPONSE PATH</span>
+                                    <span className="text-sm font-black uppercase text-black">LATENCY: PRIORITY RESPONSE</span>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-5 py-4 px-10 bg-black text-white border-4 border-black shadow-[8px_8px_0_var(--posthog-orange)]">
+                                <MousePointer2 className="w-5 h-5 text-[var(--posthog-orange)] animate-bounce" />
+                                <span className="tech-label italic tracking-[0.2em] font-black">DESIGNER CONNECT</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Technical Footnote */}
+                <div className="w-full flex items-center justify-between opacity-30 group hover:opacity-100 transition-opacity">
+                    <div className="h-2 bg-black flex-1 shadow-sm" />
+                    <div className="px-16 flex items-center gap-8">
+                        <Activity className="w-8 h-8 text-black animate-pulse" />
+                    </div>
+                    <div className="h-2 bg-black flex-1 shadow-sm" />
                 </div>
             </div>
         </main>

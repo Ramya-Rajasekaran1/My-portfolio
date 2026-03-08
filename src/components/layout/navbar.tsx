@@ -2,123 +2,66 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { Search, Menu, X } from "lucide-react";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+import { Clock, Compass } from "lucide-react";
+import { CommandPalette } from "./command-palette";
+import { usePathname } from "next/navigation";
 
 export function Navbar() {
-    const [isScrolled, setIsScrolled] = React.useState(false);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+    const pathname = usePathname();
+    const [time, setTime] = React.useState<string>("");
 
     React.useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+        const timer = setInterval(() => {
+            setTime(new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' }));
+        }, 1000);
+        return () => clearInterval(timer);
     }, []);
 
-    const navLinks = [
-        { name: "About", href: "/about" },
-        { name: "Work", href: "/work" },
-        { name: "Contact", href: "/contact" },
-    ];
-
     return (
-        <>
-            <motion.header
-                className={cn(
-                    "fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-                )}
-                initial={{ y: -100 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.5 }}
-            >
-                <div className="container mx-auto px-4 flex justify-center">
-                    <div className={cn(
-                        "flex items-center justify-between rounded-full transition-all duration-500 w-full",
-                        isScrolled ? "glass py-2 px-4 mt-4 max-w-lg backdrop-blur-3xl" : "bg-transparent p-4 mt-6 max-w-5xl"
-                    )}>
-                        {/* Logo */}
-                        <Link href="/" className="text-xl font-serif font-bold tracking-tight z-50">
-                            Ramya<span className="text-purple-600 dark:text-purple-400">.</span>
-                        </Link>
+        <motion.header
+            className="fixed top-0 left-0 right-0 z-[60] os-glass border-b-2 border-black px-6 h-16 flex items-center justify-between font-bold text-[10px] uppercase tracking-[0.3em] text-black shadow-sm"
+            initial={{ y: -64 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
+        >
+            {/* Left Section: Studio Identity */}
+            <div className="flex items-center gap-10">
+                <Link href="/" className="flex items-center gap-4 group transition-all">
+                    <div className="p-2 bg-black text-white group-hover:bg-[var(--posthog-orange)] transition-colors">
+                        <Compass className="w-5 h-5" />
+                    </div>
+                    <span className="font-black tracking-[0.5em]">STUDIO OS</span>
+                </Link>
 
-                        {/* Desktop Nav */}
-                        <nav aria-label="Main navigation" className={cn(
-                            "hidden md:flex items-center transition-all duration-500",
-                            isScrolled ? "gap-4" : "gap-8"
-                        )}>
-                            {navLinks.map((link) => (
-                                <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    className="text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white transition-colors"
-                                >
-                                    {link.name}
-                                </Link>
-                            ))}
-                        </nav>
+                <nav className="hidden lg:flex items-center gap-8 border-l-2 border-black/5 pl-10">
+                    <Link href="/work" className={`hover:text-black transition-all hover:bg-[var(--posthog-orange)] px-4 py-1.5 ${pathname === '/work' ? 'bg-black text-white' : ''}`}>[ARCHIVE]</Link>
+                    <Link href="/about" className={`hover:text-black transition-all hover:bg-[var(--posthog-orange)] px-4 py-1.5 ${pathname === '/about' ? 'bg-black text-white' : ''}`}>[PROFILE]</Link>
+                    <Link href="/contact" className={`hover:text-black transition-all hover:bg-[var(--posthog-orange)] px-4 py-1.5 ${pathname === '/contact' ? 'bg-black text-white' : ''}`}>[SIGNAL]</Link>
+                </nav>
+            </div>
 
-                        {/* Actions */}
-                        <div className="hidden md:flex items-center gap-4">
-                            <button
-                                className="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
-                                aria-label="Search"
-                            >
-                                <Search className="w-5 h-5 text-neutral-600 dark:text-neutral-400" />
-                            </button>
-                            <ThemeToggle />
-                        </div>
+            {/* Middle Section: Search Overlay */}
+            <div className="flex-1 max-w-sm px-12">
+                <CommandPalette />
+            </div>
 
-                        {/* Mobile Menu Toggle */}
-                        <button
-                            className="md:hidden p-2 z-50"
-                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            aria-label="Toggle mobile menu"
-                            aria-expanded={isMobileMenuOpen}
-                            aria-controls="mobile-menu"
-                        >
-                            {isMobileMenuOpen ? <X /> : <Menu />}
-                        </button>
+            {/* Right Section: Global Stats */}
+            <div className="flex items-center gap-12">
+                <div className="hidden xl:flex items-center gap-6">
+                    <div className="flex items-center gap-3 px-4 py-1.5 bg-black/5 os-border border-black/5 opacity-40">
+                        <span className="text-[9px] font-black text-black">DESIGN SYSTEM</span>
+                        <div className="w-1.5 h-1.5 rounded-full bg-black shadow-[0_0_8px_rgba(0,0,0,0.2)]" />
                     </div>
                 </div>
-            </motion.header >
 
-            {/* Mobile Menu Overlay */}
-            <AnimatePresence>
-                {
-                    isMobileMenuOpen && (
-                        <motion.div
-                            id="mobile-menu"
-                            role="navigation"
-                            aria-label="Mobile navigation"
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            className="fixed inset-0 z-40 bg-white/95 dark:bg-black/95 backdrop-blur-xl pt-24 px-6 md:hidden"
-                        >
-                            <nav className="flex flex-col gap-6 text-2xl font-serif">
-                                {navLinks.map((link) => (
-                                    <Link
-                                        key={link.name}
-                                        href={link.href}
-                                        onClick={() => setIsMobileMenuOpen(false)}
-                                        className="block py-2 border-b border-neutral-100 dark:border-neutral-800"
-                                    >
-                                        {link.name}
-                                    </Link>
-                                ))}
-                                <div className="flex items-center gap-4 mt-4">
-                                    <ThemeToggle />
-                                    <span className="text-sm font-sans text-neutral-500">Switch Theme</span>
-                                </div>
-                            </nav>
-                        </motion.div>
-                    )
-                }
-            </AnimatePresence >
-        </>
+                <div className="flex items-center gap-4 border-l-2 border-black/5 pl-12">
+                    <div className="flex items-center gap-3">
+                        <Clock className="w-4 h-4 text-[var(--posthog-orange)]" />
+                        <span className="min-w-[90px] font-black text-black text-sm tracking-widest">{time || "00:00:00"}</span>
+                    </div>
+                </div>
+            </div>
+        </motion.header>
     );
 }

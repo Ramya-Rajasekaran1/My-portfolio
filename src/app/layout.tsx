@@ -36,15 +36,16 @@ export default function RootLayout({
         />
       </head>
       <body className={cn(
-        "min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 antialiased transition-colors duration-300",
+        "min-h-screen bg-[var(--background)] text-black antialiased",
         inter.variable,
         playfair.variable,
         outfit.variable
       )}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          forcedTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <NoiseOverlay />

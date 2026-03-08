@@ -1,253 +1,163 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { Database, Layout, Code2, Minus, X, Layers, Zap, Star } from "lucide-react";
 
-const skills = [
-    // Research skills
-    { name: "User Interviews", category: "Research", size: "large", proficiency: 95 },
-    { name: "Usability Testing", category: "Research", size: "large", proficiency: 90 },
-    { name: "Persona Development", category: "Research", size: "medium", proficiency: 85 },
-    { name: "Journey Mapping", category: "Research", size: "medium", proficiency: 88 },
-    { name: "Competitive Analysis", category: "Research", size: "small", proficiency: 80 },
-
-    // Design skills
-    { name: "UI Design", category: "Design", size: "large", proficiency: 95 },
-    { name: "Wireframing", category: "Design", size: "large", proficiency: 92 },
-    { name: "Prototyping", category: "Design", size: "medium", proficiency: 90 },
-    { name: "Design Systems", category: "Design", size: "medium", proficiency: 87 },
-    { name: "Interaction Design", category: "Design", size: "small", proficiency: 85 },
-
-    // Tools
-    { name: "Figma", category: "Tools", size: "large", proficiency: 95 },
-    { name: "Adobe XD", category: "Tools", size: "medium", proficiency: 85 },
-    { name: "Sketch", category: "Tools", size: "medium", proficiency: 80 },
-    { name: "Principle", category: "Tools", size: "small", proficiency: 75 },
-    { name: "Webflow", category: "Tools", size: "small", proficiency: 78 },
+const skillCategories = [
+    {
+        title: "RESEARCH INSIGHTS",
+        icon: <Database className="w-5 h-5" />,
+        skills: [
+            { name: "User Interviews", proficiency: 95 },
+            { name: "Usability Testing", proficiency: 90 },
+            { name: "Persona Dev", proficiency: 85 },
+            { name: "Journey Mapping", proficiency: 88 }
+        ]
+    },
+    {
+        title: "UX ARCHITECTURE",
+        icon: <Layout className="w-5 h-5" />,
+        skills: [
+            { name: "UI Design", proficiency: 94 },
+            { name: "Wireframing", proficiency: 92 },
+            { name: "Prototyping", proficiency: 90 },
+            { name: "Design Systems", proficiency: 87 }
+        ]
+    },
+    {
+        title: "CREATIVE ENGINE",
+        icon: <Code2 className="w-5 h-5" />,
+        skills: [
+            { name: "Figma Mastery", proficiency: 98 },
+            { name: "Strategic Thinking", proficiency: 85 },
+            { name: "Product Engineering", proficiency: 80 },
+            { name: "GenAI Product Design", proficiency: 92 }
+        ]
+    }
 ];
 
-const sizeClasses = {
-    large: "w-32 h-32 md:w-40 md:h-40 text-base md:text-lg",
-    medium: "w-24 h-24 md:w-32 md:h-32 text-sm md:text-base",
-    small: "w-20 h-20 md:w-24 md:h-24 text-xs md:text-sm",
-};
-
-const categoryColors = {
-    Research: "from-purple-500/20 to-purple-600/30 border-purple-400/40 hover:border-purple-400/70",
-    Design: "from-orange-500/20 to-orange-600/30 border-orange-400/40 hover:border-orange-400/70",
-    Tools: "from-blue-500/20 to-blue-600/30 border-blue-400/40 hover:border-blue-400/70",
-};
-
 export function Skills() {
-    const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
-    const sectionRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: sectionRef,
-        offset: ["start end", "end start"]
-    });
-
-    // Parallax effects for 3D shapes
-    const shape1Y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-    const shape2Y = useTransform(scrollYProgress, [0, 1], [-50, 50]);
-    const shape3Y = useTransform(scrollYProgress, [0, 1], [80, -80]);
-
     return (
-        <section ref={sectionRef} className="py-24 relative overflow-hidden">
-            {/* 3D Floating Geometric Shapes Background */}
-            <div className="absolute inset-0 pointer-events-none">
-                {/* Shape 1 - Cube */}
-                <motion.div
-                    style={{ y: shape1Y }}
-                    className="absolute top-20 left-[10%] w-32 h-32 opacity-10 dark:opacity-5"
-                    animate={{
-                        rotateX: [0, 360],
-                        rotateY: [0, 360],
-                    }}
-                    transition={{
-                        duration: 20,
-                        repeat: Infinity,
-                        ease: "linear"
-                    }}
-                >
-                    <div className="w-full h-full bg-gradient-to-br from-purple-500 to-orange-500 rounded-lg transform-gpu"
-                        style={{
-                            transform: "perspective(1000px) rotateX(45deg) rotateY(45deg)",
-                            boxShadow: "0 0 60px rgba(168, 85, 247, 0.4)"
-                        }}
-                    />
-                </motion.div>
+        <section className="py-40 bg-white relative border-t-8 border-black overflow-hidden">
+            <div className="container mx-auto px-6">
+                <div className="flex flex-col lg:flex-row gap-24">
+                    {/* Header: Designer Inventory */}
+                    <div className="lg:w-1/3 space-y-16">
+                        <motion.div
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1 }}
+                            className="space-y-8"
+                        >
+                            <div className="flex items-center gap-4">
+                                <div className="p-3 bg-[var(--posthog-orange)] border-4 border-black shadow-[6px_6px_0_#000]">
+                                    <Star className="w-6 h-6 text-black" />
+                                </div>
+                                <span className="tech-label tracking-[0.4em]">RESOURCE ARCHIVE</span>
+                            </div>
+                            <h2 className="text-7xl md:text-9xl font-black uppercase tracking-tighter leading-[0.8] text-black">
+                                Designer<br />Inventory
+                            </h2>
+                            <p className="text-zinc-600 font-bold text-lg max-w-sm uppercase tracking-tighter leading-tight italic">
+                                Auditing strategic design competencies and structural research frameworks for global scale delivery.
+                            </p>
+                        </motion.div>
 
-                {/* Shape 2 - Sphere */}
-                <motion.div
-                    style={{ y: shape2Y }}
-                    className="absolute top-1/3 right-[15%] w-40 h-40 opacity-10 dark:opacity-5"
-                    animate={{
-                        scale: [1, 1.2, 1],
-                        rotate: [0, 180, 360],
-                    }}
-                    transition={{
-                        duration: 15,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                    }}
-                >
-                    <div className="w-full h-full bg-gradient-to-br from-orange-500 to-purple-500 rounded-full"
-                        style={{
-                            boxShadow: "0 0 80px rgba(249, 115, 22, 0.4)"
-                        }}
-                    />
-                </motion.div>
-
-                {/* Shape 3 - Pyramid */}
-                <motion.div
-                    style={{ y: shape3Y }}
-                    className="absolute bottom-20 left-[20%] w-36 h-36 opacity-10 dark:opacity-5"
-                    animate={{
-                        rotateZ: [0, 360],
-                    }}
-                    transition={{
-                        duration: 25,
-                        repeat: Infinity,
-                        ease: "linear"
-                    }}
-                >
-                    <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-500 transform-gpu"
-                        style={{
-                            clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
-                            boxShadow: "0 0 60px rgba(59, 130, 246, 0.4)"
-                        }}
-                    />
-                </motion.div>
-            </div>
-
-            <div className="container mx-auto px-4 relative z-10">
-                <div className="max-w-6xl mx-auto">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-center mb-16"
-                    >
-                        <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">Expertise & Skills</h2>
-                        <p className="text-neutral-600 dark:text-neutral-400">
-                            Hover over the bubbles to explore my skillset and proficiency levels.
-                        </p>
-                    </motion.div>
-
-                    {/* Interactive Skill Bubbles */}
-                    <div className="relative min-h-[600px] flex items-center justify-center">
-                        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6 max-w-5xl">
-                            {skills.map((skill, index) => (
+                        {/* Designer Insight Log */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            className="p-10 bg-zinc-50 border-4 border-black font-black text-[12px] space-y-6 relative overflow-hidden group shadow-[15px_15px_0_rgba(0,0,0,0.05)] transition-all hover:bg-white hover:shadow-[25px_25px_0_var(--posthog-orange)]"
+                        >
+                            <div className="absolute top-0 right-0 p-5 opacity-10 group-hover:opacity-20 transition-opacity">
+                                <Zap className="w-20 h-20" />
+                            </div>
+                            <div className="flex items-center gap-4 text-zinc-400">
+                                <Layers className="w-5 h-5" />
+                                <span className="tracking-[0.4em]">AUDIT SUMMARY</span>
+                            </div>
+                            <div className="flex gap-5 items-center">
+                                <div className="w-3 h-3 bg-black rounded-full" />
+                                <span className="text-black font-black uppercase tracking-tight">Research Analysis: OPTIMIZED</span>
+                            </div>
+                            <div className="flex gap-5 items-center">
+                                <div className="w-3 h-3 bg-zinc-300 rounded-full" />
+                                <span className="text-black font-black uppercase tracking-tight">Structural Integrity: VERIFIED</span>
+                            </div>
+                            <div className="flex gap-5 items-center">
                                 <motion.div
-                                    key={skill.name}
-                                    initial={{ opacity: 0, scale: 0 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{
-                                        delay: index * 0.05,
-                                        type: "spring",
-                                        stiffness: 200,
-                                        damping: 15
-                                    }}
-                                    whileHover={{
-                                        scale: 1.15,
-                                        zIndex: 50,
-                                        transition: { duration: 0.2 }
-                                    }}
-                                    onHoverStart={() => setHoveredSkill(skill.name)}
-                                    onHoverEnd={() => setHoveredSkill(null)}
-                                    className={`
-                                        ${sizeClasses[skill.size as keyof typeof sizeClasses]}
-                                        rounded-full
-                                        bg-gradient-to-br ${categoryColors[skill.category as keyof typeof categoryColors]}
-                                        backdrop-blur-sm
-                                        border-2
-                                        flex items-center justify-center
-                                        cursor-pointer
-                                        transition-all duration-300
-                                        relative
-                                        group
-                                        shadow-lg hover:shadow-2xl
-                                    `}
-                                    style={{
-                                        animation: `float ${3 + (index % 3)}s ease-in-out infinite`,
-                                        animationDelay: `${index * 0.1}s`
-                                    }}
-                                >
-                                    <div className="text-center px-3 font-semibold text-neutral-800 dark:text-white">
-                                        {skill.name}
-                                    </div>
-
-                                    {/* Tooltip on hover */}
-                                    {hoveredSkill === skill.name && (
-                                        <motion.div
-                                            initial={{ opacity: 0, y: 10 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 
-                                                bg-white dark:bg-neutral-900 
-                                                px-4 py-2 rounded-lg shadow-xl
-                                                border border-neutral-200 dark:border-neutral-700
-                                                whitespace-nowrap z-50"
-                                        >
-                                            <div className="text-xs font-bold text-purple-600 dark:text-purple-400 mb-1">
-                                                {skill.category}
-                                            </div>
-                                            <div className="flex items-center gap-2">
-                                                <div className="text-sm text-neutral-600 dark:text-neutral-400">
-                                                    Proficiency:
-                                                </div>
-                                                <div className="flex items-center gap-1">
-                                                    <div className="w-16 h-2 bg-neutral-200 dark:bg-neutral-700 rounded-full overflow-hidden">
-                                                        <motion.div
-                                                            initial={{ width: 0 }}
-                                                            animate={{ width: `${skill.proficiency}%` }}
-                                                            transition={{ duration: 0.5, delay: 0.1 }}
-                                                            className="h-full bg-gradient-to-r from-purple-500 to-orange-500"
-                                                        />
-                                                    </div>
-                                                    <span className="text-xs font-bold text-neutral-700 dark:text-neutral-300">
-                                                        {skill.proficiency}%
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            {/* Arrow */}
-                                            <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 
-                                                w-2 h-2 bg-white dark:bg-neutral-900 
-                                                border-l border-t border-neutral-200 dark:border-neutral-700
-                                                rotate-45"
-                                            />
-                                        </motion.div>
-                                    )}
-                                </motion.div>
-                            ))}
-                        </div>
+                                    animate={{ scale: [1, 1.3, 1] }}
+                                    transition={{ duration: 0.8, repeat: Infinity }}
+                                    className="w-3 h-3 bg-[var(--posthog-orange)] rounded-full shadow-[0_0_12px_var(--posthog-orange)]"
+                                />
+                                <span className="text-[var(--posthog-orange)] font-black uppercase tracking-tight">Active Design Loop</span>
+                            </div>
+                        </motion.div>
                     </div>
 
-                    {/* Legend */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.5 }}
-                        className="mt-16 flex flex-wrap justify-center gap-6 text-sm"
-                    >
-                        <div className="flex items-center gap-2">
-                            <div className="w-4 h-4 rounded-full bg-gradient-to-br from-purple-500/40 to-purple-600/50 border-2 border-purple-400/60" />
-                            <span className="text-neutral-600 dark:text-neutral-400">Research</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <div className="w-4 h-4 rounded-full bg-gradient-to-br from-orange-500/40 to-orange-600/50 border-2 border-orange-400/60" />
-                            <span className="text-neutral-600 dark:text-neutral-400">Design</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <div className="w-4 h-4 rounded-full bg-gradient-to-br from-blue-500/40 to-blue-600/50 border-2 border-blue-400/60" />
-                            <span className="text-neutral-600 dark:text-neutral-400">Tools</span>
-                        </div>
-                    </motion.div>
+                    {/* Inventory Grid: 3D Visualization */}
+                    <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-20">
+                        {skillCategories.map((cat, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1, delay: idx * 0.2 }}
+                                className="group relative"
+                            >
+                                {/* 3D Perspective Container */}
+                                <div className="relative p-12 bg-white border-4 border-black hover:-translate-y-2 hover:-translate-x-2 transition-transform duration-300 shadow-[20px_20px_0_#000] hover:shadow-[30px_30px_0_#000]">
+                                    {/* 3D "Side" elements */}
+                                    <div className="absolute -top-4 left-0 w-full h-4 bg-zinc-200 border-x-4 border-t-4 border-black origin-bottom skew-x-[45deg]" />
+                                    <div className="absolute top-0 -right-4 w-4 h-full bg-zinc-100 border-y-4 border-r-4 border-black origin-left -skew-y-[45deg]" />
+
+                                    <div className="flex items-center justify-between mb-8 border-b-4 border-black pb-4">
+                                        <div className="flex items-center gap-4">
+                                            <div className="p-2 bg-black text-white">{cat.icon}</div>
+                                            <span className="font-black tracking-[0.3em] text-[11px] text-black">{cat.title}</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-10">
+                                        {cat.skills.map((skill, sIdx) => (
+                                            <div key={sIdx} className="space-y-4">
+                                                <div className="flex justify-between items-end">
+                                                    <span className="text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500">{skill.name}</span>
+                                                    <span className="text-[12px] font-black text-black">{skill.proficiency}%</span>
+                                                </div>
+                                                <div className="h-6 bg-zinc-50 border-4 border-black relative overflow-hidden">
+                                                    <motion.div
+                                                        initial={{ width: 0 }}
+                                                        whileInView={{ width: `${skill.proficiency}%` }}
+                                                        viewport={{ once: true }}
+                                                        transition={{ duration: 2, delay: sIdx * 0.1, ease: [0.23, 1, 0.32, 1] }}
+                                                        className="h-full bg-black flex items-center justify-end px-2"
+                                                    >
+                                                        <div className="w-1 h-3 bg-white/30" />
+                                                    </motion.div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    {/* Interactive Detail Overlay on Hover */}
+                                    <div className="mt-12 pt-6 border-t-4 border-black border-dashed flex justify-between items-center opacity-40 group-hover:opacity-100 transition-opacity">
+                                        <div className="flex gap-2">
+                                            <div className="w-2 h-2 bg-black rounded-full" />
+                                            <div className="w-2 h-2 bg-black rounded-full" />
+                                            <div className="w-2 h-2 bg-zinc-200 rounded-full" />
+                                        </div>
+                                        <span className="font-black text-[9px] tracking-[0.4em] text-black uppercase">Studio Verified</span>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </div>
-
-
         </section>
     );
 }

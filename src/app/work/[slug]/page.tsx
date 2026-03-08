@@ -7,9 +7,10 @@ import { ImageLightbox } from "@/components/ui/image-lightbox";
 import { NetworkIntelligenceProject } from "@/components/projects/network-intelligence";
 import { ContentVerifyProject } from "@/components/projects/content-verify";
 import { GenAiInclusivityProject } from "@/components/projects/gen-ai-inclusivity";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, FileText, ChevronRight, Terminal, Minus, Square, X, Activity, Compass, Target, Monitor, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { motion } from "framer-motion";
 
 export default function ProjectPage() {
     const params = useParams();
@@ -34,257 +35,159 @@ export default function ProjectPage() {
     }
 
     return (
-        <main className="min-h-screen pt-32 pb-24">
-            <div className="container mx-auto px-4">
-                <Link
-                    href="/work"
-                    className="inline-flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors mb-8"
-                >
-                    <ArrowLeft className="w-4 h-4" />
-                    Back to Work
-                </Link>
-
-                <article className="max-w-4xl mx-auto">
-                    <div className="mb-12">
-                        <span className="text-sm font-medium uppercase tracking-wider text-purple-600 dark:text-purple-400 mb-4 block">
-                            {project.category}
-                        </span>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6">
-                            {project.title}
-                        </h1>
-                        <p className="text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                            {project.description}
-                        </p>
+        <main className="min-h-screen pt-40 pb-40 bg-[var(--background)] antialiased selection:bg-[var(--posthog-orange)]/30">
+            <div className="container mx-auto px-6">
+                <nav className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-xl border-b-4 border-black">
+                    <div className="container mx-auto px-6 h-20 flex items-center justify-between">
+                        <Link
+                            href="/work"
+                            className="inline-flex items-center gap-4 text-sm font-black text-zinc-500 hover:text-black transition-all uppercase tracking-[0.3em] group"
+                        >
+                            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-2 transition-transform" />
+                            [BACK TO ARCHIVE]
+                        </Link>
+                        <div className="flex items-center gap-6">
+                            <div className="p-2 bg-black text-white shadow-[4px_4px_0_var(--posthog-orange)]">
+                                <Sparkles className="w-5 h-5 animate-spin-slow" />
+                            </div>
+                            <span className="text-[11px] font-black uppercase tracking-[0.4em] text-black hidden md:block">
+                                RESEARCH BRIEF: {project.title.toUpperCase()}
+                            </span>
+                        </div>
                     </div>
+                </nav>
 
-                    <div className="aspect-video w-full relative rounded-2xl overflow-hidden mb-16 group">
-                        {/* Blurred Background Layer */}
-                        <div
-                            className="absolute inset-0 bg-cover bg-center blur-3xl scale-110 opacity-50 dark:opacity-40 transition-transform duration-700"
-                            style={{ backgroundImage: `url(${project.image})` }}
-                        />
+                <article className="max-w-6xl mx-auto space-y-24">
+                    {/* Project Header Window */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="os-card bg-white border-4 border-black shadow-[30px_30px_0px_#000]"
+                    >
+                        <div className="window-title border-b-4 border-black py-4 px-8 bg-zinc-50/50">
+                            <div className="flex items-center gap-5">
+                                <FileText className="w-5 h-5 text-[var(--posthog-orange)]" />
+                                <span className="font-black uppercase tracking-[0.3em] text-[11px]">ANALYSIS FILE: {project.slug.toUpperCase()}</span>
+                            </div>
+                            <div className="flex gap-3">
+                                <Minus className="w-4 h-4 text-black/20" />
+                                <Square className="w-4 h-4 text-black/20" />
+                                <X className="w-4 h-4 text-black/40 hover:text-red-500 cursor-pointer transition-colors" />
+                            </div>
+                        </div>
+                        <div className="p-10 md:p-20 space-y-12">
+                            <div className="space-y-6">
+                                <div className="inline-block px-4 py-1.5 bg-[var(--posthog-orange)] border-2 border-black text-[10px] font-black uppercase tracking-[0.3em] text-black">
+                                    CATEGORY: {project.category.toUpperCase()}
+                                </div>
+                                <h1 className="text-5xl md:text-9xl font-black uppercase tracking-tighter leading-[0.85] text-black">
+                                    {project.title}
+                                </h1>
+                                <p className="text-2xl md:text-3xl text-zinc-600 font-bold leading-tight max-w-4xl italic">
+                                    &ldquo;{project.description}&rdquo;
+                                </p>
+                            </div>
+                        </div>
+                    </motion.div>
 
-                        {/* Main Image Layer */}
-                        <div
-                            className="relative w-full h-full bg-cover bg-center z-10 transition-transform duration-500 group-hover:scale-[1.02]"
-                            style={{ backgroundImage: `url(${project.image})` }}
-                        />
-                    </div>
+                    {/* Main Project Image Window */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="os-card bg-white border-4 border-black shadow-[20px_20px_0px_#000] overflow-hidden relative group cursor-pointer"
+                        onClick={() => setLightboxImage({ src: project.image, alt: project.title })}>
+                        <div className="window-title border-b-4 border-black py-4 px-8 bg-zinc-50/50">
+                            <div className="flex items-center gap-3">
+                                <Monitor className="w-4 h-4 text-[var(--posthog-orange)]" />
+                                <span className="font-black uppercase tracking-[0.3em] text-[10px]">VISUAL BRIEF</span>
+                            </div>
+                        </div>
+                        <div className="aspect-video relative overflow-hidden bg-zinc-100">
+                            <img
+                                src={project.image}
+                                alt={project.title}
+                                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500" />
+                        </div>
+                    </motion.div>
 
-                    <div className="max-w-none space-y-3">
-                        {/* Individual Glass Cards for Key Info */}
-                        {project.sections && (
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12">
-                                {project.sections
-                                    .filter(s => ["WHAT:", "PROJECT OBJECTIVE:", "TARGET AUDIENCE", "TIMELINE"].includes(s.title))
-                                    .map((section, index) => (
-                                        <div key={index} className="glass rounded-2xl p-6 md:p-8 space-y-3 transition-all duration-300 hover:-translate-y-3 hover:translate-x-3 hover:shadow-2xl hover:backdrop-blur-3xl">
-                                            <h3 className="text-sm font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">
-                                                {section.title}
-                                            </h3>
-                                            <div className="text-base md:text-lg leading-relaxed text-neutral-800 dark:text-neutral-200">
-                                                {Array.isArray(section.content) ? (
-                                                    <div className="space-y-2">
-                                                        {section.content.map((line, i) => (
-                                                            <p key={i} className={line.startsWith("-") ? "pl-4" : ""}>
-                                                                {line}
-                                                            </p>
-                                                        ))}
-                                                    </div>
-                                                ) : (
-                                                    <p>{section.content}</p>
-                                                )}
-                                            </div>
+                    {/* Content Sections */}
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-16">
+                        <div className="md:col-span-4 space-y-12">
+                            {/* Project Metadata Window */}
+                            <motion.div
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                className="os-card bg-white border-4 border-black shadow-[12px_12px_0px_#000]"
+                            >
+                                <div className="window-title border-b-4 border-black py-3 px-6 bg-black text-white">
+                                    <span className="font-black uppercase tracking-[0.3em] text-[9px]">PROJECT DATA</span>
+                                </div>
+                                <div className="p-8 space-y-6 font-bold text-[11px]">
+                                    {[
+                                        { label: "STATUS", value: "FINALIZED" },
+                                        { label: "TIMELINE", value: "2024 ACTIVE" },
+                                        { label: "ROLE", value: "UX LEAD" },
+                                        { label: "PLATFORM", value: "ENTERPRISE" }
+                                    ].map((meta, i) => (
+                                        <div key={i} className="flex justify-between border-b-2 border-black/5 pb-4">
+                                            <span className="text-zinc-500 uppercase tracking-widest">{meta.label}</span>
+                                            <span className="text-black font-black">{meta.value}</span>
                                         </div>
                                     ))}
-                            </div>
-                        )}
+                                </div>
+                            </motion.div>
 
-                        {/* Other Sections */}
-                        {project.sections
-                            ?.filter(s => !["WHAT:", "PROJECT OBJECTIVE:", "TARGET AUDIENCE", "TIMELINE"].includes(s.title))
-                            .map((section, index) => {
-                                const isGlassCard = (section as any).glassCard;
-                                const hasIllustration = (section as any).image && section.title === "SAMPLE USER STORY";
-                                const sectionImage = (section as any).image;
-                                const isSideBySide = (section as any).sideBySide;
+                            <motion.div
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.1 }}
+                                className="p-8 border-4 border-black bg-white flex flex-col gap-6 shadow-[12px_12px_0_var(--posthog-orange)]"
+                            >
+                                <div className="flex items-center gap-4 text-black font-black text-[10px] uppercase tracking-[0.2em]">
+                                    <Activity className="w-5 h-5 text-[var(--posthog-orange)]" />
+                                    <span>SYSTEM INTEGRITY</span>
+                                </div>
+                                <div className="h-3 bg-zinc-100 border-2 border-black overflow-hidden p-0.5">
+                                    <div className="h-full bg-black w-[92%]" />
+                                </div>
+                                <span className="font-black text-[10px] text-black tracking-widest">92.4% CONFIDENCE RATING</span>
+                            </motion.div>
+                        </div>
 
-                                const content = (
-                                    <>
-                                        {(section as any).showDivider && (
-                                            <hr className="mb-[2px] mt-0 border-t border-neutral-300 dark:border-neutral-700" />
-                                        )}
-                                        <h3 className={`text-lg font-bold uppercase tracking-wider mb-3 ${isGlassCard ? 'text-purple-600 dark:text-purple-400' : 'text-neutral-900 dark:text-white'}`}>
-                                            {section.title}
-                                        </h3>
-                                        {isSideBySide ? (
-                                            <div className={`flex flex-col md:flex-row gap-6 items-start ${(section as any).imageLeft ? 'md:flex-row-reverse' : ''}`}>
-                                                <div className={`flex-1 text-lg leading-relaxed text-neutral-700 dark:text-neutral-300 ${(section as any).textCard ? 'glass rounded-2xl p-8' : ''}`}>
-                                                    {(section as any).chips && (
-                                                        <div className="flex flex-wrap gap-3 mb-6">
-                                                            {(section as any).chips.map((chip: string, i: number) => (
-                                                                <span key={i} className="px-4 py-1.5 rounded-full border border-purple-200 dark:border-purple-800 text-purple-700 dark:text-purple-300 text-xs font-bold uppercase tracking-wider bg-purple-50 dark:bg-purple-900/20">
-                                                                    {chip}
-                                                                </span>
-                                                            ))}
-                                                        </div>
-                                                    )}
-
-                                                    {Array.isArray(section.content) && (
-                                                        <div className="space-y-3">
-                                                            {section.content.map((line, i) => {
-                                                                const isSubtitle = line.trim().endsWith(":") || line.includes("What and why") || line.includes("UX research");
-                                                                return line === "" ? <div key={i} className="h-2" /> : (
-                                                                    <div key={i} className={`flex gap-3 ${line.startsWith("-") ? "pl-2" : ""}`}>
-                                                                        {line.startsWith("-") && (
-                                                                            <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-purple-600 dark:bg-purple-400 mt-2.5" />
-                                                                        )}
-                                                                        <p className={`${line.startsWith("-") ? "flex-1" : ""} ${isSubtitle ? "font-bold text-purple-600 dark:text-purple-400 text-xl mb-2 mt-2" : ""}`}>
-                                                                            {line.startsWith("-") ? line.substring(1).trim() : line}
-                                                                        </p>
-                                                                    </div>
-                                                                );
-                                                            })}
-                                                        </div>
-                                                    )}
-                                                </div>
-                                                {sectionImage && (
-                                                    <div className={`w-full ${(section as any).imageRight ? 'md:w-3/12' : 'md:w-1/2'} flex-shrink-0 rounded-xl overflow-hidden bg-neutral-100 dark:bg-neutral-800 cursor-pointer hover:opacity-90 transition-opacity shadow-lg`}
-                                                        onClick={() => setLightboxImage({ src: sectionImage, alt: section.title })}>
-                                                        <img
-                                                            src={sectionImage}
-                                                            alt={section.title}
-                                                            className="w-full h-auto"
-                                                        />
+                        <div className="md:col-span-8 space-y-12">
+                            {project.sections?.map((section, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: index * 0.1 }}
+                                    className="os-card bg-white border-4 border-black shadow-[20px_20px_0px_#000]"
+                                >
+                                    <div className="window-title border-b-4 border-black py-4 px-8 bg-zinc-50/50">
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-3 h-3 bg-black transform rotate-45" />
+                                            <span className="font-black uppercase tracking-[0.3em] text-[11px]">{section.title.toUpperCase()}</span>
+                                        </div>
+                                    </div>
+                                    <div className="p-10 md:p-16 text-xl md:text-2xl text-zinc-900 font-bold leading-relaxed space-y-8 antialiased">
+                                        {Array.isArray(section.content) ? (
+                                            <div className="space-y-8">
+                                                {section.content.map((line, i) => (
+                                                    <div key={i} className="flex gap-8 group">
+                                                        <span className="text-zinc-200 font-black text-4xl group-hover:text-[var(--posthog-orange)] transition-colors leading-none">{(i + 1).toString().padStart(2, '0')}</span>
+                                                        <p className="tracking-tight">{line}</p>
                                                     </div>
-                                                )}
+                                                ))}
                                             </div>
                                         ) : (
-                                            <div className={`text-lg leading-relaxed ${isGlassCard ? 'text-neutral-800 dark:text-neutral-200' : 'text-neutral-700 dark:text-neutral-300'}`}>
-                                                {(section as any).chips && (
-                                                    <div className="flex flex-wrap gap-3 mb-6">
-                                                        {(section as any).chips.map((chip: string, i: number) => (
-                                                            <span key={i} className="px-4 py-1.5 rounded-full border border-purple-200 dark:border-purple-800 text-purple-700 dark:text-purple-300 text-xs font-bold uppercase tracking-wider bg-purple-50 dark:bg-purple-900/20">
-                                                                {chip}
-                                                            </span>
-                                                        ))}
-                                                    </div>
-                                                )}
-
-                                                {Array.isArray(section.content) ? (
-                                                    <div className="space-y-3 mb-6">
-                                                        {section.content.map((line, i) => {
-                                                            const isSubtitle = line.trim().endsWith(":") || line.includes("What and why") || line.includes("UX research");
-                                                            return line === "" ? <div key={i} className="h-2" /> : (
-                                                                <div key={i} className={`flex gap-3 ${line.startsWith("-") ? "pl-2" : ""}`}>
-                                                                    {line.startsWith("-") && (
-                                                                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-purple-600 dark:bg-purple-400 mt-2.5" />
-                                                                    )}
-                                                                    <p className={`${line.startsWith("-") ? "flex-1" : ""} ${isSubtitle ? "font-bold text-purple-600 dark:text-purple-400 text-xl mb-2 mt-2" : ""}`}>
-                                                                        {line.startsWith("-") ? line.substring(1).trim() : line}
-                                                                    </p>
-                                                                </div>
-                                                            );
-                                                        })}
-                                                    </div>
-                                                ) : (
-                                                    <p className="mb-6">{section.content}</p>
-                                                )}
-
-                                                {(section as any).equation && (
-                                                    <div className="mb-8 p-6 rounded-xl bg-white dark:bg-neutral-800 shadow-sm border border-neutral-200 dark:border-neutral-700 text-center">
-                                                        <code className="text-sm md:text-base font-mono text-purple-700 dark:text-purple-300 font-semibold">
-                                                            {(section as any).equation}
-                                                        </code>
-                                                    </div>
-                                                )}
-
-                                                {sectionImage && !hasIllustration && !isSideBySide && (
-                                                    <div className="mt-4 mb-8 rounded-xl overflow-hidden bg-neutral-100 dark:bg-neutral-800 cursor-pointer hover:opacity-90 transition-opacity"
-                                                        onClick={() => setLightboxImage({ src: sectionImage, alt: section.title })}>
-                                                        <img
-                                                            src={sectionImage}
-                                                            alt={section.title}
-                                                            className="w-full h-auto"
-                                                        />
-                                                    </div>
-                                                )}
-                                                {(section as any).multiImage && (
-                                                    <div className={`mt-4 mb-4 grid gap-6 items-start ${(section as any).verticalImages ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'}`}>
-                                                        {(section as any).multiImage.map((img: string, idx: number) => {
-                                                            const stickyNote = (section as any).stickyNote;
-                                                            const hasStickyNote = stickyNote && stickyNote.targetIndex === idx;
-
-                                                            return (
-                                                                <React.Fragment key={idx}>
-                                                                    {hasStickyNote ? (
-                                                                        <div className={`flex flex-col md:flex-row gap-6 items-start ${stickyNote.position === 'left' ? 'md:flex-row-reverse' : ''}`}>
-                                                                            <div
-                                                                                className="flex-1 rounded-xl overflow-hidden cursor-pointer hover:opacity-90 transition-opacity shadow-sm hover:shadow-md"
-                                                                                onClick={() => setLightboxImage({ src: img, alt: `${section.title} ${idx + 1}` })}
-                                                                            >
-                                                                                <img
-                                                                                    src={img}
-                                                                                    alt={`${section.title} ${idx + 1}`}
-                                                                                    className="w-full h-auto"
-                                                                                />
-                                                                            </div>
-                                                                            <div className="w-full md:w-5/12 flex-shrink-0">
-                                                                                <img
-                                                                                    src={stickyNote.image}
-                                                                                    alt="Note"
-                                                                                    className="w-full h-auto drop-shadow-lg transform rotate-1 hover:rotate-0 transition-transform duration-300"
-                                                                                />
-                                                                            </div>
-                                                                        </div>
-                                                                    ) : (
-                                                                        <div
-                                                                            className={`rounded-xl overflow-hidden cursor-pointer hover:opacity-90 transition-opacity shadow-sm hover:shadow-md ${(section as any).firstImageFullWidth && idx === 0 ? 'md:col-span-2' : ''}`}
-                                                                            onClick={() => setLightboxImage({ src: img, alt: `${section.title} ${idx + 1}` })}
-                                                                        >
-                                                                            <img
-                                                                                src={img}
-                                                                                alt={`${section.title} ${idx + 1}`}
-                                                                                className="w-full h-auto"
-                                                                            />
-                                                                        </div>
-                                                                    )}
-                                                                    {(section as any).middleText && idx === 0 && (
-                                                                        <div className="py-2 text-lg leading-relaxed text-neutral-700 dark:text-neutral-300">
-                                                                            <p>{(section as any).middleText}</p>
-                                                                        </div>
-                                                                    )}
-                                                                </React.Fragment>
-                                                            );
-                                                        })}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        )}
-                                    </>
-                                );
-
-                                return isGlassCard ? (
-                                    <div key={index} className={`relative ${(section as any).topMargin ? 'pt-4' : ''}`}>
-                                        <div className={`glass rounded-2xl p-8 md:p-10 flex-1 transition-all duration-300 hover:-translate-y-3 hover:translate-x-3 hover:shadow-2xl hover:backdrop-blur-3xl relative z-10 ${hasIllustration ? 'md:pr-40 lg:pr-48 pb-20 md:pb-24' : ''}`}>
-                                            {content}
-                                        </div>
-                                        {hasIllustration && (
-                                            <div className="hidden md:block absolute -right-12 lg:-right-16 -bottom-24 lg:-bottom-28 w-36 lg:w-44 z-20">
-                                                <img
-                                                    src={sectionImage}
-                                                    alt="Illustration"
-                                                    className="w-full h-auto drop-shadow-2xl"
-                                                />
-                                            </div>
+                                            <p className="tracking-tight">{section.content}</p>
                                         )}
                                     </div>
-                                ) : (
-                                    <div key={index} className={`${(section as any).largeSpacing ? 'pt-32' : (section as any).topMargin ? 'pt-4' : ''} ${(section as any).bottomMargin ? 'pb-2' : ''}`}>
-                                        {content}
-                                    </div>
-                                );
-                            })}
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
                 </article>
             </div>

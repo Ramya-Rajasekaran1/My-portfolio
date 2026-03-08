@@ -2,7 +2,7 @@
 import React from "react";
 import { type Project } from "@/lib/data";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Star, ExternalLink, ShieldCheck, Map, Users, AlertTriangle } from "lucide-react";
 
 
 function IAFlowDiagram({ seq }: { seq: string }) {
@@ -121,18 +121,18 @@ function IAFlowDiagram({ seq }: { seq: string }) {
       <style dangerouslySetInnerHTML={{
         __html: `
         #ia-flow-container {
-          --bg: #0C0E0D;
-          --surface: #131513;
-          --card: #181C19;
-          --border: rgba(255,255,255,0.07);
-          --pre: #3B8BFF;
+          --bg: #F9F9F9;
+          --surface: #FFFFFF;
+          --card: #FFFFFF;
+          --border: #000000;
+          --pre: #0070FF;
           --during: #FF8C3B;
           --post: #3BCC7A;
-          --text: #E8EDE9;
-          --muted: rgba(232,237,233,0.38);
-          --tag-design: #3B8BFF;
+          --text: #000000;
+          --muted: #666666;
+          --tag-design: #0070FF;
           --tag-critical: #FF8C3B;
-          --tag-future: rgba(255,255,255,0.28);
+          --tag-future: #999999;
           --tag-access: #3BCC7A;
           --tag-color: #B47FFF;
           font-family: 'Inter', sans-serif;
@@ -157,7 +157,7 @@ function IAFlowDiagram({ seq }: { seq: string }) {
           font-family: 'Playfair Display', serif;
           font-size: clamp(2rem, 3.5vw, 3rem);
           font-weight: 800;
-          color: #fff;
+          color: #000;
           margin: 0;
         }
         #ia-flow-container .title-row {
@@ -277,24 +277,25 @@ function IAFlowDiagram({ seq }: { seq: string }) {
           flex: 1;
           cursor: pointer;
           background: var(--surface);
-          border: 1px solid var(--border);
-          border-left: 3px solid var(--c);
-          border-radius: 5px;
-          padding: 1.2rem;
+          border: 4px solid var(--border);
+          border-left: 12px solid var(--c);
+          border-radius: 0px;
+          padding: 1.5rem;
           display: flex;
           align-items: center;
-          gap: 1rem;
+          gap: 1.5rem;
           transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
           user-select: none;
-          margin-left: 6px;
+          margin-left: 0px;
         }
 
-        #ia-flow-container .phase-node:hover { background: #181c18; }
+        #ia-flow-container .phase-node:hover { background: #f0f0f0; }
 
         #ia-flow-container .phase-row.open .phase-node {
-          background: #181c18;
+          background: #ffffff;
           border-left-color: var(--c);
-          box-shadow: 0 4px 12px color-mix(in srgb, var(--c) 20%, transparent);
+          box-shadow: 12px 12px 0px #000;
+          transform: translate(-4px, -4px);
         }
 
         #ia-flow-container .node-num {
@@ -316,7 +317,7 @@ function IAFlowDiagram({ seq }: { seq: string }) {
           font-size: 1.2rem;
           font-weight: 700;
           transition: color 0.2s;
-          color: #fff;
+          color: #000;
         }
         #ia-flow-container .phase-row.open .node-title { color: var(--c); }
 
@@ -401,22 +402,23 @@ function IAFlowDiagram({ seq }: { seq: string }) {
 
         #ia-flow-container .feature-card {
           background: var(--card);
-          padding: 1.5rem 1.25rem;
+          padding: 2rem 1.5rem;
           display: flex;
           flex-direction: column;
-          gap: 0.8rem;
+          gap: 1rem;
           transition: background 0.2s;
+          border: 1px solid rgba(0,0,0,0.05);
         }
-        #ia-flow-container .feature-card:hover { background: #1f231f; }
+        #ia-flow-container .feature-card:hover { background: #fafafa; }
 
         #ia-flow-container .card-icon { font-size: 1.5rem; margin-bottom: 0.1rem; }
 
         #ia-flow-container .card-title {
           font-family: 'Playfair Display', serif;
-          font-size: 1.1rem;
-          font-weight: 700;
+          font-size: 1.2rem;
+          font-weight: 800;
           line-height: 1.2;
-          color: #fff;
+          color: #000;
         }
 
         #ia-flow-container .card-desc {
@@ -471,30 +473,31 @@ function IAFlowDiagram({ seq }: { seq: string }) {
       `}} />
 
       <section style={{
-        background: "#0a0a0a",
+        background: "#F9F9F9",
         width: "100%",
-        padding: "100px 0",
+        padding: "160px 0",
         marginBottom: "60px",
         position: "relative",
+        borderTop: "4px solid black"
       }}>
         {/* Full-width Grid Background */}
         <div style={{
           position: "absolute",
           top: 0, left: 0, right: 0, bottom: 0,
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)`,
           backgroundSize: '40px 40px',
           zIndex: 0,
         }} />
         <div style={{ maxWidth: 1500, margin: "0 auto", padding: "0 60px", position: "relative", zIndex: 1 }}>
           <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 900, lineHeight: 1.05, marginBottom: 20, color: "#fff" }}>From technical portal to <em style={{ color: "#0070FF", fontStyle: "italic" }}>human centred safety tool</em></h2>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 900, lineHeight: 1.05, marginBottom: 20, color: "#000" }}>From technical portal to <em style={{ color: "#0070FF", fontStyle: "italic" }}>human centred safety tool</em></h2>
             <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#60a5fa", display: "block", marginBottom: 60, fontWeight: 900 }}>TRANSFORMATION</span>
           </div>
 
           {/* MOBILE INTERACTIONS SECTION */}
-          <div style={{ marginBottom: 120, maxWidth: 1200, margin: "0 auto 120px" }}>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 32, fontWeight: 700, marginBottom: 40, color: "#fff" }}>Mobile Interactions</h3>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 340px", gap: 60, alignItems: "start" }}>
+          <div style={{ marginBottom: 160, maxWidth: 1200, margin: "0 auto 160px" }}>
+            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 32, fontWeight: 900, marginBottom: 40, color: "#000" }}>Mobile Interactions</h3>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 380px", gap: 80, alignItems: "start" }}>
               <div style={{ position: "relative" }}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
                   <div style={{ background: "#111", borderRadius: 12, padding: "12px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 30px 60px rgba(0,0,0,0.5)" }}>
@@ -766,54 +769,63 @@ export function SafeHomeProject({ project }: { project: Project }) {
     >
       <style jsx global>{`
                 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Caveat:wght@400;600;700&display=swap');
-                .sh-paper { background: #0a0a0a; }
-                .sh-ink { background: #111111; }
+                .sh-paper { background: #F9F9F9; }
+                .sh-ink { background: #FFFFFF; }
                 .sh-accent { background: #0070FF; }
-                .sh-card-hover:hover { background: rgba(0,112,255,0.12) !important; }
-                .sh-stat-hover:hover { border-color: #0070FF !important; }
-                .sh-metric-hover:hover { border-bottom-color: #0070FF !important; }
-                .sh-timeline-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.4); transform: translateY(-4px); }
-                .sh-vision-card:hover { background: #1a1a1a !important; transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
-                .sh-sticky:hover { transform: rotate(0deg) scale(1.03) !important; box-shadow: 6px 12px 32px rgba(0,0,0,0.6) !important; z-index: 10; }
-                .sh-outcome-hover:hover { border-left-color: #0070FF !important; background: rgba(0,112,255,0.1) !important; }
+                .sh-card-hover:hover { background: rgba(0,112,255,0.05) !important; }
+                .sh-stat-hover:hover { border-color: #000 !important; }
+                .sh-metric-hover:hover { border-bottom-color: #000 !important; }
+                .sh-timeline-card:hover { box-shadow: 12px 12px 0px #000; transform: translateY(-4px); }
+                .sh-vision-card:hover { background: #fff !important; transform: translateY(-4px); box-shadow: 12px 12px 0px #000; }
+                .sh-sticky:hover { transform: rotate(0deg) scale(1.05) !important; box-shadow: 20px 20px 0px #000 !important; z-index: 10; }
+                .sh-outcome-hover:hover { border-left-color: #000 !important; background: rgba(0,112,255,0.05) !important; }
                 header[class*="fixed"], nav.site-nav { display: none !important; }
             `}</style>
 
       {/* ── NAV ── */}
-      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50, background: "rgba(10,10,10,0.92)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 40px", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <Link href="/work" style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, fontFamily: "'Inter', sans-serif", color: "#d1d5db", textDecoration: "none" }}>
-            <ArrowLeft size={16} /> Back to Work
+      <nav className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-xl border-b-4 border-black">
+        <div className="container mx-auto px-6 h-20 flex items-center justify-between">
+          <Link
+            href="/work"
+            className="inline-flex items-center gap-4 text-sm font-black text-zinc-500 hover:text-black transition-all uppercase tracking-[0.3em] group"
+          >
+            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-2 transition-transform" />
+            [BACK TO ARCHIVE]
           </Link>
-          <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, letterSpacing: "0.2em", textTransform: "uppercase", color: "#d1d5db" }}>
-            SafeHome · UX Case Study · 2025
-          </span>
+          <div className="flex items-center gap-6">
+            <div className="p-2 bg-black text-white shadow-[4px_4px_0_var(--posthog-orange)]">
+              <Star className="w-5 h-5 animate-spin-slow" />
+            </div>
+            <span className="text-[11px] font-black uppercase tracking-[0.4em] text-black hidden md:block">
+              RESEARCH BRIEF: SAFEHOME
+            </span>
+          </div>
         </div>
       </nav>
 
       {/* ── HERO ── */}
-      <section style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "100vh", paddingTop: 60 }}>
-        {/* Left – dark */}
-        <div style={{ background: "#0f0f0f", padding: "80px 60px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-          <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, letterSpacing: "0.2em", textTransform: "uppercase", color: "#d1d5db" }}>UX Case Study 2025</span>
+      <section style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "100vh", paddingTop: 80 }}>
+        {/* Left – light */}
+        <div style={{ background: "#F9F9F9", padding: "100px 80px", display: "flex", flexDirection: "column", justifyContent: "space-between", borderRight: "4px solid black" }}>
+          <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, letterSpacing: "0.4em", textTransform: "uppercase", color: "#000", fontWeight: "900" }}>UX RESEARCH 2025</span>
           <div>
-            <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, letterSpacing: "0.25em", textTransform: "uppercase", color: "#d1d5db", marginBottom: 28 }}>Nonprofit Civic Tech Public Safety</div>
-            <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(52px,6vw,88px)", fontWeight: 900, lineHeight: 0.95, color: "#fff", marginBottom: 32 }}>
+            <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "#666", marginBottom: 32, fontWeight: "900" }}>NONPROFIT CIVIC TECH PUBLIC SAFETY</div>
+            <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(52px,6vw,88px)", fontWeight: 900, lineHeight: 0.95, color: "#000", marginBottom: 32 }}>
               Safe<span style={{ color: "#0070FF", fontStyle: "italic" }}>Home</span>
             </h1>
-            <p style={{ fontSize: 15, color: "#d1d5db", lineHeight: 1.7, maxWidth: 360, marginBottom: 48 }}>
+            <p style={{ fontSize: 16, color: "#333", lineHeight: 1.7, maxWidth: 360, marginBottom: 48, fontWeight: "600" }}>
               Redesigning earthquake &amp; tsunami preparedness for the communities of San Francisco. From design chaos to a trusted, accessible civic product.
             </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {[
-                ["Role", "Full Redesign · Design direction · UX Strategy change to UX lead."],
-                ["Team", "Designers, Engineering, Data Science, Product, Partnership."],
-                ["Duration", " 3 work weeks "],
-                ["Scope", "Redesign · UX Strategy · Usability study · Human centered approach."],
+                ["Role", "Design Director / UX Lead"],
+                ["Team", "Engineering, Data, Product, Partnerships"],
+                ["Duration", "3 Work Weeks"],
+                ["Scope", "End-to-end Strategy, Research & UI"],
               ].map(([label, value]) => (
-                <div key={label} style={{ display: "flex", alignItems: "baseline", gap: 12 }}>
-                  <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, letterSpacing: "0.2em", textTransform: "uppercase", color: "#60a5fa", minWidth: 80, fontWeight: 700 }}>{label}</span>
-                  <span style={{ fontSize: 14, color: "#fff", fontWeight: 500 }}>{value}</span>
+                <div key={label} style={{ display: "flex", alignItems: "baseline", gap: 16 }}>
+                  <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "#666", minWidth: 100, fontWeight: "900" }}>{label}</span>
+                  <span style={{ fontSize: 14, color: "#000", fontWeight: "700" }}>{value}</span>
                 </div>
               ))}
             </div>
@@ -821,19 +833,19 @@ export function SafeHomeProject({ project }: { project: Project }) {
           <div />
         </div>
 
-        {/* Right – dark with blue gradient */}
-        <div style={{ background: "linear-gradient(135deg, #002a5a 0%, #0f172a 50%, #0a0a0a 100%)", padding: "80px 80px 80px 100px", display: "flex", flexDirection: "column", justifyContent: "center", position: "relative", overflow: "hidden", borderLeft: "1px solid rgba(0,112,255,0.2)" }}>
-          <div style={{ position: "absolute", top: 40, right: -20, fontFamily: "'Playfair Display', serif", fontSize: 160, fontWeight: 900, color: "rgba(255,255,255,0.07)", lineHeight: 0.9, whiteSpace: "pre", pointerEvents: "none" }}>{"SAFE\nHOME"}</div>
+        {/* Right – light with blue tint */}
+        <div style={{ background: "#F0F7FF", padding: "100px 80px", display: "flex", flexDirection: "column", justifyContent: "center", position: "relative", overflow: "hidden", borderLeft: "4px solid black" }}>
+          <div style={{ position: "absolute", top: 40, right: -20, fontFamily: "'Playfair Display', serif", fontSize: 160, fontWeight: 900, color: "rgba(0,0,0,0.03)", lineHeight: 0.9, whiteSpace: "pre", pointerEvents: "none" }}>{"SAFE\nHOME"}</div>
           <div style={{ position: "relative", zIndex: 2 }}>
-            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px,3.5vw,46px)", fontWeight: 700, fontStyle: "italic", color: "#fff", lineHeight: 1.2, marginBottom: 32 }}>
+            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px,3.5vw,46px)", fontWeight: 900, fontStyle: "italic", color: "#000", lineHeight: 1.2, marginBottom: 32 }}>
               "Knowing your risk is the first step to surviving it."
             </p>
-            <p style={{ fontSize: 16, color: "rgba(255,255,255,0.85)", lineHeight: 1.8, maxWidth: 420, marginBottom: 48 }}>
-              SafeHome is a <span style={{ color: "#3b79ffff", fontWeight: 700 }}>nonprofit platform</span> backed by <span style={{ color: "#FF8C3B", fontWeight: 700 }}>SF government data</span> that helps residents understand their <span style={{ color: "hsla(221, 100%, 62%, 1.00)", fontWeight: 700 }}>earthquake</span> and <span style={{ color: "#3b79ffff", fontWeight: 700 }}>tsunami</span> risk by location and take actionable steps to prepare. When I joined, the product had no UX foundation. I built one.
+            <p style={{ fontSize: 18, color: "#333", lineHeight: 1.8, maxWidth: 460, marginBottom: 48, fontWeight: "600" }}>
+              SafeHome is a <span style={{ color: "#0070FF", borderBottom: "4px solid #0070FF" }}>nonprofit platform</span> backed by SF government data that helps residents understand their seismic risk. I built the UX foundation from zero.
             </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-              {["UX Strategy", "Civic Design", "Accessibility", "Design Systems", "User Research", "Cross-Functional"].map(t => (
-                <span key={t} style={{ fontFamily: "ui-monospace, monospace", fontSize: 12, letterSpacing: "0.15em", textTransform: "uppercase", padding: "6px 14px", border: "1px solid rgba(255,255,255,0.3)", color: "rgba(255,255,255,0.8)", borderRadius: 2 }}>{t}</span>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+              {["UX Strategy", "Civic Design", "Accessibility", "Design Systems", "User Research"].map(t => (
+                <span key={t} style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", padding: "8px 16px", border: "3px solid black", background: "#fff", color: "#000", fontWeight: "900", boxShadow: "4px 4px 0 #000" }}>{t}</span>
               ))}
             </div>
           </div>
@@ -841,16 +853,16 @@ export function SafeHomeProject({ project }: { project: Project }) {
       </section>
 
       {/* ── OBJECTIVES STRIP ── */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", background: "#111111", borderTop: "1px solid #272727", borderBottom: "1px solid #272727" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", background: "#fff", borderBottom: "4px solid black" }}>
         {[
-          { num: "01", title: "Actionable Data", text: <>Decode fragmented government earthquake data into a <span style={{ color: "#60a5fa", fontWeight: 600 }}>mobile first experience</span> where residents quickly understand how risk applies to their specific home and neighbourhood.</> },
-          { num: "02", title: "Mobile First Resilience", text: <>Translate dense geoscience terminology into tiered <span style={{ color: "#FF8C3B", fontWeight: 600 }}>actionable risk cues</span> that do not require an expert degree and work seamlessly on the phone residents already have.</> },
-          { num: "03", title: "Inclusive Access", text: <>Close the action gap by guiding renters and homeowners toward <span style={{ color: "#3BCC7A", fontWeight: 600 }}>immediate preparedness steps</span> designed for elderly residents, non English speakers, and users with disabilities.</> },
+          { num: "01", title: "Actionable Data", text: <>Decode fragmented government earthquake data into a <span style={{ color: "#0070FF", fontWeight: 900, textDecoration: "underline" }}>mobile-first experience</span> for residents.</> },
+          { num: "02", title: "Visual Cues", text: <>Translate dense geoscience terminology into tiered <span style={{ color: "#FF8C3B", fontWeight: 900, textDecoration: "underline" }}>actionable segments</span> for high-stress use.</> },
+          { num: "03", title: "Inclusive Access", text: <>Close the action gap by guiding renters and homeowners toward <span style={{ color: "#3BCC7A", fontWeight: 900, textDecoration: "underline" }}>immediate readiness</span> steps.</> },
         ].map((o) => (
-          <div key={o.num} className="sh-card-hover" style={{ padding: "44px 40px", borderRight: "1px solid #272727", transition: "background 0.2s", cursor: "default" }}>
-            <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.2em", textTransform: "uppercase", color: "#60a5fa", marginBottom: 8, display: "block", fontWeight: 900 }}>OBJECTIVE {o.num}</span>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 900, marginBottom: 10, color: "#ffffff" }}>{o.title}</h3>
-            <p style={{ fontSize: 15, color: "#d1d5db", lineHeight: 1.7 }}>{o.text}</p>
+          <div key={o.num} className="sh-card-hover" style={{ padding: "60px 48px", borderRight: "4px solid black", transition: "all 0.2s", cursor: "default" }}>
+            <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 14, letterSpacing: "0.3em", textTransform: "uppercase", color: "#000", marginBottom: 16, display: "block", fontWeight: 900 }}>GOAL {o.num}</span>
+            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 32, fontWeight: 900, marginBottom: 16, color: "#000" }}>{o.title}</h3>
+            <p style={{ fontSize: 16, color: "#444", lineHeight: 1.6, fontWeight: "600" }}>{o.text}</p>
           </div>
         ))}
       </div>
@@ -858,15 +870,15 @@ export function SafeHomeProject({ project }: { project: Project }) {
       {/* MOVED: BUILT FROM ZERO STRIP moved under flow diagram */}
 
       {/* ── THE PROBLEM ── */}
-      <section style={{ maxWidth: 1100, margin: "0 auto", padding: "100px 60px" }}>
-        <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#60a5fa", display: "block", marginBottom: 20, fontWeight: 900 }}>01 THE PROBLEM</span>
-        <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 900, lineHeight: 1.05, marginBottom: 40, color: "#fff" }}>A product with mission but <em style={{ fontStyle: "italic", color: "#0070FF" }}>no direction</em></h2>
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "160px 48px" }}>
+        <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: 24, fontWeight: 900 }}>01 THE PROBLEM</span>
+        <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 900, lineHeight: 1.05, marginBottom: 40, color: "#000" }}>A mission without <em style={{ fontStyle: "italic", color: "#0070FF" }}>direction &amp; focus</em></h2>
 
-        <p style={{ fontSize: 20, lineHeight: 1.7, color: "#fff", maxWidth: 800, marginBottom: 60 }}>
-          SafeHome had the right idea put credible seismic risk data in residents hands. But the experience itself was fractured, inconsistent, and hard to trust.
+        <p style={{ fontSize: 22, lineHeight: 1.6, color: "#333", maxWidth: 840, marginBottom: 80, fontWeight: "700" }}>
+          SafeHome was a data-rich portal that failed the trust test. Fragmented, inconsistent, and inaccessible—it left residents more worried than prepared.
         </p>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 2, background: "#272727" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 40 }}>
           {[
             {
               title: "No Design Direction",
@@ -952,46 +964,17 @@ export function SafeHomeProject({ project }: { project: Project }) {
               </svg>
             },
             {
-              title: "Team Misalignment & Chaos",
-              subtext: "Product, engineering, and design operated without shared goals or a common workflow. Scope changed frequently without design input or user validation.",
-              svg: <svg viewBox="0 0 160 110" xmlns="http://www.w3.org/2000/svg">
-                <rect x="8" y="8" width="52" height="38" rx="3" fill="white" stroke="#ddd" strokeWidth="1.5" transform="rotate(-10,34,27)" />
-                <rect x="13" y="14" width="30" height="4" rx="1" fill="#e0d8cc" transform="rotate(-10,34,27)" />
-                <rect x="13" y="21" width="22" height="3" rx="1" fill="#ece8e0" transform="rotate(-10,34,27)" />
-                <rect x="13" y="27" width="26" height="3" rx="1" fill="#ece8e0" transform="rotate(-10,34,27)" />
-                <text x="18" y="52" fontFamily="sans-serif" fontSize="8" fill="#bbb" transform="rotate(-10,34,52)">Design</text>
-                <rect x="100" y="6" width="52" height="38" rx="3" fill="white" stroke="#ddd" strokeWidth="1.5" transform="rotate(9,126,25)" />
-                <rect x="105" y="12" width="30" height="4" rx="1" fill="#e0d8cc" transform="rotate(9,126,25)" />
-                <rect x="105" y="19" width="20" height="3" rx="1" fill="#ece8e0" transform="rotate(9,126,25)" />
-                <rect x="105" y="25" width="28" height="3" rx="1" fill="#ece8e0" transform="rotate(9,126,25)" />
-                <text x="108" y="52" fontFamily="sans-serif" fontSize="8" fill="#bbb" transform="rotate(9,126,52)">Eng</text>
-                <rect x="6" y="62" width="52" height="38" rx="3" fill="white" stroke="#ddd" strokeWidth="1.5" transform="rotate(7,32,81)" />
-                <rect x="11" y="68" width="30" height="4" rx="1" fill="#e0d8cc" transform="rotate(7,32,81)" />
-                <rect x="11" y="75" width="24" height="3" rx="1" fill="#ece8e0" transform="rotate(7,32,81)" />
-                <rect x="11" y="81" width="18" height="3" rx="1" fill="#ece8e0" transform="rotate(7,32,81)" />
-                <text x="14" y="105" fontFamily="sans-serif" fontSize="8" fill="#bbb" transform="rotate(7,32,105)">Product</text>
-                <rect x="102" y="62" width="52" height="38" rx="3" fill="white" stroke="#ddd" strokeWidth="1.5" transform="rotate(-8,128,81)" />
-                <rect x="107" y="68" width="28" height="4" rx="1" fill="#e0d8cc" transform="rotate(-8,128,81)" />
-                <rect x="107" y="75" width="20" height="3" rx="1" fill="#ece8e0" transform="rotate(-8,128,81)" />
-                <rect x="107" y="81" width="24" height="3" rx="1" fill="#ece8e0" transform="rotate(-8,128,81)" />
-                <text x="108" y="104" fontFamily="sans-serif" fontSize="8" fill="#bbb" transform="rotate(-8,128,104)">Data</text>
-                <path d="M54,32 C68,34 72,40 74,46" stroke="#ddd" strokeWidth="1.5" fill="none" strokeDasharray="3,3" />
-                <path d="M106,32 C95,36 90,40 87,46" stroke="#ddd" strokeWidth="1.5" fill="none" strokeDasharray="3,3" />
-                <path d="M54,78 C67,72 72,67 74,63" stroke="#ddd" strokeWidth="1.5" fill="none" strokeDasharray="3,3" />
-                <path d="M104,78 C94,72 90,67 87,63" stroke="#ddd" strokeWidth="1.5" fill="none" strokeDasharray="3,3" />
-                <circle cx="80" cy="55" r="11" fill="#fdf9f0" stroke="#ddd" strokeWidth="1.5" />
-                <path d="M75,52 L78,55 L75,58" stroke="#c0392b" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M85,52 L82,55 L85,58" stroke="#c0392b" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                <line x1="78" y1="55" x2="82" y2="55" stroke="#c0392b" strokeWidth="2" strokeLinecap="round" strokeDasharray="1,2" />
-              </svg>
+              title: "Product Misalignment",
+              subtext: "Product, and engineering operated without shared user goals. Features were shipped without validation or a cohesive studio strategy.",
+              svg: <ShieldCheck className="w-24 h-24 text-zinc-200" />
             },
           ].map(c => (
-            <div key={c.title} className="sh-card-hover" style={{ background: "#0a0a0a", padding: "48px 40px", transition: "background 0.2s", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
-              <div style={{ marginBottom: 32, height: 120, width: "100%", maxWidth: 200, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                {c.svg}
+            <div key={c.title} className="group p-12 bg-white border-4 border-black hover:shadow-[20px_20px_0_#000] transition-all flex flex-col items-center text-center">
+              <div className="mb-8 p-8 bg-zinc-50 border-4 border-black border-dashed group-hover:border-solid transition-all">
+                {typeof c.svg === 'string' ? <span className="text-4xl">{c.svg}</span> : c.svg}
               </div>
-              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 24, fontWeight: 700, color: "#fff", marginBottom: 12 }}>{c.title}</h3>
-              <p style={{ fontSize: 14, color: "#888", lineHeight: 1.6, margin: 0 }}>{c.subtext}</p>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 24, fontWeight: 900, color: "#000", marginBottom: 16 }}>{c.title}</h3>
+              <p style={{ fontSize: 15, color: "#666", lineHeight: 1.6, fontWeight: "600" }}>{c.subtext}</p>
             </div>
           ))}
         </div>
@@ -1026,16 +1009,16 @@ export function SafeHomeProject({ project }: { project: Project }) {
               </div>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "#333" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4, background: "#000", border: "4px solid black" }}>
               {[
                 { num: "60%", label: "User Retention" },
                 { num: "75%", label: "Mobile Traffic" },
                 { num: "2×", label: "Project Velocity" },
                 { num: "100%", label: "UX Adoption" },
               ].map(m => (
-                <div key={m.label} style={{ background: "#1a1a1a", padding: "30px 20px", textAlign: "center" }}>
-                  <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 42, fontWeight: 900, color: "#0070FF", lineHeight: 1, marginBottom: 4 }}>{m.num}</div>
-                  <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, color: "#888", textTransform: "uppercase", letterSpacing: "0.1em" }}>{m.label}</div>
+                <div key={m.label} style={{ background: "#fff", padding: "32px 24px", textAlign: "center" }}>
+                  <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 48, fontWeight: 900, color: "#0070FF", lineHeight: 1, marginBottom: 8 }}>{m.num}</div>
+                  <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, color: "#000", textTransform: "uppercase", letterSpacing: "0.2em", fontWeight: 900 }}>{m.label}</div>
                 </div>
               ))}
             </div>
@@ -1046,103 +1029,88 @@ export function SafeHomeProject({ project }: { project: Project }) {
 
 
       {/* ── DESIGN DECISIONS ── */}
-      <section style={{ maxWidth: 1100, margin: "0 auto", padding: "40px 60px 100px" }}>
-        <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#60a5fa", display: "block", marginBottom: 20, fontWeight: 900 }}>05 UX INTERVENTION</span>
-        <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 900, lineHeight: 1.05, marginBottom: 32, color: "#fff" }}>UX INTERVENTION</h2>
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 48px 160px" }}>
+        <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: 24, fontWeight: 900 }}>05 UX STRATEGY</span>
+        <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 900, lineHeight: 1.05, marginBottom: 60, color: "#000" }}>Strategic <em style={{ color: "#0070FF", fontStyle: "italic" }}>Interventions</em></h2>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 40, alignItems: "center", marginBottom: 80 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 60, alignItems: "center", marginBottom: 120 }}>
           <div>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 24, fontWeight: 700, marginBottom: 16, color: "#fff" }}>Visual Analysis</h3>
-            <p style={{ fontSize: 16, color: "#d1d5db", lineHeight: 1.7, marginBottom: 24 }}>
-              A key part of the redesign was a comprehensive visual analysis of disparate FEMA risk maps and existing natural hazard databases. We extracted the most critical data patterns, translating legacy government UI structures into clear, accessible mobile formats.
+            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 32, fontWeight: 900, marginBottom: 24, color: "#000" }}>Visual Analysis</h3>
+            <p style={{ fontSize: 18, color: "#444", lineHeight: 1.7, marginBottom: 32, fontWeight: "600" }}>
+              I conducted a comprehensive visual audit of government risk patterns. We decoded complex hazard data into a simplified mobile language that residents can navigate during crisis.
             </p>
-            {/* Navigation Dots Removed as requested */}
           </div>
-          <div style={{ position: "relative" }}>
-            <img src="/images/safehome/visual-analysis.jpg" alt="Visual Analysis" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block", boxShadow: "0 20px 40px rgba(0,0,0,0.3)" }} />
-            <div style={{ position: "absolute", bottom: 20, right: 20, background: "rgba(0,0,0,0.8)", padding: "10px 18px", borderRadius: 4, backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.1)" }}>
-              <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, color: "#fff", textTransform: "uppercase", letterSpacing: "0.1em" }}>Ref 01: FEMA Overlay Patterns</span>
+          <div style={{ position: "relative", border: "4px solid black", boxShadow: "20px 20px 0 rgba(0,0,0,0.05)" }}>
+            <img src="/images/safehome/visual-analysis.jpg" alt="Visual Analysis" style={{ width: "100%", height: "auto", display: "block" }} />
+            <div style={{ position: "absolute", bottom: 24, right: 24, background: "#fff", padding: "12px 20px", border: "3px solid black", boxShadow: "4px 4px 0 #000" }}>
+              <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, color: "#000", textTransform: "uppercase", letterSpacing: "0.2em", fontWeight: 900 }}>REF 01: HAZARD OVERLAYS</span>
             </div>
           </div>
         </div>
 
-        <div style={{ position: "relative", marginBottom: 60 }}>
-          {/* FLOATING COMMENT BOX */}
+        <div style={{ background: "#F9F9F9", border: "4px solid black", padding: "60px 48px", display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 60, alignItems: "center", position: "relative" }}>
           <div className="sh-sticky" style={{
-            background: "#fef08a",
+            background: "#FFEB3B",
             padding: "24px",
             position: "absolute",
-            left: "-140px",
-            top: "0px",
-            width: "300px",
-            transform: "rotate(-2deg)",
-            boxShadow: "10px 10px 30px rgba(0,0,0,0.4)",
+            left: -40,
+            top: -40,
+            width: 280,
+            transform: "rotate(-3deg)",
+            border: "4px solid black",
+            boxShadow: "10px 10px 0 rgba(0,0,0,1)",
             zIndex: 20
           }}>
-            <div style={{ width: 12, height: 12, background: "#0070FF", borderRadius: "50%", position: "absolute", top: -6, left: "50%", transform: "translateX(-50%)" }} />
-            <p style={{ color: "#1a1a1a", fontSize: 15, fontWeight: 600, lineHeight: 1.5, margin: 0 }}>
-              One of the sharpest design challenges was legal. Official terminology like Liquefaction carried strict regulatory meaning that we could not redefine.
+            <p style={{ color: "#000", fontSize: 15, fontWeight: 900, lineHeight: 1.4, margin: 0, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+              Regulatory constraint: Official jargon like "Liquefaction zones" could not be renamed. We solved this with contextual tooltips.
             </p>
           </div>
-        </div>
 
-        <div style={{ background: "#0f0f0f", borderRadius: 2, padding: "48px 44px", display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 40, alignItems: "center", border: "1px solid rgba(255,255,255,0.05)" }}>
           <div>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 26, fontWeight: 700, color: "#fff", marginBottom: 14, lineHeight: 1.2 }}>
-              The <em style={{ color: "#0070FF", fontStyle: "italic" }}>Color Initiative</em>
+            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 32, fontWeight: 900, color: "#000", marginBottom: 24, lineHeight: 1.1 }}>
+              The <em style={{ color: "#0070FF", fontStyle: "italic" }}>Color System</em>
             </h3>
-            <p style={{ fontSize: 17, color: "#0070FF", lineHeight: 1.6, marginBottom: 12, fontWeight: 500 }}>
-              <strong>Before:</strong>
-            </p>
-            <p style={{ fontSize: 17, color: "#fff", lineHeight: 1.6, marginBottom: 12, fontWeight: 500 }}>
-              uniform map markers and dense overlays with no visual hierarchy.
-            </p>
-            <p style={{ fontSize: 17, color: "#0070FF", lineHeight: 1.6, marginBottom: 24, fontWeight: 600 }}>
-              <strong>After:</strong>
-            </p>
-            <p style={{ fontSize: 17, color: "#fff", lineHeight: 1.6, marginBottom: 12, fontWeight: 500 }}>
-              High / Medium / Low tiers with distinct color coding readable in seconds on mobile, WCAG compliant, and legally defensible.
-            </p>
+            <div style={{ marginBottom: 32 }}>
+              <p style={{ fontSize: 14, color: "#666", textTransform: "uppercase", letterSpacing: "0.2em", fontWeight: 900, marginBottom: 8 }}>Impact:</p>
+              <p style={{ fontSize: 17, color: "#000", lineHeight: 1.6, fontWeight: 700 }}>
+                Replaced uniform map markers with high-contrast accessibility tiers tied to immediate civic urgency.
+              </p>
+            </div>
 
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-              {[["#FF0000", "High"], ["#FF8C3B", "Medium"], ["#3BCC7A", "Low"]].map(([bg, label]) => (
-                <div key={label} style={{ background: bg, color: "#fff", padding: "8px 20px", fontFamily: "ui-monospace, monospace", fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", borderRadius: 2 }}>{label}</div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+              {[["#FF0000", "Critical"], ["#FF8C3B", "Warning"], ["#3BCC7A", "Safe"]].map(([bg, label]) => (
+                <div key={label} style={{ background: bg, color: "#fff", padding: "10px 24px", fontFamily: "ui-monospace, monospace", fontSize: 12, fontWeight: 900, letterSpacing: "0.2em", textTransform: "uppercase", border: "3px solid black", boxShadow: "4px 4px 0 #000" }}>{label}</div>
               ))}
             </div>
           </div>
-          <div style={{ position: "relative" }}>
-            <span style={{ position: "absolute", bottom: 20, right: 20, background: "rgba(0,0,0,0.7)", color: "#fff", padding: "4px 12px", fontSize: 10, fontFamily: "ui-monospace, monospace", textTransform: "uppercase", zIndex: 10 }}>Before</span>
-            <img src="/images/safehome/color-initiative.jpg" alt="Color Initiative UI" style={{ width: "100%", height: "auto", display: "block", borderRadius: 8 }} />
+          <div style={{ border: "4px solid black" }}>
+            <img src="/images/safehome/color-initiative.jpg" alt="Color Initiative UI" style={{ width: "100%", height: "auto", display: "block" }} />
           </div>
         </div>
       </section>
 
       <div style={{ height: 1, background: "#272727" }} />
       {/* ── UX PAIN POINTS ── */}
-      <section style={{ maxWidth: 1400, margin: "0 auto", padding: "80px 60px 100px", paddingTop: "120px" }}>
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "160px 48px" }}>
         <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 80, alignItems: "start" }}>
-          <div style={{ width: "100%", height: 500, background: "#1a1a1a", borderRadius: 12, border: "1px solid rgba(255,255,255,0.1)", overflow: "hidden", boxShadow: "0 40px 80px rgba(0,0,0,0.4)" }}>
-            <img src="/images/safehome/pain-points.png" alt="Legacy Portal Pain Points" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+          <div style={{ border: "4px solid black", boxShadow: "20px 20px 0 rgba(0,0,0,0.05)" }}>
+            <img src="/images/safehome/pain-points.png" alt="Legacy Portal Pain Points" style={{ width: "100%", height: "auto", display: "block" }} />
           </div>
           <div>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 32, fontWeight: 900, marginBottom: 24, color: "#fff" }}>UX Pain Points</h3>
-            <ul style={{ display: "flex", flexDirection: "column", gap: 24, listStyle: "none", padding: 0 }}>
-              <li style={{ fontSize: 17, color: "#d1d5db", lineHeight: 1.6, position: "relative", paddingLeft: 28 }}>
-                <span style={{ position: "absolute", left: 0, top: 0, color: "#0070FF", fontSize: "24px" }}>•</span>
-                <strong style={{ color: "#fff", display: "block", marginBottom: 4 }}>Critical Information Hidden:</strong> The full-screen map trapped users on mobile without scroll indicators, hiding essential preparedness resources below the fold.
-              </li>
-              <li style={{ fontSize: 17, color: "#d1d5db", lineHeight: 1.6, position: "relative", paddingLeft: 28 }}>
-                <span style={{ position: "absolute", left: 0, top: 0, color: "#0070FF", fontSize: "24px" }}>•</span>
-                <strong style={{ color: "#fff", display: "block", marginBottom: 4 }}>Confusing Terminology:</strong> Technical terms like "Liquefaction" or "Soft Story" lacked plain-English explanations, leaving residents uncertain about their actual risk.
-              </li>
-              <li style={{ fontSize: 17, color: "#d1d5db", lineHeight: 1.6, position: "relative", paddingLeft: 28 }}>
-                <span style={{ position: "absolute", left: 0, top: 0, color: "#0070FF", fontSize: "24px" }}>•</span>
-                <strong style={{ color: "#fff", display: "block", marginBottom: 4 }}>Lack of Responsiveness:</strong> The original portal was completely unable to be used on mobile devices, violating the primary use case for emergency preparedness.
-              </li>
-              <li style={{ fontSize: 17, color: "#d1d5db", lineHeight: 1.6, position: "relative", paddingLeft: 28 }}>
-                <span style={{ position: "absolute", left: 0, top: 0, color: "#0070FF", fontSize: "24px" }}>•</span>
-                <strong style={{ color: "#fff", display: "block", marginBottom: 4 }}>Accessibility Failures:</strong> Poor color contrast and non-semantic structure made the tool inaccessible for users with visual impairments or screen readers.
-              </li>
+            <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 14, letterSpacing: "0.4em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: 16, fontWeight: 900 }}>CRITICAL AUDIT</span>
+            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 42, fontWeight: 900, marginBottom: 32, color: "#000" }}>UX Pain Points</h3>
+            <ul style={{ display: "flex", flexDirection: "column", gap: 32, listStyle: "none", padding: 0 }}>
+              {[
+                ["Information Architecture", "Essential preparedness tools were hidden deep within fragmented navigation layers."],
+                ["Visual Language", "Technical jargon like 'Liquefaction' left residents confused about their actual seismic risk."],
+                ["Device Access", "The legacy product failed the mobile-first test required for emergency situations."],
+                ["Inclusivity", "Poor contrast and non-semantic structure excluded users with visual impairments."],
+              ].map(([title, desc]) => (
+                <li key={title} style={{ fontSize: 16, color: "#444", lineHeight: 1.6, fontWeight: "600" }}>
+                  <strong style={{ color: "#000", display: "block", marginBottom: 8, fontSize: 18, textTransform: "uppercase", letterSpacing: "0.1em" }}>{title}</strong>
+                  {desc}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -1152,19 +1120,19 @@ export function SafeHomeProject({ project }: { project: Project }) {
 
 
       {/* ── USER FLOW ── */}
-      <section id="ia-flow-container" style={{ padding: "100px 60px", background: "var(--bg, #0C0E0D)", overflow: "hidden", color: "#E8EDE9" }}>
+      <section id="ia-flow-container" style={{ padding: "160px 48px", background: "#fff", borderTop: "4px solid black", overflow: "hidden", color: "#000" }}>
         <style dangerouslySetInnerHTML={{
           __html: `
           .flow-container {
-            --bg: #0C0E0D;
-            --surface: #141614;
-            --pre:    #3B8BFF;
+            --bg: #fff;
+            --surface: #F9F9F9;
+            --pre:    #0070FF;
             --during: #FF8C3B;
             --post:   #3BCC7A;
-            --entry:  #C8B8FF;
-            --text:   #E8EDE9;
-            --muted:  rgba(232,237,233,0.38);
-            --border: rgba(255,255,255,0.07);
+            --entry:  #8B5CF6;
+            --text:   #000;
+            --muted:  #666;
+            --border: #000;
           }
           .flow-container .header {
             margin-bottom: 2.5rem;
@@ -1172,24 +1140,24 @@ export function SafeHomeProject({ project }: { project: Project }) {
             gap: 2rem;
           }
           .flow-container .header-label {
-            font-size:.6rem; letter-spacing:.3em; text-transform:uppercase;
-            color:#FFFFFF; margin-bottom:.5rem; font-weight:400; font-family: ui-monospace, monospace;
+            font-size:.7rem; letter-spacing:.4em; text-transform:uppercase;
+            color:#666; margin-bottom:1rem; font-weight:900; font-family: ui-monospace, monospace;
           }
           .flow-container .header h2 {
             font-family: 'Playfair Display', serif;
-            font-size:clamp(1rem,1.8vw,1.3rem);
-            font-weight:700; letter-spacing:.02em; color:#FFFFFF; margin: 0;
+            font-size:clamp(32px,4vw,52px);
+            font-weight:900; letter-spacing:-0.02em; color:#000; margin: 0;
           }
           .flow-container .legend {
             display:flex; gap:1.6rem; flex-wrap:wrap; align-items:center;
           }
           .flow-container .legend-item {
             display:flex; align-items:center; gap:.6rem;
-            font-size:.6rem; letter-spacing:.15em; text-transform:uppercase;
-            color:#FFFFFF; font-weight:400; font-family: ui-monospace, monospace;
+            font-size:.7rem; letter-spacing:.2em; text-transform:uppercase;
+            color:#000; font-weight:900; font-family: ui-monospace, monospace;
           }
           .flow-container .legend-circle {
-            width:12px; height:12px; border-radius:50%; flex-shrink:0;
+            width:16px; height:16px; border:3px solid black; border-radius:50%; flex-shrink:0;
           }
           .flow-container .diagram-scroll {
             overflow: visible;
@@ -1205,8 +1173,8 @@ export function SafeHomeProject({ project }: { project: Project }) {
 
           <div className="header">
             <div>
-              <div className="header-label">USER JOURNEY &amp; IA</div>
-              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(32px,4vw,52px)", fontWeight: 900, lineHeight: 1.05, marginBottom: 0, color: "#fff" }}>Earthquake Safety App</h2>
+              <div className="header-label">Product Architecture</div>
+              <h2>Human-Centric SafeHome Core IA</h2>
             </div>
             <div className="legend">
               <div className="legend-item">
@@ -1223,16 +1191,16 @@ export function SafeHomeProject({ project }: { project: Project }) {
               </div>
               <div className="legend-item">
                 <div className="legend-circle" style={{ background: "var(--post)" }}></div>
-                <span>After Event</span>
+                <span>Recovery</span>
               </div>
             </div>
           </div>
 
-          <div style={{ background: "rgba(255,255,255,0.02)", borderRadius: 12, border: "1px solid rgba(255,255,255,0.05)", padding: "20px" }}>
+          <div style={{ background: "#F9F9F9", border: "4px solid black", padding: "40px", position: "relative" }}>
             <svg className="flow-svg" viewBox="0 0 1600 560" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", height: "auto", minWidth: "auto" }}>
               <defs>
                 <marker id="arr-entry" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                  <path d="M0,0 L0,6 L8,3 z" fill="rgba(255,255,255,0.45)" />
+                  <path d="M0,0 L0,6 L8,3 z" fill="#000" />
                 </marker>
                 <marker id="arr-pre" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                   <path d="M0,0 L0,6 L8,3 z" fill="rgba(59,139,255,0.6)" />
@@ -1244,28 +1212,27 @@ export function SafeHomeProject({ project }: { project: Project }) {
                   <path d="M0,0 L0,6 L8,3 z" fill="rgba(59,204,122,0.6)" />
                 </marker>
                 <marker id="arr-branch" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                  <path d="M0,0 L0,6 L8,3 z" fill="rgba(255,255,255,0.2)" />
+                  <path d="M0,0 L0,6 L8,3 z" fill="#000" />
                 </marker>
               </defs>
 
-              <rect x="700" y="20" width="880" height="155" rx="6" fill="rgba(59,139,255,0.18)" stroke="rgba(59,139,255,0.35)" strokeWidth="1" />
-              <rect x="700" y="195" width="880" height="155" rx="6" fill="rgba(255,140,59,0.18)" stroke="rgba(255,140,59,0.35)" strokeWidth="1" />
-              <rect x="700" y="370" width="880" height="155" rx="6" fill="rgba(59,204,122,0.18)" stroke="rgba(59,204,122,0.35)" strokeWidth="1" />
+              <rect x="700" y="20" width="880" height="155" rx="4" fill="rgba(0,112,255,0.05)" stroke="black" strokeWidth="2" strokeDasharray="8,4" />
+              <rect x="700" y="195" width="880" height="155" rx="4" fill="rgba(255,140,59,0.05)" stroke="black" strokeWidth="2" strokeDasharray="8,4" />
+              <rect x="700" y="370" width="880" height="155" rx="4" fill="rgba(59,204,122,0.05)" stroke="black" strokeWidth="2" strokeDasharray="8,4" />
 
-              <circle cx="749" cy="40" r="5" fill="#3B8BFF" />
-              <text x="760" y="44" fontFamily="ui-monospace, monospace" fontSize="11" fontWeight="400" fill="#FFFFFF" letterSpacing="2">PRE EVENT</text>
+              <circle cx="749" cy="40" r="6" fill="#0070FF" stroke="black" strokeWidth="2" />
+              <text x="765" y="44" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="900" fill="#000" letterSpacing="2">PRE-EVENT</text>
 
-              <circle cx="749" cy="215" r="5" fill="#FF8C3B" />
-              <text x="760" y="219" fontFamily="ui-monospace, monospace" fontSize="11" fontWeight="400" fill="#FFFFFF" letterSpacing="2">DURING EVENT</text>
+              <circle cx="749" cy="215" r="6" fill="#FF8C3B" stroke="black" strokeWidth="2" />
+              <text x="765" y="219" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="900" fill="#000" letterSpacing="2">DURING-EVENT</text>
 
-              <circle cx="749" cy="390" r="5" fill="#3BCC7A" />
-              <text x="760" y="394" fontFamily="ui-monospace, monospace" fontSize="11" fontWeight="400" fill="#FFFFFF" letterSpacing="2">AFTER EVENT</text>
+              <circle cx="749" cy="390" r="6" fill="#3BCC7A" stroke="black" strokeWidth="2" />
+              <text x="765" y="394" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="900" fill="#000" letterSpacing="2">RECOVERY</text>
 
-              <circle cx="36" cy="248" r="5" fill="#C8B8FF" />
-              <text x="47" y="252" fontFamily="ui-monospace, monospace" fontSize="11" fontWeight="400" fill="#FFFFFF" letterSpacing="2">ENTRY</text>
+              <circle cx="36" cy="248" r="6" fill="#8B5CF6" stroke="black" strokeWidth="2" />
+              <text x="50" y="252" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="900" fill="#000" letterSpacing="2">INIT</text>
 
-              <text x="28" y="273" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="400" fill="rgba(232,237,233,0.8)">Enter</text>
-              <text x="28" y="290" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="400" fill="rgba(232,237,233,0.8)">SafeHome</text>
+              <text x="36" y="278" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="900" fill="#666">App Start</text>
 
               <rect x="140" y="250" width="220" height="52" rx="26" fill="rgba(200,184,255,0.07)" stroke="rgba(200,184,255,0.4)" strokeWidth="1.5" strokeDasharray="5,3" />
               <text x="250" y="272" fontFamily="ui-monospace, monospace" fontSize="11" fill="rgba(255,255,255,0.85)" textAnchor="middle" fontStyle="italic">Input address &amp;</text>
@@ -1397,88 +1364,82 @@ export function SafeHomeProject({ project }: { project: Project }) {
 
 
 
-      {/* ── WORKSHOP & DESIGN SYSTEM ── */}
-      <section style={{ padding: "100px 60px", background: "#0a0a0a" }}>
-        <div style={{ maxWidth: 1600, margin: "0 auto" }}>
-          <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#60a5fa", display: "block", marginBottom: 20, fontWeight: 900 }}>FOUNDATION</span>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 900, lineHeight: 1.05, marginBottom: 60, color: "#fff" }}>Creating a path <em style={{ color: "#0070FF", fontStyle: "italic" }}>forward</em></h2>
+      {/* ── WORKSHOP ── */}
+      <section style={{ padding: "160px 48px", background: "#F9F9F9", borderTop: "4px solid black" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: 24, fontWeight: 900 }}>COLLABORATIVE CORE</span>
+          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 900, lineHeight: 1.05, marginBottom: 80, color: "#000" }}>Async Studio <em style={{ color: "#0070FF", fontStyle: "italic" }}>Strategy</em></h2>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, marginBottom: 120 }}>
-            <div style={{ background: "#111", borderRadius: 12, padding: "20px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 30px 60px rgba(0,0,0,0.5)" }}>
-              <img src="/images/safehome/architecture-diagram.png" alt="Workshop findings" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
+            <div style={{ border: "4px solid black", boxShadow: "20px 20px 0 rgba(0,0,0,0.05)" }}>
+              <img src="/images/safehome/architecture-diagram.png" alt="Workshop findings" style={{ width: "100%", height: "auto", display: "block" }} />
             </div>
-            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
-              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 700, marginBottom: 24, color: "#fff" }}>Defining the Core Needs</h3>
-              <p style={{ fontSize: 16, color: "#d1d5db", lineHeight: 1.7, marginBottom: 24 }}>
-                Before moving into high-fidelity design, we needed to synthesize the chaos. We ran asynchronous workshops to identify what users truly needed during critical emergency moments versus nice-to-haves:
+            <div>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 32, fontWeight: 900, marginBottom: 24, color: "#000" }}>Target Objectives</h3>
+              <p style={{ fontSize: 18, color: "#444", lineHeight: 1.7, marginBottom: 32, fontWeight: "600" }}>
+                I led asynchronous workshops with engineering and data teams to bridge the gap between technical constraints and resident needs. We prioritized four core pillars:
               </p>
-              <ul style={{ display: "flex", flexDirection: "column", gap: 16, listStyle: "none", padding: 0 }}>
-                <li style={{ fontSize: 15, color: "#d1d5db", lineHeight: 1.6, position: "relative", paddingLeft: 24 }}>
-                  <span style={{ position: "absolute", left: 0, top: 0, color: "#0070FF", fontSize: "18px" }}>•</span>
-                  <strong style={{ color: "#0070FF", fontWeight: 900 }}>1. Risk Visibility (Awareness):</strong> Clear, building-level disaster risk information
-                </li>
-                <li style={{ fontSize: 15, color: "#d1d5db", lineHeight: 1.6, position: "relative", paddingLeft: 24 }}>
-                  <span style={{ position: "absolute", left: 0, top: 0, color: "#0070FF", fontSize: "18px" }}>•</span>
-                  <strong style={{ color: "#0070FF", fontWeight: 900 }}>2. Safety Evaluation (Comparison):</strong> Easy side-by-side apartment safety comparison
-                </li>
-                <li style={{ fontSize: 15, color: "#d1d5db", lineHeight: 1.6, position: "relative", paddingLeft: 24 }}>
-                  <span style={{ position: "absolute", left: 0, top: 0, color: "#0070FF", fontSize: "18px" }}>•</span>
-                  <strong style={{ color: "#0070FF", fontWeight: 900 }}>3. Action & Readiness (Preparation):</strong> Simple, actionable earthquake preparedness guidance
-                </li>
-                <li style={{ fontSize: 15, color: "#d1d5db", lineHeight: 1.6, position: "relative", paddingLeft: 24 }}>
-                  <span style={{ position: "absolute", left: 0, top: 0, color: "#0070FF", fontSize: "18px" }}>•</span>
-                  <strong style={{ color: "#0070FF", fontWeight: 900 }}>4. Local Support System (Community & Alerts):</strong> Real-time alerts, resources, and tenant rights clarity
-                </li>
+              <ul style={{ display: "flex", flexDirection: "column", gap: 24, listStyle: "none", padding: 0 }}>
+                {[
+                  { title: "Risk Visibility", text: "Transforming dense SF gov data into actionable risk scoring." },
+                  { title: "Safety Parity", text: "Enabling side-by-side comparison for renters and homeowners." },
+                  { title: "Immediate Action", text: "Guiding users toward high-impact preparedness steps." },
+                  { title: "Civic Inclusion", text: "Ensuring WCAG compliance for underrepresented communities." },
+                ].map(item => (
+                  <li key={item.title}>
+                    <strong style={{ color: "#0070FF", fontSize: 18, textTransform: "uppercase", letterSpacing: "0.1em", display: "block", marginBottom: 4 }}>{item.title}</strong>
+                    <span style={{ fontSize: 16, color: "#444", fontWeight: "600" }}>{item.text}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
-
-          <div style={{ marginBottom: "120px" }}>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(32px,4vw,52px)", fontWeight: 900, lineHeight: 1.05, marginBottom: 40, color: "#fff" }}>Headstart to design system</h2>
-            <div style={{ position: "relative" }}>
-              <div style={{ background: "#111", borderRadius: 12, padding: "40px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 30px 60px rgba(0,0,0,0.5)" }}>
-                <img src="/images/safehome/Group 137.jpg" alt="Design System Elements" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
-              </div>
-
-              {/* STICKY NOTE */}
-              <div className="sh-sticky" style={{
-                background: "#bae6fd",
-                padding: "24px",
-                position: "absolute",
-                right: "-60px",
-                top: "60px",
-                width: "240px",
-                transform: "rotate(3deg)",
-                boxShadow: "10px 10px 30px rgba(0,0,0,0.4)",
-                zIndex: 20
-              }}>
-                <div style={{ width: 12, height: 12, background: "#0070FF", borderRadius: "50%", position: "absolute", top: -6, left: "50%", transform: "translateX(-50%)" }} />
-                <p style={{ color: "#1a1a1a", fontSize: 14, fontWeight: 600, lineHeight: 1.5 }}>
-                  Getting started with the foundational Design System. Ensuring accessibility and consistent UI elements across the volunteers' work.
-                </p>
-              </div>
-            </div>
-          </div>
-
         </div>
       </section>
 
+      <div style={{ marginBottom: "120px" }}>
+        <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(32px,4vw,52px)", fontWeight: 900, lineHeight: 1.05, marginBottom: 40, color: "#fff" }}>Headstart to design system</h2>
+        <div style={{ position: "relative" }}>
+          <div style={{ background: "#111", borderRadius: 12, padding: "40px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 30px 60px rgba(0,0,0,0.5)" }}>
+            <img src="/images/safehome/Group 137.jpg" alt="Design System Elements" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
+          </div>
+
+          {/* STICKY NOTE */}
+          <div className="sh-sticky" style={{
+            background: "#bae6fd",
+            padding: "24px",
+            position: "absolute",
+            right: "-60px",
+            top: "60px",
+            width: "240px",
+            transform: "rotate(3deg)",
+            boxShadow: "10px 10px 30px rgba(0,0,0,0.4)",
+            zIndex: 20
+          }}>
+            <div style={{ width: 12, height: 12, background: "#0070FF", borderRadius: "50%", position: "absolute", top: -6, left: "50%", transform: "translateX(-50%)" }} />
+            <p style={{ color: "#1a1a1a", fontSize: 14, fontWeight: 600, lineHeight: 1.5 }}>
+              Getting started with the foundational Design System. Ensuring accessibility and consistent UI elements across the volunteers' work.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* ── VISION ── */}
-      <section style={{ padding: "100px 60px", background: "#0a0a0a" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#60a5fa", display: "block", marginBottom: 20, fontWeight: 900 }}>09 THE VISION</span>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 900, lineHeight: 1.05, marginBottom: 40, color: "#fff" }}>MVP is the foundation. <em style={{ color: "#0070FF", fontStyle: "italic" }}>Here's what's next.</em></h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 2, background: "#272727" }}>
+      <section style={{ padding: "160px 48px", background: "#fff", borderTop: "4px solid black" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: 24, fontWeight: 900 }}>09 STRATEGIC VISION</span>
+          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 900, lineHeight: 1.05, marginBottom: 80, color: "#000" }}>The studio <em style={{ color: "#0070FF", fontStyle: "italic" }}>roadmap</em></h2>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 4, background: "#000", border: "4px solid black" }}>
             {[
-              { phase: "Phase 2", color: "#0070FF", title: "Dedicated Mobile App", text: "An ultra simplified native app designed for high stress scenarios where every second and every tap matters most." },
-              { phase: "Phase 2", color: "#b8860b", title: "Personalised Preparedness", text: "Checklists and action plans tied to a user property type, rental status, and risk zone not generic advice." },
-              { phase: "Phase 3", color: "#ffffff", title: "Real-Time Alerts", text: "Push notifications and in app emergency guidance triggered by live seismic activity moving SafeHome from preparedness to active response." },
-              { phase: "Phase 3", color: "#0070FF", title: "Community Networks", text: "Neighbourhood level resource sharing and community preparedness maps turning individual readiness into collective resilience." },
+              { phase: "Phase 2", title: "Native Experience", text: "High-fidelity native app optimized for offline critical rescue scenarios." },
+              { phase: "Phase 2", title: "Hyper Context", text: "Risk datasets tailored to precise property types and ownership status." },
+              { phase: "Phase 3", title: "Real Time", text: "Live emergency guidance triggered by active seismic sensors." },
+              { phase: "Phase 3", title: "Impact Network", text: "Crowdsourced resource mapping for neighborhood-level resilience." },
             ].map(v => (
-              <div key={v.title} className="sh-vision-card" style={{ background: "#111111", padding: "36px 28px", borderTop: `3px solid ${v.color}`, transition: "all 0.2s" }}>
-                <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, letterSpacing: "0.2em", textTransform: "uppercase", color: "#d1d5db", marginBottom: 12, display: "block" }}>{v.phase}</span>
-                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 18, fontWeight: 700, marginBottom: 10, lineHeight: 1.2 }}>{v.title}</h3>
-                <p style={{ fontSize: 13, color: "#d1d5db", lineHeight: 1.7 }}>{v.text}</p>
+              <div key={v.title} style={{ background: "#fff", padding: "40px 32px", transition: "all 0.2s" }}>
+                <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 12, letterSpacing: "0.2em", textTransform: "uppercase", color: "#666", marginBottom: 16, display: "block", fontWeight: 900 }}>{v.phase}</span>
+                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 24, fontWeight: 900, marginBottom: 16, lineHeight: 1.2, color: "#000" }}>{v.title}</h3>
+                <p style={{ fontSize: 15, color: "#444", lineHeight: 1.6, fontWeight: "600" }}>{v.text}</p>
               </div>
             ))}
           </div>
@@ -1486,11 +1447,11 @@ export function SafeHomeProject({ project }: { project: Project }) {
       </section>
 
       {/* ── CONSTRAINTS ── */}
-      <section style={{ background: "#0f0f0f", padding: "100px 60px" }}>
+      <section style={{ background: "#F9F9F9", padding: "100px 60px", borderTop: "4px solid black" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#60a5fa", display: "block", marginBottom: 20, fontWeight: 900 }}>10 CONSTRAINTS</span>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 900, lineHeight: 1.05, marginBottom: 20, color: "#fff" }}>The harder parts and <em style={{ color: "#0070FF", fontStyle: "italic" }}>what I did with them</em></h2>
-          <p style={{ fontSize: 19, lineHeight: 1.75, color: "#d1d5db", maxWidth: 700, marginBottom: 52 }}>Good design under ideal conditions is not remarkable. What matters is what you build under real pressure.</p>
+          <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: 20, fontWeight: 900 }}>10 CONSTRAINTS</span>
+          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 900, lineHeight: 1.05, marginBottom: 20, color: "#000" }}>The harder parts and <em style={{ color: "#0070FF", fontStyle: "italic" }}>what I did with them</em></h2>
+          <p style={{ fontSize: 19, lineHeight: 1.75, color: "#333", maxWidth: 700, marginBottom: 52, fontWeight: "600" }}>Good design under ideal conditions is not remarkable. What matters is what you build under real pressure.</p>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 28 }}>
             {[
@@ -1501,8 +1462,8 @@ export function SafeHomeProject({ project }: { project: Project }) {
               { bg: "#fef08a", r: "-2deg", title: "Navigating Pushback", text: "Resistance to UX process, research, and accessibility as a new lead.", resp: "Led with evidence; built allies; made impact visible via metrics" },
               { bg: "#bae6fd", r: "3deg", title: "Designing for Diverse Populations", text: "Elderly residents, non-English speakers, low-tech-literacy users underserved by default.", resp: "Inclusive design as a core constraint, not an afterthought" },
             ].map((s, i) => (
-              <div key={i} className="sh-sticky" style={{ background: s.bg, padding: "28px 26px 24px", position: "relative", transform: `rotate(${s.r})`, boxShadow: "3px 6px 20px rgba(0,0,0,0.35)", transition: "transform 0.2s, box-shadow 0.2s" }}>
-                <div style={{ width: 14, height: 14, background: "#0070FF", borderRadius: "50%", position: "absolute", top: -7, left: "50%", transform: "translateX(-50%)", boxShadow: "0 2px 4px rgba(0,0,0,0.3)" }} />
+              <div key={i} className="sh-sticky" style={{ background: s.bg, padding: "28px 26px 24px", position: "relative", transform: `rotate(${s.r})`, boxShadow: "4px 4px 0 #000", border: "4px solid black", transition: "transform 0.2s, box-shadow 0.2s" }}>
+                <div style={{ width: 14, height: 14, background: "#0070FF", borderRadius: "50%", position: "absolute", top: -7, left: "50%", transform: "translateX(-50%)", border: "2px solid black" }} />
                 <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 17, fontWeight: 700, color: "#1a1a1a", marginBottom: 10, lineHeight: 1.2 }}>{s.title}</h3>
                 <p style={{ fontSize: 14, color: "#272727", lineHeight: 1.65, fontWeight: 500 }}>{s.text}</p>
                 <p style={{ marginTop: 12, fontSize: 13, color: "#444", fontStyle: "italic", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: 10, fontWeight: 600 }}>{s.resp}</p>
@@ -1513,34 +1474,34 @@ export function SafeHomeProject({ project }: { project: Project }) {
       </section>
 
       {/* ── REFLECTION ── */}
-      <section style={{ maxWidth: 1100, margin: "0 auto", padding: "100px 60px" }}>
-        <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#60a5fa", display: "block", marginBottom: 20, fontWeight: 900 }}>11 REFLECTION</span>
-        <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 900, lineHeight: 1.05, marginBottom: 52, color: "#fff" }}>What I learned leading through <em style={{ color: "#0070FF", fontStyle: "italic" }}>ambiguity</em></h2>
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "160px 48px" }}>
+        <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#666", display: "block", marginBottom: 24, fontWeight: 900 }}>11 REFLECTION</span>
+        <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 900, lineHeight: 1.05, marginBottom: 80, color: "#000" }}>Leading through <em style={{ color: "#0070FF", fontStyle: "italic" }}>ambiguity</em></h2>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
           <div>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 24, fontWeight: 700, marginBottom: 16 }}>On Leadership</h3>
-            <p style={{ fontSize: 15, color: "#e5e7eb", lineHeight: 1.8, marginBottom: 16 }}>Being promoted quickly taught me that UX leadership is not about seniority. It is about making clarity where there is none. The most impactful thing I did was not designing a screen. It was creating the conditions in which better design could happen.</p>
-            <p style={{ fontSize: 15, color: "#e5e7eb", lineHeight: 1.8 }}>I learned to manage upward and across translating user needs into language that resonated with product, engineering, data science, and partnership teams simultaneously.</p>
+            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 32, fontWeight: 900, marginBottom: 24, color: "#000" }}>On Leadership</h3>
+            <p style={{ fontSize: 18, color: "#444", lineHeight: 1.7, marginBottom: 24, fontWeight: "600" }}>UX leadership is about creating clarity where none exists. My impact wasn't just in the screens designed, but in defining a shared studio language between data and engineering.</p>
           </div>
           <div>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 24, fontWeight: 700, marginBottom: 16 }}>On Constraints as Craft</h3>
-            <p style={{ fontSize: 15, color: "#e5e7eb", lineHeight: 1.8, marginBottom: 16 }}>Working with a volunteer team, free tools, and shifting scope forced a creative rigor. Every process I introduced had to earn its place if it did not demonstrably make things better, it would not survive.</p>
-            <p style={{ fontSize: 15, color: "#e5e7eb", lineHeight: 1.8 }}>I also learned that pushing back on scope or demanding validation is not friction. It is care. The hardest professional moments here were also the most formative.</p>
+            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 32, fontWeight: 900, marginBottom: 24, color: "#000" }}>On Constraints</h3>
+            <p style={{ fontSize: 18, color: "#444", lineHeight: 1.7, marginBottom: 24, fontWeight: "600" }}>Limited resources forced creative rigor. Pushing for validation isn't friction—it's stewardship of the mission. Every constraint became a pivot toward higher-fidelity impact.</p>
           </div>
         </div>
 
-        <div style={{ borderLeft: "4px solid #0070FF", padding: "24px 36px", marginTop: 56, background: "rgba(0,112,255,0.15)", maxWidth: 700 }}>
-          <p style={{ fontFamily: "'Playfair Display', serif", fontSize: 22, fontStyle: "italic", lineHeight: 1.5, color: "#ffffff" }}>"The best measure of this work isn't a single screen or metric it's that a team of volunteers built something that helps real people understand a real danger to their lives, and they did it with intention, evidence, and care."</p>
+        <div style={{ border: "4px solid black", padding: "48px", marginTop: 80, background: "#0070FF", boxShadow: "20px 20px 0 #000" }}>
+          <p style={{ fontFamily: "'Playfair Display', serif", fontSize: 32, fontStyle: "italic", lineHeight: 1.2, color: "#fff", fontWeight: 900 }}>"The measure of this work isn't a single metric—it's that a volunteer team built something that helps residents understand a danger to their lives with evidence and care."</p>
         </div>
       </section>
 
       {/* ── EXPANDABLE: WHAT I LED ── */}
       <section style={{ maxWidth: 1100, margin: "0 auto", padding: "60px" }}>
-        <details style={{ background: "#111", borderRadius: 8, border: "1px solid rgba(255,255,255,0.05)", overflow: "hidden" }}>
+        <details style={{ background: "#fff", borderRadius: 0, border: "4px solid black", boxSizing: "border-box" }}>
           <summary style={{ padding: "30px 40px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between", listStyle: "none" }}>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 900, color: "#fff", margin: 0 }}>What I Led: 3-Week Redesign Sprint</h2>
-            <span style={{ fontSize: 24, color: "#0070FF" }}>↓</span>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 900, color: "#000", margin: 0 }}>What I Led: 3-Week Redesign Sprint</h2>
+            <div className="p-2 bg-black text-white">
+              <ArrowLeft className="w-5 h-5 -rotate-90" />
+            </div>
           </summary>
           <div style={{ padding: "0 40px 40px" }}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
@@ -1549,10 +1510,10 @@ export function SafeHomeProject({ project }: { project: Project }) {
                 { phase: "Week 2", title: "Strategy & Systems", desc: "Cross-functional workshops and design system." },
                 { phase: "Week 3", title: "Execution & Pilot", desc: "End-to-end redesign and usability testing." },
               ].map(p => (
-                <div key={p.phase} style={{ background: "#1a1a1a", padding: "20px", borderRadius: 4 }}>
-                  <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 12, color: "#0070FF", marginBottom: 8, textTransform: "uppercase" }}>{p.phase}</div>
-                  <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 18, fontWeight: 700, color: "#fff", marginBottom: 8 }}>{p.title}</div>
-                  <div style={{ fontSize: 14, color: "#888", lineHeight: 1.5 }}>{p.desc}</div>
+                <div key={p.phase} style={{ background: "#F9F9F9", padding: "24px", border: "4px solid black" }}>
+                  <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 12, color: "#0070FF", marginBottom: 8, textTransform: "uppercase", fontWeight: 900 }}>{p.phase}</div>
+                  <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 18, fontWeight: 700, color: "#000", marginBottom: 8 }}>{p.title}</div>
+                  <div style={{ fontSize: 14, color: "#666", lineHeight: 1.5, fontWeight: "600" }}>{p.desc}</div>
                 </div>
               ))}
             </div>
@@ -1561,11 +1522,11 @@ export function SafeHomeProject({ project }: { project: Project }) {
       </section>
 
       {/* ── FOOTER ── */}
-      <div style={{ background: "#0070FF", padding: "80px 60px", textAlign: "center" }}>
+      <div style={{ background: "#0070FF", padding: "80px 60px", textAlign: "center", borderTop: "4px solid black" }}>
         <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(32px,5vw,64px)", fontWeight: 900, fontStyle: "italic", color: "#fff", lineHeight: 1.1, maxWidth: 800, margin: "0 auto 16px" }}>
           UX that serves the public by design.
         </h2>
-        <p style={{ fontSize: 14, color: "rgba(255,255,255,0.7)", letterSpacing: "0.1em", fontFamily: "ui-monospace, monospace", textTransform: "uppercase" }}>
+        <p style={{ fontSize: 14, color: "rgba(255,255,255,0.7)", letterSpacing: "0.1em", fontFamily: "ui-monospace, monospace", textTransform: "uppercase", fontWeight: 900 }}>
           SafeHome · Civic Tech · Nonprofit · San Francisco · 2025
         </p>
       </div>

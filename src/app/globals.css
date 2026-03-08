@@ -2,151 +2,130 @@
 
 @theme {
   --font-sans: var(--font-inter);
-  --font-serif: var(--font-playfair);
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-posthog-orange: var(--posthog-orange);
+  --color-border-system: var(--border);
 }
 
 @variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-.dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --background: #f9f9f9;
+  /* PostHog Light Cream */
+  --foreground: #000000;
+  --posthog-orange: #f7a501;
+  --border: #000000;
+  --zinc-800: #d4d4d8;
+  /* Zinc-300 equivalent for light mode */
+  --glass-bg: rgba(255, 255, 255, 0.7);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  overflow-x: hidden;
 }
 
-/* Show default pointer cursor on clickable elements */
-a,
-button,
-[role="button"],
-[onclick],
-input[type="submit"],
-input[type="button"] {
-  cursor: pointer !important;
+/* Designer OS - The Grid Background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(circle at 1.5px 1.5px, #d1d1d1 1px, transparent 0);
+  background-size: 60px 60px;
+  pointer-events: none;
 }
 
-/* Enhanced Focus Indicators for Accessibility */
-*:focus-visible {
-  outline: 3px solid #9333ea;
-  outline-offset: 2px;
-  border-radius: 4px;
+/* Glassmorphism System */
+.os-glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
-.dark *:focus-visible {
-  outline-color: #a855f7;
+/* Monolithic 2px Borders */
+.os-border {
+  border: 2px solid var(--border);
 }
 
-/* Screen reader only class */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
+.os-border-orange {
+  border: 2px solid var(--posthog-orange);
 }
 
-@utility glass {
-  background-color: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+/* Sharp Corners & Windows */
+.os-card {
+  @apply bg-background border-2 border-black rounded-none;
+  box-shadow: 4px 4px 0px #000;
 }
 
-.dark .glass {
-  background-color: rgba(17, 17, 17, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-}
-
-@utility glass-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.os-card-hover {
+  @apply transition-all duration-300 cursor-pointer;
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.75);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px var(--posthog-orange);
+    border-color: var(--posthog-orange);
   }
 }
 
-.dark .glass-hover:hover {
-  background-color: rgba(30, 30, 30, 0.75);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+/* Window Title Bar */
+.window-title {
+  @apply bg-black text-white px-4 py-2 text-[10px] font-bold flex justify-between items-center uppercase tracking-[0.2em];
 }
 
-/* Accessibility Features */
-
-/* High Contrast Mode */
-.high-contrast {
-  --background: #000000;
-  --foreground: #ffffff;
+/* PostHog Buttons */
+.btn-posthog {
+  @apply bg-[var(--posthog-orange)] text-black px-6 py-2.5 font-mono text-[11px] font-bold border-2 border-black transition-all active:translate-y-0.5 uppercase tracking-widest;
+  box-shadow: 4px 4px 0px #000;
 }
 
-.high-contrast * {
-  border-color: #ffffff !important;
+.btn-posthog:hover {
+  box-shadow: 2px 2px 0px #000;
+  transform: translate(2px, 2px);
 }
 
-.high-contrast a {
-  color: #ffff00 !important;
-  text-decoration: underline !important;
+/* Accessibility - No Emoji Indicators */
+.status-indicator {
+  @apply inline-block w-2 h-2 rounded-full mr-2 border border-black;
 }
 
-.high-contrast button {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  border: 2px solid #ffffff !important;
+.status-online {
+  @apply bg-green-400;
 }
 
-/* Dyslexia-Friendly Font */
-.dyslexia-font * {
-  font-family: 'OpenDyslexic', sans-serif !important;
+.status-offline {
+  @apply bg-red-400;
 }
 
-/* Highlight Links */
-.highlight-links a {
-  text-decoration: underline !important;
-  text-decoration-thickness: 2px !important;
-  text-underline-offset: 3px !important;
-  font-weight: 600 !important;
+.status-beta {
+  @apply bg-[var(--posthog-orange)];
 }
 
-/* Increase Spacing */
-.increase-spacing * {
-  line-height: 1.8 !important;
-  letter-spacing: 0.05em !important;
-}
-
-.increase-spacing p,
-.increase-spacing li,
-.increase-spacing div {
-  margin-bottom: 1.5em !important;
-}
-
-/* Keyboard shortcut display */
-kbd {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.875em;
-}
-
-@keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-
+@keyframes blink {
   50% {
-    transform: translateY(-10px);
+    opacity: 0;
   }
+}
+
+/* Custom Selection */
+::selection {
+  background: var(--posthog-orange);
+  color: black;
+}
+
+/* Reset standard pointer cursor (using OS style later) */
+a,
+button,
+[role="button"] {
+  cursor: none;
+}
+
+/* Technical Labels */
+.tech-label {
+  @apply font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-zinc-500;
 }

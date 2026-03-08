@@ -1,159 +1,145 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { motion, useAnimation, useMotionValue } from "framer-motion";
-import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { MessageSquare, Activity, Minus, X, Quote, Star, Zap } from "lucide-react";
 import { testimonials, type Testimonial } from "@/data/testimonials";
-import { cn } from "@/lib/utils";
+import { useState } from "react";
 
-// Ensure we have enough items for a smooth loop by duplicating the list
-const repeatedTestimonials = [...testimonials, ...testimonials, ...testimonials, ...testimonials];
+const repeatedTestimonials = [...testimonials, ...testimonials];
 
 export function Testimonials() {
     const [isHovered, setIsHovered] = useState(false);
-    const [expandedCount, setExpandedCount] = useState(0);
-    const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-    const handleToggle = (isExpanded: boolean) => {
-        setExpandedCount(prev => isExpanded ? prev + 1 : prev - 1);
-    };
-
-    const scrollLeft = () => {
-        if (scrollContainerRef.current) {
-            scrollContainerRef.current.scrollBy({ left: -500, behavior: 'smooth' });
-        }
-    };
-
-    const scrollRight = () => {
-        if (scrollContainerRef.current) {
-            scrollContainerRef.current.scrollBy({ left: 500, behavior: 'smooth' });
-        }
-    };
 
     return (
-        <section className="py-24 relative overflow-hidden bg-background">
-            {/* Background decoration */}
-            <div className="absolute inset-0 bg-grid-neutral-900/[0.05] dark:bg-grid-white/[0.05] bg-[size:32px_32px] [mask-image:radial-gradient(white,transparent_85%)] pointer-events-none" />
-
-            <div className="container mx-auto px-4 mb-12 relative z-10">
+        <section className="py-40 bg-[var(--background)] relative border-t-8 border-black overflow-hidden">
+            <div className="container mx-auto px-6 mb-24">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center max-w-2xl mx-auto"
+                    transition={{ duration: 1 }}
+                    className="flex flex-col md:flex-row justify-between items-end gap-12 pb-12 border-b-8 border-black"
                 >
-                    <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">
-                        Recommendation
-                    </h2>
-                    <p className="text-neutral-600 dark:text-neutral-400 text-lg">
-                        Feedback from colleagues and clients I've had the pleasure of working with.
-                    </p>
+                    <div className="space-y-8">
+                        <div className="flex items-center gap-4">
+                            <div className="p-2 bg-black text-white shadow-[6px_6px_0_var(--posthog-orange)]">
+                                <Activity className="w-8 h-8 group-hover:rotate-180 transition-transform" />
+                            </div>
+                            <span className="tech-label tracking-[0.4em]">PEER VALIDATION</span>
+                        </div>
+                        <h2 className="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-[0.8]">
+                            Collaborator<br />Insights
+                        </h2>
+                        <p className="text-zinc-600 font-bold text-xl max-w-xl uppercase tracking-tighter leading-tight italic">
+                            Analyzing professional verification logs and strategic industry recognition streams.
+                        </p>
+                    </div>
                 </motion.div>
             </div>
 
-            <div className="relative w-full overflow-hidden mask-fade-edges">
-                {/* Gradient masks for edges */}
-                <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-r from-background to-transparent z-20 pointer-events-none" />
-                <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-l from-background to-transparent z-20 pointer-events-none" />
-
-                {/* CSS Scroll Animation */}
-                <style jsx global>{`
-                    @keyframes scroll-left {
-                        0% { transform: translateX(0); }
-                        100% { transform: translateX(-50%); }
-                    }
-                `}</style>
-
-                <div
-                    ref={scrollContainerRef}
-                    className="flex gap-6 py-4 overflow-x-auto scrollbar-hide scroll-smooth"
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
-                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            <div
+                className="flex gap-10 overflow-hidden relative group py-8"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+            >
+                {/* Scrolling Marquee */}
+                <motion.div
+                    className="flex gap-10 whitespace-nowrap"
+                    initial={{ x: 0 }}
+                    animate={{ x: isHovered ? 0 : "-50%" }}
+                    transition={{
+                        duration: 60,
+                        repeat: Infinity,
+                        ease: "linear",
+                        repeatType: "loop"
+                    }}
                 >
-                    <div
-                        className="flex gap-6 flex-nowrap items-start"
-                        style={{
-                            animation: "scroll-left 500s linear infinite",
-                            animationPlayState: (isHovered || expandedCount > 0) ? "paused" : "running",
-                            width: "fit-content"
-                        }}
-                    >
-                        {/* We double the list inside the div to create the seamless loop effect */}
-                        {[...repeatedTestimonials, ...repeatedTestimonials].map((item, idx) => (
-                            <TestimonialCard
-                                key={`${item.id}-${idx}`}
-                                item={item}
-                                onToggle={handleToggle}
-                            />
-                        ))}
-                    </div>
-                </div>
+                    {repeatedTestimonials.map((item, idx) => (
+                        <motion.div
+                            key={`${item.id}-${idx}`}
+                            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+                            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: (idx % testimonials.length) * 0.1 }}
+                        >
+                            <LogWindow item={item} />
+                        </motion.div>
+                    ))}
+                </motion.div>
+
+                {/* Left/Right Glass Overlays */}
+                <div className="absolute inset-y-0 left-0 w-64 bg-gradient-to-r from-[var(--background)] via-[var(--background)]/90 to-transparent z-10 pointer-events-none" />
+                <div className="absolute inset-y-0 right-0 w-64 bg-gradient-to-l from-[var(--background)] via-[var(--background)]/90 to-transparent z-10 pointer-events-none" />
             </div>
 
-            {/* Navigation Arrows - Below Carousel */}
-            <div className="flex justify-center gap-4 mt-6 relative z-10">
-                <button
-                    onClick={scrollLeft}
-                    className="group p-4 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/60 transition-all duration-300 hover:scale-110 active:scale-95 border-2 border-purple-400/50"
-                    aria-label="Scroll left"
+            {/* Designer's Connection Prompt */}
+            <div className="container mx-auto px-6 mt-32">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.95, y: 30 }}
+                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
+                    whileHover={{ x: 20, backgroundColor: "var(--posthog-orange)" }}
+                    className="p-10 bg-white border-4 border-black shadow-[20px_20px_0px_rgba(0,0,0,0.05)] cursor-none group transition-all"
                 >
-                    <ChevronLeft className="w-6 h-6 group-hover:scale-110 transition-transform" strokeWidth={3} />
-                </button>
-                <button
-                    onClick={scrollRight}
-                    className="group p-4 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/60 transition-all duration-300 hover:scale-110 active:scale-95 border-2 border-purple-400/50"
-                    aria-label="Scroll right"
-                >
-                    <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform" strokeWidth={3} />
-                </button>
+                    <div className="flex items-center justify-between font-black text-sm uppercase tracking-[0.4em]">
+                        <div className="flex items-center gap-6">
+                            <div className="w-4 h-4 bg-black rounded-full shadow-[0_0_15px_rgba(0,0,0,0.2)]" />
+                            <span className="text-black">CONNECT FOR STRATEGIC PARTNERSHIP</span>
+                        </div>
+                        <div className="flex items-center gap-4 opacity-30 group-hover:opacity-100 transition-opacity">
+                            <Zap className="w-6 h-6 animate-pulse" />
+                            <span>READY FOR COLLABORATION</span>
+                        </div>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );
 }
 
-function TestimonialCard({ item, onToggle }: { item: Testimonial, onToggle: (isExpanded: boolean) => void }) {
-    const [isExpanded, setIsExpanded] = useState(false);
-
-    const handleReadMore = () => {
-        const newState = !isExpanded;
-        setIsExpanded(newState);
-        onToggle(newState);
-    };
-
+function LogWindow({ item }: { item: Testimonial }) {
     return (
-        <motion.div
-            whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-            className={`relative group w-[320px] md:w-[480px] flex-shrink-0 p-8 rounded-xl bg-purple-500/5 dark:bg-purple-500/5 hover:bg-purple-500/10 dark:hover:bg-purple-500/10 border backdrop-blur-md transition-colors duration-300 flex flex-col justify-between ${isExpanded ? "border-purple-500/50 dark:border-purple-500/50" : "border-transparent hover:border-purple-500/50 dark:hover:border-purple-500/50"}`}
-        >
-            <div className="flex justify-end mb-2">
-                <Quote className="w-8 h-8 text-purple-500 fill-purple-500" />
-            </div>
-
-            <div className="flex flex-col gap-4 mb-4">
-                <p className={`text-base leading-relaxed text-neutral-800 dark:text-neutral-200 font-medium ${isExpanded ? "" : "line-clamp-4"}`}>
-                    "{item.text}"
-                </p>
-
-                <button
-                    onClick={handleReadMore}
-                    className="text-sm font-bold text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 self-start focus:outline-none"
-                >
-                    {isExpanded ? "Read less" : "Read more"}
-                </button>
-            </div>
-
-            <div className="flex items-center gap-4 mt-auto">
-                <div className="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/20 flex items-center justify-center text-lg font-bold text-purple-600 dark:text-purple-400 ring-2 ring-background shrink-0">
-                    {item.name.charAt(0)}
+        <div className="w-[580px] os-card bg-white border-4 border-black flex-shrink-0 flex flex-col hover:shadow-[30px_30px_0px_rgba(247,165,1,0.1)] transition-all duration-700 group">
+            {/* Window Title Bar */}
+            <div className="window-title border-b-4 border-black py-4 px-8 bg-zinc-50/50">
+                <div className="flex items-center gap-5">
+                    <MessageSquare className="w-5 h-5 text-[var(--posthog-orange)]" />
+                    <span className="font-black tracking-[0.3em] text-[11px]">INSIGHT ID {item.id}</span>
                 </div>
-                <div>
-                    <h4 className="font-bold text-sm text-neutral-900 dark:text-neutral-100">{item.name}</h4>
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400">
-                        {item.role} @ <span className="text-purple-600 dark:text-purple-400 font-medium">{item.company}</span>
+                <div className="flex items-center gap-4 opacity-20">
+                    <Minus className="w-4 h-4" />
+                    <X className="w-5 h-5 group-hover:text-[var(--posthog-orange)] group-hover:opacity-100 transition-all cursor-none" />
+                </div>
+            </div>
+
+            {/* Window Content */}
+            <div className="p-12 space-y-10 flex-grow flex flex-col justify-between">
+                <div className="relative">
+                    <div className="absolute -top-6 -left-6 opacity-[0.03] group-hover:opacity-[0.1] transition-opacity">
+                        <Quote className="w-20 h-20" />
+                    </div>
+                    <div className="flex items-center gap-3 mb-8">
+                        <Star className="w-5 h-5 text-[var(--posthog-orange)] animate-spin-slow" />
+                        <span className="tech-label text-black/40 tracking-[0.4em]">VERIFIED SOURCE</span>
+                    </div>
+                    <p className="text-3xl text-zinc-900 font-black leading-[1.1] whitespace-normal uppercase tracking-tighter italic group-hover:text-black transition-colors">
+                        &ldquo;{item.text}&rdquo;
                     </p>
                 </div>
+
+                <div className="flex items-center gap-8 pt-10 mt-auto border-t-4 border-black/5">
+                    <div className="w-20 h-20 bg-black text-white border-4 border-black flex items-center justify-center font-black text-4xl group-hover:bg-[var(--posthog-orange)] group-hover:text-black transition-all shadow-[10px_10px_0_rgba(0,0,0,0.1)]">
+                        {item.name.charAt(0)}
+                    </div>
+                    <div className="space-y-3">
+                        <h4 className="text-3xl font-black uppercase tracking-tighter text-black leading-none">{item.name}</h4>
+                        <div className="flex items-center gap-3 tech-label tracking-[0.2em] opacity-40">
+                            {item.role} @ <span className="text-black font-black underline decoration-[var(--posthog-orange)] decoration-4">{item.company}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </motion.div>
+        </div>
     );
 }

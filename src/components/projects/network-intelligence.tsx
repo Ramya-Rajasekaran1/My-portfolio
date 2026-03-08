@@ -1,197 +1,228 @@
 "use client";
 
 import React, { useState } from "react";
+import { type Project } from "@/lib/data";
+import {
+    ArrowLeft, Activity, Compass,
+    Monitor, Target, Zap, ShieldCheck, Layers, ChevronRight, Search, Star
+} from "lucide-react";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import Image from "next/image";
 import { ImageLightbox } from "@/components/ui/image-lightbox";
+import { motion } from "framer-motion";
 
-interface ProjectSection {
-    title: string;
-    content: string | string[];
-    glassCard?: boolean;
-    multiImage?: string[];
-    verticalImages?: boolean;
-}
-
-interface Project {
-    id: number;
-    title: string;
-    category: string;
-    description: string;
-    image: string;
-    slug: string;
-    sections?: ProjectSection[];
-}
-
-interface NetworkIntelligenceProjectProps {
-    project: Project;
-}
-
-export function NetworkIntelligenceProject({ project }: NetworkIntelligenceProjectProps) {
+export function NetworkIntelligenceProject({ project }: { project: Project }) {
     const [lightboxImage, setLightboxImage] = useState<{ src: string; alt: string } | null>(null);
 
-    const getSection = (title: string) => project.sections?.find(s => s.title === title);
+    // Helper to find sections
+    const getSection = (title: string) => project.sections?.find((s) => s.title === title);
 
-    const overview = getSection("PROJECT OVERVIEW");
-    const role = getSection("ROLE & TIMELINE");
-    const audience = getSection("TARGET AUDIENCE");
-    const painPoints = getSection("PAIN POINTS");
-    const modules = getSection("PROJECT MODULES");
-    const solutioning = getSection("STEP TOWARDS SOLUTIONING");
-    const designs = getSection("VISUAL DESIGNS");
+    const objective = getSection("PROJECT OBJECTIVE:");
+    const role = getSection("ROLE:");
+    const tech = getSection("TECHNOLOGIES:");
 
     return (
-        <main className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-purple-500/30">
+        <main className="min-h-screen bg-[var(--background)] text-black font-sans selection:bg-[var(--posthog-orange)]/30 antialiased overflow-hidden">
             {/* Custom Navigation */}
-            <div className="fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center mix-blend-difference">
-                <Link
-                    href="/work"
-                    className="inline-flex items-center gap-2 text-white hover:text-purple-400 transition-colors uppercase tracking-widest text-sm font-bold"
-                >
-                    <ArrowLeft className="w-4 h-4" />
-                    Back
-                </Link>
-            </div>
-
-            {/* Hero Section */}
-            <section className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-12 overflow-hidden">
-                <div className="container mx-auto px-4 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div className="order-2 lg:order-1 space-y-8">
-                        <span className="text-purple-400 font-bold tracking-[0.2em] uppercase text-sm">
-                            CASE STUDY — 2022
+            <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b-4 border-black">
+                <div className="container mx-auto px-6 h-20 flex items-center justify-between">
+                    <Link
+                        href="/work"
+                        className="inline-flex items-center gap-4 text-sm font-black text-zinc-500 hover:text-black transition-all uppercase tracking-[0.3em] group"
+                    >
+                        <ArrowLeft className="w-5 h-5 group-hover:-translate-x-2 transition-transform" />
+                        [BACK TO ARCHIVE]
+                    </Link>
+                    <div className="flex items-center gap-6">
+                        <div className="p-2 bg-black text-white shadow-[4px_4px_0_var(--posthog-orange)]">
+                            <Compass className="w-5 h-5 animate-spin-slow" />
+                        </div>
+                        <span className="text-[11px] font-black uppercase tracking-[0.4em] text-black hidden md:block">
+                            STRATEGY BREAKDOWN: {project.title.toUpperCase()}
                         </span>
-                        <h1 className="text-5xl md:text-7xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-neutral-400">
-                            Orders &<br />Inventory
-                        </h1>
-                        <p className="text-xl md:text-2xl text-neutral-400 max-w-lg leading-relaxed">
-                            {project.description}
-                        </p>
-
-                        {role && Array.isArray(role.content) && (
-                            <div className="pt-8 border-t border-white/10">
-                                {role.content.map((line, i) => (
-                                    <p key={i} className="text-neutral-500 font-mono text-sm uppercase tracking-wider mb-2">
-                                        {line}
-                                    </p>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-
-                    <div className="order-1 lg:order-2 relative group cursor-pointer" onClick={() => setLightboxImage({ src: project.image, alt: project.title })}>
-                        <div className="absolute inset-0 bg-purple-500/20 blur-[100px] rounded-full opacity-50 grouphover:opacity-70 transition-opacity" />
-                        <img
-                            src={project.image}
-                            alt={project.title}
-                            className="relative w-full h-auto drop-shadow-2xl transform group-hover:scale-105 transition-transform duration-700 ease-out"
-                        />
                     </div>
                 </div>
-            </section>
+            </nav>
 
-            {/* Target Audience - Custom Grid */}
-            {audience && (
-                <section className="py-24 bg-neutral-900 border-y border-white/5">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-3xl font-bold mb-16 text-center text-neutral-400 uppercase tracking-widest">Target Audience</h2>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            {Array.isArray(audience.content) && audience.content.map((item, i) => (
-                                <div key={i} className="aspect-square flex items-center justify-center p-6 text-center glass rounded-2xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5">
-                                    <span className="text-lg font-bold text-white">{item}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            )}
-
-            {/* Modules - Horizontal list */}
-            {modules && (
-                <section className="py-24 bg-black">
-                    <div className="container mx-auto px-4">
-                        <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-                            <div className="md:w-1/3">
-                                <h2 className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
-                                    Project Modules
-                                </h2>
-                                <p className="text-neutral-500">The ecosystem consists of several interconnected modules.</p>
+            <article className="container mx-auto px-6 pt-40 pb-40 space-y-40">
+                {/* Hero / Header Window */}
+                <section className="max-w-7xl mx-auto">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
+                        className="os-card bg-white border-4 border-black shadow-[30px_30px_0px_#000] overflow-hidden"
+                    >
+                        <div className="window-title border-b-4 border-black py-4 px-8 bg-zinc-50/50">
+                            <div className="flex items-center gap-5">
+                                <Monitor className="w-5 h-5 text-[var(--posthog-orange)]" />
+                                <span className="font-black tracking-[0.3em] text-[11px]">PROJECT CANVAS</span>
                             </div>
-                            <div className="md:w-2/3 flex flex-wrap gap-4 justify-end">
-                                {Array.isArray(modules.content) && modules.content.map((item, i) => (
-                                    <span key={i} className="px-6 py-3 rounded-full border border-purple-500/30 text-purple-300 text-sm font-bold uppercase tracking-wider hover:bg-purple-500/10 transition-colors cursor-default">
-                                        {item}
-                                    </span>
+                            <div className="flex items-center gap-4 opacity-20">
+                                <Star className="w-4 h-4 text-[var(--posthog-orange)] animate-spin-slow" />
+                                <ShieldCheck className="w-5 h-5 text-black" />
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-2">
+                            <div className="p-12 md:p-20 space-y-12 border-b-4 lg:border-b-0 lg:border-r-4 border-black/5">
+                                <div className="space-y-8">
+                                    <div className="inline-block px-6 py-2 bg-[var(--posthog-orange)] border-4 border-black text-[11px] font-black text-black uppercase tracking-[0.3em] shadow-[8px_8px_0_#000]">
+                                        AUDIT PHASE: {project.category.toUpperCase()}
+                                    </div>
+                                    <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.8] text-black">
+                                        {project.title}
+                                    </h1>
+                                    <p className="text-2xl text-zinc-900 font-bold leading-tight uppercase tracking-tight italic">
+                                        &ldquo;{project.description}&rdquo;
+                                    </p>
+                                </div>
+
+                                {role && Array.isArray(role.content) && (
+                                    <div className="space-y-6">
+                                        <span className="tech-label tracking-[0.3em]">STRATEGIC ROLE</span>
+                                        <div className="flex flex-wrap gap-4">
+                                            {role.content.map((r: string, i: number) => (
+                                                <div key={i} className="px-6 py-3 bg-black text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-[8px_8px_0_var(--posthog-orange)]">
+                                                    {r}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="relative group cursor-none aspect-video lg:aspect-auto" onClick={() => setLightboxImage({ src: project.image, alt: project.title })}>
+                                <Image
+                                    src={project.image}
+                                    alt={project.title}
+                                    fill
+                                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 contrast-125 scale-105 group-hover:scale-110"
+                                />
+                                <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors z-10" />
+                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black text-white p-6 border-4 border-black group-hover:bg-[var(--posthog-orange)] group-hover:text-black transition-all opacity-0 group-hover:opacity-100 z-30 shadow-[10px_10px_0_#000]">
+                                    <Search className="w-8 h-8" />
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                </section>
+
+                {/* Objective Section */}
+                <section className="max-w-6xl mx-auto">
+                    <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1 }}
+                        className="os-card bg-white border-4 border-black shadow-[20px_20px_0_rgba(0,0,0,0.05)]"
+                    >
+                        <div className="window-title border-b-4 border-black py-4 px-8 bg-zinc-50/50">
+                            <div className="flex items-center gap-5">
+                                <Target className="w-5 h-5 text-[var(--posthog-orange)]" />
+                                <span className="font-black tracking-[0.3em] text-[11px]">MISSION PARAMETERS</span>
+                            </div>
+                        </div>
+                        <div className="p-12 md:p-20 flex flex-col lg:flex-row gap-20">
+                            <div className="flex-1 space-y-10">
+                                <span className="tech-label tracking-[0.3em]">01 // STRATEGIC PROBLEM</span>
+                                <ul className="space-y-8">
+                                    {Array.isArray(objective?.content) && objective.content.map((bullet: string, i: number) => (
+                                        <li key={i} className="flex gap-8 group">
+                                            <div className="text-[var(--posthog-orange)] font-black group-hover:translate-x-3 transition-transform text-2xl">»</div>
+                                            <span className="text-2xl md:text-3xl font-black leading-[1.1] text-zinc-900 uppercase tracking-tighter">{bullet}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div className="lg:w-px bg-black/10" />
+                            <div className="flex-1 space-y-10">
+                                <span className="tech-label tracking-[0.3em]">02 // ARCHITECTURE UNIT</span>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                    {Array.isArray(tech?.content) && tech.content.map((t: string, i: number) => (
+                                        <div key={i} className="p-6 bg-zinc-50 border-4 border-black/5 flex items-center justify-between group hover:bg-black hover:text-white transition-all shadow-[8px_8px_0_rgba(0,0,0,0.03)] hover:shadow-[12px_12px_0_var(--posthog-orange)]">
+                                            <span className="text-[11px] font-black uppercase tracking-[0.2em]">{t}</span>
+                                            <Zap className="w-5 h-5 text-[var(--posthog-orange)] group-hover:rotate-12 transition-transform" />
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                </section>
+
+                {/* Sub-sections rendering */}
+                {project.sections?.filter((s) => !["PROJECT OBJECTIVE:", "ROLE:", "TECHNOLOGIES:"].includes(s.title)).map((section, idx: number) => (
+                    <motion.section
+                        key={idx}
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1 }}
+                        className="max-w-7xl mx-auto space-y-16"
+                    >
+                        <div className="flex items-center gap-10">
+                            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-black shrink-0">{section.title}</h2>
+                            <div className="h-2 bg-black/10 flex-1 shadow-inner" />
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-12 gap-20 items-start">
+                            <div className={`md:col-span-12 space-y-10 ${(section as any).image ? 'md:col-span-6' : ''}`}>
+                                {Array.isArray(section.content) && section.content.map((p: string, i: number) => (
+                                    <div key={i} className="flex gap-10 p-12 bg-white border-4 border-black shadow-[15px_15px_0_rgba(0,0,0,0.03)] hover:shadow-[20px_20px_0_var(--posthog-orange)] transition-all">
+                                        <div className="mt-1"><ChevronRight className="w-8 h-8 text-[var(--posthog-orange)]" /></div>
+                                        <p className="text-2xl md:text-3xl text-zinc-900 font-bold leading-[1.1] uppercase tracking-tighter italic">
+                                            &ldquo;{p}&rdquo;
+                                        </p>
+                                    </div>
                                 ))}
                             </div>
-                        </div>
-                    </div>
-                </section>
-            )}
 
-            {/* Pain Points - Glass Cards */}
-            {painPoints && (
-                <section className="py-24 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] to-[#11001c] z-0" />
-                    <div className="container mx-auto px-4 relative z-10">
-                        <h2 className="text-3xl font-bold mb-12 text-center uppercase tracking-widest">Pain Points</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {Array.isArray(painPoints.content) && painPoints.content.map((point, i) => (
-                                <div key={i} className="p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-all hover:-translate-y-2 group">
-                                    <div className="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center mb-6 group-hover:bg-purple-500/40 transition-colors">
-                                        <span className="text-purple-400 font-bold">{i + 1}</span>
+                            {(section as any).image && (
+                                <div className="md:col-span-6">
+                                    <div className="os-card bg-white p-5 border-4 border-black group cursor-none shadow-[20px_20px_0_rgba(0,0,0,0.05)]" onClick={() => setLightboxImage({ src: (section as any).image, alt: section.title })}>
+                                        <div className="relative aspect-video overflow-hidden border-4 border-black opacity-90 group-hover:opacity-100 transition-opacity">
+                                            <Image
+                                                src={(section as any).image}
+                                                alt={section.title}
+                                                fill
+                                                className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 contrast-125 scale-110"
+                                            />
+                                            <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors z-10" />
+                                        </div>
+                                        <div className="mt-8 flex justify-between items-center px-4">
+                                            <span className="tech-label tracking-[0.3em] opacity-40">HIFI PREVIEW 0{idx + 1}</span>
+                                            <div className="flex gap-3 opacity-20">
+                                                <div className="w-3 h-3 rounded-full bg-black" />
+                                                <div className="w-3 h-3 rounded-full bg-black animate-pulse" />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <p className="text-lg text-neutral-300 leading-relaxed">
-                                        {point.startsWith("-") ? point.substring(1).trim() : point}
-                                    </p>
                                 </div>
-                            ))}
+                            )}
                         </div>
-                    </div>
-                </section>
-            )}
+                    </motion.section>
+                ))}
 
-            {/* Solutioning */}
-            {solutioning && (
-                <section className="py-24 bg-[#0a0a0a]">
-                    <div className="container mx-auto px-4 max-w-4xl">
-                        <h2 className="text-3xl font-bold mb-12 uppercase tracking-widest text-purple-400">Solution Approach</h2>
-                        <div className="space-y-6">
-                            {Array.isArray(solutioning.content) && solutioning.content.map((line, i) => (
-                                <div key={i} className="flex gap-4">
-                                    {line.startsWith("-") && <span className="text-purple-500 mt-1">•</span>}
-                                    <p className={`text-xl ${line.startsWith("-") ? "text-neutral-400" : "text-white font-bold text-2xl mb-4"}`}>
-                                        {line.startsWith("-") ? line.substring(1).trim() : line}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            )}
-
-            {/* Visual Designs */}
-            {designs && designs.multiImage && (
-                <section className="py-24 bg-white text-black">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-4xl font-bold mb-16 text-center text-black">Visual Designs</h2>
-                        <div className="space-y-24">
-                            {designs.multiImage.map((img, i) => (
-                                <div key={i} className="rounded-xl overflow-hidden shadow-2xl transition-transform hover:scale-[1.01] cursor-pointer" onClick={() => setLightboxImage({ src: img, alt: "Visual Design" })}>
-                                    <img src={img} alt="Design Mockup" className="w-full h-auto" />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            )}
-
-            {lightboxImage && (
                 <ImageLightbox
-                    src={lightboxImage.src}
-                    alt={lightboxImage.alt}
+                    src={lightboxImage?.src || ""}
+                    alt={lightboxImage?.alt || ""}
                     onClose={() => setLightboxImage(null)}
                 />
-            )}
+            </article>
+
+            {/* Shutdown Divider */}
+            <div className="container mx-auto px-6 py-60">
+                <div className="h-2 bg-black w-full relative">
+                    <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-6 bg-[var(--background)] border-4 border-black"
+                    >
+                        <Compass className="w-10 h-10 text-black" />
+                    </motion.div>
+                </div>
+            </div>
         </main>
     );
 }
