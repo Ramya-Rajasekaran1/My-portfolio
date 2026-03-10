@@ -16,27 +16,21 @@ export function FeaturedProjects() {
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
-                    className="flex flex-col md:flex-row justify-between items-end mb-24 gap-12 border-b-8 border-black pb-12"
+                    transition={{ duration: 1.2, ease: [0.2, 0.65, 0.3, 0.9] }}
+                    className="flex flex-col md:flex-row justify-between items-end mb-24 gap-12"
                 >
-                    <div className="space-y-6">
-                        <div className="flex items-center gap-4">
-                            <div className="w-3 h-3 bg-[var(--posthog-orange)] shadow-[0_0_10px_var(--posthog-orange)]" />
-                            <span className="tech-label tracking-[0.4em]">SELECTED CASE STUDIES</span>
-                        </div>
-                        <h2 className="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-[0.8]">
-                            High Impact<br />Case Studies
+                    <div className="space-y-6 max-w-2xl">
+                        <span className="font-sans text-xs uppercase tracking-[0.2em] text-zinc-400 block mb-4">Selected Work</span>
+                        <h2 className="text-5xl md:text-7xl font-serif text-black leading-[1.1] tracking-tight">
+                            Impact-driven case studies.
                         </h2>
-                        <p className="text-zinc-600 font-bold text-lg max-w-2xl uppercase tracking-tighter leading-tight italic">
-                            A curated selection of end to end design solutions, from deep UX research to scalable design systems.
-                        </p>
                     </div>
                     <Link
                         href="/work"
-                        className="btn-posthog flex items-center gap-4 group px-10 py-5 text-sm"
+                        className="group flex items-center gap-4 text-sm font-medium text-zinc-600 hover:text-black transition-colors pb-2 border-b border-transparent hover:border-black"
                     >
-                        EXPLORE ARCHIVE
-                        <ArrowRight className="w-6 h-6 group-hover:translate-x-3 transition-transform duration-500" />
+                        View Full Archive
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </Link>
                 </motion.div>
 

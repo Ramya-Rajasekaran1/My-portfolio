@@ -13,14 +13,14 @@
 @variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f9f9f9;
-  /* PostHog Light Cream */
-  --foreground: #000000;
-  --posthog-orange: #f7a501;
-  --border: #000000;
-  --zinc-800: #d4d4d8;
-  /* Zinc-300 equivalent for light mode */
-  --glass-bg: rgba(255, 255, 255, 0.7);
+  --background: #FBFBFB;
+  /* Paper White */
+  --foreground: #1A1A1A;
+  --posthog-orange: #C0A080;
+  /* Muted elegant accent */
+  --border: rgba(0, 0, 0, 0.08);
+  --zinc-800: #888888;
+  --glass-bg: rgba(251, 251, 251, 0.85);
 }
 
 body {
@@ -30,17 +30,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Designer OS - The Grid Background */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background-image: radial-gradient(circle at 1.5px 1.5px, #d1d1d1 1px, transparent 0);
-  background-size: 60px 60px;
-  pointer-events: none;
-}
-
+/* Editorial - Subtle Noise (added via component) */
 /* Glassmorphism System */
 .os-glass {
   background: var(--glass-bg);
@@ -48,45 +38,39 @@ body::before {
   -webkit-backdrop-filter: blur(16px);
 }
 
-/* Monolithic 2px Borders */
+/* Refined 1px Borders */
 .os-border {
-  border: 2px solid var(--border);
+  border: 1px solid var(--border);
 }
 
 .os-border-orange {
-  border: 2px solid var(--posthog-orange);
+  border: 1px solid var(--posthog-orange);
 }
 
-/* Sharp Corners & Windows */
+/* Soft Floating Cards */
 .os-card {
-  @apply bg-background border-2 border-black rounded-none;
-  box-shadow: 4px 4px 0px #000;
+  @apply bg-background border border-black/5 rounded-3xl overflow-hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
 }
 
 .os-card-hover {
-  @apply transition-all duration-300 cursor-pointer;
+  @apply transition-all duration-700 cursor-pointer;
 
   &:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0px var(--posthog-orange);
-    border-color: var(--posthog-orange);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.08);
   }
 }
 
-/* Window Title Bar */
+/* Editorial Label */
 .window-title {
-  @apply bg-black text-white px-4 py-2 text-[10px] font-bold flex justify-between items-center uppercase tracking-[0.2em];
+  @apply bg-transparent text-zinc-500 px-6 py-4 text-[10px] font-medium flex justify-between items-center uppercase tracking-[0.2em] border-b border-black/5;
 }
 
-/* PostHog Buttons */
+/* Editorial Buttons */
 .btn-posthog {
-  @apply bg-[var(--posthog-orange)] text-black px-6 py-2.5 font-mono text-[11px] font-bold border-2 border-black transition-all active:translate-y-0.5 uppercase tracking-widest;
-  box-shadow: 4px 4px 0px #000;
-}
-
-.btn-posthog:hover {
-  box-shadow: 2px 2px 0px #000;
-  transform: translate(2px, 2px);
+  @apply bg-transparent text-foreground px-8 py-3 font-sans text-[11px] font-medium border border-black/10 rounded-full transition-all uppercase tracking-widest hover:bg-black hover:text-white hover:border-black;
 }
 
 /* Accessibility - No Emoji Indicators */
@@ -125,7 +109,7 @@ button,
   cursor: none;
 }
 
-/* Technical Labels */
+/* Minimal Labels */
 .tech-label {
-  @apply font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-zinc-500;
+  @apply font-sans text-[10px] uppercase tracking-[0.1em] text-zinc-400 bg-transparent px-0 border-0 shadow-none;
 }

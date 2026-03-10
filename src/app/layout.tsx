@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, Outfit } from "next/font/google";
+import { Inter, DM_Serif_Display, Outfit } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -14,7 +14,7 @@ import { ConditionalBackground } from "@/components/ui/conditional-background";
 import { NoiseOverlay } from "@/components/ui/noise-overlay";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
+const dmSerif = DM_Serif_Display({ weight: "400", subsets: ["latin"], variable: "--font-playfair" }); // keeping variable name to avoid breaking existing classes temporarily
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
@@ -38,7 +38,7 @@ export default function RootLayout({
       <body className={cn(
         "min-h-screen bg-[var(--background)] text-black antialiased",
         inter.variable,
-        playfair.variable,
+        dmSerif.variable,
         outfit.variable
       )}>
         <ThemeProvider
