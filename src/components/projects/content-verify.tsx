@@ -54,7 +54,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
     return (
         <main className="min-h-screen bg-[var(--background)] text-black font-sans selection:bg-[var(--posthog-orange)]/30 antialiased">
             {/* Custom Navigation */}
-            <nav className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-xl border-b-4 border-black">
+            <nav className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-black/5">
                 <div className="container mx-auto px-6 h-20 flex items-center justify-between">
                     <Link
                         href="/work"
@@ -64,7 +64,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                         [BACK TO ARCHIVE]
                     </Link>
                     <div className="flex items-center gap-6">
-                        <div className="p-2 bg-black text-white shadow-[4px_4px_0_var(--posthog-orange)]">
+                        <div className="p-2 bg-black text-black shadow-[4px_4px_0_var(--posthog-orange)]">
                             <Zap className="w-5 h-5 animate-spin-slow" />
                         </div>
                         <span className="text-[11px] font-black uppercase tracking-[0.4em] text-black hidden md:block">
@@ -75,7 +75,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
             </nav>
 
             {/* Hero Section */}
-            <header className="pt-32 pb-16 px-6 border-b-4 border-black bg-white relative overflow-hidden">
+            <header className="pt-32 pb-16 px-6 border-b border-black/5 bg-white relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-12 opacity-[0.03] scale-150 rotate-12">
                     <Target className="w-96 h-96" />
                 </div>
@@ -96,8 +96,8 @@ export function ContentVerifyProject({ project }: { project: Project }) {
             <article className="container mx-auto px-6 py-20 space-y-32 pb-40">
                 {/* Introduction / Objective */}
                 <section className="max-w-6xl mx-auto">
-                    <div className="os-card bg-white border-4 border-black shadow-[20px_20px_0px_#000]">
-                        <div className="window-title border-b-4 border-black py-4 px-8 bg-zinc-50/50">
+                    <div className=" bg-white border border-black/5 shadow-[20px_20px_0px_#000]">
+                        <div className="border-b border-black/5 flex items-center gap-4 py-4 px-6 bg-zinc-50/50 border-b border-black/5 py-4 px-8 bg-zinc-50/50">
                             <div className="flex items-center gap-3">
                                 <Target className="w-5 h-5 text-[var(--posthog-orange)]" />
                                 <span className="font-black uppercase tracking-[0.3em] text-[11px]">MISSION PARAMETERS</span>
@@ -113,7 +113,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                 <ul className="space-y-8">
                                     {Array.isArray(objective?.content) && objective.content.map((bullet: string, i: number) => (
                                         <li key={i} className="flex gap-6 group">
-                                            <div className="w-6 h-6 rounded-none bg-black text-white flex items-center justify-center text-[10px] font-bold shrink-0 mt-1 group-hover:bg-[var(--posthog-orange)] group-hover:text-black transition-colors">
+                                            <div className="w-6 h-6 rounded-none bg-black text-black flex items-center justify-center text-[10px] font-bold shrink-0 mt-1 group-hover:bg-[var(--posthog-orange)] group-hover:text-black transition-colors">
                                                 0{i + 1}
                                             </div>
                                             <span className="text-lg md:text-xl font-medium leading-snug text-zinc-800 uppercase tracking-tight">{bullet}</span>
@@ -153,7 +153,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                             { label: "USER ENGAGEMENT", value: "Chi² = 16.4", p: "RESULT P < 0.005", desc: "Substantial increase in interaction with contested content vs uncontrolled reading." },
                             { label: "COGNITIVE SHIFT", value: "19% > 50%", p: "SHIFT DELTA", desc: "Measured opinion shifts indicate exposure to alternatives via tool altered perspectives." }
                         ].map((metric, i) => (
-                            <div key={i} className="os-card bg-white p-10 border-2 border-black group hover:shadow-[12px_12px_0_var(--posthog-orange)] transition-all">
+                            <div key={i} className=" bg-white p-10 border-2 border-black group hover:shadow-[12px_12px_0_var(--posthog-orange)] transition-all">
                                 <div className="space-y-8">
                                     <div className="space-y-2">
                                         <div className="text-5xl font-black text-black tracking-tighter group-hover:text-[var(--posthog-orange)] transition-colors">{metric.value}</div>
@@ -171,7 +171,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                 <section className="max-w-7xl mx-auto space-y-16 py-20 bg-zinc-50 os-border border-black/5">
                     <div className="flex flex-col items-center gap-6 px-6">
                         <h2 className="text-4xl md:text-8xl font-black uppercase tracking-tighter text-center">LOGIC INTERVENTION</h2>
-                        <div className="flex items-center gap-4 bg-black text-white px-8 py-4 border-2 border-black shadow-[12px_12px_0_var(--posthog-orange)]">
+                        <div className="flex items-center gap-4 bg-black text-black px-8 py-4 border-2 border-black shadow-[12px_12px_0_var(--posthog-orange)]">
                             <MousePointer2 className="w-5 h-5 text-[var(--posthog-orange)]" />
                             <span className="text-[12px] font-black uppercase tracking-[0.3em]">SELECT NODE TO ANALYZE LOGIC</span>
                         </div>
@@ -187,7 +187,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                         setShowDesignLogic(false);
                                     }}
                                     className={`w-full p-8 os-border border-2 text-left transition-all duration-300 group flex items-center justify-between ${selectedPainPoint === point.id
-                                        ? 'bg-black border-black text-white shadow-[8px_8px_0_var(--posthog-orange)]'
+                                        ? 'bg-black border-black text-black shadow-[8px_8px_0_var(--posthog-orange)]'
                                         : 'bg-white border-black text-black hover:bg-zinc-50'
                                         }`}
                                 >
@@ -207,9 +207,9 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                 <motion.div
                                     initial={{ opacity: 0, x: 20 }}
                                     animate={{ opacity: 1, x: 0 }}
-                                    className="os-card bg-white border-4 border-black"
+                                    className=" bg-white border border-black/5"
                                 >
-                                    <div className="window-title border-b-4 border-black py-4 px-8 bg-zinc-50/50">
+                                    <div className="border-b border-black/5 flex items-center gap-4 py-4 px-6 bg-zinc-50/50 border-b border-black/5 py-4 px-8 bg-zinc-50/50">
                                         <div className="flex items-center gap-3">
                                             <Activity className="w-5 h-5 text-[var(--posthog-orange)]" />
                                             <span className="font-black uppercase tracking-[0.3em] text-[11px]">LOGIC TRACE NODE {selectedPainPoint.toUpperCase()}</span>
@@ -222,7 +222,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                                 className={`p-10 bg-zinc-50 border-2 transition-all duration-300 cursor-pointer ${showDesignLogic ? 'border-black' : 'border-dashed border-black/20 hover:border-black/40'}`}
                                             >
                                                 <div className="flex items-center gap-3 mb-8">
-                                                    <div className="w-10 h-10 bg-black text-white flex items-center justify-center font-black text-xs">01</div>
+                                                    <div className="w-10 h-10 bg-black text-black flex items-center justify-center font-black text-xs">01</div>
                                                     <span className="tech-label font-black tracking-widest text-black">ROOT CAUSE ANALYSIS</span>
                                                 </div>
                                                 <p className="text-xl font-bold text-black uppercase leading-[1.1] tracking-tighter">
@@ -232,17 +232,17 @@ export function ContentVerifyProject({ project }: { project: Project }) {
 
                                             <div
                                                 className={`p-10 transition-all duration-500 border-4 ${showDesignLogic
-                                                    ? 'bg-black border-black text-white shadow-[12px_12px_0_var(--posthog-orange)]'
+                                                    ? 'bg-black border-black text-black shadow-[12px_12px_0_var(--posthog-orange)]'
                                                     : 'bg-white border-dashed border-black/10 opacity-40'
                                                     }`}
                                             >
                                                 <div className="flex items-center gap-3 mb-8">
                                                     <div className={`w-10 h-10 flex items-center justify-center font-black text-xs ${showDesignLogic ? 'bg-[var(--posthog-orange)] text-black' : 'bg-zinc-200 text-zinc-400'}`}>02</div>
-                                                    <span className={`tech-label font-black tracking-widest ${showDesignLogic ? 'text-white' : 'text-zinc-400'}`}>DESIGN INTERVENTION</span>
+                                                    <span className={`tech-label font-black tracking-widest ${showDesignLogic ? 'text-black' : 'text-zinc-400'}`}>DESIGN INTERVENTION</span>
                                                 </div>
                                                 {showDesignLogic ? (
                                                     <div className="space-y-6 animate-in fade-in duration-500">
-                                                        <p className="text-2xl font-black text-white uppercase leading-[1.1] tracking-tighter italic">
+                                                        <p className="text-2xl font-black text-black uppercase leading-[1.1] tracking-tighter italic">
                                                             {interactivePainPoints.find(p => p.id === selectedPainPoint)?.designLogic}
                                                         </p>
                                                         <div className="inline-block px-4 py-1.5 bg-[var(--posthog-orange)] text-black text-[10px] font-black uppercase tracking-[0.3em]">LOGIC APPLIED</div>
@@ -279,8 +279,8 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                         {Array.isArray(personas?.content) && personas.content.map((pStr: string, i: number) => {
                             const [name, trait] = pStr.split(":").map(s => s.trim().replace(/^- /, ''));
                             return (
-                                <div key={i} className="os-card bg-white border-2 border-black group hover:shadow-[16px_16px_0_#000] transition-all overflow-hidden">
-                                    <div className="window-title border-b-4 border-black py-4 px-8 bg-zinc-50/50">
+                                <div key={i} className=" bg-white border-2 border-black group hover:shadow-[16px_16px_0_#000] transition-all overflow-hidden">
+                                    <div className="border-b border-black/5 flex items-center gap-4 py-4 px-6 bg-zinc-50/50 border-b border-black/5 py-4 px-8 bg-zinc-50/50">
                                         <div className="flex items-center gap-3">
                                             <Users className="w-5 h-5 text-black/30" />
                                             <span className="font-black uppercase tracking-[0.3em] text-[10px]">PROFILE ID: NODE 0{i + 1}</span>
@@ -305,8 +305,8 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                         <span className="tech-label font-black tracking-[0.4em]">SYSTEM AUDIT: TASK FRAMEWORK</span>
                         <h2 className="text-5xl font-black uppercase tracking-tighter text-black">INTERACTION LOGS</h2>
                     </div>
-                    <div className="os-card bg-white border-4 border-black overflow-hidden shadow-[20px_20px_0px_rgba(0,0,0,0.1)]">
-                        <div className="window-title border-b-4 border-black py-4 px-8 bg-black text-white">
+                    <div className=" bg-white border border-black/5 overflow-hidden shadow-[20px_20px_0px_rgba(0,0,0,0.1)]">
+                        <div className="border-b border-black/5 flex items-center gap-4 py-4 px-6 bg-zinc-50/50 border-b border-black/5 py-4 px-8 bg-black text-black">
                             <div className="flex items-center gap-3">
                                 <ClipboardCheck className="w-5 h-5 text-[var(--posthog-orange)]" />
                                 <span className="font-black uppercase tracking-[0.3em] text-[11px]">TASK FRAMEWORK REPORT</span>
@@ -316,7 +316,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                                 <thead>
-                                    <tr className="border-b-4 border-black bg-zinc-50">
+                                    <tr className="border-b border-black/5 bg-zinc-50">
                                         <th className="p-8 tech-label font-black tracking-widest text-zinc-400">ID</th>
                                         <th className="p-8 tech-label font-black tracking-widest text-black">TEST SCENARIO</th>
                                         <th className="p-8 tech-label font-black tracking-widest text-black text-right">AUDIT RESULT</th>
@@ -350,8 +350,8 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                             { title: "Heuristic Analysis", img: "/images/content-verify/ux-audit.png", desc: "Mapping cognitive load and navigational friction.", icon: <ShieldCheck className="w-5 h-5" /> },
                             { title: "Compliance Standard", img: "/images/content-verify/accessibility.png", desc: "WCAG 2.1 AA level accessibility audits.", icon: <Layers className="w-5 h-5" /> }
                         ].map((audit, i) => (
-                            <div key={i} className="os-card bg-white border-2 border-black group hover:shadow-[20px_20px_0_#000] transition-all overflow-hidden flex flex-col">
-                                <div className="window-title border-b-4 border-black py-4 px-8 bg-zinc-50/50">
+                            <div key={i} className=" bg-white border-2 border-black group hover:shadow-[20px_20px_0_#000] transition-all overflow-hidden flex flex-col">
+                                <div className="border-b border-black/5 flex items-center gap-4 py-4 px-6 bg-zinc-50/50 border-b border-black/5 py-4 px-8 bg-zinc-50/50">
                                     <div className="flex items-center gap-4">
                                         <div className="text-[var(--posthog-orange)]">{audit.icon}</div>
                                         <span className="font-black uppercase tracking-[0.3em] text-[10px]">{audit.title.toUpperCase()} BRIEF</span>
@@ -368,7 +368,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                         className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 contrast-125"
                                     />
                                     <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors" />
-                                    <div className="absolute bottom-6 right-6 p-3 bg-black text-white os-border border-black group-hover:bg-[var(--posthog-orange)] group-hover:text-black transition-colors opacity-0 group-hover:opacity-100">
+                                    <div className="absolute bottom-6 right-6 p-3 bg-black text-black os-border border-black group-hover:bg-[var(--posthog-orange)] group-hover:text-black transition-colors opacity-0 group-hover:opacity-100">
                                         <Search className="w-5 h-5" />
                                     </div>
                                 </div>

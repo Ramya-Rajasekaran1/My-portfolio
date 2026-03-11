@@ -23,7 +23,7 @@ export function Navbar() {
             className="fixed top-0 left-0 right-0 z-[60] os-glass border-b border-black/5 px-8 h-20 flex items-center justify-between font-sans text-[11px] uppercase tracking-[0.1em] text-zinc-600 shadow-sm"
             initial={{ y: -64 }}
             animate={{ y: 0 }}
-            transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
+            transition={{ duration: 1, ease: "easeOut" }}
         >
             {/* Left Section: Studio Identity */}
             <div className="flex items-center gap-10">

@@ -47,7 +47,7 @@ export function Skills() {
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 1.2, ease: [0.2, 0.65, 0.3, 0.9] }}
+                            transition={{ duration: 1.2, ease: "easeOut" }}
                             className="space-y-6"
                         >
                             <span className="font-sans text-xs uppercase tracking-[0.2em] text-zinc-400 block mb-4">Core Competencies</span>
@@ -68,7 +68,7 @@ export function Skills() {
                                 initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 1.2, delay: idx * 0.15, ease: [0.2, 0.65, 0.3, 0.9] }}
+                                transition={{ duration: 1.2, delay: idx * 0.15, ease: "easeOut" }}
                                 className="space-y-8"
                             >
                                 <div className="flex items-center gap-4 border-b border-black/10 pb-4">
@@ -88,7 +88,7 @@ export function Skills() {
                                                     initial={{ width: 0 }}
                                                     whileInView={{ width: `${skill.proficiency}%` }}
                                                     viewport={{ once: true }}
-                                                    transition={{ duration: 1.5, delay: sIdx * 0.1, ease: [0.2, 0.65, 0.3, 0.9] }}
+                                                    transition={{ duration: 1.5, delay: sIdx * 0.1, ease: "easeOut" }}
                                                     className="h-full bg-[#111]"
                                                 />
                                             </div>

@@ -16,7 +16,7 @@ export function FeaturedProjects() {
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 1.2, ease: [0.2, 0.65, 0.3, 0.9] }}
+                    transition={{ duration: 1.2, ease: "easeOut" }}
                     className="flex flex-col md:flex-row justify-between items-end mb-24 gap-12"
                 >
                     <div className="space-y-6 max-w-2xl">

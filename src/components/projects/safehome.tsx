@@ -6,12 +6,12 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-const fadeUp = {
+const fadeUp: any = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.2, 0.65, 0.3, 0.9] } }
+  visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } }
 };
 
-const staggerContainer = {
+const staggerContainer: any = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -77,7 +77,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5, delay: 0.4, ease: [0.2, 0.65, 0.3, 0.9] }}
+            transition={{ duration: 1.5, delay: 0.4, ease: "easeOut" }}
             className="w-full aspect-[21/9] bg-zinc-100 relative overflow-hidden flex items-center justify-center p-12 text-center"
           >
             <div className="absolute inset-0 bg-[url('/images/safehome/map.png')] bg-cover bg-center opacity-10 mix-blend-multiply grayscale"></div>

@@ -17,7 +17,7 @@ export function Hero() {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1.2, ease: [0.2, 0.65, 0.3, 0.9] }}
+                        transition={{ duration: 1.2, ease: "easeOut" }}
                         className="flex items-center gap-4"
                     >
                         <div className="w-12 h-[1px] bg-zinc-400" />
@@ -27,7 +27,7 @@ export function Hero() {
                     <motion.h1
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1.2, delay: 0.2, ease: [0.2, 0.65, 0.3, 0.9] }}
+                        transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
                         className="font-serif text-6xl md:text-8xl lg:text-[110px] leading-[0.9] tracking-tight text-black"
                     >
                         Crafting intuitive <br className="hidden md:block" />

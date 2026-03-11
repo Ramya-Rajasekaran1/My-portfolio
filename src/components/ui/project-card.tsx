@@ -30,7 +30,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             transition={{
                 duration: 1.2,
                 delay: index * 0.1,
-                ease: [0.2, 0.65, 0.3, 0.9]
+                ease: "easeOut"
             }}
             className="group block relative"
         >
