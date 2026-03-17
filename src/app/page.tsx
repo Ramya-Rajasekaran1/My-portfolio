@@ -3,6 +3,7 @@ import { FeaturedProjects } from "@/components/sections/featured-projects";
 import { PublicationsAndArticles } from "@/components/sections/publications-and-articles";
 import { Certifications } from "@/components/sections/certifications";
 import { Testimonials } from "@/components/sections/testimonials";
+import { DesignLeadership } from "@/components/sections/design-leadership";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <FeaturedProjects />
       <PublicationsAndArticles />
       <Certifications />
+      <DesignLeadership />
       <Testimonials />
     </main>
   );
