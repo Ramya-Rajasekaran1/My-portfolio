@@ -7,6 +7,8 @@ import { ImageLightbox } from "@/components/ui/image-lightbox";
 import { NetworkIntelligenceProject } from "@/components/projects/network-intelligence";
 import { ContentVerifyProject } from "@/components/projects/content-verify";
 import { GenAiInclusivityProject } from "@/components/projects/gen-ai-inclusivity";
+import { TQDashboardProject } from "@/components/projects/tq-dashboard";
+import { SafeHomeProject } from "@/components/projects/safehome";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -33,12 +35,20 @@ export default function ProjectPage() {
         return <GenAiInclusivityProject project={project} />;
     }
 
+    if (slug === "tracking-quality-dashboard") {
+        return <TQDashboardProject project={project} />;
+    }
+
+    if (slug === "safehome-sf") {
+        return <SafeHomeProject project={project} />;
+    }
+
     return (
         <main className="min-h-screen pt-32 pb-24">
             <div className="container mx-auto px-4">
                 <Link
                     href="/work"
-                    className="inline-flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors mb-8"
+                    className="inline-flex items-center gap-2 text-xs font-bold font-outfit uppercase tracking-widest text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors mb-8"
                 >
                     <ArrowLeft className="w-4 h-4" />
                     Back to Work
@@ -46,13 +56,13 @@ export default function ProjectPage() {
 
                 <article className="max-w-4xl mx-auto">
                     <div className="mb-12">
-                        <span className="text-sm font-medium uppercase tracking-wider text-purple-600 dark:text-purple-400 mb-4 block">
+                        <span className="text-xs font-bold font-outfit uppercase tracking-widest text-purple-600 dark:text-purple-400 mb-4 block">
                             {project.category}
                         </span>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 tracking-tight">
                             {project.title}
                         </h1>
-                        <p className="text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                        <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
                             {project.description}
                         </p>
                     </div>
@@ -79,10 +89,10 @@ export default function ProjectPage() {
                                     .filter(s => ["WHAT:", "PROJECT OBJECTIVE:", "TARGET AUDIENCE", "TIMELINE"].includes(s.title))
                                     .map((section, index) => (
                                         <div key={index} className="glass rounded-2xl p-6 md:p-8 space-y-3 transition-all duration-300 hover:-translate-y-3 hover:translate-x-3 hover:shadow-2xl hover:backdrop-blur-3xl">
-                                            <h3 className="text-sm font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">
+                                            <h3 className="text-xs font-bold font-outfit uppercase tracking-widest text-purple-600 dark:text-purple-400">
                                                 {section.title}
                                             </h3>
-                                            <div className="text-base md:text-lg leading-relaxed text-neutral-800 dark:text-neutral-200">
+                                            <div className="text-base md:text-lg leading-relaxed text-neutral-800 dark:text-neutral-200 font-sans">
                                                 {Array.isArray(section.content) ? (
                                                     <div className="space-y-2">
                                                         {section.content.map((line, i) => (
@@ -162,9 +172,9 @@ export default function ProjectPage() {
                                         ) : (
                                             <div className={`text-lg leading-relaxed ${isGlassCard ? 'text-neutral-800 dark:text-neutral-200' : 'text-neutral-700 dark:text-neutral-300'}`}>
                                                 {(section as any).chips && (
-                                                    <div className="flex flex-wrap gap-3 mb-6">
+                                                    <div className="flex flex-wrap gap-2 pt-2 mb-6">
                                                         {(section as any).chips.map((chip: string, i: number) => (
-                                                            <span key={i} className="px-4 py-1.5 rounded-full border border-purple-200 dark:border-purple-800 text-purple-700 dark:text-purple-300 text-xs font-bold uppercase tracking-wider bg-purple-50 dark:bg-purple-900/20">
+                                                            <span key={i} className="px-4 py-1.5 rounded-full border border-purple-200 dark:border-purple-800 text-purple-700 dark:text-purple-300 text-xs font-bold font-outfit uppercase tracking-widest bg-purple-50 dark:bg-purple-900/20">
                                                                 {chip}
                                                             </span>
                                                         ))}
@@ -250,7 +260,7 @@ export default function ProjectPage() {
                                                                         </div>
                                                                     )}
                                                                     {(section as any).middleText && idx === 0 && (
-                                                                        <div className="py-2 text-lg leading-relaxed text-neutral-700 dark:text-neutral-300">
+                                                                        <div className="py-2 text-lg leading-relaxed text-neutral-700 dark:text-neutral-300 font-sans">
                                                                             <p>{(section as any).middleText}</p>
                                                                         </div>
                                                                     )}

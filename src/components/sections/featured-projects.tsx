@@ -13,14 +13,14 @@ export function FeaturedProjects() {
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                     <div>
-                        <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">Selected work</h2>
-                        <p className="text-neutral-600 dark:text-neutral-400 max-w-xl">
+                        <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 tracking-tight">Selected Work</h2>
+                        <p className="text-neutral-600 dark:text-neutral-400 max-w-xl text-base md:text-lg">
                             A collection of projects that showcase my passion for creating intuitive and impactful user experiences.
                         </p>
                     </div>
                     <Link
                         href="/work"
-                        className="group flex items-center gap-2 text-purple-600 dark:text-purple-400 font-medium hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
+                        className="group flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
                     >
                         View all projects
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

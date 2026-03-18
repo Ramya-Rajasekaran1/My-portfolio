@@ -53,26 +53,26 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
                     {/* Glass Overlay with Additional Details on Hover */}
                     <div className="absolute bottom-0 left-0 right-0 p-6 glass border-t border-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                        <span className="text-xs font-medium uppercase tracking-wider text-purple-600 dark:text-purple-400 mb-2 block">
+                        <span className="text-xs font-medium font-outfit uppercase tracking-wider text-purple-600 dark:text-purple-400 mb-2 block">
                             {project.category}
                         </span>
-                        <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">
+                        <h3 className="text-xl font-bold font-outfit text-neutral-900 dark:text-white mb-2">
                             {project.title}
                         </h3>
-                        <p className="text-neutral-700 dark:text-neutral-300 text-sm line-clamp-3">
+                        <p className="font-inter text-neutral-700 dark:text-neutral-300 text-sm line-clamp-3">
                             {project.description}
                         </p>
                     </div>
                 </div>
 
                 {/* Shorter default view - just category and title */}
-                <div className="space-y-2 mt-4">
-                    <span className="text-xs font-medium uppercase tracking-wider text-purple-600 dark:text-purple-400">
+                <div className="space-y-1.5 mt-4">
+                    <span className="px-3 py-1 text-[10px] font-bold uppercase tracking-widest bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded-full border border-purple-500/20">
                         {project.category}
                     </span>
-                    <h3 className="text-xl font-bold group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                        {project.title}
-                    </h3>
+                    <h3 className="text-xl md:text-2xl font-serif font-bold group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                    {project.title}
+                </h3>
                 </div>
             </Link>
         </motion.div>

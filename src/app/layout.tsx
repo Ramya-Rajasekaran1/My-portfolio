@@ -4,7 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
+import PortfolioFooter from "@/components/layout/portfolio-footer";
 import { SkipLink } from "@/components/accessibility/skip-link";
 import { ScrollToTop } from "@/components/accessibility/scroll-to-top";
 import { AccessibilityWidget } from "@/components/accessibility/accessibility-widget";
@@ -18,8 +18,8 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfa
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
-  title: "Ramya Rajsekaran | UX Designer",
-  description: "Portfolio of Ramya Rajsekaran, a UX Designer creating experiences for 1M+ users.",
+  title: "Ramya Rajasekaran | UX design specialist",
+  description: "Portfolio of Ramya Rajasekaran, a UX design specialist with experience leading end-to-end process across aviation, e-commerce, and supply chain.",
 };
 
 export default function RootLayout({
@@ -56,7 +56,7 @@ export default function RootLayout({
           <div id="main-content">
             {children}
           </div>
-          <Footer />
+          <PortfolioFooter />
           <ScrollToTop />
           <AccessibilityWidget />
           <ReaderView />

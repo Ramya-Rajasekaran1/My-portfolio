@@ -25,6 +25,28 @@ export function Navbar() {
         { name: "Contact", href: "/contact" },
     ];
 
+    const ScribbleUnderline = () => (
+        <svg
+            className="absolute -bottom-1 left-0 w-full h-2 overflow-visible pointer-events-none"
+            viewBox="0 0 100 20"
+            preserveAspectRatio="none"
+        >
+            <motion.path
+                d="M5,12 C25,12 35,4 50,12 C65,20 80,12 95,12"
+                stroke="currentColor"
+                strokeWidth="4"
+                fill="transparent"
+                strokeLinecap="round"
+                className="text-purple-500 dark:text-purple-400"
+                variants={{
+                    initial: { pathLength: 0, opacity: 0 },
+                    hover: { pathLength: 1, opacity: 1 },
+                }}
+                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+            />
+        </svg>
+    );
+
     return (
         <>
             <motion.header
@@ -42,7 +64,7 @@ export function Navbar() {
                     )}>
                         {/* Logo */}
                         <Link href="/" className="text-xl font-serif font-bold tracking-tight z-50">
-                            Ramya<span className="text-purple-600 dark:text-purple-400">.</span>
+                            Ramya<span className="text-purple-500 dark:text-purple-400">.</span>
                         </Link>
 
                         {/* Desktop Nav */}
@@ -51,13 +73,20 @@ export function Navbar() {
                             isScrolled ? "gap-4" : "gap-8"
                         )}>
                             {navLinks.map((link) => (
-                                <Link
+                                <motion.div
                                     key={link.name}
-                                    href={link.href}
-                                    className="text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white transition-colors"
+                                    initial="initial"
+                                    whileHover="hover"
+                                    className="relative flex items-center"
                                 >
-                                    {link.name}
-                                </Link>
+                                    <Link
+                                        href={link.href}
+                                        className="text-xs font-bold font-outfit text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white transition-colors uppercase tracking-widest px-1 py-1"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                    <ScribbleUnderline />
+                                </motion.div>
                             ))}
                         </nav>
 
@@ -99,7 +128,7 @@ export function Navbar() {
                             exit={{ opacity: 0, y: -20 }}
                             className="fixed inset-0 z-40 bg-white/95 dark:bg-black/95 backdrop-blur-xl pt-24 px-6 md:hidden"
                         >
-                            <nav className="flex flex-col gap-6 text-2xl font-serif">
+                            <nav className="flex flex-col gap-6 text-2xl font-black font-outfit uppercase tracking-tighter">
                                 {navLinks.map((link) => (
                                     <Link
                                         key={link.name}

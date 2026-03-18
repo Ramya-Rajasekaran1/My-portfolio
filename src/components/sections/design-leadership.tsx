@@ -63,7 +63,7 @@ export function DesignLeadership() {
           <div className="max-w-xl">
             <motion.div
               initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold uppercase tracking-widest mb-4"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold font-outfit uppercase tracking-widest mb-4"
             >
               <Mic2 className="w-2.5 h-2.5" /> Impact
             </motion.div>
@@ -86,9 +86,9 @@ export function DesignLeadership() {
             className="flex items-center gap-6 border-l border-white/10 pl-6"
           >
             {[["20+", "Talks"], ["10k+", "Designers"], ["500+", "Mentees"]].map(([n, l]) => (
-              <div key={l}>
+              <div key={l} className="font-outfit">
                 <div className="text-2xl font-black text-neutral-900 dark:text-white leading-none mb-1">{n}</div>
-                <div className="text-[9px] uppercase tracking-widest text-neutral-500 font-bold">{l}</div>
+                <div className="text-xs uppercase tracking-widest text-neutral-500 font-bold">{l}</div>
               </div>
             ))}
           </motion.div>
@@ -144,7 +144,7 @@ export function DesignLeadership() {
                         {/* "+N more" badge */}
                         {items.length > 3 && (
                           <div className="absolute inset-0 bg-black/55 flex items-center justify-center">
-                            <span className="text-white text-sm font-black tracking-tight">+{items.length - 3} more</span>
+                            <span className="text-white text-sm font-black font-outfit tracking-tight">+{items.length - 3} more</span>
                           </div>
                         )}
                       </>
@@ -158,10 +158,10 @@ export function DesignLeadership() {
                 {/* Label + CTA pinned to bottom */}
                 <div className="absolute bottom-0 inset-x-0 px-5 py-5 flex items-end justify-between">
                   <div>
-                    <div className="text-[9px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-1">{theme.stat}</div>
-                    <h3 className="text-base font-black text-white leading-tight group-hover:text-neutral-100">{theme.label}</h3>
+                    <div className="text-xs font-bold font-outfit uppercase tracking-[0.2em] text-neutral-400 mb-1">{theme.stat}</div>
+                    <h3 className="text-base font-black font-outfit text-white leading-tight group-hover:text-neutral-100">{theme.label}</h3>
                   </div>
-                  <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-neutral-300 group-hover:text-white bg-white/8 hover:bg-white/15 border border-white/10 px-3 py-1.5 rounded-full transition-all">
+                  <div className="flex items-center gap-1.5 text-xs font-bold font-outfit uppercase tracking-widest text-neutral-300 group-hover:text-white bg-white/8 hover:bg-white/15 border border-white/10 px-3 py-1.5 rounded-full transition-all">
                     View more
                     <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                   </div>
@@ -175,10 +175,10 @@ export function DesignLeadership() {
           initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
           className="mt-8 flex flex-wrap items-center justify-center gap-8 border-t border-neutral-200 dark:border-white/5 pt-8"
         >
-          <div className="flex items-center gap-3 text-neutral-500 text-[9px] font-bold uppercase tracking-[0.2em]">
+          <div className="flex items-center gap-3 text-neutral-500 text-xs font-bold font-outfit uppercase tracking-[0.2em]">
             <Users className="w-3 h-3" /><span>500+ Mentees</span>
           </div>
-          <div className="flex items-center gap-3 text-neutral-500 text-[9px] font-bold uppercase tracking-[0.2em]">
+          <div className="flex items-center gap-3 text-neutral-500 text-xs font-bold font-outfit uppercase tracking-[0.2em]">
             <Award className="w-3 h-3" /><span>IEEE &amp; IndiaHCI Speaker</span>
           </div>
         </motion.div>

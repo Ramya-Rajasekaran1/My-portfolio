@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import { GlassCard } from "@/components/ui/glass-card";
 
 export const metadata: Metadata = {
-    title: "About | Ramya Rajsekaran",
-    description: "Learn more about Ramya Rajsekaran, a UX Designer with a passion for user-centered design.",
+    title: "About | Ramya Rajasekaran",
+    description: "Learn more about Ramya Rajasekaran, a UX design specialist with a passion for user-centered design.",
 };
 
 export default function AboutPage() {
@@ -13,9 +13,9 @@ export default function AboutPage() {
                 <div className="max-w-4xl mx-auto">
                     {/* Header */}
                     <div className="mb-16">
-                        <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">About Me</h1>
-                        <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                            I&apos;m Ramya, a UX Designer based in [Location]. I believe that great design is not just about how things look, but how they work and how they make people feel.
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 tracking-tight">About Me</h1>
+                        <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
+                            I&apos;m Ramya, a UX design specialist based in [Location]. I believe that great design is not just about how things look, but how they work and how they make people feel.
                         </p>
                     </div>
 
@@ -28,16 +28,16 @@ export default function AboutPage() {
                             </div>
                         </div>
                         <div className="space-y-6">
-                            <h2 className="text-2xl font-bold font-serif">My Journey</h2>
-                            <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                            <h2 className="text-2xl md:text-3xl font-bold font-serif tracking-tight">My Journey</h2>
+                            <p className="text-base text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
                                 With a background in [Background], I transitioned into UX design because I wanted to solve real-world problems. Over the last 5 years, I&apos;ve had the privilege of working with startups and established companies to build products that users love.
                             </p>
-                            <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                            <p className="text-base text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
                                 My process is deeply rooted in user research. I strive to understand the &quot;why&quot; behind user behaviors before jumping into the &quot;how&quot; of design solutions.
                             </p>
 
-                            <h2 className="text-2xl font-bold font-serif pt-4">What I Do</h2>
-                            <ul className="space-y-2 text-neutral-600 dark:text-neutral-400">
+                            <h2 className="text-2xl md:text-3xl font-bold font-serif tracking-tight pt-4">What I Do</h2>
+                            <ul className="space-y-3 text-base text-neutral-600 dark:text-neutral-400 font-sans">
                                 <li>• User Research & Strategy</li>
                                 <li>• Information Architecture</li>
                                 <li>• Wireframing & Prototyping</li>
@@ -49,37 +49,37 @@ export default function AboutPage() {
 
                     {/* Experience Section */}
                     <GlassCard className="p-8 md:p-12 border-white/20 dark:border-white/10">
-                        <h2 className="text-3xl font-serif font-bold border-b border-neutral-200/50 dark:border-neutral-800/50 pb-4 mb-8">Experience</h2>
+                        <h2 className="text-3xl font-serif font-bold border-b border-neutral-200/50 dark:border-neutral-800/50 pb-4 mb-8 tracking-tight">Experience</h2>
 
                         <div className="space-y-8">
                             <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
-                                <span className="text-sm font-medium text-neutral-500 w-32 shrink-0">2022 - Present</span>
+                                <span className="text-xs font-bold font-outfit uppercase tracking-widest text-neutral-500 w-32 shrink-0">2022 - Present</span>
                                 <div>
-                                    <h3 className="text-xl font-bold">Senior UX Designer</h3>
-                                    <p className="text-purple-600 dark:text-purple-400 mb-2">Company Name</p>
-                                    <p className="text-neutral-600 dark:text-neutral-400 max-w-2xl">
+                                    <h3 className="text-xl font-serif font-bold">Senior UX Designer</h3>
+                                    <p className="text-sm font-bold font-outfit uppercase tracking-widest text-purple-600 dark:text-purple-400 mb-2">Company Name</p>
+                                    <p className="text-base text-neutral-600 dark:text-neutral-400 max-w-2xl font-sans">
                                         Leading the design of the core product. Improved user retention by 20% through a complete redesign of the onboarding flow. Mentoring junior designers and establishing design operations.
                                     </p>
                                 </div>
                             </div>
 
                             <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
-                                <span className="text-sm font-medium text-neutral-500 w-32 shrink-0">2020 - 2022</span>
+                                <span className="text-xs font-bold font-outfit uppercase tracking-widest text-neutral-500 w-32 shrink-0">2020 - 2022</span>
                                 <div>
-                                    <h3 className="text-xl font-bold">Product Designer</h3>
-                                    <p className="text-purple-600 dark:text-purple-400 mb-2">Another Company</p>
-                                    <p className="text-neutral-600 dark:text-neutral-400 max-w-2xl">
+                                    <h3 className="text-xl font-bold font-outfit">Product Designer</h3>
+                                    <p className="text-sm font-bold font-outfit uppercase tracking-widest text-purple-600 dark:text-purple-400 mb-2">Another Company</p>
+                                    <p className="text-base text-neutral-600 dark:text-neutral-400 max-w-2xl font-sans">
                                         Collaborated with PMs and engineers to launch 3 major features. Conducted user interviews and usability tests to validate concepts.
                                     </p>
                                 </div>
                             </div>
 
                             <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
-                                <span className="text-sm font-medium text-neutral-500 w-32 shrink-0">2018 - 2020</span>
+                                <span className="text-xs font-bold font-outfit uppercase tracking-widest text-neutral-500 w-32 shrink-0">2018 - 2020</span>
                                 <div>
-                                    <h3 className="text-xl font-bold">UX/UI Designer</h3>
-                                    <p className="text-purple-600 dark:text-purple-400 mb-2">Creative Agency</p>
-                                    <p className="text-neutral-600 dark:text-neutral-400 max-w-2xl">
+                                    <h3 className="text-xl font-bold font-outfit">UX/UI Designer</h3>
+                                    <p className="text-sm font-bold font-outfit uppercase tracking-widest text-purple-600 dark:text-purple-400 mb-2">Creative Agency</p>
+                                    <p className="text-base text-neutral-600 dark:text-neutral-400 max-w-2xl font-sans">
                                         Designed websites and mobile apps for clients in various industries including fintech, healthcare, and e-commerce.
                                     </p>
                                 </div>

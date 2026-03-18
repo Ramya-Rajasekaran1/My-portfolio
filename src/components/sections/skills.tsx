@@ -33,8 +33,8 @@ const sizeClasses = {
 };
 
 const categoryColors = {
-    Research: "from-purple-500/20 to-purple-600/30 border-purple-400/40 hover:border-purple-400/70",
-    Design: "from-orange-500/20 to-orange-600/30 border-orange-400/40 hover:border-orange-400/70",
+    Research: "from-sky-500/20 to-sky-600/30 border-sky-400/40 hover:border-sky-400/70",
+    Design: "from-purple-500/20 to-purple-600/30 border-purple-400/40 hover:border-purple-400/70",
     Tools: "from-blue-500/20 to-blue-600/30 border-blue-400/40 hover:border-blue-400/70",
 };
 
@@ -69,7 +69,7 @@ export function Skills() {
                         ease: "linear"
                     }}
                 >
-                    <div className="w-full h-full bg-gradient-to-br from-purple-500 to-orange-500 rounded-lg transform-gpu"
+                    <div className="w-full h-full bg-gradient-to-br from-purple-500 to-indigo-500 rounded-lg transform-gpu"
                         style={{
                             transform: "perspective(1000px) rotateX(45deg) rotateY(45deg)",
                             boxShadow: "0 0 60px rgba(168, 85, 247, 0.4)"
@@ -91,9 +91,9 @@ export function Skills() {
                         ease: "easeInOut"
                     }}
                 >
-                    <div className="w-full h-full bg-gradient-to-br from-orange-500 to-purple-500 rounded-full"
+                    <div className="w-full h-full bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full"
                         style={{
-                            boxShadow: "0 0 80px rgba(249, 115, 22, 0.4)"
+                            boxShadow: "0 0 80px rgba(99, 102, 241, 0.4)"
                         }}
                     />
                 </motion.div>
@@ -111,10 +111,10 @@ export function Skills() {
                         ease: "linear"
                     }}
                 >
-                    <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-500 transform-gpu"
+                    <div className="w-full h-full bg-gradient-to-br from-sky-500 to-blue-500 transform-gpu"
                         style={{
                             clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
-                            boxShadow: "0 0 60px rgba(59, 130, 246, 0.4)"
+                            boxShadow: "0 0 60px rgba(14, 165, 233, 0.4)"
                         }}
                     />
                 </motion.div>
@@ -189,7 +189,7 @@ export function Skills() {
                                                 border border-neutral-200 dark:border-neutral-700
                                                 whitespace-nowrap z-50"
                                         >
-                                            <div className="text-xs font-bold text-purple-600 dark:text-purple-400 mb-1">
+                                            <div className="text-xs font-bold text-sky-600 dark:text-sky-400 mb-1">
                                                 {skill.category}
                                             </div>
                                             <div className="flex items-center gap-2">
@@ -202,7 +202,7 @@ export function Skills() {
                                                             initial={{ width: 0 }}
                                                             animate={{ width: `${skill.proficiency}%` }}
                                                             transition={{ duration: 0.5, delay: 0.1 }}
-                                                            className="h-full bg-gradient-to-r from-purple-500 to-orange-500"
+                                                            className="h-full bg-gradient-to-r from-purple-500 to-sky-500"
                                                         />
                                                     </div>
                                                     <span className="text-xs font-bold text-neutral-700 dark:text-neutral-300">
@@ -232,11 +232,11 @@ export function Skills() {
                         className="mt-16 flex flex-wrap justify-center gap-6 text-sm"
                     >
                         <div className="flex items-center gap-2">
-                            <div className="w-4 h-4 rounded-full bg-gradient-to-br from-purple-500/40 to-purple-600/50 border-2 border-purple-400/60" />
+                            <div className="w-4 h-4 rounded-full bg-gradient-to-br from-sky-500/40 to-sky-600/50 border-2 border-sky-400/60" />
                             <span className="text-neutral-600 dark:text-neutral-400">Research</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <div className="w-4 h-4 rounded-full bg-gradient-to-br from-orange-500/40 to-orange-600/50 border-2 border-orange-400/60" />
+                            <div className="w-4 h-4 rounded-full bg-gradient-to-br from-purple-500/40 to-purple-600/50 border-2 border-purple-400/60" />
                             <span className="text-neutral-600 dark:text-neutral-400">Design</span>
                         </div>
                         <div className="flex items-center gap-2">
