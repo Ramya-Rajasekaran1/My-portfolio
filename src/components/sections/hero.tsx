@@ -125,18 +125,18 @@ export function Hero() {
                                 />
                             </motion.div>
 
-                            <motion.div variants={itemVariants} className="flex flex-col gap-1">
+                            <motion.div variants={itemVariants} className="flex flex-col gap-[4px]">
                                 <h1 className="text-2xl md:text-3xl font-bold uppercase tracking-[0.1em] text-neutral-900 dark:text-white leading-none font-outfit">
                                     Ramya Rajasekaran
                                 </h1>
-                                <p className="text-[14px] leading-tight font-bold font-outfit text-purple-600 dark:text-purple-400 mt-[4px]">
+                                <p className="text-[14px] leading-tight font-bold font-outfit text-purple-600 dark:text-purple-400">
                                     UX design specialist
                                 </p>
                             </motion.div>
                         </div>
 
                         {/* Bio Section - Left Aligned */}
-                        <motion.div variants={itemVariants} className="max-w-3xl text-left mt-[12px]">
+                        <motion.div variants={itemVariants} className="max-w-3xl text-left mt-[12px] md:mt-[12px]">
                             <p className="text-base md:text-lg text-neutral-800 dark:text-neutral-200 leading-relaxed font-normal">
                                 UX Designer with experience leading end-to-end process across <span className="font-bold">aviation, e-commerce, supply chain, B2B, B2C</span>. I design award-winning solutions and have published research on GenAI Accessibility, at IEEE and Industry case study at IndiaHCI.
                             </p>
