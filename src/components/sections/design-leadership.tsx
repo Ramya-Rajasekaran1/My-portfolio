@@ -32,6 +32,7 @@ const galleryItems: GalleryItem[] = [
   { id: "mentorship-circle", type: "image", src: "/images/untitled folder/bc6bbef4-1e89-44a7-987e-84d04c1129f5.jpg", title: "Mentorship", location: "ADPList", date: "Jan 2024", category: "Community", note: "Giving Back", tags: ["ADPList", "Mentorship"] },
   { id: "indiahci-2022-frame", type: "image", src: "/images/untitled folder/6C165B99-D425-4DE1-BB5E-2FC08B680B9D.JPG", title: "IndiaHCI 2022", location: "BITS Hyderabad", date: "Nov 2022", category: "Community", note: "India HCI Presentation", tags: ["Academic", "HCI"] },
   { id: "designmyx-collage", type: "image", src: "/images/untitled folder/InShot_20231203_144932996.jpg", title: "Events and Talks", location: "Zeta HQ", date: "Dec 2023", category: "Community", note: "Events and Talks", tags: ["Event", "Mentorship"] },
+  { id: "ge-workshop", type: "image", src: "/images/untitled folder/IMG_1388.JPG", title: "Design Thinking Workshop", location: "Bengaluru", date: "Jul 2023", category: "Community", note: "Design Thinking Workshop", tags: ["Workshop", "Education"] },
 
   // Design Team (3rd Category) - Ordered: Team Boeing, Design Fam (Centre), then Whiteboarding
   { id: "boeing-group-photo", type: "image", src: "/images/untitled folder/C3EDEE2F-D8F6-4AA6-8A96-A3730B03BC62.JPG", title: "Boeing Design Team", location: "Boeing India", date: "Oct 2023", category: "DesignTeam", note: "Team Boeing!", tags: ["Aviation", "Team"] },
@@ -70,7 +71,7 @@ export function DesignLeadership() {
   }, [filteredItems]);
 
   return (
-    <section className="py-24 bg-neutral-50 dark:bg-neutral-900/50 overflow-hidden border-t border-neutral-200 dark:border-white/5">
+    <section className="py-24 bg-neutral-50/50 dark:bg-neutral-900/50 overflow-hidden border-t border-neutral-200 dark:border-white/5">
       <div className="container mx-auto px-4 max-w-6xl">
 
         {/* ── Header ── */}
@@ -79,12 +80,12 @@ export function DesignLeadership() {
                 <h2 className="text-4xl md:text-5xl font-extralight mb-6 tracking-[0.05em] text-neutral-900 dark:text-white leading-none">
                     Design Leadership
                 </h2>
-                <p className="text-white/80 text-base md:text-lg font-light leading-relaxed">
+                <p className="text-neutral-600 dark:text-white/80 text-base md:text-lg font-light leading-relaxed">
                     A visual archive of strategic product thinking, community engagement, and thought leadership workshops.
                 </p>
             </div>
 
-            {/* Category Filter Tags */}
+            {/* Category Filter Tags - Black text with darker border as requested */}
             <div className="flex flex-row flex-nowrap overflow-x-auto md:overflow-visible gap-2 pb-1 scrollbar-hide">
                 {CATEGORIES.map((cat) => (
                     <button
@@ -94,7 +95,7 @@ export function DesignLeadership() {
                             "px-5 py-2 rounded-full text-[10px] font-bold tracking-[0.1em] transition-all duration-300 border flex-shrink-0 uppercase",
                             filter === cat.id
                                 ? "bg-purple-600 border-purple-600 text-white shadow-lg shadow-purple-500/30"
-                                : "bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 text-neutral-400 hover:border-black dark:hover:border-white hover:text-black dark:hover:text-white"
+                                : "bg-white dark:bg-neutral-900 border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white hover:border-black dark:hover:border-white"
                         )}
                     >
                         {cat.label}
@@ -117,7 +118,7 @@ export function DesignLeadership() {
                                 exit={{ opacity: 0, scale: 0.9 }}
                                 transition={{ duration: 0.4, delay: i * 0.05 }}
                                 onClick={() => setLightboxItem(item)}
-                                className="group relative cursor-pointer rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-white/5 hover:border-black dark:hover:border-white/40 hover:shadow-2xl transition-all duration-500 transform-gpu will-change-transform"
+                                className="group relative cursor-pointer rounded-2xl overflow-hidden bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-white/5 hover:border-black dark:hover:border-white/40 hover:shadow-2xl transition-all duration-500 transform-gpu will-change-transform"
                                 style={{ transformStyle: 'preserve-3d', backfaceVisibility: 'hidden' }}
                             >
                                 {item.type === "image" ? (
@@ -164,7 +165,7 @@ export function DesignLeadership() {
         </div>
       </div>
 
-      {/* ── Lightbox برای Images ── */}
+      {/* Lightbox for Images */}
       <AnimatePresence>
         {lightboxItem && (
           <motion.div

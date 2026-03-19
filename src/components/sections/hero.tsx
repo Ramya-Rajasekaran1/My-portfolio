@@ -15,7 +15,7 @@ export function Hero() {
             icon: Calendar,
             value: "4+",
             label: "Years Experience",
-            color: "text-purple-500",
+            color: "text-purple-600",
             bgColor: "bg-purple-500/10",
             borderColor: "border-purple-500/20"
         },
@@ -23,7 +23,7 @@ export function Hero() {
             icon: Users,
             value: "1M+",
             label: "Users Reached",
-            color: "text-indigo-500",
+            color: "text-indigo-600",
             bgColor: "bg-indigo-500/10",
             borderColor: "border-indigo-500/20"
         },
@@ -31,7 +31,7 @@ export function Hero() {
             icon: Package,
             value: "3.2M",
             label: "Daily Shipments",
-            color: "text-purple-600",
+            color: "text-purple-700",
             bgColor: "bg-purple-600/10",
             borderColor: "border-purple-600/20"
         },
@@ -39,7 +39,7 @@ export function Hero() {
             icon: DollarSign,
             value: "$2B",
             label: "Revenue Impact",
-            color: "text-indigo-600",
+            color: "text-indigo-700",
             bgColor: "bg-indigo-600/10",
             borderColor: "border-indigo-600/20"
         }
@@ -123,40 +123,31 @@ export function Hero() {
                     initial="hidden"
                     animate="visible"
                     variants={nameTagVariants}
-                    className="max-w-4xl w-full p-6 md:p-10 rounded-3xl md:rounded-[2.5rem] border border-white/10 dark:border-white/[0.05] shadow-2xl bg-white/[0.01] dark:bg-black/[0.02] backdrop-blur-xl relative overflow-hidden z-10"
+                    className="max-w-4xl w-full p-6 md:p-10 rounded-3xl md:rounded-[2.5rem] border border-white/10 dark:border-white/[0.05] shadow-2xl bg-white/5 dark:bg-black/[0.1] backdrop-blur-2xl relative overflow-hidden z-10"
                 >
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent pointer-none rounded-[inherit]" />
-                    <div
-                        className="absolute inset-0 opacity-[0.02] dark:opacity-[0.01] pointer-events-none mix-blend-overlay rounded-[inherit]"
-                        style={{
-                            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                            backgroundRepeat: "repeat",
-                        }}
-                    />
-
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.1] to-transparent pointer-none rounded-[inherit]" />
+                    
                     <div className="relative z-10">
                         <LayoutGroup id="hero-main">
                         <div className="flex flex-col">
-                            {/* Stabilized Layout Container - Fixed Jumpiness by separating alignment and layout */}
+                            {/* Fixed Smooth Transition: Use absolute positioning for the inner transition or careful sizing */}
                             <motion.div
-                                layout
+                                layout="position"
                                 transition={{ 
-                                    layout: { duration: 0.8, ease: [0.4, 0, 0.2, 1] },
+                                    layout: { duration: 0.6, ease: "anticipate" },
                                 }}
                                 className={cn(
-                                    "flex gap-6 md:gap-10",
+                                    "flex gap-6 md:gap-10 transition-all duration-700",
                                     hasScrolled
                                         ? "flex-col md:flex-row md:items-start text-left"
                                         : "flex-col items-center text-center"
                                 )}
                             >
-                                <motion.div layout transition={{ layout: { duration: 0.8, ease: [0.4, 0, 0.2, 1] } }}>
+                                <motion.div layout transition={{ layout: { duration: 0.6, ease: "anticipate" } }}>
                                     <motion.div
                                         variants={itemVariants}
-                                        animate={{ y: [-3, 3, -3] }}
-                                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                                         className={cn(
-                                            "rounded-3xl flex items-center justify-center relative shrink-0 bg-white/5 border border-white/10 p-2",
+                                            "rounded-3xl flex items-center justify-center relative shrink-0 bg-white dark:bg-white/5 border border-neutral-200 dark:border-white/10 p-2 shadow-sm transition-all duration-700",
                                             hasScrolled ? "w-16 h-16 md:w-20 md:h-20" : "w-24 h-24 md:w-32 md:h-32"
                                         )}
                                     >
@@ -173,7 +164,7 @@ export function Hero() {
                                     layout
                                     variants={itemVariants}
                                     className={cn(
-                                        "flex flex-col",
+                                        "flex flex-col transition-all duration-700",
                                         hasScrolled ? "gap-1 items-start" : "gap-3 items-center"
                                     )}
                                 >
@@ -213,11 +204,12 @@ export function Hero() {
                                         <motion.div
                                             key={achievement.label}
                                             whileHover={{ y: -5 }}
-                                            className="p-4 rounded-2xl bg-white/5 dark:bg-white/[0.02] border border-white/10 dark:border-white/[0.05] flex flex-col items-start gap-1 transition-colors hover:bg-white/[0.08] dark:hover:bg-white/[0.05]"
+                                            className="p-4 rounded-2xl bg-white dark:bg-white/[0.02] border border-neutral-200 dark:border-white/[0.05] flex flex-col items-start gap-1 transition-colors hover:bg-neutral-50 dark:hover:bg-white/[0.05]"
                                         >
                                             <div className="space-y-0.5 font-outfit">
-                                                <p className="text-xl font-bold text-neutral-900 dark:text-white drop-shadow-md leading-none">{achievement.value}</p>
-                                                <p className="text-[10px] uppercase tracking-widest font-bold text-neutral-500 dark:text-purple-300/80 drop-shadow-sm">{achievement.label}</p>
+                                                {/* Stat Values: Black Bold in Light Mode */}
+                                                <p className="text-xl font-black text-black dark:text-white drop-shadow-sm leading-none">{achievement.value}</p>
+                                                <p className="text-[10px] uppercase tracking-widest font-black text-black/50 dark:text-purple-300/80">{achievement.label}</p>
                                             </div>
                                         </motion.div>
                                     ))}
@@ -226,7 +218,7 @@ export function Hero() {
                                 {/* Skills Section */}
                                 <motion.div
                                     style={{ opacity: skillsCardOpacity, y: skillsCardY }}
-                                    className="pt-4 border-t border-white/10 dark:border-white/5"
+                                    className="pt-4 border-t border-neutral-200 dark:border-white/5"
                                 >
                                     <div className="flex flex-wrap gap-2">
                                         {skills.map((skill, idx) => (
@@ -235,10 +227,10 @@ export function Hero() {
                                                 initial={{ opacity: 0, scale: 0.9 }}
                                                 animate={{ opacity: hasScrolled ? 1 : 0, scale: hasScrolled ? 1 : 0.9 }}
                                                 transition={{ delay: 0.1 + idx * 0.05 }}
-                                                className="flex items-center gap-2 px-3 py-1.5 bg-neutral-900/20 dark:bg-white/10 border border-white/10 rounded-full"
+                                                className="flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-white/10 border border-neutral-200 dark:border-white/10 rounded-full shadow-sm"
                                             >
                                                 <div className={cn("w-1.5 h-1.5 rounded-full", skill.color)} />
-                                                <span className="text-[10px] font-bold tracking-widest text-white uppercase">
+                                                <span className="text-[10px] font-black tracking-widest text-black dark:text-white uppercase">
                                                     {skill.name}
                                                 </span>
                                             </motion.div>
