@@ -11,8 +11,8 @@ export default function Home() {
       <Hero />
       <FeaturedProjects />
       <PublicationsAndArticles />
-      <Certifications />
       <DesignLeadership />
+      <Certifications />
       <Testimonials />
     </main>
   );

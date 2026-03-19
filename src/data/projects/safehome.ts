@@ -3,7 +3,7 @@ export const safehomeProject = {
     title: "SafeHome SF",
     category: "Civic Tech",
     description: "Lead UX Designer transforming San Francisco’s earthquake data into a mobile-first safety ecosystem that empowers renters and homeowners to take prepared action before, during, and after a seismic event.",
-    image: "/images/safehome/safehome.png",
+    image: "/images/safehome/safehome_cover_new.jpg",
     slug: "safehome-sf",
     sections: [
         {

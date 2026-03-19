@@ -6,10 +6,10 @@ import { networkIntelligenceProject } from '@/data/projects/network-intelligence
 import { contentVerifyProject } from '@/data/projects/content-verify';
 
 export const projects = [
-    trackingQualityDashboard,
     safehomeProject,
-    filterRevampProject,
     genAiInclusivityProject,
+    trackingQualityDashboard,
+    filterRevampProject,
     networkIntelligenceProject,
     contentVerifyProject
 ];

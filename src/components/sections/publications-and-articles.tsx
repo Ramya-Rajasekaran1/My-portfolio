@@ -16,16 +16,16 @@ const articles = [
 
 export const PublicationsAndArticles: React.FC = () => {
     return (
-        <section className="py-24 px-4 bg-[#0a0a0a]">
+        <section className="pt-32 pb-24 px-4 bg-[#0a0a0a]">
             <div className="container mx-auto max-w-6xl">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     {/* Publications Section */}
                     <div className="flex flex-col">
-                        <h2 className="text-3xl font-bold mb-8 text-white tracking-widest">
+                        <h2 className="text-3xl md:text-4xl font-extralight mb-10 text-white tracking-tight">
                             Publications
                         </h2>
 
-                        <div className="relative group flex-1">
+                        <div className="relative group flex-1 pt-3">
                             <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all opacity-50"></div>
                             <a
                                 href="https://ieeexplore.ieee.org/document/11256372"
@@ -40,13 +40,13 @@ export const PublicationsAndArticles: React.FC = () => {
 
                                     <div className="flex-1 space-y-4">
                                         <div className="flex items-start justify-between gap-4">
-                                            <h3 className="text-xl font-bold text-white group-hover:text-purple-400 transition-colors">
+                                            <h3 className="text-xl font-medium text-white group-hover:text-purple-400 transition-colors">
                                                 GenAI Accessibility & Usability Research
                                             </h3>
                                             <ExternalLink className="w-5 h-5 text-neutral-500 group-hover:text-white transition-colors flex-shrink-0" />
                                         </div>
 
-                                        <p className="text-neutral-300 leading-relaxed text-sm">
+                                        <p className="text-white/80 leading-relaxed text-sm font-light mb-1">
                                             A research paper presented at IEEE and IndiaHCI exploring the impact of Generative AI on accessibility and usability standards.
                                         </p>
 
@@ -62,10 +62,10 @@ export const PublicationsAndArticles: React.FC = () => {
 
                     {/* Articles Section */}
                     <div className="flex flex-col">
-                        <h2 className="text-3xl font-bold mb-8 text-white tracking-widest">
-                            Writing articles
+                        <h2 className="text-3xl md:text-4xl font-extralight mb-10 text-white tracking-tight">
+                            Writing Articles
                         </h2>
-                        <div className="grid gap-6 flex-1">
+                        <div className="grid gap-6 flex-1 pt-3">
                             {articles.map((article, idx) => (
                                 <div key={idx} className="group relative">
                                     <a
@@ -75,10 +75,10 @@ export const PublicationsAndArticles: React.FC = () => {
                                         className="block p-8 rounded-2xl bg-purple-900/10 border border-purple-500/10 backdrop-blur-md hover:bg-purple-900/20 transition-all group-hover:-translate-y-2 h-full"
                                     >
                                         <div className="flex justify-between items-start mb-4">
-                                            <h3 className="text-lg font-bold text-white group-hover:text-purple-400 transition-colors pr-8">{article.title}</h3>
+                                            <h3 className="text-lg font-medium text-white group-hover:text-purple-400 transition-colors pr-8">{article.title}</h3>
                                             <ExternalLink className="w-4 h-4 text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity absolute right-4 top-4" />
                                         </div>
-                                        <p className="text-neutral-400 leading-relaxed text-sm">{article.description}</p>
+                                        <p className="text-white/80 leading-relaxed text-sm font-light mb-1">{article.description}</p>
                                     </a>
                                 </div>
                             ))}

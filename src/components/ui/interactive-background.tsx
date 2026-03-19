@@ -9,7 +9,7 @@ const SPHERE_CONFIG = {
     // Particle settings
     particleCount: 250,              // Number of particles
     particleSize: { min: 1.5, max: 3 }, // Particle size range (px)
-    particleOpacity: { min: 0.3, max: 0.8 }, // Opacity range
+    particleOpacity: { min: 0.5, max: 0.95 }, // Brighter visible dots
 
     // Sphere size (percentage of smaller viewport dimension)
     sphereSize: {
@@ -35,6 +35,7 @@ const SPHERE_CONFIG = {
     // Background gradients
     gradients: {
         purple: { opacity: 0.25, size: 500 },
+        amber: { opacity: 0.22, size: 600 },
         blue: { opacity: 0.18, size: 600 },
     }
 };
@@ -49,15 +50,19 @@ interface SphereParticle {
 
 interface InteractiveBackgroundProps {
     hideSphere?: boolean;
+    hideGradients?: boolean;
 }
 
-export const InteractiveBackground = React.memo(function InteractiveBackground({ hideSphere = false }: InteractiveBackgroundProps) {
+export const InteractiveBackground = React.memo(function InteractiveBackground({ 
+    hideSphere = false, 
+    hideGradients = false 
+}: InteractiveBackgroundProps) {
     const mousePositionRef = React.useRef({ x: 50, y: 50 });
     const [tick, setTick] = React.useState(0); // Force render every frame
     const particlesRef = React.useRef<SphereParticle[]>([]);
     const animationRef = React.useRef<number | undefined>(undefined);
     const timeRef = React.useRef(0);
-    const sphereCenterRef = React.useRef({ x: 50, y: 50 });
+    const sphereCenterRef = React.useRef({ x: 80, y: 50 }); // Pinned to the right side
     const lastFrameTime = React.useRef(0);
 
     // Initialize particles once with Fibonacci sphere distribution
@@ -111,9 +116,9 @@ export const InteractiveBackground = React.memo(function InteractiveBackground({
             lastFrameTime.current = currentTime;
             timeRef.current += 0.016; // ~60fps time increment
 
-            // Smoothly move sphere center toward cursor
-            sphereCenterRef.current.x += (mousePositionRef.current.x - sphereCenterRef.current.x) * SPHERE_CONFIG.cursorFollowSpeed;
-            sphereCenterRef.current.y += (mousePositionRef.current.y - sphereCenterRef.current.y) * SPHERE_CONFIG.cursorFollowSpeed;
+            // Sphere center is now fixed as requested
+            // sphereCenterRef.current.x += (mousePositionRef.current.x - sphereCenterRef.current.x) * SPHERE_CONFIG.cursorFollowSpeed;
+            // sphereCenterRef.current.y += (mousePositionRef.current.y - sphereCenterRef.current.y) * SPHERE_CONFIG.cursorFollowSpeed;
 
             // Force re-render to animate particles
             setTick(prev => prev + 1);
@@ -162,36 +167,40 @@ export const InteractiveBackground = React.memo(function InteractiveBackground({
         <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
             <div className="container mx-auto h-full relative">
                 {/* Animated gradient orbs - Purple and Blue */}
-                <div
-                    className="absolute rounded-full bg-gradient-to-r from-purple-500/35 to-pink-500/35 blur-3xl transition-transform duration-1000 ease-out will-change-transform"
-                    style={{
-                        width: `${SPHERE_CONFIG.gradients.purple.size}px`,
-                        height: `${SPHERE_CONFIG.gradients.purple.size}px`,
-                        left: `${mousePositionRef.current.x + Math.sin(timeRef.current * 0.3) * 10}%`,
-                        top: `${mousePositionRef.current.y + Math.cos(timeRef.current * 0.4) * 10}%`,
-                        transform: "translate(-50%, -50%)",
-                    }}
-                />
-                <div
-                    className="absolute rounded-full bg-gradient-to-r from-orange-500/25 to-yellow-500/25 blur-3xl transition-transform duration-2000 ease-out will-change-transform"
-                    style={{
-                        width: `700px`,
-                        height: `700px`,
-                        left: `${50 + Math.sin(timeRef.current * 0.2) * 20}%`,
-                        top: `${50 + Math.cos(timeRef.current * 0.15) * 20}%`,
-                        transform: "translate(-50%, -50%)",
-                    }}
-                />
-                <div
-                    className="absolute rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 blur-3xl transition-transform duration-1500 ease-out will-change-transform"
-                    style={{
-                        width: `${SPHERE_CONFIG.gradients.blue.size}px`,
-                        height: `${SPHERE_CONFIG.gradients.blue.size}px`,
-                        left: `${100 - mousePositionRef.current.x + Math.cos(timeRef.current * 0.25) * 8}%`,
-                        top: `${100 - mousePositionRef.current.y + Math.sin(timeRef.current * 0.35) * 8}%`,
-                        transform: "translate(-50%, -50%)",
-                    }}
-                />
+                {!hideGradients && (
+                    <>
+                    <div
+                        className="absolute rounded-full bg-gradient-to-r from-purple-500/35 to-pink-500/35 blur-3xl transition-transform duration-1000 ease-out will-change-transform"
+                        style={{
+                            width: `${SPHERE_CONFIG.gradients.purple.size}px`,
+                            height: `${SPHERE_CONFIG.gradients.purple.size}px`,
+                            left: `${mousePositionRef.current.x + Math.sin(timeRef.current * 0.3) * 10}%`,
+                            top: `${mousePositionRef.current.y + Math.cos(timeRef.current * 0.4) * 10}%`,
+                            transform: "translate(-50%, -50%)",
+                        }}
+                    />
+                    <div
+                        className="absolute rounded-full bg-gradient-to-r from-amber-500/30 to-yellow-500/20 blur-3xl transition-transform duration-[2000ms] ease-out will-change-transform"
+                        style={{
+                            width: `${SPHERE_CONFIG.gradients.amber.size}px`,
+                            height: `${SPHERE_CONFIG.gradients.amber.size}px`,
+                            left: `${mousePositionRef.current.x + Math.sin(timeRef.current * 0.2) * 25}%`,
+                            top: `${mousePositionRef.current.y + Math.cos(timeRef.current * 0.25) * 25}%`,
+                            transform: "translate(-50%, -50%)",
+                        }}
+                    />
+                    <div
+                        className="absolute rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 blur-3xl transition-transform duration-1500 ease-out will-change-transform"
+                        style={{
+                            width: `${SPHERE_CONFIG.gradients.blue.size}px`,
+                            height: `${SPHERE_CONFIG.gradients.blue.size}px`,
+                            left: `${100 - mousePositionRef.current.x + Math.cos(timeRef.current * 0.25) * 8}%`,
+                            top: `${100 - mousePositionRef.current.y + Math.sin(timeRef.current * 0.35) * 8}%`,
+                            transform: "translate(-50%, -50%)",
+                        }}
+                    />
+                    </>
+                )}
 
                 {/* Optimized Particle Sphere */}
                 {!hideSphere && (

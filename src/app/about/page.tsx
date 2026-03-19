@@ -1,93 +1,377 @@
-import { Metadata } from "next";
-import { GlassCard } from "@/components/ui/glass-card";
+"use client";
 
-export const metadata: Metadata = {
-    title: "About | Ramya Rajasekaran",
-    description: "Learn more about Ramya Rajasekaran, a UX design specialist with a passion for user-centered design.",
-};
+import { GlassCard } from "@/components/ui/glass-card";
+import * as React from "react";
+import { ExternalLink, ChevronDown, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+const HandwrittenCaption = ({ text, className }: { text: string; className?: string }) => (
+    <div className={cn(
+        "absolute z-20 bg-white dark:bg-neutral-800 px-4 py-1.5 rounded-sm shadow-md border border-neutral-200 dark:border-white/10",
+        "font-[var(--font-caveat)] text-xl md:text-2xl text-neutral-900 dark:text-neutral-50 pointer-events-none whitespace-nowrap",
+        className
+    )}>
+        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-white/40 dark:bg-black/20 backdrop-blur-sm rotate-2 border border-black/5" />
+        {text}
+    </div>
+);
 
 export default function AboutPage() {
     return (
-        <main className="min-h-screen pt-24 pb-24">
+        <main className="min-h-screen pt-20 pb-16 transition-colors duration-300 bg-neutral-50 dark:bg-neutral-950 overflow-x-hidden">
             <div className="container mx-auto px-4">
-                <div className="max-w-4xl mx-auto">
-                    {/* Header */}
-                    <div className="mb-16">
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 tracking-tight">About Me</h1>
-                        <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
-                            I&apos;m Ramya, a UX design specialist based in [Location]. I believe that great design is not just about how things look, but how they work and how they make people feel.
-                        </p>
-                    </div>
+                <div className="max-w-6xl mx-auto">
 
-                    {/* Content Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
-                        <div className="aspect-[3/4] bg-neutral-200 dark:bg-neutral-800 rounded-2xl overflow-hidden">
-                            {/* Placeholder for photo */}
-                            <div className="w-full h-full flex items-center justify-center text-neutral-400">
-                                Photo Placeholder
+                    {/* Top Section with Graph Background - No Border */}
+                    <div className="relative mb-16 rounded-[32px] overflow-hidden bg-white/30 dark:bg-neutral-900/20 backdrop-blur-sm">
+                        {/* Graph Box Background */}
+                        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_70%,transparent_100%)] opacity-40 dark:opacity-20" />
+
+                        <div className="p-8 md:p-12">
+                            {/* Text Content - Full Width for Intro */}
+                            <div className="max-w-3xl pr-12">
+                                <div className="relative">
+                                    <h1 className="text-[40px] font-serif font-bold tracking-tight bg-gradient-to-r from-purple-600 via-indigo-500 to-purple-600 bg-clip-text text-transparent mb-6">
+                                        Ramya Rajasekaran
+                                    </h1>
+
+                                    <div className="space-y-6 max-w-2xl pt-2">
+                                        <p className="text-[20px] text-neutral-800 dark:text-neutral-200 leading-relaxed font-sans font-normal italic">
+                                            I love Music both carnatic & Western. I am a big coffee lover and love Dogs and animals in general. I am keen on being physically fit and always curious to try new things: Pickleball, badminton, canyoneering, jetski, hikes, zumba.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div className="space-y-6">
-                            <h2 className="text-2xl md:text-3xl font-bold font-serif tracking-tight">My Journey</h2>
-                            <p className="text-base text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
-                                With a background in [Background], I transitioned into UX design because I wanted to solve real-world problems. Over the last 5 years, I&apos;ve had the privilege of working with startups and established companies to build products that users love.
-                            </p>
-                            <p className="text-base text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans">
-                                My process is deeply rooted in user research. I strive to understand the &quot;why&quot; behind user behaviors before jumping into the &quot;how&quot; of design solutions.
-                            </p>
-
-                            <h2 className="text-2xl md:text-3xl font-bold font-serif tracking-tight pt-4">What I Do</h2>
-                            <ul className="space-y-3 text-base text-neutral-600 dark:text-neutral-400 font-sans">
-                                <li>• User Research & Strategy</li>
-                                <li>• Information Architecture</li>
-                                <li>• Wireframing & Prototyping</li>
-                                <li>• UI Design & Design Systems</li>
-                                <li>• Usability Testing</li>
-                            </ul>
                         </div>
                     </div>
 
-                    {/* Experience Section */}
-                    <GlassCard className="p-8 md:p-12 border-white/20 dark:border-white/10">
-                        <h2 className="text-3xl font-serif font-bold border-b border-neutral-200/50 dark:border-neutral-800/50 pb-4 mb-8 tracking-tight">Experience</h2>
-
-                        <div className="space-y-8">
-                            <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
-                                <span className="text-xs font-bold font-outfit uppercase tracking-widest text-neutral-500 w-32 shrink-0">2022 - Present</span>
-                                <div>
-                                    <h3 className="text-xl font-serif font-bold">Senior UX Designer</h3>
-                                    <p className="text-sm font-bold font-outfit uppercase tracking-widest text-purple-600 dark:text-purple-400 mb-2">Company Name</p>
-                                    <p className="text-base text-neutral-600 dark:text-neutral-400 max-w-2xl font-sans">
-                                        Leading the design of the core product. Improved user retention by 20% through a complete redesign of the onboarding flow. Mentoring junior designers and establishing design operations.
-                                    </p>
-                                </div>
+                    {/* Personal Bento Grid Section */}
+                    <section className="mb-20">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+                            {/* 1. Waterfall - canyoneering */}
+                            <div className="col-span-2 row-span-2 rounded-3xl overflow-hidden group relative shadow-lg">
+                                <img
+                                    src="/images/Home/WhatsApp Image 2026-03-18 at 14.03.00.jpeg"
+                                    alt="Waterfall Adventure"
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                />
+                                <HandwrittenCaption text="canyoneering" className="top-6 right-8 rotate-3" />
+                                <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                             </div>
 
-                            <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
-                                <span className="text-xs font-bold font-outfit uppercase tracking-widest text-neutral-500 w-32 shrink-0">2020 - 2022</span>
-                                <div>
-                                    <h3 className="text-xl font-bold font-outfit">Product Designer</h3>
-                                    <p className="text-sm font-bold font-outfit uppercase tracking-widest text-purple-600 dark:text-purple-400 mb-2">Another Company</p>
-                                    <p className="text-base text-neutral-600 dark:text-neutral-400 max-w-2xl font-sans">
-                                        Collaborated with PMs and engineers to launch 3 major features. Conducted user interviews and usability tests to validate concepts.
-                                    </p>
-                                </div>
+                            {/* 2. Music - Vertical */}
+                            <div className="col-span-1 row-span-2 rounded-3xl overflow-hidden group relative shadow-lg">
+                                <img src="/images/about/music_ukulele.jpg" alt="Playing Ukulele" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <HandwrittenCaption text="Music" className="top-6 left-6 -rotate-2 scale-90" />
                             </div>
 
-                            <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
-                                <span className="text-xs font-bold font-outfit uppercase tracking-widest text-neutral-500 w-32 shrink-0">2018 - 2020</span>
-                                <div>
-                                    <h3 className="text-xl font-bold font-outfit">UX/UI Designer</h3>
-                                    <p className="text-sm font-bold font-outfit uppercase tracking-widest text-purple-600 dark:text-purple-400 mb-2">Creative Agency</p>
-                                    <p className="text-base text-neutral-600 dark:text-neutral-400 max-w-2xl font-sans">
-                                        Designed websites and mobile apps for clients in various industries including fintech, healthcare, and e-commerce.
-                                    </p>
-                                </div>
+                            {/* 3. Canyon Hike (Narrows) - Vertical tag on top */}
+                            <div className="col-span-1 row-span-2 rounded-3xl overflow-hidden border border-neutral-200 dark:border-white/5 group relative shadow-md">
+                                <img src="/images/about/canyon-hike.jpg" alt="Canyon Hike" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <HandwrittenCaption text="Narrows hike" className="top-6 left-4 -rotate-3 scale-90" />
+                            </div>
+
+                            {/* 4. Beta NYSE - NO TAG */}
+                            <div className="col-span-1 row-span-1 rounded-3xl overflow-hidden border border-neutral-200 dark:border-white/5 group relative shadow-md">
+                                <img src="/images/about/beta-nyse.jpg" alt="BETA NYSE" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                            </div>
+
+                            {/* 5. Aviation - Chinook */}
+                            <div className="col-span-1 row-span-1 rounded-3xl overflow-hidden border border-neutral-200 dark:border-white/5 group relative shadow-md">
+                                <img src="/images/about/aviation-museum.jpg" alt="Chinook Helicopter" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <HandwrittenCaption text="Aviation" className="top-4 right-4 rotate-1 scale-75" />
+                            </div>
+
+                            {/* 6. Cockpit Visit - Last Wide */}
+                            <div className="col-span-2 row-span-1 rounded-3xl overflow-hidden group relative shadow-lg bg-neutral-100 dark:bg-neutral-900/50">
+                                <img src="/images/about/cockpit_final.jpg" alt="New Cockpit Visit" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <HandwrittenCaption text="Inside Cockpit" className="bottom-6 right-4 -rotate-1" />
                             </div>
                         </div>
-                    </GlassCard>
+                    </section>
+
+                    {/* Tool Exploration - Auto Moving Carousel with Real Logos */}
+                    <section className="mb-16">
+                        <div className="flex items-center justify-between mb-8">
+                            <h2 className="text-[32px] font-serif font-light tracking-tight text-neutral-900 dark:text-white uppercase text-center md:text-left">Tool Exploration</h2>
+                            <div className="h-px bg-neutral-200 dark:bg-white/10 flex-1 ml-6 hidden md:block" />
+                        </div>
+
+                        <div className="relative w-full overflow-hidden">
+                            <motion.div
+                                className="flex gap-4 w-max py-4"
+                                animate={{
+                                    x: [0, -1400],
+                                }}
+                                transition={{
+                                    x: {
+                                        repeat: Infinity,
+                                        repeatType: "loop",
+                                        duration: 35,
+                                        ease: "linear",
+                                    },
+                                }}
+                            >
+                                {[
+                                    { name: "Figma", logo: "/images/about/figma-new.png" },
+                                    { name: "Cursor", logo: "/images/about/cursor_code_editor-logo_brandlogos.net_r1yfy.png" },
+                                    { name: "Gemini", logo: "/images/about/gemini-logo.jpg" },
+                                    { name: "ChatGPT", logo: "/images/about/chatgpt-new.png" },
+                                    { name: "Claude", logo: "/images/about/claude logo.jpeg" },
+                                    { name: "Uizard", logo: "/images/about/uizard-new.png" },
+                                    { name: "Antigravity", logo: "/images/about/antigravity-new.png" },
+                                    // Duplicate for seamless loop
+                                    { name: "Figma", logo: "/images/about/figma-new.png" },
+                                    { name: "Cursor", logo: "/images/about/cursor_code_editor-logo_brandlogos.net_r1yfy.png" },
+                                    { name: "Gemini", logo: "/images/about/gemini-logo.jpg" },
+                                    { name: "ChatGPT", logo: "/images/about/chatgpt-new.png" },
+                                    { name: "Claude", logo: "/images/about/claude logo.jpeg" },
+                                    { name: "Uizard", logo: "/images/about/uizard-new.png" },
+                                    { name: "Antigravity", logo: "/images/about/antigravity-new.png" },
+                                ].map((tool, i) => (
+                                    <div key={i} className="min-w-[160px] h-[120px] bg-transparent flex flex-col items-center justify-center gap-3 group transition-all duration-300">
+                                        <div className="w-20 h-20 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-110">
+                                            <img src={tool.logo} alt={tool.name} className="w-full h-full object-contain" />
+                                        </div>
+                                        <span className="text-[10px] font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-widest">{tool.name}</span>
+                                    </div>
+                                ))}
+                            </motion.div>
+
+                            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-neutral-50 dark:from-neutral-950 to-transparent z-10" />
+                            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-neutral-50 dark:from-neutral-950 to-transparent z-10" />
+                        </div>
+                    </section>
+
+                    {/* Background Grid Pattern for Experience */}
+                    <div className="relative">
+                        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-50 dark:opacity-20 translate-y-[-50px]" />
+                        <ExperienceSection />
+                    </div>
                 </div>
             </div>
         </main>
+    );
+}
+
+function ExperienceSection() {
+    const [showInternships, setShowInternships] = React.useState(true);
+
+    const fullTimeJobs = [
+        {
+            year: "Jun 2025 - Present",
+            duration: "10 Mos",
+            title: "UX Lead",
+            company: "Safe Home Project | SF Civic Tech",
+            location: "San Francisco Bay Area",
+            desc: "",
+            link: "https://www.sfcivictech.org"
+        },
+        {
+            year: "Feb 2023 - Jan 2025",
+            duration: "2 Yrs",
+            title: "Associate User Experience Designer",
+            company: "Boeing",
+            location: "",
+            desc: "",
+            link: "https://services.boeing.com"
+        },
+        {
+            year: "May 2021 - Nov 2022",
+            duration: "1 Yr 7 Mos",
+            title: "UX Designer",
+            company: "FourKites, Inc.",
+            location: "Chennai, Tamil Nadu, India",
+            desc: "",
+            link: "https://www.fourkites.com"
+        },
+        {
+            year: "Oct 2020 - Apr 2021",
+            duration: "7 Mos",
+            title: "Creative UI/UX Designer",
+            company: "Doodleblue Innovations",
+            location: "Chennai, Tamil Nadu, India",
+            desc: "",
+            link: "https://www.doodleblue.com"
+        }
+    ];
+
+    const internships = [
+        {
+            year: "Jul 2020 - Oct 2020",
+            duration: "4 Mos",
+            title: "UI/UX Internship",
+            company: "Doodleblue Innovations",
+            location: "Tamil Nadu, India",
+            link: "https://www.doodleblue.com"
+        },
+        {
+            year: "Dec 2019 - Apr 2020",
+            duration: "5 Mos",
+            title: "UI/UX",
+            company: "Blubirch",
+            location: "India",
+            link: "https://www.blubirch.com"
+        },
+        {
+            year: "Nov 2018 - Dec 2018",
+            duration: "2 Mos",
+            title: "3D Modelling and Animation",
+            company: "Beebox Studios Private Limited",
+            location: "Greater Chennai Area",
+            link: "https://www.beebox3d.com"
+        },
+        {
+            year: "May 2018 - Jul 2018",
+            duration: "3 Mos",
+            title: "Design Internship",
+            company: "Indian Institute of Technology, Madras",
+            location: "Greater Chennai Area",
+            link: "https://www.iitm.ac.in"
+        },
+        {
+            year: "Feb 2018 - Apr 2018",
+            duration: "3 Mos",
+            title: "NPTEL Certification",
+            company: "NPTEL",
+            location: "Online",
+            link: "https://nptel.ac.in"
+        }
+    ];
+
+    return (
+        <GlassCard className="p-6 md:p-10 border-neutral-200 dark:border-white/10 bg-white/50 dark:bg-black/10 backdrop-blur-3xl shadow-xl">
+            <h2 className="text-[32px] font-serif font-light border-b border-neutral-200 dark:border-neutral-800 pb-2 mb-8 tracking-tight text-neutral-900 dark:text-white uppercase">
+                Experience
+            </h2>
+
+            <div className="space-y-4">
+                {fullTimeJobs.map((job, idx) => {
+                    const Content = (
+                        <div key={idx} className={`flex flex-col md:flex-row md:items-baseline gap-4 md:gap-10 group py-2 transition-all duration-300 ${idx === 0 ? "pt-2" : ""}`}>
+                            <div className="w-40 shrink-0">
+                                <span className="text-[14px] font-normal font-outfit text-neutral-900 dark:text-white">
+                                    {job.year}
+                                </span>
+                                <p className="text-[12px] font-bold text-purple-600 dark:text-purple-400 mt-0.5 tracking-wide">{job.duration}</p>
+                            </div>
+                            <div className="flex-1">
+                                <div className="flex items-start justify-between gap-6">
+                                    <div className="flex-1">
+                                        <h3 className="text-xl font-serif font-light text-neutral-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300 tracking-tight">
+                                            {job.title}
+                                        </h3>
+                                        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-[2px] mb-1">
+                                            <p className="text-[14px] font-normal font-outfit text-neutral-900 dark:text-white opacity-90">
+                                                {job.company}
+                                            </p>
+                                            {job.location && (
+                                                <>
+                                                    <span className="text-purple-500 text-sm">•</span>
+                                                    <p className="text-[12px] font-normal text-neutral-900 dark:text-white tracking-wider">{job.location}</p>
+                                                </>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-center gap-4 shrink-0 mt-1">
+                                        {job.link && <ExternalLink className="w-5 h-5 text-neutral-400 dark:text-neutral-500 group-hover:text-purple-500 transition-colors" />}
+                                    </div>
+                                </div>
+
+                                {job.desc && (
+                                    <p className="text-base text-neutral-900 dark:text-white max-w-2xl font-sans italic font-normal leading-relaxed mt-1">
+                                        {job.desc}
+                                    </p>
+                                )}
+                            </div>
+                        </div>
+                    );
+
+                    return job.link ? (
+                        <a
+                            key={idx}
+                            href={job.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block no-underline border-b border-neutral-100 dark:border-white/5 last:border-0 hover:bg-neutral-50 dark:hover:bg-white/[0.02] rounded-xl px-2 -mx-2 transition-colors"
+                        >
+                            {Content}
+                        </a>
+                    ) : (
+                        <div key={idx} className="border-b border-neutral-100 dark:border-white/5 last:border-0 px-2 -mx-2">
+                            {Content}
+                        </div>
+                    );
+                })}
+
+                <div className="pt-8 mt-4 border-t-2 border-neutral-900 dark:border-white">
+                    <button
+                        onClick={() => setShowInternships(!showInternships)}
+                        className="w-full flex flex-col md:flex-row md:items-center justify-between group transition-colors mb-6 gap-2"
+                    >
+                        <h3 className="text-[32px] font-serif font-light text-neutral-900 dark:text-white tracking-tight uppercase text-left w-full md:w-auto">
+                            Internships
+                        </h3>
+                        <div className="flex items-center gap-3 text-purple-600 dark:text-purple-400 font-bold underline decoration-2 underline-offset-4 decoration-purple-500/30 group-hover:decoration-purple-500 transition-all self-start md:self-auto">
+                            <span className="text-sm uppercase tracking-widest">{showInternships ? "Collapse" : "Expand"} ({internships.length})</span>
+                            <div className="p-1 rounded-full bg-purple-500/10 transition-transform duration-300">
+                                {showInternships ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
+                            </div>
+                        </div>
+                    </button>
+
+                    {showInternships && (
+                        <div className="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                            {internships.map((job, idx) => {
+                                const Content = (
+                                    <div key={idx} className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-10 group py-1 transition-all duration-300">
+                                        <div className="w-40 shrink-0">
+                                            <span className="text-[14px] font-normal font-outfit text-neutral-900 dark:text-white uppercase tracking-wider">
+                                                {job.year}
+                                            </span>
+                                            <p className="text-[12px] font-bold text-purple-600/60 dark:text-purple-400/60 mt-0.5 tracking-wide">{job.duration}</p>
+                                        </div>
+                                        <div className="flex-1">
+                                            <div className="flex items-start justify-between gap-6">
+                                                <div className="flex-1">
+                                                    <h4 className="text-lg font-serif font-light text-neutral-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors uppercase tracking-tight">
+                                                        {job.title}
+                                                    </h4>
+                                                    <p className="text-[14px] font-normal font-outfit text-neutral-400 dark:text-neutral-500 mt-[2px]">
+                                                        {job.company}
+                                                    </p>
+                                                </div>
+
+                                                <div className="flex items-center gap-4 shrink-0 mt-1">
+                                                    {job.link && job.link !== "#" && <ExternalLink className="w-5 h-5 text-neutral-400 dark:text-neutral-500 group-hover:text-purple-500 transition-colors" />}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+
+                                return (job.link && job.link !== "#") ? (
+                                    <a
+                                        key={idx}
+                                        href={job.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="block no-underline border-b border-neutral-100 dark:border-white/5 last:border-0 hover:bg-neutral-50 dark:hover:bg-white/[0.02] rounded-xl px-2 -mx-2 transition-colors"
+                                    >
+                                        {Content}
+                                    </a>
+                                ) : (
+                                    <div key={idx} className="border-b border-neutral-100 dark:border-white/5 last:border-0 px-2 -mx-2">
+                                        {Content}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    )}
+                </div>
+            </div>
+        </GlassCard>
     );
 }

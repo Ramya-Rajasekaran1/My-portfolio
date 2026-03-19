@@ -129,7 +129,7 @@ export function Skills() {
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">Expertise & Skills</h2>
-                        <p className="text-neutral-600 dark:text-neutral-400">
+                        <p className="text-white/80 font-light text-base md:text-lg">
                             Hover over the bubbles to explore my skillset and proficiency levels.
                         </p>
                     </motion.div>

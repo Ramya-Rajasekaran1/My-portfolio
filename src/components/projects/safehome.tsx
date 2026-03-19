@@ -821,22 +821,17 @@ export function SafeHomeProject({ project }: { project: Project }) {
           <div />
         </div>
 
-        {/* Right – dark with blue gradient */}
-        <div style={{ background: "linear-gradient(135deg, #002a5a 0%, #0f172a 50%, #0a0a0a 100%)", padding: "80px 80px 80px 100px", display: "flex", flexDirection: "column", justifyContent: "center", position: "relative", overflow: "hidden", borderLeft: "1px solid rgba(0,112,255,0.2)" }}>
-          <div style={{ position: "absolute", top: 40, right: -20, fontFamily: "'Playfair Display', serif", fontSize: 160, fontWeight: 900, color: "rgba(255,255,255,0.07)", lineHeight: 0.9, whiteSpace: "pre", pointerEvents: "none" }}>{"SAFE\nHOME"}</div>
-          <div style={{ position: "relative", zIndex: 2 }}>
-            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px,3.5vw,46px)", fontWeight: 700, fontStyle: "italic", color: "#fff", lineHeight: 1.2, marginBottom: 32 }}>
-              "Knowing your risk is the first step to surviving it."
-            </p>
-            <p style={{ fontSize: 16, color: "rgba(255,255,255,0.85)", lineHeight: 1.8, maxWidth: 420, marginBottom: 48 }}>
-              SafeHome is a <span style={{ color: "#3b79ffff", fontWeight: 700 }}>nonprofit platform</span> backed by <span style={{ color: "#FF8C3B", fontWeight: 700 }}>SF government data</span> that helps residents understand their <span style={{ color: "hsla(221, 100%, 62%, 1.00)", fontWeight: 700 }}>earthquake</span> and <span style={{ color: "#3b79ffff", fontWeight: 700 }}>tsunami</span> risk by location and take actionable steps to prepare. When I joined, the product had no UX foundation. I built one.
-            </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-              {["UX Strategy", "Civic Design", "Accessibility", "Design Systems", "User Research", "Cross-Functional"].map(t => (
-                <span key={t} style={{ fontFamily: "ui-monospace, monospace", fontSize: 12, letterSpacing: "0.15em", textTransform: "uppercase", padding: "6px 14px", border: "1px solid rgba(255,255,255,0.3)", color: "rgba(255,255,255,0.8)", borderRadius: 2 }}>{t}</span>
-              ))}
-            </div>
-          </div>
+        {/* Right – Featured Image Mockup */}
+        <div style={{ position: "relative", overflow: "hidden", borderLeft: "1px solid rgba(255,255,255,0.1)", background: "#0a0a0a" }}>
+          <img
+            src="/images/safehome/safehome_cover_new.jpg"
+            alt="SafeHome Project Mockup"
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          />
+          {/* Subtle Overlay to make text pop if any */}
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(0,0,0,0.4), transparent 30%)" }} />
+          {/* Faded Background Logo Text */}
+          <div style={{ position: "absolute", top: 40, right: -20, fontFamily: "'Playfair Display', serif", fontSize: 160, fontWeight: 900, color: "rgba(255,255,255,0.05)", lineHeight: 0.9, whiteSpace: "pre", pointerEvents: "none" }}>{"SAFE\nHOME"}</div>
         </div>
       </section>
 

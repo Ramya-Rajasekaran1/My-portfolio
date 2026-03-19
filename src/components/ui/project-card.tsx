@@ -34,7 +34,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                     style={{ backgroundColor: project.backgroundColor }}
                 >
                     <div
-                        className="absolute inset-0 bg-contain bg-center bg-no-repeat transition-transform duration-500 group-hover:scale-105"
+                        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 group-hover:scale-105"
                         style={{ backgroundImage: `url(${(project as any).thumbnailImage || project.image})` }}
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
@@ -66,13 +66,15 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                 </div>
 
                 {/* Shorter default view - just category and title */}
-                <div className="space-y-1.5 mt-4">
-                    <span className="px-3 py-1 text-[10px] font-bold uppercase tracking-widest bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded-full border border-purple-500/20">
-                        {project.category}
-                    </span>
-                    <h3 className="text-xl md:text-2xl font-serif font-bold group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                    {project.title}
-                </h3>
+                <div className="flex flex-col gap-4 mt-6">
+                    <div className="flex">
+                        <span className="px-3 py-1 text-[10px] font-bold uppercase tracking-widest bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded-full border border-purple-500/20">
+                            {project.category}
+                        </span>
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-serif font-medium group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                        {project.title}
+                    </h3>
                 </div>
             </Link>
         </motion.div>
