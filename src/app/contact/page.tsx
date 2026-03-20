@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
     return (
-        <main className="min-h-screen pt-24 pb-12 flex flex-col justify-center items-center overflow-hidden transition-colors duration-300 bg-neutral-50 dark:bg-neutral-950">
+        <main id="main-content" className="min-h-screen pt-24 pb-12 flex flex-col justify-center items-center overflow-hidden transition-colors duration-300 bg-neutral-50 dark:bg-neutral-950">
             <div className="container mx-auto px-4">
                 <div className="max-w-2xl mx-auto text-center">
                     <h1 className="text-[40px] font-serif font-bold text-neutral-900 dark:text-white py-[4px] mb-[16px] tracking-tight">Get in Touch</h1>

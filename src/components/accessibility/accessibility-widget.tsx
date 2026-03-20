@@ -59,7 +59,6 @@ export function AccessibilityWidget() {
             // Option/Alt + A: Toggle custom accessibility widget
             if (e.altKey && !e.ctrlKey && !e.metaKey && (e.key === "A" || e.key === "a")) {
                 e.preventDefault();
-                console.log("Accessibility widget toggled");
                 setIsOpen((prev) => !prev);
             }
         };
@@ -160,7 +159,7 @@ export function AccessibilityWidget() {
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: -400, opacity: 0 }}
                             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                            className="fixed left-0 top-0 bottom-0 w-[400px] bg-white dark:bg-neutral-900 shadow-2xl z-[70] overflow-y-auto"
+                            className="fixed left-0 top-0 bottom-0 w-full sm:w-[400px] max-w-[100vw] sm:max-w-[400px] bg-white dark:bg-neutral-900 shadow-2xl z-[70] overflow-y-auto"
                         >
                             {/* Header */}
                             <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white p-6 flex items-center justify-between">

@@ -10,6 +10,8 @@ import { cn } from "@/lib/utils";
 export function Navbar() {
     const [isScrolled, setIsScrolled] = React.useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+    const menuRef = React.useRef<HTMLDivElement>(null);
+    const menuButtonRef = React.useRef<HTMLButtonElement>(null);
 
     React.useEffect(() => {
         const handleScroll = () => {
@@ -18,6 +20,40 @@ export function Navbar() {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    React.useEffect(() => {
+        if (!isMobileMenuOpen) return;
+
+        const menu = menuRef.current;
+        if (!menu) return;
+
+        const focusableElements = menu.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        const handleTabKey = (e: KeyboardEvent) => {
+            if (e.key !== 'Tab') return;
+
+            if (e.shiftKey) {
+                if (document.activeElement === firstElement) {
+                    e.preventDefault();
+                    lastElement?.focus();
+                }
+            } else {
+                if (document.activeElement === lastElement) {
+                    e.preventDefault();
+                    firstElement?.focus();
+                }
+            }
+        };
+
+        document.addEventListener('keydown', handleTabKey);
+        firstElement?.focus();
+
+        return () => document.removeEventListener('keydown', handleTabKey);
+    }, [isMobileMenuOpen]);
 
     const navLinks = [
         { name: "About", href: "/about" },
@@ -120,6 +156,7 @@ export function Navbar() {
                 {
                     isMobileMenuOpen && (
                         <motion.div
+                            ref={menuRef}
                             id="mobile-menu"
                             role="navigation"
                             aria-label="Mobile navigation"

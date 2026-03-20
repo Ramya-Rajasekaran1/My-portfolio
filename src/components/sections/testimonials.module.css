@@ -1,0 +1,32 @@
+.maskFadeEdges {
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+@keyframes marqueeScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.333%); }
+}
+
+.animateMarqueeFluid {
+    animation: marqueeScroll 60s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animateMarqueeFluid {
+        animation: none;
+    }
+}
+
+.animateMarqueeFluidPaused {
+    animation-play-state: paused;
+}
+
+.testimonialText strong {
+    font-weight: 800 !important;
+    text-decoration: none;
+    color: #000000; 
+}
+
+:global(.dark) .testimonialText strong {
+    color: #ffffff;
+}

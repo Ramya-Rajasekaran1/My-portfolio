@@ -5,6 +5,7 @@ import { motion, useAnimationControls } from "framer-motion";
 import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { testimonials, type Testimonial } from "@/data/testimonials";
 import { cn } from "@/lib/utils";
+import styles from "./testimonials.module.css";
 
 const CATEGORIES = [
     { id: "leadership", label: "Leadership" },
@@ -56,7 +57,7 @@ export function Testimonials() {
                         <h2 className="text-4xl md:text-5xl font-extralight mb-6 tracking-tight text-neutral-900 dark:text-white leading-none">
                             Kind Words <span className="font-serif italic font-light">& Impact</span>
                         </h2>
-                        <p className="text-neutral-600 dark:text-white/80 max-w-xl text-base md:text-lg font-light leading-relaxed">
+                        <p className="text-neutral-700 dark:text-white/80 max-w-xl text-base md:text-lg font-light leading-relaxed">
                             Feedback from colleagues and mentors across aviation, tech, and the global design community.
                         </p>
                     </motion.div>
@@ -141,40 +142,20 @@ export function Testimonials() {
             </div>
 
             <div className="relative w-full group">
-                <style jsx global>{`
-                    .mask-fade-edges {
-                        mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-                    }
-                    @keyframes marquee-scroll {
-                        0% { transform: translateX(0); }
-                        100% { transform: translateX(-33.333%); }
-                    }
-                    .animate-marquee-fluid {
-                        animation: marquee-scroll 60s linear infinite;
-                    }
-                    .animate-marquee-fluid.paused {
-                        animation-play-state: paused;
-                    }
-                    .testimonial-text strong {
-                        font-weight: 800 !important;
-                        text-decoration: none;
-                        color: #000000; 
-                    }
-                    .dark .testimonial-text strong {
-                        color: #ffffff;
-                    }
-                `}</style>
-
                 <div 
                     ref={containerRef}
-                    className="overflow-hidden mask-fade-edges px-[10vw] py-8"
+                    className={cn(
+                        "overflow-hidden px-[10vw] py-8",
+                        styles.maskFadeEdges
+                    )}
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                 >
                     <div 
                         className={cn(
-                            "flex gap-8 w-max animate-marquee-fluid",
-                            (isHovered || expandedCount > 0) && "paused"
+                            "flex gap-8 w-max",
+                            styles.animateMarqueeFluid,
+                            (isHovered || expandedCount > 0) && styles.animateMarqueeFluidPaused
                         )}
                     >
                         {repeatedTestimonials.map((item, idx) => (
@@ -235,7 +216,8 @@ function TestimonialCard({ item, onToggle }: { item: Testimonial, onToggle: (isE
                     ref={textRef}
                     dangerouslySetInnerHTML={{ __html: `&ldquo;${item.text}&rdquo;` }}
                     className={cn(
-                        "testimonial-text text-lg md:text-xl leading-relaxed text-neutral-700 dark:text-parchment font-light italic transition-all duration-500",
+                        "text-lg md:text-xl leading-relaxed text-neutral-800 dark:text-parchment font-light italic transition-all duration-500",
+                        styles.testimonialText,
                         !isExpanded && "line-clamp-[10]"
                     )}
                 />

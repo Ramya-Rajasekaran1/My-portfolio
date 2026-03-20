@@ -19,7 +19,7 @@ const HandwrittenCaption = ({ text, className }: { text: string; className?: str
 
 export default function AboutPage() {
     return (
-        <main className="min-h-screen pt-20 pb-16 transition-colors duration-300 bg-neutral-50 dark:bg-neutral-950 overflow-x-hidden">
+        <main id="main-content" className="min-h-screen pt-20 pb-16 transition-colors duration-300 bg-neutral-50 dark:bg-neutral-950 overflow-x-hidden">
             <div className="container mx-auto px-4">
                 <div className="max-w-6xl mx-auto">
 
@@ -54,6 +54,7 @@ export default function AboutPage() {
                                 <img
                                     src="/images/Home/WhatsApp Image 2026-03-18 at 14.03.00.jpeg"
                                     alt="Waterfall Adventure"
+                                    loading="lazy"
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
                                 <HandwrittenCaption text="canyoneering" className="top-6 right-8 rotate-3" />
@@ -62,30 +63,30 @@ export default function AboutPage() {
 
                             {/* 2. Music - Vertical */}
                             <div className="col-span-1 row-span-2 rounded-3xl overflow-hidden group relative shadow-lg">
-                                <img src="/images/about/music_ukulele.jpg" alt="Playing Ukulele" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <img src="/images/about/music_ukulele.jpg" alt="Playing Ukulele" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                                 <HandwrittenCaption text="Music" className="top-6 left-6 -rotate-2 scale-90" />
                             </div>
 
                             {/* 3. Canyon Hike (Narrows) - Vertical tag on top */}
                             <div className="col-span-1 row-span-2 rounded-3xl overflow-hidden border border-neutral-200 dark:border-white/5 group relative shadow-md">
-                                <img src="/images/about/canyon-hike.jpg" alt="Canyon Hike" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <img src="/images/about/canyon-hike.jpg" alt="Canyon Hike" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                                 <HandwrittenCaption text="Narrows hike" className="top-6 left-4 -rotate-3 scale-90" />
                             </div>
 
                             {/* 4. Beta NYSE - NO TAG */}
                             <div className="col-span-1 row-span-1 rounded-3xl overflow-hidden border border-neutral-200 dark:border-white/5 group relative shadow-md">
-                                <img src="/images/about/beta-nyse.jpg" alt="BETA NYSE" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <img src="/images/about/beta-nyse.jpg" alt="BETA NYSE" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                             </div>
 
                             {/* 5. Aviation - Chinook */}
                             <div className="col-span-1 row-span-1 rounded-3xl overflow-hidden border border-neutral-200 dark:border-white/5 group relative shadow-md">
-                                <img src="/images/about/aviation-museum.jpg" alt="Chinook Helicopter" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <img src="/images/about/aviation-museum.jpg" alt="Chinook Helicopter" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                                 <HandwrittenCaption text="Aviation" className="top-4 right-4 rotate-1 scale-75" />
                             </div>
 
                             {/* 6. Cockpit Visit - Last Wide */}
                             <div className="col-span-2 row-span-1 rounded-3xl overflow-hidden group relative shadow-lg bg-neutral-100 dark:bg-neutral-900/50">
-                                <img src="/images/about/cockpit_final.jpg" alt="New Cockpit Visit" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <img src="/images/about/cockpit_final.jpg" alt="New Cockpit Visit" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                                 <HandwrittenCaption text="Inside Cockpit" className="bottom-6 right-4 -rotate-1" />
                             </div>
                         </div>
@@ -135,7 +136,7 @@ export default function AboutPage() {
                                 ].map((tool, i) => (
                                     <div key={i} className="min-w-[160px] h-[120px] bg-transparent flex flex-col items-center justify-center gap-3 group transition-all duration-300">
                                         <div className="w-20 h-20 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-110">
-                                            <img src={tool.logo} alt={tool.name} className="w-full h-full object-contain" />
+                                            <img src={tool.logo} alt={tool.name} loading="lazy" className="w-full h-full object-contain" />
                                         </div>
                                         <span className="text-[10px] font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-widest">{tool.name}</span>
                                     </div>

@@ -140,7 +140,13 @@ export function DesignLeadership() {
                                 />
                                 ) : (
                                 <div className="relative w-full aspect-video bg-neutral-950">
-                                    <video src={item.src} className="w-full h-full object-cover" muted loop />
+                                    <video 
+                                        src={item.src} 
+                                        className="w-full h-full object-cover" 
+                                        muted 
+                                        loop 
+                                        aria-label={`${item.note || item.title} - ${item.location}`}
+                                    />
                                     <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition-colors">
                                         <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
                                             <Play className="w-6 h-6 text-white" />
@@ -188,6 +194,7 @@ export function DesignLeadership() {
             <button 
                 onClick={(e) => { e.stopPropagation(); setLightboxItem(null); }}
                 className="absolute top-6 right-6 p-4 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all z-[120]"
+                aria-label="Close image viewer"
             >
               <X className="w-8 h-8" />
             </button>

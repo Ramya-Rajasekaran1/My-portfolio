@@ -39,7 +39,7 @@ const categoryColors = {
 };
 
 export function Skills() {
-    const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+    const [activeSkill, setActiveSkill] = useState<string | null>(null);
     const sectionRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: sectionRef,
@@ -154,8 +154,24 @@ export function Skills() {
                                         zIndex: 50,
                                         transition: { duration: 0.2 }
                                     }}
-                                    onHoverStart={() => setHoveredSkill(skill.name)}
-                                    onHoverEnd={() => setHoveredSkill(null)}
+                                    whileFocus={{
+                                        scale: 1.15,
+                                        zIndex: 50,
+                                        transition: { duration: 0.2 }
+                                    }}
+                                    onHoverStart={() => setActiveSkill(skill.name)}
+                                    onHoverEnd={() => setActiveSkill(null)}
+                                    onFocus={() => setActiveSkill(skill.name)}
+                                    onBlur={() => setActiveSkill(null)}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            setActiveSkill(activeSkill === skill.name ? null : skill.name);
+                                        }
+                                    }}
+                                    tabIndex={0}
+                                    role="button"
+                                    aria-label={`${skill.name}: ${skill.proficiency}% proficiency in ${skill.category}`}
                                     className={`
                                         ${sizeClasses[skill.size as keyof typeof sizeClasses]}
                                         rounded-full
@@ -178,8 +194,8 @@ export function Skills() {
                                         {skill.name}
                                     </div>
 
-                                    {/* Tooltip on hover */}
-                                    {hoveredSkill === skill.name && (
+                                    {/* Tooltip on hover/focus */}
+                                    {activeSkill === skill.name && (
                                         <motion.div
                                             initial={{ opacity: 0, y: 10 }}
                                             animate={{ opacity: 1, y: 0 }}

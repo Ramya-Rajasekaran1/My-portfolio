@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function WorkPage() {
     return (
-        <main className="min-h-screen pt-32 pb-24">
+        <main id="main-content" className="min-h-screen pt-32 pb-24">
             <div className="container mx-auto px-4">
                 <div className="max-w-4xl mb-16">
                     <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold mb-6 tracking-tight">Selected Work</h1>
