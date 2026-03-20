@@ -4,6 +4,30 @@
   --font-sans: var(--font-inter);
   --font-serif: var(--font-playfair);
   --font-outfit: var(--font-outfit);
+
+  /* New Brand Colors (Brightened) */
+  --color-canvas: #0F0C18;
+  --color-section: #161122;
+  --color-card: #201830;
+  --color-card-hover: #2B203D;
+  --color-blush: #F79CBa; /* Brighter, more vibrant pink */
+  --color-petal: #FFC4D4; /* Lighter, punchier soft pink */
+  --color-ivory: #FFF8F0; /* Brighter, warmer white */
+  --color-parchment: #CFC5BA; /* More legible secondary text */
+  --color-blush-text: #4A152B; /* Contrast text on blush */
+
+  /* Global Redirect: Map legacy Purple usage to new Brand palette */
+  --color-purple-50: var(--color-canvas);
+  --color-purple-100: var(--color-section);
+  --color-purple-200: var(--color-card);
+  --color-purple-300: var(--color-petal);
+  --color-purple-400: var(--color-petal);
+  --color-purple-500: var(--color-blush);
+  --color-purple-600: var(--color-blush);
+  --color-purple-700: var(--color-blush);
+  --color-purple-800: var(--color-blush-text);
+  --color-purple-900: var(--color-blush-text);
+  --color-purple-950: var(--color-blush-text);
 }
 
 @variant dark (&:where(.dark, .dark *));
@@ -14,8 +38,8 @@
 }
 
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --background: #0C0A14;
+  --foreground: #EDE8E0;
 }
 
 body {
@@ -56,13 +80,13 @@ input[type="button"] {
 
 /* Enhanced Focus Indicators for Accessibility */
 *:focus-visible {
-  outline: 3px solid #a855f7;
+  outline: 3px solid var(--color-blush);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
 .dark *:focus-visible {
-  outline-color: #a855f7;
+  outline-color: var(--color-blush);
 }
 
 /* Screen reader only class */
@@ -86,9 +110,9 @@ input[type="button"] {
 }
 
 .dark .glass {
-  background-color: rgba(17, 17, 17, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  background-color: rgba(18, 14, 26, 0.75); /* Closer to --color-section */
+  border: 1px solid rgba(212, 132, 154, 0.1); /* Blush border */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
 }
 
 @utility glass-hover {

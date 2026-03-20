@@ -1556,7 +1556,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
       </section>
 
       {/* ── FOOTER ── */}
-      <div style={{ background: "#0070FF", padding: "80px 60px", textAlign: "center" }}>
+      <div style={{ background: "#003A8C", padding: "80px 60px", textAlign: "center" }}>
         <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(32px,5vw,64px)", fontWeight: 900, fontStyle: "italic", color: "#fff", lineHeight: 1.1, maxWidth: 800, margin: "0 auto 16px" }}>
           UX that serves the public by design.
         </h2>

@@ -46,16 +46,16 @@ export function Hero() {
     ];
 
     const skills = [
-        { name: "UX RESEARCH", color: "bg-blue-400" },
-        { name: "PROTOTYPING", color: "bg-purple-400" },
-        { name: "USABILITY TESTING", color: "bg-indigo-400" },
-        { name: "DESIGN STRATEGY", color: "bg-cyan-400" },
-        { name: "DESIGN SYSTEMS", color: "bg-violet-400" },
-        { name: "ACCESSIBILITY", color: "bg-pink-400" },
-        { name: "FIGMA", color: "bg-blue-500" },
-        { name: "GENAI ADVOCATE", color: "bg-orange-400" },
-        { name: "AI TOOLS", color: "bg-yellow-400" },
-        { name: "HUMAN-CENTERED DESIGN", color: "bg-emerald-400" },
+        { name: "Ux Research", color: "bg-blue-400" },
+        { name: "Prototyping", color: "bg-purple-400" },
+        { name: "Usability Testing", color: "bg-indigo-400" },
+        { name: "Design Strategy", color: "bg-cyan-400" },
+        { name: "Design Systems", color: "bg-violet-400" },
+        { name: "Accessibility", color: "bg-pink-400" },
+        { name: "Figma", color: "bg-blue-500" },
+        { name: "Genai Advocate", color: "bg-orange-400" },
+        { name: "Ai Tools", color: "bg-yellow-400" },
+        { name: "Human-Centered Design", color: "bg-emerald-400" },
     ];
 
     const { scrollYProgress } = useScroll({
@@ -118,7 +118,7 @@ export function Hero() {
     return (
         <section ref={sectionRef} className="min-h-[200vh] relative">
             <div className="sticky top-0 min-h-screen flex items-center justify-center px-4 pt-24 md:pt-32 pb-12 relative overflow-hidden">
-                
+
                 <motion.div
                     initial="hidden"
                     animate="visible"
@@ -126,63 +126,66 @@ export function Hero() {
                     className="max-w-4xl w-full p-6 md:p-10 rounded-3xl md:rounded-[2.5rem] border border-white/10 dark:border-white/[0.05] shadow-2xl bg-white/5 dark:bg-black/[0.1] backdrop-blur-2xl relative overflow-hidden z-10"
                 >
                     <div className="absolute inset-0 bg-gradient-to-br from-white/[0.1] to-transparent pointer-none rounded-[inherit]" />
-                    
+
                     <div className="relative z-10">
                         <LayoutGroup id="hero-main">
-                        <div className="flex flex-col">
-                            {/* Fixed Smooth Transition: Use absolute positioning for the inner transition or careful sizing */}
-                            <motion.div
-                                layout="position"
-                                transition={{ 
-                                    layout: { duration: 0.6, ease: "anticipate" },
-                                }}
-                                className={cn(
-                                    "flex gap-6 md:gap-10 transition-all duration-700",
-                                    hasScrolled
-                                        ? "flex-col md:flex-row md:items-start text-left"
-                                        : "flex-col items-center text-center"
-                                )}
-                            >
-                                <motion.div layout transition={{ layout: { duration: 0.6, ease: "anticipate" } }}>
-                                    <motion.div
-                                        variants={itemVariants}
-                                        className={cn(
-                                            "rounded-3xl flex items-center justify-center relative shrink-0 bg-white dark:bg-white/5 border border-neutral-200 dark:border-white/10 p-2 shadow-sm transition-all duration-700",
-                                            hasScrolled ? "w-16 h-16 md:w-20 md:h-20" : "w-24 h-24 md:w-32 md:h-32"
-                                        )}
-                                    >
-                                        <motion.img
-                                            layout
-                                            src="/images/brand/logo.png"
-                                            alt="Logo"
-                                            className="w-full h-full object-contain brightness-110 dark:brightness-100"
-                                        />
-                                    </motion.div>
-                                </motion.div>
-
+                            <div className="flex flex-col">
+                                {/* Fixed Smooth Transition: Use absolute positioning for the inner transition or careful sizing */}
                                 <motion.div
                                     layout
-                                    variants={itemVariants}
+                                    transition={{
+                                        layout: { type: "spring", stiffness: 300, damping: 30 },
+                                    }}
                                     className={cn(
-                                        "flex flex-col transition-all duration-700",
-                                        hasScrolled ? "gap-1 items-start" : "gap-3 items-center"
+                                        "flex gap-6 md:gap-10",
+                                        hasScrolled
+                                            ? "flex-col md:flex-row md:items-start text-left"
+                                            : "flex-col items-center text-center"
                                     )}
                                 >
-                                    <motion.h1 
+                                    <motion.div layout transition={{ layout: { type: "spring", stiffness: 300, damping: 30 } }}>
+                                        <motion.div
+                                            layout
+                                            variants={itemVariants}
+                                            transition={{ layout: { type: "spring", stiffness: 300, damping: 30 } }}
+
+                                            className={cn(
+                                                "rounded-3xl flex items-center justify-center relative shrink-0 bg-white dark:bg-white/5 border border-neutral-200 dark:border-white/10 p-2 shadow-sm",
+                                                hasScrolled ? "w-16 h-16 md:w-20 md:h-20" : "w-24 h-24 md:w-32 md:h-32"
+                                            )}
+                                        >
+                                            <img
+                                                src="/images/brand/logo.png"
+                                                alt="Logo"
+                                                className="w-full h-full object-contain brightness-110 dark:brightness-100 block"
+                                            />
+                                        </motion.div>
+                                    </motion.div>
+
+                                    <motion.div
                                         layout
-                                        className="text-3xl md:text-5xl font-extralight tracking-tight text-neutral-900 dark:text-white leading-none font-outfit"
+                                        variants={itemVariants}
+                                        transition={{ layout: { type: "spring", stiffness: 300, damping: 30 } }}
+                                        className={cn(
+                                            "flex flex-col",
+                                            hasScrolled ? "gap-1 items-start" : "gap-3 items-center"
+                                        )}
                                     >
-                                        Ramya Rajasekaran
-                                    </motion.h1>
-                                    <motion.p 
-                                        layout
-                                        className="text-base md:text-lg leading-tight font-light font-outfit text-purple-600 dark:text-purple-400 tracking-[0.1em]"
-                                    >
-                                        UX design specialist
-                                    </motion.p>
+                                        <motion.h1
+                                            layout
+                                            className="text-3xl md:text-5xl font-extralight tracking-tight text-neutral-900 dark:text-ivory leading-none font-outfit"
+                                        >
+                                            Ramya Rajasekaran
+                                        </motion.h1>
+                                        <motion.p
+                                            layout
+                                            className="text-base md:text-lg leading-tight font-bold font-outfit text-blush-text dark:text-blush tracking-[0.1em]"
+                                        >
+                                            UX design specialist
+                                        </motion.p>
+                                    </motion.div>
                                 </motion.div>
-                            </motion.div>
-                        </div>
+                            </div>
                         </LayoutGroup>
 
                         <motion.div style={{ maxHeight: expandableMaxHeight, overflow: "hidden" }}>
@@ -191,8 +194,8 @@ export function Hero() {
                                     style={{ opacity: bioOpacity, y: bioY, filter: useTransform(bioBlur, (v) => `blur(${v}px)`) }}
                                     className="max-w-3xl text-left"
                                 >
-                                    <p className="text-base md:text-lg text-neutral-800 dark:text-neutral-200 leading-relaxed font-light">
-                                        UX Designer with experience leading end-to-end process across <span className="font-medium">aviation, e-commerce, supply chain, B2B, B2C</span>. I design award-winning solutions and have published research on GenAI Accessibility, at IEEE and Industry case study at IndiaHCI.
+                                    <p className="text-base md:text-lg text-neutral-900 dark:text-white leading-relaxed font-light">
+                                        UX Designer with experience leading end-to-end process across <span className="font-medium dark:text-white">aviation, e-commerce, supply chain, B2B, B2C</span>. I design award-winning solutions and have published research on GenAI Accessibility, at IEEE and Industry case study at IndiaHCI.
                                     </p>
                                 </motion.div>
 
@@ -204,12 +207,12 @@ export function Hero() {
                                         <motion.div
                                             key={achievement.label}
                                             whileHover={{ y: -5 }}
-                                            className="p-4 rounded-2xl bg-white dark:bg-white/[0.02] border border-neutral-200 dark:border-white/[0.05] flex flex-col items-start gap-1 transition-colors hover:bg-neutral-50 dark:hover:bg-white/[0.05]"
+                                            className="group p-5 rounded-2xl bg-blue-955/20 dark:bg-blue-955/40 border border-blue-950/10 dark:border-white/[0.05] flex flex-col items-start transition-colors hover:bg-blush/40 dark:hover:bg-blue-950/60 backdrop-blur-sm"
                                         >
-                                            <div className="space-y-0.5 font-outfit">
-                                                {/* Stat Values: Black Bold in Light Mode */}
-                                                <p className="text-xl font-black text-black dark:text-white drop-shadow-sm leading-none">{achievement.value}</p>
-                                                <p className="text-[10px] uppercase tracking-widest font-black text-black/50 dark:text-purple-300/80">{achievement.label}</p>
+                                            <div className="space-y-6 font-outfit w-full">
+                                                {/* Stat Values: Navy in Light Mode */}
+                                                <p className="text-2xl font-black text-blue-950 dark:text-ivory leading-none">{achievement.value}</p>
+                                                <p className="text-[14px] capitalize tracking-widest font-black text-blue-950/70 dark:text-blush">{achievement.label}</p>
                                             </div>
                                         </motion.div>
                                     ))}
@@ -230,7 +233,7 @@ export function Hero() {
                                                 className="flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-white/10 border border-neutral-200 dark:border-white/10 rounded-full shadow-sm"
                                             >
                                                 <div className={cn("w-1.5 h-1.5 rounded-full", skill.color)} />
-                                                <span className="text-[10px] font-black tracking-widest text-black dark:text-white uppercase">
+                                                <span className="text-[10px] font-black tracking-widest text-black dark:text-ivory uppercase">
                                                     {skill.name}
                                                 </span>
                                             </motion.div>
@@ -253,18 +256,18 @@ export function Hero() {
                     style={{ opacity: scrollIndicatorOpacity }}
                     className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
                 >
-                    <span className="text-[11px] font-outfit uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500 font-medium">
+                    <span className="text-[11px] font-outfit uppercase tracking-[0.2em] text-neutral-900 dark:text-neutral-500 font-medium">
                         Scroll to explore
                     </span>
                     <motion.div
                         animate={{ y: [0, 8, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                        className="w-5 h-8 rounded-full border-2 border-neutral-300 dark:border-neutral-600 flex items-start justify-center pt-1.5"
+                        className="w-5 h-8 rounded-full border-2 border-neutral-900 dark:border-neutral-600 flex items-start justify-center pt-1.5"
                     >
                         <motion.div
                             animate={{ opacity: [0.3, 1, 0.3] }}
                             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                            className="w-1 h-1.5 rounded-full bg-purple-500"
+                            className="w-1 h-1.5 rounded-full bg-neutral-900 dark:bg-purple-500"
                         />
                     </motion.div>
                 </motion.div>

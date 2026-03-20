@@ -37,7 +37,7 @@ export default function RootLayout({
         />
       </head>
       <body className={cn(
-        "min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 antialiased transition-colors duration-300",
+        "min-h-screen bg-neutral-50 dark:bg-canvas text-neutral-900 dark:text-ivory antialiased transition-colors duration-300",
         inter.variable,
         playfair.variable,
         outfit.variable,

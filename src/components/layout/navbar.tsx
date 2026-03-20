@@ -37,7 +37,7 @@ export function Navbar() {
                 strokeWidth="4"
                 fill="transparent"
                 strokeLinecap="round"
-                className="text-purple-500 dark:text-purple-400"
+                className="text-blush dark:text-blush"
                 variants={{
                     initial: { pathLength: 0, opacity: 0 },
                     hover: { pathLength: 1, opacity: 1 },
@@ -63,8 +63,8 @@ export function Navbar() {
                         isScrolled ? "glass py-2 px-4 mt-4 max-w-lg backdrop-blur-3xl" : "bg-transparent p-4 mt-6 max-w-5xl"
                     )}>
                         {/* Logo */}
-                        <Link href="/" className="text-xl font-serif font-bold tracking-tight z-50">
-                            Ramya<span className="text-purple-500 dark:text-purple-400">.</span>
+                        <Link href="/" className="text-xl font-serif font-bold tracking-tight z-50 dark:text-ivory">
+                            Ramya<span className="text-blush">.</span>
                         </Link>
 
                         {/* Desktop Nav */}
@@ -81,7 +81,7 @@ export function Navbar() {
                                 >
                                     <Link
                                         href={link.href}
-                                        className="text-xs font-bold font-outfit text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white transition-colors uppercase tracking-widest px-1 py-1"
+                                        className="text-xs font-bold font-outfit text-neutral-600 dark:text-parchment hover:text-black dark:hover:text-ivory transition-colors uppercase tracking-widest px-1 py-1"
                                     >
                                         {link.name}
                                     </Link>
@@ -93,10 +93,10 @@ export function Navbar() {
                         {/* Actions */}
                         <div className="hidden md:flex items-center gap-4">
                             <button
-                                className="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+                                className="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-card-hover transition-colors"
                                 aria-label="Search"
                             >
-                                <Search className="w-5 h-5 text-neutral-600 dark:text-neutral-400" />
+                                <Search className="w-5 h-5 text-neutral-600 dark:text-parchment" />
                             </button>
                             <ThemeToggle />
                         </div>

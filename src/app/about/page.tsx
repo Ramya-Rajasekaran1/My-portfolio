@@ -98,9 +98,11 @@ export default function AboutPage() {
                             <div className="h-px bg-neutral-200 dark:bg-white/10 flex-1 ml-6 hidden md:block" />
                         </div>
 
-                        <div className="relative w-full overflow-hidden">
+                        <div className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing">
                             <motion.div
                                 className="flex gap-4 w-max py-4"
+                                drag="x"
+                                dragConstraints={{ left: -1400, right: 0 }}
                                 animate={{
                                     x: [0, -1400],
                                 }}
@@ -112,6 +114,7 @@ export default function AboutPage() {
                                         ease: "linear",
                                     },
                                 }}
+                                whileTap={{ cursor: "grabbing" }}
                             >
                                 {[
                                     { name: "Figma", logo: "/images/about/figma-new.png" },
@@ -173,7 +176,7 @@ function ExperienceSection() {
             duration: "2 Yrs",
             title: "Associate User Experience Designer",
             company: "Boeing",
-            location: "",
+            location: "Bengaluru, India",
             desc: "",
             link: "https://services.boeing.com"
         },
@@ -229,19 +232,11 @@ function ExperienceSection() {
             company: "Indian Institute of Technology, Madras",
             location: "Greater Chennai Area",
             link: "https://www.iitm.ac.in"
-        },
-        {
-            year: "Feb 2018 - Apr 2018",
-            duration: "3 Mos",
-            title: "NPTEL Certification",
-            company: "NPTEL",
-            location: "Online",
-            link: "https://nptel.ac.in"
         }
     ];
 
     return (
-        <GlassCard className="p-6 md:p-10 border-neutral-200 dark:border-white/10 bg-white/50 dark:bg-black/10 backdrop-blur-3xl shadow-xl">
+        <GlassCard className="p-6 md:p-10 border-neutral-200 dark:border-white/10 bg-gradient-to-br from-white via-white/90 to-white/70 dark:bg-none dark:bg-blue-950/40 backdrop-blur-3xl shadow-xl">
             <h2 className="text-[32px] font-serif font-light border-b border-neutral-200 dark:border-neutral-800 pb-2 mb-8 tracking-tight text-neutral-900 dark:text-white uppercase">
                 Experience
             </h2>
@@ -251,19 +246,19 @@ function ExperienceSection() {
                     const Content = (
                         <div key={idx} className={`flex flex-col md:flex-row md:items-baseline gap-4 md:gap-10 group py-2 transition-all duration-300 ${idx === 0 ? "pt-2" : ""}`}>
                             <div className="w-40 shrink-0">
-                                <span className="text-[14px] font-normal font-outfit text-neutral-900 dark:text-white">
+                                <span className="text-[15px] font-bold font-outfit text-neutral-900 dark:text-ivory">
                                     {job.year}
                                 </span>
-                                <p className="text-[12px] font-bold text-purple-600 dark:text-purple-400 mt-0.5 tracking-wide">{job.duration}</p>
+                                <p className="text-[13px] font-black text-blush-text dark:text-blush mt-0.5 tracking-wider">{job.duration}</p>
                             </div>
                             <div className="flex-1">
                                 <div className="flex items-start justify-between gap-6">
                                     <div className="flex-1">
-                                        <h3 className="text-xl font-serif font-light text-neutral-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300 tracking-tight">
+                                        <h3 className="text-xl md:text-2xl font-sans font-bold text-neutral-900 dark:text-ivory group-hover:text-blush-text dark:group-hover:text-blush transition-colors duration-300 tracking-tight">
                                             {job.title}
                                         </h3>
-                                        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-[2px] mb-1">
-                                            <p className="text-[14px] font-normal font-outfit text-neutral-900 dark:text-white opacity-90">
+                                        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-1 mb-1">
+                                            <p className="text-[15px] font-bold font-outfit text-neutral-900 dark:text-white">
                                                 {job.company}
                                             </p>
                                             {job.location && (
@@ -314,9 +309,9 @@ function ExperienceSection() {
                         <h3 className="text-[32px] font-serif font-light text-neutral-900 dark:text-white tracking-tight uppercase text-left w-full md:w-auto">
                             Internships
                         </h3>
-                        <div className="flex items-center gap-3 text-purple-600 dark:text-purple-400 font-bold underline decoration-2 underline-offset-4 decoration-purple-500/30 group-hover:decoration-purple-500 transition-all self-start md:self-auto">
+                        <div className="flex items-center gap-3 text-blush-text dark:text-blush font-bold underline decoration-2 underline-offset-4 decoration-blush-text/30 dark:decoration-blush/30 group-hover:decoration-blush-text dark:group-hover:decoration-blush transition-all self-start md:self-auto">
                             <span className="text-sm uppercase tracking-widest">{showInternships ? "Collapse" : "Expand"} ({internships.length})</span>
-                            <div className="p-1 rounded-full bg-purple-500/10 transition-transform duration-300">
+                            <div className="p-1 rounded-full bg-blush/10 transition-transform duration-300">
                                 {showInternships ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
                             </div>
                         </div>
@@ -328,18 +323,18 @@ function ExperienceSection() {
                                 const Content = (
                                     <div key={idx} className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-10 group py-1 transition-all duration-300">
                                         <div className="w-40 shrink-0">
-                                            <span className="text-[14px] font-normal font-outfit text-neutral-900 dark:text-white uppercase tracking-wider">
+                                            <span className="text-[14px] font-bold font-outfit text-neutral-900 dark:text-ivory uppercase tracking-wider">
                                                 {job.year}
                                             </span>
-                                            <p className="text-[12px] font-bold text-purple-600/60 dark:text-purple-400/60 mt-0.5 tracking-wide">{job.duration}</p>
+                                            <p className="text-[12px] font-black text-blush-text/90 dark:text-blush/80 mt-0.5 tracking-wide">{job.duration}</p>
                                         </div>
                                         <div className="flex-1">
                                             <div className="flex items-start justify-between gap-6">
                                                 <div className="flex-1">
-                                                    <h4 className="text-lg font-serif font-light text-neutral-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors uppercase tracking-tight">
+                                                    <h4 className="text-lg font-sans font-bold text-neutral-900 dark:text-ivory group-hover:text-blush-text dark:group-hover:text-blush transition-colors uppercase tracking-tight">
                                                         {job.title}
                                                     </h4>
-                                                    <p className="text-[14px] font-normal font-outfit text-neutral-400 dark:text-neutral-500 mt-[2px]">
+                                                    <p className="text-[14px] font-bold font-outfit text-neutral-600 dark:text-parchment mt-[2px]">
                                                         {job.company}
                                                     </p>
                                                 </div>

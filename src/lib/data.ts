@@ -4,11 +4,13 @@ import { filterRevampProject } from '@/data/projects/filter-revamp';
 import { genAiInclusivityProject } from '@/data/projects/gen-ai-inclusivity';
 import { networkIntelligenceProject } from '@/data/projects/network-intelligence';
 import { contentVerifyProject } from '@/data/projects/content-verify';
+import { genAiAccessibilityProject } from '@/data/projects/gen-ai-accessibility';
 
 export const projects = [
     safehomeProject,
-    genAiInclusivityProject,
+    genAiAccessibilityProject,
     trackingQualityDashboard,
+    genAiInclusivityProject,
     filterRevampProject,
     networkIntelligenceProject,
     contentVerifyProject

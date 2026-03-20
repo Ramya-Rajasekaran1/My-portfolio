@@ -13,8 +13,9 @@ interface GalleryItem {
   location: string;
   date: string;
   category: "Leadership" | "Community" | "DesignTeam";
-  note?: string; // Handwritten note content
-  tags: string[]; // Specific sub-tags
+  note?: string;
+  tags: string[];
+  col?: 1 | 2 | 3; // Optional manual column assignment
 }
 
 const galleryItems: GalleryItem[] = [
@@ -23,22 +24,27 @@ const galleryItems: GalleryItem[] = [
   { id: "community-talk", type: "image", src: "/images/untitled folder/0c9cfc13-4e6a-4b76-ac91-542d4a50c761.jpg", title: "Talk on Accessibility", location: "Virtual Stage", date: "Mar 2024", category: "Leadership", note: "Talk on Accessibility", tags: ["Virtual", "Communication"] },
   { id: "bits-stage", type: "image", src: "/images/untitled folder/FC5AA75A-F4E6-42EE-BE82-93A40CAD0B72.JPG", title: "IEEE Published Paper", location: "BITS Pilani", date: "May 2022", category: "Leadership", note: "IEEE Published Paper", tags: ["Keynote", "Supply Chain"] },
   { id: "vip-presentation", type: "image", src: "/images/untitled folder/025021CB-F3EE-4AA2-9A91-394FE35C2804.JPG", title: "Talk on Accessibility", location: "Innovation Hub", date: "Aug 2023", category: "Leadership", note: "Talk on Accessibility", tags: ["Strategy", "Stakeholders"] },
-  { id: "indiahci-banner", type: "image", src: "/images/untitled folder/BA5F20C7-B944-44AA-A7EF-4543EDF3B36F.JPG", title: "India HCI Presentation", location: "IndiaHCI '22", date: "Nov 2022", category: "Leadership", note: "India HCI Presentation", tags: ["Research", "Academic"] },
   { id: "christ-award", type: "image", src: "/images/untitled folder/6A61DCE3-C96F-4E66-963D-26FD6AB98AC4.JPG", title: "IEEE Published Paper", location: "Christ University", date: "Mar 2023", category: "Leadership", note: "IEEE Published Paper", tags: ["Award", "Education"] },
   
-  // Community (2nd Category) - Ordered: Core committee then Giving Back
-  { id: "strategy-talk", type: "image", src: "/images/untitled folder/6623beb2348122000855e532_1713618610056.JPG", title: "Design Community", location: "Product Summit", date: "Jun 2023", category: "Community", note: "Design Community", tags: ["Product Strategy", "Leadership"] },
-  { id: "madrasters-stairs", type: "image", src: "/images/untitled folder/80A40B55-8E70-4BE0-8DA5-D745B97F08B4.JPG", title: "Core Committee Member", location: "Global Venue", date: "Jan 2024", category: "Community", note: "Core Committee Member", tags: ["Madrasters", "Culture"] },
-  { id: "mentorship-circle", type: "image", src: "/images/untitled folder/bc6bbef4-1e89-44a7-987e-84d04c1129f5.jpg", title: "Mentorship", location: "ADPList", date: "Jan 2024", category: "Community", note: "Giving Back", tags: ["ADPList", "Mentorship"] },
-  { id: "indiahci-2022-frame", type: "image", src: "/images/untitled folder/6C165B99-D425-4DE1-BB5E-2FC08B680B9D.JPG", title: "IndiaHCI 2022", location: "BITS Hyderabad", date: "Nov 2022", category: "Community", note: "India HCI Presentation", tags: ["Academic", "HCI"] },
-  { id: "designmyx-collage", type: "image", src: "/images/untitled folder/InShot_20231203_144932996.jpg", title: "Events and Talks", location: "Zeta HQ", date: "Dec 2023", category: "Community", note: "Events and Talks", tags: ["Event", "Mentorship"] },
-  { id: "ge-workshop", type: "image", src: "/images/untitled folder/IMG_1388.JPG", title: "Design Thinking Workshop", location: "Bengaluru", date: "Jul 2023", category: "Community", note: "Design Thinking Workshop", tags: ["Workshop", "Education"] },
+  // Community (2nd Category)
+  // Col 1: Core Committee + IndiaHCI 2022
+  { id: "madrasters-stairs", type: "image", src: "/images/untitled folder/80A40B55-8E70-4BE0-8DA5-D745B97F08B4.JPG", title: "Core Committee Member", location: "Global Venue", date: "Jan 2024", category: "Community", note: "Core Committee Member", tags: ["Madrasters", "Culture"], col: 1 },
+  { id: "indiahci-2022-frame", type: "image", src: "/images/untitled folder/6C165B99-D425-4DE1-BB5E-2FC08B680B9D.JPG", title: "IndiaHCI 2022", location: "BITS Hyderabad", date: "Nov 2022", category: "Community", note: "India HCI Presentation", tags: ["Academic", "HCI"], col: 1 },
+  // Col 2: Giving Back + Design Community
+  { id: "mentorship-circle", type: "image", src: "/images/untitled folder/bc6bbef4-1e89-44a7-987e-84d04c1129f5.jpg", title: "Mentorship", location: "ADPList", date: "Jan 2024", category: "Community", note: "Giving Back", tags: ["ADPList", "Mentorship"], col: 2 },
+  { id: "strategy-talk", type: "image", src: "/images/untitled folder/6623beb2348122000855e532_1713618610056.JPG", title: "Design Community", location: "Product Summit", date: "Jun 2023", category: "Community", note: "Design Community", tags: ["Product Strategy", "Leadership"], col: 2 },
+  // Col 3: Events and Talks + India HCI Banner
+  { id: "designmyx-collage", type: "image", src: "/images/untitled folder/InShot_20231203_144932996.jpg", title: "Events and Talks", location: "Zeta HQ", date: "Dec 2023", category: "Community", note: "Events and Talks", tags: ["Event", "Mentorship"], col: 3 },
+  { id: "indiahci-banner", type: "image", src: "/images/untitled folder/BA5F20C7-B944-44AA-A7EF-4543EDF3B36F.JPG", title: "India HCI Presentation", location: "IndiaHCI '22", date: "Nov 2022", category: "Community", note: "India HCI Presentation", tags: ["Research", "Academic"], col: 3 },
 
-  // Design Team (3rd Category) - Ordered: Team Boeing, Design Fam (Centre), then Whiteboarding
-  { id: "boeing-group-photo", type: "image", src: "/images/untitled folder/C3EDEE2F-D8F6-4AA6-8A96-A3730B03BC62.JPG", title: "Boeing Design Team", location: "Boeing India", date: "Oct 2023", category: "DesignTeam", note: "Team Boeing!", tags: ["Aviation", "Team"] },
-  { id: "madrasters-group", type: "image", src: "/images/untitled folder/IMG-20220518-WA0051.jpg", title: "Design Fam", location: "Madrasters HQ", date: "May 2022", category: "DesignTeam", note: "Design Fam", tags: ["Meetup", "Regional"] },
-  { id: "strategy-board", type: "image", src: "/images/untitled folder/CC423C12-E0DD-4880-8184-0E3C6DF52624.JPG", title: "Systems Mapping", location: "Zeta HQ", date: "Sep 2023", category: "DesignTeam", note: "Whiteboarding Days", tags: ["Systems Design", "Workshop"] },
-  { id: "hq-campus", type: "image", src: "/images/untitled folder/78B30DBB-A0E1-4DE2-948F-6F133CB1DC15.JPG", title: "Leading at HQ", location: "Global HQ", date: "Jan 2024", category: "DesignTeam", note: "Leading at HQ", tags: ["Enterprise", "Internal"] },
+  // Design Team (3rd Category)
+  // Col 1: Design Fam
+  { id: "madrasters-group", type: "image", src: "/images/untitled folder/IMG-20220518-WA0051.jpg", title: "Design Fam", location: "Madrasters HQ", date: "May 2022", category: "DesignTeam", note: "Design Fam", tags: ["Meetup", "Regional"], col: 1 },
+  // Col 2: Team Boeing + Whiteboarding Days
+  { id: "boeing-group-photo", type: "image", src: "/images/untitled folder/C3EDEE2F-D8F6-4AA6-8A96-A3730B03BC62.JPG", title: "Boeing Design Team", location: "Boeing India", date: "Oct 2023", category: "DesignTeam", note: "Team Boeing!", tags: ["Aviation", "Team"], col: 2 },
+  { id: "strategy-board", type: "image", src: "/images/untitled folder/CC423C12-E0DD-4880-8184-0E3C6DF52624.JPG", title: "Systems Mapping", location: "Zeta HQ", date: "Sep 2023", category: "DesignTeam", note: "Whiteboarding Days", tags: ["Systems Design", "Workshop"], col: 2 },
+  // Col 3: Leading at HQ
+  { id: "hq-campus", type: "image", src: "/images/untitled folder/78B30DBB-A0E1-4DE2-948F-6F133CB1DC15.JPG", title: "Leading at HQ", location: "Global HQ", date: "Jan 2024", category: "DesignTeam", note: "Leading at HQ", tags: ["Enterprise", "Internal"], col: 3 },
 ];
 
 const CATEGORIES = [
@@ -55,47 +61,53 @@ export function DesignLeadership() {
     return galleryItems.filter(item => item.category === filter);
   }, [filter]);
 
-  // Manually split items into 3 columns for a stable masonry look
+  // Split items into 3 columns — uses explicit col assignment if present, otherwise round-robin
   const columnItems = useMemo(() => {
     const col1: GalleryItem[] = [];
     const col2: GalleryItem[] = [];
     const col3: GalleryItem[] = [];
-    
+
     filteredItems.forEach((item, index) => {
-      if (index % 3 === 0) col1.push(item);
-      else if (index % 3 === 1) col2.push(item);
-      else col3.push(item);
+      if (item.col === 1) col1.push(item);
+      else if (item.col === 2) col2.push(item);
+      else if (item.col === 3) col3.push(item);
+      else {
+        // Fallback: round-robin for items without an explicit column
+        if (index % 3 === 0) col1.push(item);
+        else if (index % 3 === 1) col2.push(item);
+        else col3.push(item);
+      }
     });
-    
+
     return [col1, col2, col3];
   }, [filteredItems]);
 
   return (
-    <section className="py-24 bg-neutral-50/50 dark:bg-neutral-900/50 overflow-hidden border-t border-neutral-200 dark:border-white/5">
+    <section className="py-24 bg-neutral-50/50 dark:bg-canvas overflow-hidden border-t border-neutral-200 dark:border-white/5">
       <div className="container mx-auto px-4 max-w-6xl">
 
         {/* ── Header ── */}
         <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div className="max-w-xl">
-                <h2 className="text-4xl md:text-5xl font-extralight mb-6 tracking-[0.05em] text-neutral-900 dark:text-white leading-none">
+                <h2 className="text-4xl md:text-5xl font-extralight mb-6 tracking-[0.05em] text-neutral-900 dark:text-ivory leading-none">
                     Design Leadership
                 </h2>
-                <p className="text-neutral-600 dark:text-white/80 text-base md:text-lg font-light leading-relaxed">
+                <p className="text-neutral-600 dark:text-parchment text-base md:text-lg font-light leading-relaxed">
                     A visual archive of strategic product thinking, community engagement, and thought leadership workshops.
                 </p>
             </div>
 
-            {/* Category Filter Tags - Black text with darker border as requested */}
-            <div className="flex flex-row flex-nowrap overflow-x-auto md:overflow-visible gap-2 pb-1 scrollbar-hide">
+            {/* Category Filter Tags */}
+            <div className="flex flex-wrap gap-2">
                 {CATEGORIES.map((cat) => (
                     <button
                         key={cat.id}
                         onClick={() => setFilter(cat.id)}
                         className={cn(
-                            "px-5 py-2 rounded-full text-[10px] font-bold tracking-[0.1em] transition-all duration-300 border flex-shrink-0 uppercase",
+                            "px-3 py-1.5 rounded-full text-[12px] font-black tracking-widest transition-all duration-300 border flex-shrink-0 uppercase",
                             filter === cat.id
-                                ? "bg-purple-600 border-purple-600 text-white shadow-lg shadow-purple-500/30"
-                                : "bg-white dark:bg-neutral-900 border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white hover:border-black dark:hover:border-white"
+                                ? "bg-blush/30 border-blush/40 text-blush-text dark:bg-blush dark:border-blush dark:text-blush-text shadow-md shadow-blush/20"
+                                : "bg-white dark:bg-card border-neutral-300 dark:border-white/10 text-neutral-900 dark:text-ivory hover:border-blush/50"
                         )}
                     >
                         {cat.label}
@@ -118,7 +130,7 @@ export function DesignLeadership() {
                                 exit={{ opacity: 0, scale: 0.9 }}
                                 transition={{ duration: 0.4, delay: i * 0.05 }}
                                 onClick={() => setLightboxItem(item)}
-                                className="group relative cursor-pointer rounded-2xl overflow-hidden bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-white/5 hover:border-black dark:hover:border-white/40 hover:shadow-2xl transition-all duration-500 transform-gpu will-change-transform"
+                                className="group relative cursor-pointer rounded-2xl overflow-hidden bg-white dark:bg-card border border-neutral-100 dark:border-white/5 hover:border-blush/40 animate-in fade-in zoom-in duration-500 hover:shadow-2xl transition-all"
                                 style={{ transformStyle: 'preserve-3d', backfaceVisibility: 'hidden' }}
                             >
                                 {item.type === "image" ? (
@@ -139,7 +151,7 @@ export function DesignLeadership() {
 
                                 {/* Note / Tag */}
                                 <div className="absolute top-4 left-4 z-20 transition-transform duration-500 group-hover:-rotate-3 group-hover:scale-110">
-                                    <div className="relative px-3 py-1.5 bg-black dark:bg-neutral-950 shadow-md transform -rotate-2 border-l-2 border-purple-500">
+                                    <div className="relative px-3 py-1.5 bg-black dark:bg-canvas shadow-md transform -rotate-2 border-l-2 border-blush">
                                         <div className="absolute top-[-6px] left-1/2 -translate-x-1/2 w-6 h-3 bg-white/20 block backdrop-blur-sm pointer-events-none" style={{ clipPath: 'polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%)' }} />
                                         <span className="font-caveat text-sm text-white tracking-tight leading-none whitespace-nowrap">
                                             {item.note || item.title}
@@ -151,7 +163,7 @@ export function DesignLeadership() {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 p-6 flex flex-col justify-end">
                                     <div className="flex flex-wrap gap-1.5">
                                         {item.tags.map((tag) => (
-                                            <span key={tag} className="px-2 py-0.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[8px] font-bold text-white uppercase tracking-widest">
+                                            <span key={tag} className="px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-[12px] font-black text-white uppercase tracking-widest">
                                                 #{tag}
                                             </span>
                                         ))}
@@ -195,7 +207,7 @@ export function DesignLeadership() {
                 </span>
                 <div className="flex flex-wrap justify-center gap-2 mb-4">
                     {lightboxItem.tags.map(tag => (
-                        <span key={tag} className="px-3 py-1 bg-white/10 text-white border border-white/20 rounded-full text-[9px] font-bold uppercase tracking-widest">
+                        <span key={tag} className="px-3 py-1 bg-white/20 text-white border border-white/30 rounded-full text-[12px] font-black uppercase tracking-widest">
                             {tag}
                         </span>
                     ))}

@@ -66,7 +66,7 @@ export function SpiralGlobe() {
                     
                     const opacity = pt.baseOpacity * (0.5 + (rz + 1) / 2 * 0.5);
                     
-                    const pointColor = i % 2 === 0 ? "text-purple-400" : "text-indigo-400";
+                    const pointColor = i % 2 === 0 ? "text-blush" : "text-petal";
                     const isExtraBright = i % 7 === 0;
 
                     return (

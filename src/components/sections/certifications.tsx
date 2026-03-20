@@ -57,25 +57,25 @@ const certifications: Certification[] = [
 
 export function Certifications() {
     return (
-        <section className="py-24 relative overflow-hidden bg-neutral-50 dark:bg-neutral-950/30">
+        <section className="pt-6 md:pt-24 pb-24 relative overflow-hidden bg-neutral-50 dark:bg-neutral-950/30">
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     {/* Header Content */}
-                    <div className="lg:col-span-3 space-y-8 sticky top-32">
+                    <div className="lg:col-span-3 space-y-4 md:space-y-8 sticky top-32">
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5 }}
                         >
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-600 dark:text-purple-400 text-xs font-bold uppercase tracking-widest mb-6">
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blush/30 border border-blush/40 text-blush-text dark:text-blush text-[12px] font-black uppercase tracking-widest mb-4 md:mb-6">
                                 <Award className="w-3 h-3" />
                                 Professional Growth
                             </div>
-                            <h2 className="text-4xl md:text-5xl font-extralight mb-6 tracking-tight text-neutral-900 dark:text-white leading-[0.9]">
+                            <h2 className="text-4xl md:text-5xl font-extralight mb-4 md:mb-6 tracking-tight text-neutral-900 dark:text-white leading-[0.9]">
                                 Continuous <br />Learning
                             </h2>
-                            <p className="text-white/80 text-base font-sans leading-relaxed max-w-xs font-light">
+                            <p className="text-white/80 text-base font-sans leading-relaxed max-w-xs font-light hidden md:block">
                                 I believe in the power of continuous learning to stay ahead in the rapidly evolving design landscape, especially at the intersection of UX and AI.
                             </p>
                         </motion.div>
@@ -83,7 +83,7 @@ export function Certifications() {
 
                     {/* Bento Grid - Reduced height using a slimmer aspect ratio */}
                     <div className="lg:col-span-9">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                             {certifications.map((cert, index) => {
                                 return (
                                     <motion.div
@@ -98,8 +98,7 @@ export function Certifications() {
                                             stiffness: 100
                                         }}
                                         whileHover={{ y: -5 }}
-                                        // Changed aspect-[1.1/1] to aspect-[1.8/1] for a much slimmer/compact look
-                                        className={`group relative aspect-[1.8/1] rounded-xl p-5 shadow-sm border border-neutral-200 dark:border-white/5 ${cert.color} overflow-hidden flex flex-col justify-center`}
+                                        className={`group relative aspect-[1.1/1] md:aspect-[1.8/1] rounded-xl p-3 md:p-4 shadow-sm border border-neutral-200 dark:border-white/5 ${cert.color} overflow-hidden flex flex-col justify-center`}
                                     >
                                         <div className="flex flex-col gap-3 relative z-10">
                                             <h3 className="text-sm md:text-[15px] font-black text-white leading-tight tracking-tight drop-shadow-md line-clamp-2">

@@ -69,12 +69,12 @@ export function InteractiveCursor() {
                 {/* Horizontal Scale Line */}
                 <motion.div
                     animate={{ width: isHovering ? 80 : 40 }}
-                    className="h-[1.5px] bg-neutral-900 dark:bg-white absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 shadow-[0_0_15px_rgba(139,92,246,0.3)] transition-colors duration-300"
+                    className="h-[1.5px] bg-neutral-900 dark:bg-white absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 shadow-[0_0_15px_rgba(212,132,154,0.3)] transition-colors duration-300"
                 />
                 {/* Vertical Scale Line */}
                 <motion.div
                     animate={{ height: isHovering ? 80 : 40 }}
-                    className="w-[1.5px] bg-neutral-900 dark:bg-white absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 shadow-[0_0_15px_rgba(139,92,246,0.3)] transition-colors duration-300"
+                    className="w-[1.5px] bg-neutral-900 dark:bg-white absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 shadow-[0_0_15px_rgba(212,132,154,0.3)] transition-colors duration-300"
                 />
 
                 {/* High Contrast Core */}
@@ -82,10 +82,10 @@ export function InteractiveCursor() {
                     animate={{
                         scale: isHovering ? 2 : 1,
                         rotate: isHovering ? 45 : 0,
-                        backgroundColor: isHovering ? "#8b5cf6" : "#000", // Using Purple highlight
+                        backgroundColor: isHovering ? "#D4849A" : "#000", // Using blush highlight
                         borderColor: isHovering ? "transparent" : (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches ? "#fff" : "transparent")
                     }}
-                    className="w-2.5 h-2.5 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 shadow-[0_0_20px_rgba(139,92,246,0.5)] border border-white/20"
+                    className="w-2.5 h-2.5 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 shadow-[0_0_20px_rgba(212,132,154,0.5)] border border-white/20"
                 />
 
                 {/* Tracking Metrics */}
@@ -105,7 +105,7 @@ export function InteractiveCursor() {
                             initial={{ opacity: 0, scale: 0.8, x: 20 }}
                             animate={{ opacity: 1, scale: 1, x: 50 }}
                             exit={{ opacity: 0, scale: 0.8, x: 20 }}
-                            className="absolute -top-12 left-12 py-1.5 px-4 bg-neutral-900 dark:bg-white text-white dark:text-black text-[10px] font-black uppercase tracking-[0.3em] shadow-[8px_8px_0_#8b5cf6] whitespace-nowrap transition-colors duration-300"
+                            className="absolute -top-12 left-12 py-1.5 px-4 bg-neutral-900 dark:bg-white text-white dark:text-black text-[10px] font-black uppercase tracking-[0.3em] shadow-[8px_8px_0_#D4849A] whitespace-nowrap transition-colors duration-300"
                         >
                             {hoverLabel}
                         </motion.div>
