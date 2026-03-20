@@ -61,21 +61,21 @@ export function Certifications() {
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     {/* Header Content */}
-                    <div className="lg:col-span-3 space-y-4 md:space-y-8 sticky top-32">
+                    <div className="lg:col-span-3 space-y-4 md:space-y-8 md:sticky md:top-32">
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, amount: 0.3 }}
                             transition={{ duration: 0.5 }}
                         >
-                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blush/30 border border-blush/40 text-blush-text dark:text-blush text-[12px] font-black uppercase tracking-widest mb-4 md:mb-6">
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blush/30 border border-blush/40 text-blush-text dark:text-blush text-[12px] font-black uppercase tracking-widest mb-8 md:mb-6">
                                 <Award className="w-3 h-3" />
                                 Professional Growth
                             </div>
-                            <h2 className="text-4xl md:text-5xl font-extralight mb-4 md:mb-6 tracking-tight text-neutral-900 dark:text-white leading-[0.9]">
+                            <h2 className="text-4xl md:text-5xl font-extralight mb-4 md:mb-6 tracking-tight text-neutral-900 dark:text-white leading-tight md:leading-[0.9]">
                                 Continuous <br />Learning
                             </h2>
-                            <p className="text-white/80 text-base font-sans leading-relaxed max-w-xs font-light hidden md:block">
+                            <p className="text-neutral-600 dark:text-white/80 text-base font-sans leading-relaxed max-w-xs font-light">
                                 I believe in the power of continuous learning to stay ahead in the rapidly evolving design landscape, especially at the intersection of UX and AI.
                             </p>
                         </motion.div>
@@ -116,7 +116,7 @@ export function Certifications() {
 
                                         {/* Brand Glows - Scaled down for smaller height */}
                                         <div className="absolute top-0 right-0 w-20 h-20 bg-white/5 rounded-full blur-[25px] pointer-events-none group-hover:bg-white/10 transition-colors duration-700" />
-                                        
+
                                         {/* Mild Noise Effect */}
                                         <div
                                             className="absolute inset-0 opacity-[0.08] pointer-events-none mix-blend-overlay"
