@@ -30,16 +30,16 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         >
             <Link href={`/work/${project.slug}`}>
                 <div className="flex flex-col">
-                    {/* Category tag & Title - MOBILE ONLY: above image */}
+                    {/* Title & Tag - MOBILE ONLY: above image */}
                     <div className="md:hidden flex flex-col gap-2 mb-4">
+                        <h3 className="text-xl font-serif font-medium group-hover:text-blush-text dark:group-hover:text-blush transition-colors">
+                            {project.title}
+                        </h3>
                         <div className="flex">
                             <span className="px-3 py-1.5 text-[12px] font-black uppercase tracking-widest bg-blush/30 text-blush-text dark:text-blush rounded-full border border-blush/40 dark:border-blush/20">
                                 {project.category}
                             </span>
                         </div>
-                        <h3 className="text-xl font-serif font-medium group-hover:text-blush-text dark:group-hover:text-blush transition-colors">
-                            {project.title}
-                        </h3>
                     </div>
 
                     {/* Image */}
@@ -79,16 +79,16 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                         </div>
                     </div>
 
-                    {/* Below image: tag & title (DESKTOP ONLY) */}
+                    {/* Title & Tag - DESKTOP ONLY: below image */}
                     <div className="hidden md:flex flex-col gap-4 mt-6">
+                        <h3 className="text-xl md:text-2xl font-serif font-medium group-hover:text-blush-text dark:group-hover:text-blush transition-colors">
+                            {project.title}
+                        </h3>
                         <div className="flex">
                             <span className="px-3 py-1.5 text-[12px] font-black uppercase tracking-widest bg-blush/30 text-blush-text dark:text-blush rounded-full border border-blush/40 dark:border-blush/20">
                                 {project.category}
                             </span>
                         </div>
-                        <h3 className="text-xl md:text-2xl font-serif font-medium group-hover:text-blush-text dark:group-hover:text-blush transition-colors">
-                            {project.title}
-                        </h3>
                     </div>
                 </div>
             </Link>
