@@ -17,7 +17,7 @@ export default function WorkPage() {
                         A curated collection of projects where I&apos;ve helped businesses solve problems and create meaningful experiences for their users.
                     </p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-[90px]">
                     {projects.map((project, index) => (
                         <ProjectCard key={project.id} project={project} index={index} />
                     ))}

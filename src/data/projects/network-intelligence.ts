@@ -3,7 +3,7 @@ export const networkIntelligenceProject = {
     title: "Orders & Inventory (NIB)",
     category: "UX Research & Design",
     description: "A UX research and design group project focused on the Order Intelligence Hub for FourKites. Designed for transparency and reduced uncertainties in a complex logistics network.",
-    image: "/images/network-intelligence/nib-1.jpg",
+    image: "/images/network-intelligence/cover.jpg",
     slug: "network-intelligence",
     sections: [
         {

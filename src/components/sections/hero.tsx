@@ -53,7 +53,7 @@ export function Hero() {
         { name: "Design Systems", color: "bg-violet-400" },
         { name: "Accessibility", color: "bg-pink-400" },
         { name: "Figma", color: "bg-blue-500" },
-        { name: "Genai Advocate", color: "bg-orange-400" },
+        { name: "AI Inclusivity Advocate", color: "bg-orange-400" },
         { name: "Ai Tools", color: "bg-yellow-400" },
         { name: "Human-Centered Design", color: "bg-emerald-400" },
     ];
@@ -195,7 +195,7 @@ export function Hero() {
                                     className="max-w-3xl text-left"
                                 >
                                     <p className="text-base md:text-lg text-neutral-900 dark:text-white leading-relaxed font-light">
-                                        UX Designer with experience leading end-to-end process across <span className="font-medium dark:text-white">aviation, e-commerce, supply chain, B2B, B2C</span>. I design award-winning solutions and have published research on GenAI Accessibility, at IEEE and Industry case study at IndiaHCI.
+                                        UX Designer with experience leading end-to-end process across <span className="font-medium dark:text-white">aviation, e-commerce, supply chain, B2B, B2C</span>. I design award-winning solutions and have published research on <span className="font-medium dark:text-white">Designing for Inclusivity in the Age of AI</span>, at IEEE and Industry case study at IndiaHCI.
                                     </p>
                                 </motion.div>
 

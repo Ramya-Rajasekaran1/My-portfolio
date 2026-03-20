@@ -41,13 +41,13 @@ export const PublicationsAndArticles: React.FC = () => {
                                     <div className="flex-1 space-y-4">
                                         <div className="flex items-start justify-between gap-4">
                                             <h3 className="text-xl font-medium text-white group-hover:text-purple-400 transition-colors">
-                                                GenAI Accessibility & Usability Research
+                                                Designing for Inclusivity in the Age of AI
                                             </h3>
                                             <ExternalLink className="w-5 h-5 text-neutral-500 group-hover:text-white transition-colors flex-shrink-0" />
                                         </div>
 
                                         <p className="text-white/80 leading-relaxed text-sm font-light mb-1">
-                                            A research paper presented at IEEE and IndiaHCI exploring the impact of Generative AI on accessibility and usability standards.
+                                            A research paper presented at IEEE and IndiaHCI exploring the impact of AI on inclusivity and universal design standards.
                                         </p>
 
                                         <div className="flex flex-wrap gap-2 pt-2">

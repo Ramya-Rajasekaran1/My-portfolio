@@ -3,7 +3,7 @@ export const contentVerifyProject = {
     title: "ContentVerify",
     category: "AI / UX Design",
     description: "A Content Verification AI Tool that analyzes text in real-time to highlight controversial claims, surface potential bias, and link to opposing sources to promote critical thinking.",
-    image: "https://images.unsplash.com/photo-1555421689-491722925294?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/content-verify/cover.jpg",
     misinfoMeme: "/images/content-verify/misinfo-meme.png",
     slug: "content-verify",
     sections: [
