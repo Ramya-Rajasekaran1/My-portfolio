@@ -1,6 +1,6 @@
 import React from "react";
 import { type Project } from "@/lib/data";
-import { ArrowLeft, AlertTriangle, Eye, BarChart3, Info, MousePointer2, ChevronRight, Target, Sparkles, Layers, ShieldCheck, History, Zap, Search, Lightbulb } from "lucide-react";
+import { ArrowLeft, AlertTriangle, Eye, BarChart3, Info, MousePointer2, ChevronRight, Target, Sparkles, Layers, ShieldCheck, History, Zap, Search, Lightbulb, Lock } from "lucide-react";
 import Link from "next/link";
 import { ImageLightbox } from "@/components/ui/image-lightbox";
 
@@ -11,6 +11,20 @@ export function ContentVerifyProject({ project }: { project: Project }) {
     const [showCategories, setShowCategories] = React.useState(true);
     const [focusedBox, setFocusedBox] = React.useState<string | null>(null);
     const [showMethodology, setShowMethodology] = React.useState(false);
+
+    const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+    const [password, setPassword] = React.useState("");
+    const [error, setError] = React.useState(false);
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (password === "verifY_contenT12") {
+            setIsAuthenticated(true);
+            setError(false);
+        } else {
+            setError(true);
+        }
+    };
 
     // Helper to find sections by title
     const getSection = (title: string) => project.sections?.find((s: any) => s.title === title);
@@ -85,6 +99,74 @@ export function ContentVerifyProject({ project }: { project: Project }) {
         }
     ];
 
+    if (!isAuthenticated) {
+        return (
+            <main
+                style={{
+                    fontFamily: "var(--font-sans), sans-serif",
+                    background: "var(--color-canvas, #000000)",
+                    color: "var(--color-ivory, #FFF8F0)",
+                    minHeight: "100vh",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}
+            >
+                <div style={{ maxWidth: 400, width: "100%", padding: 40, background: "#111", borderRadius: 16, border: "1px solid rgba(255,255,255,0.1)", textAlign: "center" }}>
+                    <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
+                        <Lock size={48} color="#FFF8F0" />
+                    </div>
+                    <h1 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 32, fontWeight: 200, marginBottom: 16, color: "white" }}>Protected Case Study</h1>
+                    <p style={{ color: "#888", marginBottom: 32, fontSize: 14 }}>Enter the password to view the Content Verify project.</p>
+
+                    <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                        <div style={{ textAlign: "left" }}>
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="Enter password"
+                                style={{
+                                    width: "100%",
+                                    padding: "16px",
+                                    background: "#000",
+                                    border: `1px solid ${error ? "#ff4444" : "rgba(255,255,255,0.2)"}`,
+                                    borderRadius: 8,
+                                    color: "#fff",
+                                    outline: "none",
+                                    fontSize: 16,
+                                    boxSizing: "border-box"
+                                }}
+                            />
+                            {error && <span style={{ color: "#ff4444", fontSize: 12, marginTop: 8, display: "block" }}>Incorrect password</span>}
+                        </div>
+                        <button
+                            type="submit"
+                            style={{
+                                background: "#FFF8F0",
+                                color: "#000",
+                                padding: "16px",
+                                borderRadius: 8,
+                                border: "none",
+                                fontWeight: 600,
+                                cursor: "pointer",
+                                fontSize: 16,
+                                transition: "opacity 0.2s"
+                            }}
+                            onMouseOver={(e) => e.currentTarget.style.opacity = "0.9"}
+                            onMouseOut={(e) => e.currentTarget.style.opacity = "1"}
+                        >
+                            Unlock Case Study
+                        </button>
+                    </form>
+                    <Link href="/work" style={{ display: "inline-block", marginTop: 24, fontSize: 14, color: "#888", textDecoration: "underline" }}>
+                        Return to Work
+                    </Link>
+                </div>
+            </main>
+        );
+    }
+
     return (
         <main className="min-h-screen bg-[#FDFBF7] dark:bg-[#0a0a0a] text-neutral-900 dark:text-neutral-100 font-serif selection:bg-yellow-200 dark:selection:bg-yellow-900/30">
             {/* Styles for this page */}
@@ -145,8 +227,8 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                 {/* Introduction / Objective */}
                 <section className="max-w-4xl mx-auto mb-16 bg-neutral-900 rounded-3xl p-8 md:p-12 border border-neutral-800">
                     <div className="mb-10 flex items-center gap-4">
-                        <span className="h-px w-8 bg-[#39FF14]"></span>
-                        <h2 className="text-sm font-sans font-bold uppercase tracking-widest text-[#39FF14]">The Objective</h2>
+                        <span className="h-px w-8 bg-[#34BF4B]"></span>
+                        <h2 className="text-sm font-sans font-bold uppercase tracking-widest text-[#34BF4B]">The Objective</h2>
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -155,7 +237,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                 <ul className="space-y-6 list-none p-0 m-0">
                                     {Array.isArray(objective?.content) && objective.content.map((bullet: string, i: number) => (
                                         <li key={i} className="flex gap-4 text-white antialiased">
-                                            <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#39FF14] mt-3" />
+                                            <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#34BF4B] mt-3" />
                                             <span className="text-lg md:text-xl leading-relaxed">{bullet}</span>
                                         </li>
                                     ))}
@@ -166,7 +248,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                             {!showCategories ? (
                                 <button
                                     onClick={() => setShowCategories(true)}
-                                    className="px-6 py-8 border-2 border-dashed border-neutral-700 rounded-xl bg-white/5 backdrop-blur-sm text-neutral-500 font-sans font-bold uppercase tracking-widest hover:border-[#39FF14] hover:text-[#39FF14] transition-all duration-300 group"
+                                    className="px-6 py-8 border-2 border-dashed border-neutral-700 rounded-xl bg-white/5 backdrop-blur-sm text-neutral-500 font-sans font-bold uppercase tracking-widest hover:border-[#34BF4B] hover:text-[#34BF4B] transition-all duration-300 group"
                                 >
                                     <div className="flex flex-col items-center gap-2">
                                         <Sparkles className="w-5 h-5 group-hover:scale-110 transition-transform" />
@@ -177,12 +259,12 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                 (objective as any)?.chips?.map((chip: string, i: number) => (
                                     <div
                                         key={i}
-                                        className="px-6 py-4 border border-[#39FF14]/30 rounded-xl bg-[#39FF14]/5 backdrop-blur-sm shadow-sm hover:border-[#39FF14]/60 hover:bg-[#39FF14]/10 transition-all duration-500 group cursor-pointer animate-in zoom-in-95 fade-in duration-500"
+                                        className="px-6 py-4 border border-[#34BF4B]/30 rounded-xl bg-[#34BF4B]/5 backdrop-blur-sm shadow-sm hover:border-[#34BF4B]/60 hover:bg-[#34BF4B]/10 transition-all duration-500 group cursor-pointer animate-in zoom-in-95 fade-in duration-500"
                                         style={{ animationDelay: `${i * 100}ms` }}
                                     >
                                         <div className="flex items-center justify-between">
-                                            <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-[#39FF14]">{chip}</span>
-                                            <Zap className="w-3 h-3 text-[#39FF14] opacity-40 group-hover:opacity-100 transition-opacity" />
+                                            <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-[#34BF4B]">{chip}</span>
+                                            <Zap className="w-3 h-3 text-[#34BF4B] opacity-40 group-hover:opacity-100 transition-opacity" />
                                         </div>
                                     </div>
                                 ))
@@ -194,7 +276,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                 {/* Outcome-Based Usability Metrics */}
                 <section className="max-w-6xl mx-auto mb-24 px-4">
                     <div className="flex flex-col items-center mb-16 px-4 text-center">
-                        <span className="text-[10px] font-sans font-bold uppercase tracking-[0.4em] text-[#39FF14] mb-4">Results</span>
+                        <span className="text-[10px] font-sans font-bold uppercase tracking-[0.4em] text-[#34BF4B] mb-4">Results</span>
                         <h2 className="text-4xl md:text-6xl font-serif font-bold text-center mb-6">Did our solution make any change?</h2>
                         <h3 className="text-2xl md:text-3xl font-serif font-bold text-center text-neutral-300">Outcome-Based Usability Metrics</h3>
                         <p className="mt-4 text-neutral-400 font-sans tracking-wide">In-depth statistical analysis (Chi-Square method)</p>
@@ -202,22 +284,22 @@ export function ContentVerifyProject({ project }: { project: Project }) {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {/* Metric 1 */}
-                        <div className="flex flex-col items-center text-center p-8 bg-neutral-900 rounded-[2rem] border border-[#39FF14]/20 hover:border-[#39FF14]/50 transition-colors group">
-                            <div className="flex flex-col items-center justify-center text-4xl md:text-5xl font-bold font-serif text-[#39FF14] mb-6 drop-shadow-[0_0_15px_rgba(57,255,20,0.3)] transition-all">
+                        <div className="flex flex-col items-center text-center p-8 bg-neutral-900 rounded-[2rem] border border-[#BF34A8]/20 hover:border-[#BF34A8]/50 transition-colors group">
+                            <div className="flex flex-col items-center justify-center text-4xl md:text-5xl font-bold font-serif text-[#BF34A8] mb-6 drop-shadow-[0_0_15px_rgba(191,52,168,0.3)] transition-all">
                                 <div className="flex items-center justify-center gap-3">
                                     <span>Chi² = 4.6</span>
                                     <div className="relative group/tooltip cursor-help flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
-                                        <Info className="w-5 h-5 text-neutral-400 group-hover/tooltip:text-[#39FF14] transition-colors" />
+                                        <Info className="w-5 h-5 text-neutral-400 group-hover/tooltip:text-[#BF34A8] transition-colors" />
                                         {/* Tooltip Content */}
                                         <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 p-5 rounded-[1.5rem] bg-neutral-800 text-white font-sans text-xs shadow-2xl opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-300 pointer-events-none border border-white/10 text-left cursor-default">
-                                            <div className="font-bold mb-2 pb-2 border-b border-white/10 text-[#39FF14] uppercase tracking-widest text-[10px]">What does this mean?</div>
+                                            <div className="font-bold mb-2 pb-2 border-b border-white/10 text-[#BF34A8] uppercase tracking-widest text-[10px]">What does this mean?</div>
                                             <p className="text-neutral-300 mt-3 mb-3 leading-relaxed font-normal normal-case">
                                                 A score above <strong className="text-white">3.8 (the baseline)</strong> means the tool made a real difference, rather than just random chance.
                                             </p>
                                             <p className="text-neutral-300 leading-relaxed font-normal normal-case">
                                                 <strong className="text-white">p &lt; 0.05</strong> means we are <strong className="text-white">95% confident</strong> these improvements are real.
                                             </p>
-                                            <p className="text-[#39FF14] leading-relaxed font-bold normal-case mt-3 pt-3 border-t border-white/10 text-center text-[10px] tracking-wider uppercase">
+                                            <p className="text-[#BF34A8] leading-relaxed font-bold normal-case mt-3 pt-3 border-t border-white/10 text-center text-[10px] tracking-wider uppercase">
                                                 ~20 Formal controlled tests
                                             </p>
                                             {/* Bottom triangle */}
@@ -225,7 +307,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                         </div>
                                     </div>
                                 </div>
-                                <span className="block text-sm font-sans text-[#39FF14]/60 mt-2 tracking-widest uppercase text-center w-full">p &lt; 0.05</span>
+                                <span className="block text-sm font-sans text-[#BF34A8]/60 mt-2 tracking-widest uppercase text-center w-full">p &lt; 0.05</span>
                             </div>
                             <h3 className="text-lg font-bold font-sans uppercase tracking-widest text-white mb-4">Bias Recognition</h3>
                             <p className="text-neutral-400 font-serif leading-relaxed italic text-sm">
@@ -234,22 +316,22 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                         </div>
 
                         {/* Metric 2 */}
-                        <div className="flex flex-col items-center text-center p-8 bg-neutral-900 rounded-[2rem] border border-[#39FF14]/20 hover:border-[#39FF14]/50 transition-colors group">
-                            <div className="flex flex-col items-center justify-center text-4xl md:text-5xl font-bold font-serif text-[#39FF14] mb-6 drop-shadow-[0_0_15px_rgba(57,255,20,0.3)] transition-all">
+                        <div className="flex flex-col items-center text-center p-8 bg-neutral-900 rounded-[2rem] border border-[#34BF4B]/20 hover:border-[#34BF4B]/50 transition-colors group">
+                            <div className="flex flex-col items-center justify-center text-4xl md:text-5xl font-bold font-serif text-[#34BF4B] mb-6 drop-shadow-[0_0_15px_rgba(52,191,75,0.3)] transition-all">
                                 <div className="flex items-center justify-center gap-3">
                                     <span>Chi² = 16.4</span>
                                     <div className="relative group/tooltip cursor-help flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
-                                        <Info className="w-5 h-5 text-neutral-400 group-hover/tooltip:text-[#39FF14] transition-colors" />
+                                        <Info className="w-5 h-5 text-neutral-400 group-hover/tooltip:text-[#34BF4B] transition-colors" />
                                         {/* Tooltip Content */}
                                         <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 p-5 rounded-[1.5rem] bg-neutral-800 text-white font-sans text-xs shadow-2xl opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-300 pointer-events-none border border-white/10 text-left cursor-default">
-                                            <div className="font-bold mb-2 pb-2 border-b border-white/10 text-[#39FF14] uppercase tracking-widest text-[10px]">What does this mean?</div>
+                                            <div className="font-bold mb-2 pb-2 border-b border-white/10 text-[#34BF4B] uppercase tracking-widest text-[10px]">What does this mean?</div>
                                             <p className="text-neutral-300 mt-3 mb-3 leading-relaxed font-normal normal-case">
                                                 A score above <strong className="text-white">6.6 (the high baseline)</strong> means the tool had an exceptionally strong impact compared to random chance.
                                             </p>
                                             <p className="text-neutral-300 leading-relaxed font-normal normal-case">
                                                 <strong className="text-white">p &lt; 0.005</strong> means we are <strong className="text-white">99.5% confident</strong> these improvements are real.
                                             </p>
-                                            <p className="text-[#39FF14] leading-relaxed font-bold normal-case mt-3 pt-3 border-t border-white/10 text-center text-[10px] tracking-wider uppercase">
+                                            <p className="text-[#34BF4B] leading-relaxed font-bold normal-case mt-3 pt-3 border-t border-white/10 text-center text-[10px] tracking-wider uppercase">
                                                 ~20 Formal controlled tests
                                             </p>
                                             {/* Bottom triangle */}
@@ -257,7 +339,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                         </div>
                                     </div>
                                 </div>
-                                <span className="block text-sm font-sans text-[#39FF14]/60 mt-2 tracking-widest uppercase text-center w-full">p &lt; 0.005</span>
+                                <span className="block text-sm font-sans text-[#34BF4B]/60 mt-2 tracking-widest uppercase text-center w-full">p &lt; 0.005</span>
                             </div>
                             <h3 className="text-lg font-bold font-sans uppercase tracking-widest text-white mb-4">User Engagement</h3>
                             <p className="text-neutral-400 font-serif leading-relaxed italic text-sm">
@@ -266,11 +348,11 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                         </div>
 
                         {/* Metric 3 */}
-                        <div className="flex flex-col items-center text-center p-8 bg-neutral-900 rounded-[2rem] border border-[#39FF14]/20 hover:border-[#39FF14]/50 transition-colors group">
-                            <div className="text-4xl md:text-5xl font-bold font-serif text-[#39FF14] mb-6 drop-shadow-[0_0_15px_rgba(57,255,20,0.3)] group-hover:drop-shadow-[0_0_25px_rgba(57,255,20,0.6)] transition-all flex items-baseline justify-center gap-2">
+                        <div className="flex flex-col items-center text-center p-8 bg-neutral-900 rounded-[2rem] border border-[#34BF4B]/20 hover:border-[#34BF4B]/50 transition-colors group">
+                            <div className="text-4xl md:text-5xl font-bold font-serif text-[#34BF4B] mb-6 drop-shadow-[0_0_15px_rgba(52,191,75,0.3)] group-hover:drop-shadow-[0_0_25px_rgba(52,191,75,0.6)] transition-all flex items-baseline justify-center gap-2">
                                 19%<span className="text-2xl text-neutral-500 font-sans tracking-widest uppercase">to</span>50%
                             </div>
-                            <span className="block text-sm font-sans text-[#39FF14]/60 tracking-widest uppercase mb-6 drop-shadow-[0_0_15px_rgba(57,255,20,0.3)] group-hover:drop-shadow-[0_0_25px_rgba(57,255,20,0.6)] transition-all">Shift</span>
+                            <span className="block text-sm font-sans text-[#34BF4B]/60 tracking-widest uppercase mb-6 drop-shadow-[0_0_15px_rgba(52,191,75,0.3)] group-hover:drop-shadow-[0_0_25px_rgba(52,191,75,0.6)] transition-all">Shift</span>
                             <h3 className="text-lg font-bold font-sans uppercase tracking-widest text-white mb-4">Cognitive Impact</h3>
                             <p className="text-neutral-400 font-serif leading-relaxed italic text-sm">
                                 Measured opinion shifts across different topics indicate that exposure to alternative viewpoints via the tool meaningfully altered reader perspectives.
@@ -303,7 +385,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                 <section className="max-w-6xl mx-auto px-4 relative">
                     <div className="flex flex-col items-center mb-12">
                         <h2 className="text-3xl md:text-4xl font-serif font-bold text-center mb-4">The Logic of Intervention: Pain points</h2>
-                        <div className="flex items-center gap-2 text-[#39FF14] bg-[#39FF14]/5 px-4 py-1.5 rounded-full border border-[#39FF14]/20 animate-pulse">
+                        <div className="flex items-center gap-2 text-[#34BF4B] bg-[#34BF4B]/5 px-4 py-1.5 rounded-full border border-[#34BF4B]/20 animate-pulse">
                             <MousePointer2 className="w-3.5 h-3.5" />
                             <span className="text-[10px] font-sans font-bold uppercase tracking-widest">Select a friction point to trace the logic</span>
                         </div>
@@ -326,15 +408,15 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                         }
                                     }}
                                     className={`w-full px-6 py-5 rounded-xl border text-left transition-all duration-500 group relative overflow-hidden flex items-center justify-between ${selectedPainPoint === point.id
-                                        ? 'bg-neutral-900 border-[#39FF14] text-white shadow-[0_0_20px_rgba(57,255,20,0.1)]'
+                                        ? 'bg-neutral-900 border-[#34BF4B] text-white shadow-[0_0_20px_rgba(52,191,75,0.1)]'
                                         : 'bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white hover:border-neutral-400 dark:hover:border-neutral-600'
                                         }`}
                                 >
-                                    <span className={`text-xs font-sans font-bold uppercase tracking-widest relative z-10 block transition-colors ${selectedPainPoint === point.id ? 'text-[#39FF14]' : 'text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white'}`}>
+                                    <span className={`text-xs font-sans font-bold uppercase tracking-widest relative z-10 block transition-colors ${selectedPainPoint === point.id ? 'text-[#34BF4B]' : 'text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white'}`}>
                                         {point.title}
                                     </span>
                                     {selectedPainPoint === point.id && (
-                                        <ChevronRight className="w-4 h-4 text-[#39FF14] animate-in slide-in-from-left-2" />
+                                        <ChevronRight className="w-4 h-4 text-[#34BF4B] animate-in slide-in-from-left-2" />
                                     )}
                                 </button>
                             ))}
@@ -343,8 +425,8 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                         {/* Middle: Connection line */}
                         <div className="hidden lg:flex items-center justify-center lg:col-span-1 py-12">
                             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="overflow-visible">
-                                <path d="M0 20H38" stroke="#39FF14" strokeWidth="2" strokeDasharray="4 4" className="animate-[dash_2s_linear_infinite]" />
-                                <path d="M32 14L38 20L32 26" stroke="#39FF14" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M0 20H38" stroke="#34BF4B" strokeWidth="2" strokeDasharray="4 4" className="animate-[dash_2s_linear_infinite]" />
+                                <path d="M32 14L38 20L32 26" stroke="#34BF4B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                         </div>
 
@@ -356,12 +438,12 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                     {/* Step 1: Root Cause */}
                                     <div
                                         onClick={() => setShowDesignLogic(!showDesignLogic)}
-                                        className={`flex-1 w-full p-8 rounded-2xl border transition-all duration-500 cursor-pointer group relative ${showDesignLogic ? 'bg-neutral-900 border-[#39FF14]/50 scale-[1.02]' : 'bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 hover:shadow-xl'
+                                        className={`flex-1 w-full p-8 rounded-2xl border transition-all duration-500 cursor-pointer group relative ${showDesignLogic ? 'bg-neutral-900 border-[#34BF4B]/50 scale-[1.02]' : 'bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 hover:shadow-xl'
                                             }`}
                                     >
                                         <div className="flex items-center gap-3 mb-6">
                                             <div className="w-8 h-8 rounded-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-[10px] font-bold font-sans">01</div>
-                                            <span className={`text-[10px] font-sans font-bold uppercase tracking-[0.2em] ${showDesignLogic ? 'text-[#39FF14]' : 'text-neutral-400'}`}>The Root Cause</span>
+                                            <span className={`text-[10px] font-sans font-bold uppercase tracking-[0.2em] ${showDesignLogic ? 'text-[#34BF4B]' : 'text-neutral-400'}`}>The Root Cause</span>
                                         </div>
                                         <p className={`text-lg md:text-xl font-serif italic leading-relaxed transition-colors ${showDesignLogic ? 'text-white' : 'text-neutral-800 dark:text-neutral-200'}`}>
                                             "{interactivePainPoints.find(p => p.id === selectedPainPoint)?.rootCause}"
@@ -372,21 +454,21 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                     {/* SVG Connector for Desktop */}
                                     <div className={`hidden lg:block transition-all duration-700 shrink-0 ${showDesignLogic ? 'opacity-100 scale-100' : 'opacity-20 scale-95'}`}>
                                         <svg width="60" height="24" viewBox="0 0 60 24" fill="none" className="overflow-visible">
-                                            <path d="M0 12H58" stroke="#39FF14" strokeWidth="2" strokeDasharray="4 4" className={showDesignLogic ? "animate-[dash_2s_linear_infinite]" : ""} />
-                                            <path d="M52 6L58 12L52 18" stroke="#39FF14" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                            <path d="M0 12H58" stroke="#34BF4B" strokeWidth="2" strokeDasharray="4 4" className={showDesignLogic ? "animate-[dash_2s_linear_infinite]" : ""} />
+                                            <path d="M52 6L58 12L52 18" stroke="#34BF4B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                         </svg>
                                     </div>
 
                                     {/* Step 2: Design Direction - Placeholder State */}
                                     <div
                                         className={`flex-1 w-full p-10 rounded-2xl transition-all duration-700 relative overflow-hidden ${showDesignLogic
-                                            ? 'bg-neutral-900 border-[#39FF14] shadow-[0_20px_60px_rgba(57,255,20,0.15)] opacity-100'
+                                            ? 'bg-neutral-900 border-[#34BF4B] shadow-[0_20px_60px_rgba(52,191,75,0.15)] opacity-100'
                                             : 'bg-neutral-100 dark:bg-neutral-900/40 border-dashed border-neutral-300 dark:border-neutral-800 opacity-60 scale-[0.98]'
                                             }`}
                                     >
                                         <div className="flex items-center gap-3 mb-8">
-                                            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold font-sans transition-colors ${showDesignLogic ? 'bg-[#39FF14]/10 text-[#39FF14]' : 'bg-neutral-200 dark:bg-neutral-800 text-neutral-400'}`}>02</div>
-                                            <span className={`text-[10px] font-sans font-bold uppercase tracking-[0.3em] transition-colors ${showDesignLogic ? 'text-[#39FF14]' : 'text-neutral-500'}`}>Design Direction</span>
+                                            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold font-sans transition-colors ${showDesignLogic ? 'bg-[#34BF4B]/10 text-[#34BF4B]' : 'bg-neutral-200 dark:bg-neutral-800 text-neutral-400'}`}>02</div>
+                                            <span className={`text-[10px] font-sans font-bold uppercase tracking-[0.3em] transition-colors ${showDesignLogic ? 'text-[#34BF4B]' : 'text-neutral-500'}`}>Design Direction</span>
                                         </div>
 
                                         {showDesignLogic ? (
@@ -394,7 +476,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                                 <p className="text-xl md:text-2xl font-serif text-white antialiased leading-relaxed mb-8">
                                                     {interactivePainPoints.find(p => p.id === selectedPainPoint)?.designLogic}
                                                 </p>
-                                                <div className="inline-block px-4 py-1.5 rounded-full border border-[#39FF14]/30 text-[#39FF14] text-[10px] font-sans font-bold uppercase tracking-widest bg-[#39FF14]/5">
+                                                <div className="inline-block px-4 py-1.5 rounded-full border border-[#34BF4B]/30 text-[#34BF4B] text-[10px] font-sans font-bold uppercase tracking-widest bg-[#34BF4B]/5">
                                                     Framework Logic Applied
                                                 </div>
                                             </div>
@@ -422,22 +504,22 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                 {/* The Goal Section - Floating Narrative */}
                 <section className="max-w-4xl mx-auto mb-0 relative overflow-visible group pt-0 pb-16 animate-float -mt-12">
                     {/* Background removed as requested */}
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-[#39FF14]/10 blur-[100px] -z-10" />
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-[#34BF4B]/10 blur-[100px] -z-10" />
                     <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 blur-[100px] -z-10" />
 
                     <div className="p-12 md:p-20 text-center relative">
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-10 backdrop-blur-md">
-                            <Target className="w-5 h-5 text-[#39FF14]" />
+                            <Target className="w-5 h-5 text-[#34BF4B]" />
                             <span className="text-xs md:text-sm font-sans font-bold uppercase tracking-[0.3em] text-white">The North Star</span>
                         </div>
 
                         <h2 className="text-3xl md:text-5xl font-serif font-bold text-white leading-tight mb-8">
-                            "A seamless, non-intrusive assistant that surfaces <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-blue-400">alternative perspectives</span> without disrupting reading flow."
+                            "A seamless, non-intrusive assistant that surfaces <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34BF4B] to-blue-400">alternative perspectives</span> without disrupting reading flow."
                         </h2>
 
                         <div className="flex justify-center gap-8 mt-4">
                             <div className="flex flex-col items-center gap-2">
-                                <Sparkles className="w-5 h-5 text-[#39FF14]/60" />
+                                <Sparkles className="w-5 h-5 text-[#34BF4B]/60" />
                                 <span className="text-[10px] font-sans text-neutral-400 uppercase tracking-widest">Ambient</span>
                             </div>
                             <div className="w-px h-12 bg-white/10" />
@@ -496,18 +578,18 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                         </div>
 
                         {/* Content Verify Tool */}
-                        <div className="flex flex-col bg-neutral-900 rounded-3xl border border-[#39FF14]/30 overflow-hidden shadow-[0_0_50px_rgba(57,255,20,0.05)] group">
+                        <div className="flex flex-col bg-neutral-900 rounded-3xl border border-[#34BF4B]/30 overflow-hidden shadow-[0_0_50px_rgba(52,191,75,0.05)] group">
                             <div className="p-8 border-b border-white/10 bg-white/5">
                                 <div className="flex items-center justify-between mb-4">
                                     <h3 className="text-xl font-bold font-serif text-white">Content Verify</h3>
-                                    <span className="px-3 py-1 rounded-full bg-[#39FF14]/10 text-[#39FF14] text-[10px] font-bold uppercase tracking-widest border border-[#39FF14]/20">New UX</span>
+                                    <span className="px-3 py-1 rounded-full bg-[#34BF4B]/10 text-[#34BF4B] text-[10px] font-bold uppercase tracking-widest border border-[#34BF4B]/20">New UX</span>
                                 </div>
-                                <div className="relative rounded-xl overflow-hidden border border-white/10 group-hover:border-[#39FF14]/50 transition-all duration-700 cursor-pointer bg-white"
+                                <div className="relative rounded-xl overflow-hidden border border-white/10 group-hover:border-[#34BF4B]/50 transition-all duration-700 cursor-pointer bg-white"
                                     onClick={() => setLightboxImage({ src: "/images/content-verify/new-ux-alert.png", alt: "Context Alert UI View" })}>
                                     <img src="/images/content-verify/new-ux-alert.png" alt="Context Alert UI" className="w-full h-auto object-contain" />
                                 </div>
                             </div>
-                            <div className="p-8 space-y-6 flex-1 shadow-[inset_0_0_100px_rgba(57,255,20,0.02)]">
+                            <div className="p-8 space-y-6 flex-1 shadow-[inset_0_0_100px_rgba(52,191,75,0.02)]">
                                 {[
                                     { title: "Ambient Data", desc: "'Dwell-and-Reveal' pop-ups directly in the flow.", icon: Zap },
                                     { title: "Nuanced Tiers", desc: "Low, Medium, and High-risk flags with context.", icon: ShieldCheck },
@@ -515,7 +597,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                     { title: "AI-Powered \"Gist\"", desc: "Instant summaries of supporting vs. opposing views.", icon: Sparkles }
                                 ].map((item, i) => (
                                     <div key={i} className="flex gap-4">
-                                        <div className="mt-1"><item.icon className="w-4 h-4 text-[#39FF14]" /></div>
+                                        <div className="mt-1"><item.icon className="w-4 h-4 text-[#34BF4B]" /></div>
                                         <div>
                                             <h4 className="text-sm font-sans font-bold uppercase tracking-wide mb-1 text-white">{item.title}</h4>
                                             <p className="text-sm font-serif text-white">{item.desc}</p>
@@ -535,11 +617,11 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                     <div className="flex flex-col gap-8">
                         <div className="max-w-3xl">
                             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6">
-                                <Search className="w-3.5 h-3.5 text-[#39FF14]" />
+                                <Search className="w-3.5 h-3.5 text-[#34BF4B]" />
                                 <span className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-white">Secondary Research</span>
                             </div>
                             <h2 className="text-3xl md:text-5xl font-serif font-bold text-white leading-tight mb-8">
-                                Uncovering <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-emerald-400">UI and interactions</span>
+                                Uncovering <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34BF4B] to-emerald-400">UI and interactions</span>
                             </h2>
                         </div>
 
@@ -554,14 +636,14 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                             {/* Insight Box 1 */}
                             <div
                                 onClick={(e) => { e.stopPropagation(); setFocusedBox(focusedBox === 'insight1' ? null : 'insight1'); }}
-                                className={`lg:col-span-6 p-8 rounded-[2rem] bg-neutral-900 border border-white/10 transition-all duration-500 cursor-pointer group flex flex-col justify-center gap-6 relative overflow-hidden ${focusedBox === 'insight1' ? 'scale-105 z-20 ring-2 ring-[#39FF14]/50 shadow-[0_0_50px_rgba(57,255,20,0.2)]' :
-                                    (focusedBox ? 'blur-md opacity-20 scale-95' : 'hover:border-[#39FF14]/30 hover:bg-neutral-800/50')
+                                className={`lg:col-span-6 p-8 rounded-[2rem] bg-neutral-900 border border-white/10 transition-all duration-500 cursor-pointer group flex flex-col justify-center gap-6 relative overflow-hidden ${focusedBox === 'insight1' ? 'scale-105 z-20 ring-2 ring-[#34BF4B]/50 shadow-[0_0_50px_rgba(52,191,75,0.2)]' :
+                                    (focusedBox ? 'blur-md opacity-20 scale-95' : 'hover:border-[#34BF4B]/30 hover:bg-neutral-800/50')
                                     }`}
                             >
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-[#39FF14]/5 blur-[60px] -z-10" />
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-[#34BF4B]/5 blur-[60px] -z-10" />
                                 <div className="flex items-center gap-4">
-                                    <div className="p-3 rounded-2xl bg-[#39FF14]/10 border border-[#39FF14]/20">
-                                        <AlertTriangle className="w-6 h-6 text-[#39FF14]" />
+                                    <div className="p-3 rounded-2xl bg-[#34BF4B]/10 border border-[#34BF4B]/20">
+                                        <AlertTriangle className="w-6 h-6 text-[#34BF4B]" />
                                     </div>
                                     <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-neutral-500">Problem Space 01</span>
                                 </div>
@@ -593,7 +675,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                             <div
                                 onClick={(e) => { e.stopPropagation(); setFocusedBox(focusedBox === 'image' ? null : 'image'); }}
                                 className={`lg:col-span-12 rounded-[3rem] bg-neutral-900 border border-white/10 overflow-hidden transition-all duration-500 cursor-pointer relative group/img 
-                                    ${focusedBox === 'image' ? 'scale-[1.02] z-20 ring-2 ring-[#39FF14]/30 shadow-[0_40px_100px_rgba(0,0,0,0.6)] flex flex-col lg:flex-row' :
+                                    ${focusedBox === 'image' ? 'scale-[1.02] z-20 ring-2 ring-[#34BF4B]/30 shadow-[0_40px_100px_rgba(0,0,0,0.6)] flex flex-col lg:flex-row' :
                                         (focusedBox ? 'blur-md opacity-20 scale-[0.98] flex flex-col' : 'hover:border-white/20 flex flex-col')
                                     }`}
                             >
@@ -610,10 +692,10 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                     <div className={`absolute bottom-6 left-6 right-6 p-8 rounded-[2rem] bg-black/40 backdrop-blur-2xl border border-white/10 shadow-2xl flex flex-col md:flex-row md:items-end justify-between gap-6 transition-all duration-500 ${focusedBox === 'image' ? 'opacity-0 invisible' : 'opacity-100 visible'}`}>
                                         <div className="max-w-xl">
                                             <div className="flex items-center gap-3 mb-4">
-                                                <div className="p-2.5 rounded-full bg-[#39FF14]/10 border border-[#39FF14]/20">
-                                                    <Lightbulb className="w-5 h-5 text-[#39FF14]" />
+                                                <div className="p-2.5 rounded-full bg-[#34BF4B]/10 border border-[#34BF4B]/20">
+                                                    <Lightbulb className="w-5 h-5 text-[#34BF4B]" />
                                                 </div>
-                                                <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-[#39FF14]">Ideation Board</span>
+                                                <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-[#34BF4B]">Ideation Board</span>
                                             </div>
                                             <h3 className="text-2xl font-serif font-bold text-white mb-2">Scouting for UI interactions & Ideation</h3>
                                             <p className="text-neutral-300 text-sm font-sans tracking-wide leading-relaxed">Synthesizing common UI patterns and identifying friction points in existing detection tools to build a more intuitive real-time verification experience.</p>
@@ -621,7 +703,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
 
                                         <button
                                             onClick={(e) => { e.stopPropagation(); setLightboxImage({ src: "/images/content-verify/scouting-ui.jpg", alt: "Scouting for UI interactions and Ideation" }); }}
-                                            className="px-6 py-3 rounded-full bg-[#39FF14] text-black text-[10px] font-sans font-bold uppercase tracking-widest hover:bg-[#39FF14]/90 transition-all hover:scale-105 shadow-[0_0_20px_rgba(57,255,20,0.3)] shrink-0"
+                                            className="px-6 py-3 rounded-full bg-[#34BF4B] text-black text-[10px] font-sans font-bold uppercase tracking-widest hover:bg-[#34BF4B]/90 transition-all hover:scale-105 shadow-[0_0_20px_rgba(52,191,75,0.3)] shrink-0"
                                         >
                                             View Full Board
                                         </button>
@@ -631,7 +713,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                     {focusedBox === 'image' && (
                                         <button
                                             onClick={(e) => { e.stopPropagation(); setLightboxImage({ src: "/images/content-verify/scouting-ui.jpg", alt: "Scouting for UI interactions and Ideation" }); }}
-                                            className="absolute bottom-6 right-6 px-6 py-3 rounded-full bg-[#39FF14] text-black text-[10px] font-sans font-bold uppercase tracking-widest hover:bg-[#39FF14]/90 transition-all hover:scale-105 shadow-[0_0_20px_rgba(57,255,20,0.3)] shrink-0 z-10 animate-in fade-in duration-500"
+                                            className="absolute bottom-6 right-6 px-6 py-3 rounded-full bg-[#34BF4B] text-black text-[10px] font-sans font-bold uppercase tracking-widest hover:bg-[#34BF4B]/90 transition-all hover:scale-105 shadow-[0_0_20px_rgba(52,191,75,0.3)] shrink-0 z-10 animate-in fade-in duration-500"
                                         >
                                             Expand Image
                                         </button>
@@ -643,36 +725,36 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                     <div className="w-full lg:w-[40%] p-8 bg-black/50 backdrop-blur-md border-t lg:border-t-0 lg:border-l border-white/10 flex flex-col justify-center animate-in fade-in slide-in-from-right-8 duration-700 relative">
 
                                         <div className="flex items-center gap-3 mb-6">
-                                            <div className="p-2.5 rounded-full bg-[#39FF14]/10 border border-[#39FF14]/20">
-                                                <Lightbulb className="w-5 h-5 text-[#39FF14]" />
+                                            <div className="p-2.5 rounded-full bg-[#34BF4B]/10 border border-[#34BF4B]/20">
+                                                <Lightbulb className="w-5 h-5 text-[#34BF4B]" />
                                             </div>
                                             <h3 className="text-xl font-serif font-bold text-white">Scouting Insights</h3>
                                         </div>
 
                                         <ul className="space-y-6">
                                             <li className="flex gap-4 items-start group/item">
-                                                <span className="text-[#39FF14] mt-1 shrink-0 font-bold tracking-widest">01</span>
+                                                <span className="text-[#34BF4B] mt-1 shrink-0 font-bold tracking-widest">01</span>
                                                 <div>
                                                     <strong className="text-white font-sans text-sm block mb-1 uppercase tracking-wider">Grammarly</strong>
                                                     <span className="text-neutral-400 font-serif text-sm leading-relaxed block">Visual cues on the screen right corner for non-obstructive access. Clear categories for fixes.</span>
                                                 </div>
                                             </li>
                                             <li className="flex gap-4 items-start group/item">
-                                                <span className="text-[#39FF14] mt-1 shrink-0 font-bold tracking-widest">02</span>
+                                                <span className="text-[#34BF4B] mt-1 shrink-0 font-bold tracking-widest">02</span>
                                                 <div>
                                                     <strong className="text-white font-sans text-sm block mb-1 uppercase tracking-wider">Copyleaks</strong>
                                                     <span className="text-neutral-400 font-serif text-sm leading-relaxed block">Dig in for more analytics with numerical proof. Direct manipulation by clicking links inside.</span>
                                                 </div>
                                             </li>
                                             <li className="flex gap-4 items-start group/item">
-                                                <span className="text-[#39FF14] mt-1 shrink-0 font-bold tracking-widest">03</span>
+                                                <span className="text-[#34BF4B] mt-1 shrink-0 font-bold tracking-widest">03</span>
                                                 <div>
                                                     <strong className="text-white font-sans text-sm block mb-1 uppercase tracking-wider">Gamification</strong>
                                                     <span className="text-neutral-400 font-serif text-sm leading-relaxed block">Adding engaging scoring systems and highlighting disputed text to keep users active.</span>
                                                 </div>
                                             </li>
                                             <li className="flex gap-4 items-start group/item">
-                                                <span className="text-[#39FF14] mt-1 shrink-0 font-bold tracking-widest">04</span>
+                                                <span className="text-[#34BF4B] mt-1 shrink-0 font-bold tracking-widest">04</span>
                                                 <div>
                                                     <strong className="text-white font-sans text-sm block mb-1 uppercase tracking-wider">Intergrito</strong>
                                                     <span className="text-neutral-400 font-serif text-sm leading-relaxed block">Only shows one pop-up at a time. Compact tab design limiting screen overload.</span>
@@ -723,10 +805,10 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                                 return (
                                                     <div key={term} className="group/item">
                                                         <div className="flex items-center gap-3 mb-2">
-                                                            <span className="w-2 h-2 rounded-full bg-[#39FF14]" />
+                                                            <span className="w-2 h-2 rounded-full bg-[#34BF4B]" />
                                                             <h3 className="font-sans font-bold uppercase tracking-wider text-sm">{term}</h3>
                                                         </div>
-                                                        <p className="font-serif text-neutral-600 dark:text-neutral-400 leading-relaxed pl-5 border-l border-neutral-200 dark:border-neutral-800 group-hover/item:border-[#39FF14] transition-colors">{def}</p>
+                                                        <p className="font-serif text-neutral-600 dark:text-neutral-400 leading-relaxed pl-5 border-l border-neutral-200 dark:border-neutral-800 group-hover/item:border-[#34BF4B] transition-colors">{def}</p>
                                                     </div>
                                                 );
                                             })}
@@ -767,7 +849,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                 <span className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-white">Project Discovery</span>
                             </div>
                             <h2 className="text-3xl md:text-5xl font-serif font-bold text-white leading-tight mb-8">
-                                UX Strategy & <span className="text-[#39FF14]">Accessibility Audit</span>
+                                UX Strategy & <span className="text-[#34BF4B]">Accessibility Audit</span>
                             </h2>
                         </div>
 
@@ -791,10 +873,10 @@ export function ContentVerifyProject({ project }: { project: Project }) {
 
                                     <div className={`absolute bottom-6 left-6 right-6 p-8 rounded-[2rem] bg-black/40 backdrop-blur-2xl border border-white/10 shadow-2xl flex flex-col transition-all duration-500 ${focusedBox === 'ux-audit' ? 'opacity-0 invisible' : 'opacity-100 visible'}`}>
                                         <div className="flex items-center gap-3 mb-4">
-                                            <div className="p-2.5 rounded-full bg-[#39FF14]/10 border border-[#39FF14]/40 backdrop-blur-md">
-                                                <Search className="w-5 h-5 text-[#39FF14]" />
+                                            <div className="p-2.5 rounded-full bg-[#34BF4B]/10 border border-[#34BF4B]/40 backdrop-blur-md">
+                                                <Search className="w-5 h-5 text-[#34BF4B]" />
                                             </div>
-                                            <span className="bg-slate-500/40 border border-[#39FF14]/50 px-4 py-2 rounded-full text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-[#39FF14] shadow-[0_0_15px_rgba(57,255,20,0.2)]">
+                                            <span className="bg-slate-500/40 border border-[#34BF4B]/50 px-4 py-2 rounded-full text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-[#34BF4B] shadow-[0_0_15px_rgba(52,191,75,0.2)]">
                                                 Heuristic Analysis
                                             </span>
                                         </div>
@@ -863,7 +945,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                             <div
                                 onClick={(e) => { e.stopPropagation(); setFocusedBox(focusedBox === 'accessibility' ? null : 'accessibility'); }}
                                 className={`rounded-[2.5rem] bg-neutral-900 border border-white/10 overflow-hidden transition-all duration-500 cursor-pointer relative group/img 
-                                    ${focusedBox === 'accessibility' ? 'lg:col-span-8 scale-[1.02] z-20 ring-2 ring-[#39FF14]/30 shadow-[0_40px_100px_rgba(0,0,0,0.6)] flex flex-col lg:flex-row' :
+                                    ${focusedBox === 'accessibility' ? 'lg:col-span-8 scale-[1.02] z-20 ring-2 ring-[#34BF4B]/30 shadow-[0_40px_100px_rgba(0,0,0,0.6)] flex flex-col lg:flex-row' :
                                         (focusedBox === 'ux-audit' ? 'lg:col-span-4 blur-md overflow-hidden opacity-0 scale-[0.98] hidden lg:flex flex-col' : 'lg:col-span-4 hover:border-white/20 flex flex-col')
                                     }`}
                             >
@@ -879,10 +961,10 @@ export function ContentVerifyProject({ project }: { project: Project }) {
 
                                     <div className={`p-8 bg-neutral-900 border-t border-white/5 transition-all duration-500 ${focusedBox === 'accessibility' ? 'hidden' : 'block'}`}>
                                         <div className="flex items-center gap-3 mb-4">
-                                            <div className="p-2 rounded-full bg-[#39FF14]/10 border border-[#39FF14]/20">
-                                                <Layers className="w-4 h-4 text-[#39FF14]" />
+                                            <div className="p-2 rounded-full bg-[#34BF4B]/10 border border-[#34BF4B]/20">
+                                                <Layers className="w-4 h-4 text-[#34BF4B]" />
                                             </div>
-                                            <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-[#39FF14]">AA/AAA Compliance</span>
+                                            <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-[#34BF4B]">AA/AAA Compliance</span>
                                         </div>
                                         <h3 className="text-xl font-serif font-bold text-white mb-2">Accessibility Guardrails</h3>
                                         <p className="text-neutral-500 text-xs font-sans tracking-wide leading-relaxed">
@@ -896,7 +978,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                                             <button
                                                 onClick={(e) => { e.stopPropagation(); setLightboxImage({ src: "/images/content-verify/accessibility.png", alt: "Accessibility Standards" }); }}
-                                                className="absolute bottom-6 right-6 px-6 py-3 rounded-full bg-[#39FF14] text-black text-[10px] font-sans font-bold uppercase tracking-widest hover:bg-[#39FF14]/90 transition-all hover:scale-105 shadow-[0_0_20px_rgba(57,255,20,0.3)] shrink-0 z-10 animate-in fade-in duration-500"
+                                                className="absolute bottom-6 right-6 px-6 py-3 rounded-full bg-[#34BF4B] text-black text-[10px] font-sans font-bold uppercase tracking-widest hover:bg-[#34BF4B]/90 transition-all hover:scale-105 shadow-[0_0_20px_rgba(52,191,75,0.3)] shrink-0 z-10 animate-in fade-in duration-500"
                                             >
                                                 Expand Image
                                             </button>
@@ -908,14 +990,14 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                 {focusedBox === 'accessibility' && (
                                     <div className="w-full lg:w-[40%] p-8 bg-black/50 backdrop-blur-md border-t lg:border-t-0 lg:border-l border-white/10 flex flex-col justify-center animate-in fade-in slide-in-from-right-8 duration-700 relative">
                                         <div className="flex items-center gap-3 mb-6">
-                                            <div className="p-2.5 rounded-full bg-[#39FF14]/10 border border-[#39FF14]/20">
-                                                <Layers className="w-5 h-5 text-[#39FF14]" />
+                                            <div className="p-2.5 rounded-full bg-[#34BF4B]/10 border border-[#34BF4B]/20">
+                                                <Layers className="w-5 h-5 text-[#34BF4B]" />
                                             </div>
                                             <h3 className="text-xl font-serif font-bold text-white">Accessibility Focus</h3>
                                         </div>
 
-                                        <div className="bg-[#39FF14]/5 border border-[#39FF14]/10 rounded-2xl p-6 relative overflow-hidden group">
-                                            <div className="absolute top-0 right-0 w-24 h-24 bg-[#39FF14]/10 blur-[40px] -z-10 group-hover:bg-[#39FF14]/20 transition-colors" />
+                                        <div className="bg-[#34BF4B]/5 border border-[#34BF4B]/10 rounded-2xl p-6 relative overflow-hidden group">
+                                            <div className="absolute top-0 right-0 w-24 h-24 bg-[#34BF4B]/10 blur-[40px] -z-10 group-hover:bg-[#34BF4B]/20 transition-colors" />
                                             <p className="text-neutral-300 font-serif text-lg leading-relaxed italic pr-4">
                                                 "Accessibility color contrast analysis across different texts in the UI."
                                             </p>
@@ -930,17 +1012,17 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                 {/* Stats Grid - Metrics on Secondary Research */}
                 <section className="max-w-4xl mx-auto mb-24 px-4">
                     <div className="flex flex-col items-center mb-12 flex-center text-center">
-                        <span className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-[#39FF14] mb-4">Alert Fatigue Metrics</span>
+                        <span className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-[#34BF4B] mb-4">Alert Fatigue Metrics</span>
                         <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-2">Metrics on Secondary Research</h2>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {stats.map((stat) => {
                             const IconComponent = stat.icon;
                             return (
-                                <div key={stat.id} className="flex flex-col gap-3 p-6 bg-neutral-900/5 dark:bg-neutral-100/5 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-lg hover:border-[#39FF14]/40 hover:shadow-[0_4px_16px_rgba(57,255,20,0.15)] transition-all duration-300 min-h-[200px] group">
+                                <div key={stat.id} className="flex flex-col gap-3 p-6 bg-neutral-900/5 dark:bg-neutral-100/5 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-lg hover:border-[#34BF4B]/40 hover:shadow-[0_4px_16px_rgba(52,191,75,0.15)] transition-all duration-300 min-h-[200px] group">
                                     <div className="flex items-center justify-between">
                                         <span className="text-sm font-sans font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">{stat.label}</span>
-                                        <IconComponent className="w-5 h-5 text-[#39FF14] drop-shadow-[0_0_8px_rgba(57,255,20,0.5)]" strokeWidth={2.5} />
+                                        <IconComponent className="w-5 h-5 text-[#34BF4B] drop-shadow-[0_0_8px_rgba(52,191,75,0.5)]" strokeWidth={2.5} />
                                     </div>
                                     <span className="text-5xl md:text-6xl font-bold font-serif text-neutral-900 dark:text-neutral-100 block">{stat.number}</span>
                                     <p className="text-sm font-sans text-neutral-600 dark:text-neutral-400 leading-relaxed flex-1">
@@ -956,31 +1038,31 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                 {/* UI & UX Qualitative Feedback Analysis */}
                 <section className="max-w-4xl mx-auto mb-24 px-4">
                     <div className="flex flex-col items-center mb-12 flex-center text-center">
-                        <span className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-[#39FF14] mb-4">Feedback Analysis</span>
+                        <span className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-[#34BF4B] mb-4">Feedback Analysis</span>
                         <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-2">UI & UX Qualitative Feedback Analysis</h2>
                     </div>
                     <div className="grid grid-cols-1 gap-6">
-                        <div className="flex flex-col gap-3 p-6 bg-neutral-900/5 dark:bg-neutral-100/5 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-lg hover:border-[#39FF14]/40 hover:shadow-[0_4px_16px_rgba(57,255,20,0.15)] transition-all duration-300">
+                        <div className="flex flex-col gap-3 p-6 bg-neutral-900/5 dark:bg-neutral-100/5 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-lg hover:border-[#34BF4B]/40 hover:shadow-[0_4px_16px_rgba(52,191,75,0.15)] transition-all duration-300">
                             <h3 className="text-lg font-bold font-serif text-white flex items-center gap-3">
-                                <span className="w-2 h-2 rounded-full bg-[#39FF14]" />
+                                <span className="w-2 h-2 rounded-full bg-[#34BF4B]" />
                                 Autonomy over Labels
                             </h3>
                             <p className="text-sm font-sans text-neutral-400 leading-relaxed ml-5">
                                 Users preferred optional "Perspective Diversity" over forced truth-labels to maintain their own judgment.
                             </p>
                         </div>
-                        <div className="flex flex-col gap-3 p-6 bg-neutral-900/5 dark:bg-neutral-100/5 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-lg hover:border-[#39FF14]/40 hover:shadow-[0_4px_16px_rgba(57,255,20,0.15)] transition-all duration-300">
+                        <div className="flex flex-col gap-3 p-6 bg-neutral-900/5 dark:bg-neutral-100/5 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-lg hover:border-[#34BF4B]/40 hover:shadow-[0_4px_16px_rgba(52,191,75,0.15)] transition-all duration-300">
                             <h3 className="text-lg font-bold font-serif text-white flex items-center gap-3">
-                                <span className="w-2 h-2 rounded-full bg-[#39FF14]" />
+                                <span className="w-2 h-2 rounded-full bg-[#34BF4B]" />
                                 Minimalist Efficiency
                             </h3>
                             <p className="text-sm font-sans text-neutral-400 leading-relaxed ml-5">
                                 High-visibility highlights saved reading time, but required a tiny icon interface to avoid distraction.
                             </p>
                         </div>
-                        <div className="flex flex-col gap-3 p-6 bg-neutral-900/5 dark:bg-neutral-100/5 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-lg hover:border-[#39FF14]/40 hover:shadow-[0_4px_16px_rgba(57,255,20,0.15)] transition-all duration-300">
+                        <div className="flex flex-col gap-3 p-6 bg-neutral-900/5 dark:bg-neutral-100/5 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-lg hover:border-[#34BF4B]/40 hover:shadow-[0_4px_16px_rgba(52,191,75,0.15)] transition-all duration-300">
                             <h3 className="text-lg font-bold font-serif text-white flex items-center gap-3">
-                                <span className="w-2 h-2 rounded-full bg-[#39FF14]" />
+                                <span className="w-2 h-2 rounded-full bg-[#34BF4B]" />
                                 Precision over Volume
                             </h3>
                             <p className="text-sm font-sans text-neutral-400 leading-relaxed ml-5">
@@ -1005,8 +1087,8 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                 <section className="max-w-4xl mx-auto mb-24 px-4 relative">
                     {/* Floating Cursor Comment (Desktop only) */}
                     <div className="hidden lg:flex absolute top-20 right-0 lg:-mr-12 xl:-mr-24 items-start gap-1 z-10 max-w-[280px] transition-transform duration-500 hover:-translate-y-4 hover:scale-105 hover:rotate-2 cursor-pointer group/comment drop-shadow-2xl">
-                        <MousePointer2 className="w-6 h-6 text-[#39FF14] fill-[#39FF14] drop-shadow-[0_0_8px_rgba(57,255,20,0.6)] shrink-0 z-20 transition-transform duration-500 group-hover/comment:-rotate-12" />
-                        <div className="bg-black/60 border border-[#39FF14]/30 backdrop-blur-md rounded-2xl rounded-tl-none p-5 shadow-[0_20px_40px_rgba(0,0,0,0.5)] mt-4 -ml-2 group-hover/comment:border-[#39FF14]/60 group-hover/comment:bg-black/80 transition-all duration-500">
+                        <MousePointer2 className="w-6 h-6 text-[#34BF4B] fill-[#34BF4B] drop-shadow-[0_0_8px_rgba(52,191,75,0.6)] shrink-0 z-20 transition-transform duration-500 group-hover/comment:-rotate-12" />
+                        <div className="bg-black/60 border border-[#34BF4B]/30 backdrop-blur-md rounded-2xl rounded-tl-none p-5 shadow-[0_20px_40px_rgba(0,0,0,0.5)] mt-4 -ml-2 group-hover/comment:border-[#34BF4B]/60 group-hover/comment:bg-black/80 transition-all duration-500">
                             <p className="text-sm font-sans text-neutral-300 leading-relaxed font-medium">
                                 "This was done as part of the usability study to determine scores on interaction and further used to calculate statistical data."
                             </p>
@@ -1014,19 +1096,19 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                     </div>
 
                     <div className="flex flex-col items-center mb-12 flex-center text-center">
-                        <span className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-[#39FF14] mb-4">Task Interpretation</span>
+                        <span className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-[#34BF4B] mb-4">Task Interpretation</span>
                         <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">Interacting with Content Verify</h2>
                         <p className="text-neutral-400 font-sans tracking-wide max-w-xl">This is how scores were determined based on how users interacted with Content Verify.</p>
                     </div>
 
                     <div className="bg-neutral-900 border border-white/10 rounded-2xl overflow-hidden shadow-xl">
                         <table className="w-full text-left font-serif">
-                            <thead className="bg-[#39FF14]/5 border-b border-white/10">
+                            <thead className="bg-[#34BF4B]/5 border-b border-white/10">
                                 <tr>
-                                    <th className="py-5 px-8 font-sans font-bold uppercase tracking-widest text-xs text-[#39FF14] w-20 hidden md:table-cell">Task</th>
-                                    <th className="py-5 px-6 md:px-8 font-sans font-bold uppercase tracking-widest text-xs text-[#39FF14] w-[35%]">Interaction</th>
+                                    <th className="py-5 px-8 font-sans font-bold uppercase tracking-widest text-xs text-[#34BF4B] w-20 hidden md:table-cell">Task</th>
+                                    <th className="py-5 px-6 md:px-8 font-sans font-bold uppercase tracking-widest text-xs text-[#34BF4B] w-[35%]">Interaction</th>
                                     <th className="py-5 px-0 w-24"></th>
-                                    <th className="py-5 px-6 md:px-8 font-sans font-bold uppercase tracking-widest text-xs text-[#39FF14]">Explanation</th>
+                                    <th className="py-5 px-6 md:px-8 font-sans font-bold uppercase tracking-widest text-xs text-[#34BF4B]">Explanation</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-white/5">
@@ -1037,13 +1119,13 @@ export function ContentVerifyProject({ project }: { project: Project }) {
 
                                     return (
                                         <tr key={i} className="hover:bg-white/5 transition-colors group">
-                                            <td className="py-6 px-8 font-bold text-neutral-500 group-hover:text-[#39FF14] transition-colors align-middle hidden md:table-cell">0{i + 1}</td>
+                                            <td className="py-6 px-8 font-bold text-neutral-500 group-hover:text-[#34BF4B] transition-colors align-middle hidden md:table-cell">0{i + 1}</td>
                                             <td className="py-6 px-6 md:px-8 leading-relaxed text-white font-medium align-middle">{desc}</td>
                                             <td className="py-6 px-0 align-middle">
                                                 {expl && (
                                                     <div className="flex items-center w-full justify-center opacity-60 group-hover:opacity-100 transition-opacity">
-                                                        <div className="w-16 md:w-20 border-t-[3px] border-dotted border-white group-hover:border-[#39FF14] transition-colors" />
-                                                        <ChevronRight className="w-5 h-5 text-white group-hover:text-[#39FF14] transition-colors -ml-2" />
+                                                        <div className="w-16 md:w-20 border-t-[3px] border-dotted border-white group-hover:border-[#34BF4B] transition-colors" />
+                                                        <ChevronRight className="w-5 h-5 text-white group-hover:text-[#34BF4B] transition-colors -ml-2" />
                                                     </div>
                                                 )}
                                             </td>
@@ -1089,7 +1171,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                 <tr className="border-b border-neutral-200 dark:border-neutral-800">
                                     <th className="py-4 font-serif font-bold text-lg text-white">Metric</th>
                                     <th className="py-4 font-serif font-bold text-lg text-white">Baseline (Without Tool)</th>
-                                    <th className="py-4 font-serif font-bold text-lg text-[#39FF14]">With Content Verify</th>
+                                    <th className="py-4 font-serif font-bold text-lg text-[#34BF4B]">With Content Verify</th>
                                 </tr>
                             </thead>
                             <tbody className="font-sans text-sm divide-y divide-neutral-200 dark:divide-neutral-800">
@@ -1115,9 +1197,9 @@ export function ContentVerifyProject({ project }: { project: Project }) {
 
                 {/* Summary for Portfolio */}
                 <section className="max-w-4xl mx-auto mb-16 px-4">
-                    <div className="p-8 md:p-12 bg-neutral-900 rounded-[2.5rem] border border-[#39FF14]/20 shadow-[0_0_30px_rgba(57,255,20,0.05)] text-center relative overflow-hidden group hover:border-[#39FF14]/50 hover:shadow-[0_0_50px_rgba(57,255,20,0.1)] transition-all">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-[#39FF14]/10 blur-[50px] -z-10 group-hover:bg-[#39FF14]/20 transition-colors" />
-                        <h3 className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] mb-6 text-[#39FF14]">Summary for Portfolio</h3>
+                    <div className="p-8 md:p-12 bg-neutral-900 rounded-[2.5rem] border border-[#34BF4B]/20 shadow-[0_0_30px_rgba(52,191,75,0.05)] text-center relative overflow-hidden group hover:border-[#34BF4B]/50 hover:shadow-[0_0_50px_rgba(52,191,75,0.1)] transition-all">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-[#34BF4B]/10 blur-[50px] -z-10 group-hover:bg-[#34BF4B]/20 transition-colors" />
+                        <h3 className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] mb-6 text-[#34BF4B]">Summary for Portfolio</h3>
                         <p className="font-serif text-xl md:text-2xl leading-relaxed italic text-neutral-200">
                             "Content Verify transforms passive readers into critical thinkers. By achieving a 50% shift in user perspective and a statistically significant increase in bias recognition, the system proves that AI-driven interventions can reduce susceptibility to misinformation while maintaining a seamless, non-disruptive reading experience."
                         </p>
