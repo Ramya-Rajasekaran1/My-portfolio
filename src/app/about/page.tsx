@@ -46,6 +46,51 @@ export default function AboutPage() {
                         </div>
                     </div>
 
+                    {/* A Bit About Me Section */}
+                    <section className="mb-20">
+                        <div className="flex items-center justify-between mb-8">
+                            <h2 className="text-[32px] font-serif font-light tracking-tight text-neutral-900 dark:text-white uppercase text-center md:text-left">A Bit About Me</h2>
+                            <div className="h-px bg-neutral-200 dark:bg-white/10 flex-1 ml-6 hidden md:block" />
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {[
+                                {
+                                    title: "Led Multi-Billion Dollar Platform Design at Boeing",
+                                    desc: "Redesigned MyBoeingFleet (150+ apps) to streamline UAT logic. Standardized design and accessibility for a $2B+ e-commerce ecosystem."
+                                },
+                                {
+                                    title: "Scaled Global Supply Chain Tools at Fourkites",
+                                    desc: "Owned UX for 3+ supply chain apps used globally by 1.6K+ enterprise clients. Built a unified design system, reducing UX bugs by 90%."
+                                },
+                                {
+                                    title: "Shaped Design for Diverse Domains",
+                                    desc: "Delivered responsive solutions across aviation, logistics, AI, and e-commerce. Led web revamps driving an 85% increase in mobile engagement."
+                                },
+                                {
+                                    title: "Recognized Thought Leader in AI+UX",
+                                    desc: "Presented award-winning AI accessibility research at IEEE and IndiaHCI. Recognized by Gartner & Boeing as an impactful UX strategist."
+                                },
+                                {
+                                    title: "Certified & Versatile in Human-Centered Design",
+                                    desc: "Certified by Stanford, Google, and IBM in AI Design Thinking. Proficient in Figma, accessibility, and rapid enterprise prototyping."
+                                }
+                            ].map((item, i) => (
+                                <GlassCard key={i} className={cn("p-6 md:p-8 flex items-start gap-4 border-neutral-200 dark:border-white/10 bg-gradient-to-br from-white via-white/90 to-white/70 dark:bg-none dark:bg-blue-950/40 hover:bg-neutral-50 dark:hover:bg-white/[0.02] transition-colors shadow-sm", i === 4 ? "md:col-span-2" : "")}>
+                                    <div className="text-xl shrink-0 mt-0.5">🔹</div>
+                                    <div className="flex-1">
+                                        <h3 className="text-lg md:text-xl font-bold font-sans text-neutral-900 dark:text-white mb-2 tracking-tight">
+                                            {item.title}
+                                        </h3>
+                                        <p className="text-[15px] text-neutral-700 dark:text-neutral-300 font-sans leading-relaxed">
+                                            {item.desc}
+                                        </p>
+                                    </div>
+                                </GlassCard>
+                            ))}
+                        </div>
+                    </section>
+
                     {/* Personal Bento Grid Section */}
                     <section className="mb-20">
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
@@ -99,24 +144,31 @@ export default function AboutPage() {
                             <div className="h-px bg-neutral-200 dark:bg-white/10 flex-1 ml-6 hidden md:block" />
                         </div>
 
-                        <div className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing">
-                            <motion.div
-                                className="flex gap-4 w-max py-4"
-                                drag="x"
-                                dragConstraints={{ left: -1400, right: 0 }}
-                                animate={{
-                                    x: [0, -1400],
-                                }}
-                                transition={{
-                                    x: {
-                                        repeat: Infinity,
-                                        repeatType: "loop",
-                                        duration: 35,
-                                        ease: "linear",
-                                    },
-                                }}
-                                whileTap={{ cursor: "grabbing" }}
-                            >
+                        <div className="relative w-full overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing">
+                            <style dangerouslySetInnerHTML={{ __html: `
+                                @keyframes marquee {
+                                    0% { transform: translateX(0); }
+                                    100% { transform: translateX(-1400px); }
+                                }
+                                .marquee-container {
+                                    display: flex;
+                                    gap: 1rem;
+                                    width: max-content;
+                                    padding: 1rem 0;
+                                    animation: marquee 35s linear infinite;
+                                }
+                                .marquee-container:active {
+                                    animation-play-state: paused;
+                                }
+                                .no-scrollbar::-webkit-scrollbar {
+                                    display: none;
+                                }
+                                .no-scrollbar {
+                                    -ms-overflow-style: none;
+                                    scrollbar-width: none;
+                                }
+                            `}} />
+                            <div className="marquee-container">
                                 {[
                                     { name: "Figma", logo: "/images/about/figma-new.png" },
                                     { name: "Cursor", logo: "/images/about/cursor_code_editor-logo_brandlogos.net_r1yfy.png" },
@@ -141,7 +193,7 @@ export default function AboutPage() {
                                         <span className="text-[10px] font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-widest">{tool.name}</span>
                                     </div>
                                 ))}
-                            </motion.div>
+                            </div>
 
                             <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-neutral-50 dark:from-neutral-950 to-transparent z-10" />
                             <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-neutral-50 dark:from-neutral-950 to-transparent z-10" />

@@ -54,9 +54,20 @@ export function GenAIFeatured() {
                             <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#7effa0]">Featured Research</span>
                         </div>
 
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-neutral-900 dark:text-white leading-tight mb-6">
-                            Designing for <span className="text-[#7effa0] italic">Inclusivity</span> in the Age of Generative AI
-                        </h2>
+                        <div className="flex items-start justify-between gap-4 mb-6">
+                            <div>
+                                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-neutral-900 dark:text-white leading-tight">
+                                    Designing for <span className="text-[#7effa0] italic">Inclusivity</span> in the Age of Generative AI
+                                </h2>
+                            </div>
+                            <Link
+                                href="/work/gen-ai-inclusivity"
+                                className="hidden lg:inline-flex shrink-0 items-center justify-center gap-3 px-5 py-2.5 bg-[#7effa0] hover:bg-[#6ee890] text-black font-bold text-xs uppercase tracking-widest rounded-full transition-all group mt-2"
+                            >
+                                Explore case study
+                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        </div>
 
                         <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
                             A futurist UX investigation that benchmarks how inclusive modern generative AI tools are and sketches a blueprint for accessibility-forward experiences. Published at IEEE and IndiaHCI.
@@ -78,13 +89,15 @@ export function GenAIFeatured() {
                             </div>
                         </div>
 
-                        <Link
-                            href="/work/gen-ai-inclusivity"
-                            className="inline-flex items-center gap-3 px-6 py-3 bg-[#7effa0] hover:bg-[#6ee890] text-black font-bold text-sm uppercase tracking-widest rounded-full transition-all group"
-                        >
-                            View Case Study
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </Link>
+                        <div className="lg:hidden">
+                            <Link
+                                href="/work/gen-ai-inclusivity"
+                                className="inline-flex items-center gap-3 px-6 py-3 bg-[#7effa0] hover:bg-[#6ee890] text-black font-bold text-sm uppercase tracking-widest rounded-full transition-all group"
+                            >
+                                Explore case study
+                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        </div>
                     </motion.div>
                 </div>
             </div>

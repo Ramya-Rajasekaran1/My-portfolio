@@ -3,8 +3,8 @@ export const trackingQualityDashboard = {
     title: "Tracking Quality Dashboard",
     category: "Supply Chain Visibility",
     description: "A dashboard to measure the accuracy and quality of shipments tracked by the company, highlighting the value added to clients.",
-    image: "/images/tracking-quality-dashboard/cover.jpg",
-    thumbnailImage: "/images/tracking-quality-dashboard/cover.jpg",
+    image: "/images/tracking-quality-dashboard/cover_v4.jpg",
+    thumbnailImage: "/images/tracking-quality-dashboard/cover_v4.jpg",
     slug: "tracking-quality-dashboard",
     sections: [
         {

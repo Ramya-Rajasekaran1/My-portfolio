@@ -117,6 +117,7 @@ export function Navbar() {
                                 >
                                     <Link
                                         href={link.href}
+                                        prefetch={true}
                                         className="text-xs font-bold font-outfit text-neutral-600 dark:text-parchment hover:text-black dark:hover:text-ivory transition-colors uppercase tracking-widest px-1 py-1"
                                     >
                                         {link.name}

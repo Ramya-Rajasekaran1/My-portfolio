@@ -23,9 +23,8 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1, duration: 0.5, ease: "easeOut" }}
             className="group cursor-pointer"
         >
             <Link href={`/work/${project.slug}`}>
@@ -48,7 +47,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                         style={{ backgroundColor: project.backgroundColor }}
                     >
                         <div
-                            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 group-hover:scale-105"
+                            className="absolute inset-0 bg-cover bg-left bg-no-repeat transition-transform duration-500 group-hover:scale-105"
                             style={{ backgroundImage: `url(${(project as any).thumbnailImage || project.image})` }}
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
