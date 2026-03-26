@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { projects } from "@/lib/data";
 import { ImageLightbox } from "@/components/ui/image-lightbox";
 import { NetworkIntelligenceProject } from "@/components/projects/network-intelligence";

@@ -54,7 +54,7 @@ export function GenAIFeatured() {
                             <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#7effa0]">Featured Research</span>
                         </div>
 
-                        <div className="flex items-start justify-between gap-4 mb-6">
+                        <div className="flex items-end justify-between gap-4 mb-6">
                             <div>
                                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-neutral-900 dark:text-white leading-tight">
                                     Designing for <span className="text-[#7effa0] italic">Inclusivity</span> in the Age of Generative AI
@@ -62,7 +62,7 @@ export function GenAIFeatured() {
                             </div>
                             <Link
                                 href="/work/gen-ai-inclusivity"
-                                className="hidden lg:inline-flex shrink-0 items-center justify-center gap-3 px-5 py-2.5 bg-[#7effa0] hover:bg-[#6ee890] text-black font-bold text-xs uppercase tracking-widest rounded-full transition-all group mt-2"
+                                className="hidden lg:inline-flex shrink-0 items-center justify-center gap-3 px-5 py-2.5 bg-[#7effa0] hover:bg-[#6ee890] text-black font-bold text-xs uppercase tracking-widest rounded-full transition-all group mb-2"
                             >
                                 Explore case study
                                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

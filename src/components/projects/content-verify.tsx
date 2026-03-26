@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { type Project } from "@/lib/data";
 import { ArrowLeft, AlertTriangle, Eye, BarChart3, Info, MousePointer2, ChevronRight, Target, Sparkles, Layers, ShieldCheck, History, Zap, Search, Lightbulb, Lock } from "lucide-react";

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from "react";
 import { type Project } from "@/lib/data";
 import Link from "next/link";

@@ -83,22 +83,22 @@ export function FeaturedProjects() {
                                 {/* Text Column */}
                                 <div className="order-1 lg:order-2">
                                     <div className="flex flex-col gap-8">
-                                        <div className="flex items-start justify-between gap-4">
-                                            <div className="space-y-4">
-                                                <span className="text-xs md:text-sm font-mono tracking-[0.4em] text-blush font-bold uppercase block">
-                                                    {item.tag}
-                                                </span>
+                                        <div className="space-y-4">
+                                            <span className="text-xs md:text-sm font-mono tracking-[0.4em] text-blush font-bold uppercase block">
+                                                {item.tag}
+                                            </span>
+                                            <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-6">
                                                 <h3 className="text-3xl md:text-5xl font-outfit font-extralight text-white leading-tight">
                                                     {item.title}
                                                 </h3>
+                                                <Link
+                                                    href={`/work/${item.slug}`}
+                                                    className="group hidden xl:inline-flex shrink-0 items-center gap-3 text-sm font-outfit font-black uppercase tracking-[0.2em] text-white hover:text-blush transition-colors mb-2"
+                                                >
+                                                    Explore case study
+                                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+                                                </Link>
                                             </div>
-                                            <Link
-                                                href={`/work/${item.slug}`}
-                                                className="group hidden xl:inline-flex shrink-0 items-center gap-3 text-sm font-black uppercase tracking-[0.2em] text-white hover:text-blush transition-colors mt-2"
-                                            >
-                                                Explore case study
-                                                <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
-                                            </Link>
                                         </div>
 
                                         <p className="text-white/60 text-lg leading-relaxed font-light max-w-xl">

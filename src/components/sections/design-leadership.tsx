@@ -20,31 +20,31 @@ interface GalleryItem {
 
 const galleryItems: GalleryItem[] = [
   // Leadership talks (1st Category) - Ordered: Talk on Accessibility then IEEE
-  { id: "keynote-video", type: "video", src: "/images/untitled folder/97D84054-555D-4EC6-A756-4AB511568DC3.MP4", title: "Leadership Connect on UX at Boeing", location: "DesignConf", date: "Apr 2024", category: "Leadership", note: "Leadership Connect on UX at Boeing", tags: ["Design Systems", "Talk"] },
-  { id: "community-talk", type: "image", src: "/images/untitled folder/0c9cfc13-4e6a-4b76-ac91-542d4a50c761.jpg", title: "Talk on Accessibility", location: "Virtual Stage", date: "Mar 2024", category: "Leadership", note: "Talk on Accessibility", tags: ["Virtual", "Communication"] },
-  { id: "bits-stage", type: "image", src: "/images/untitled folder/FC5AA75A-F4E6-42EE-BE82-93A40CAD0B72.JPG", title: "IEEE Published Paper", location: "BITS Pilani", date: "May 2022", category: "Leadership", note: "IEEE Published Paper", tags: ["Keynote", "Supply Chain"] },
-  { id: "vip-presentation", type: "image", src: "/images/untitled folder/025021CB-F3EE-4AA2-9A91-394FE35C2804.JPG", title: "Talk on Accessibility", location: "Innovation Hub", date: "Aug 2023", category: "Leadership", note: "Talk on Accessibility", tags: ["Strategy", "Stakeholders"] },
-  { id: "christ-award", type: "image", src: "/images/untitled folder/6A61DCE3-C96F-4E66-963D-26FD6AB98AC4.JPG", title: "IEEE Published Paper", location: "Christ University", date: "Mar 2023", category: "Leadership", note: "IEEE Published Paper", tags: ["Award", "Education"] },
+  { id: "keynote-video", type: "video", src: "/images/leadership/97D84054-555D-4EC6-A756-4AB511568DC3.MP4", title: "Leadership Connect on UX at Boeing", location: "DesignConf", date: "Apr 2024", category: "Leadership", note: "Leadership Connect on UX at Boeing", tags: ["Design Systems", "Talk"] },
+  { id: "community-talk", type: "image", src: "/images/leadership/0c9cfc13-4e6a-4b76-ac91-542d4a50c761.jpg", title: "Talk on Accessibility", location: "Virtual Stage", date: "Mar 2024", category: "Leadership", note: "Talk on Accessibility", tags: ["Virtual", "Communication"] },
+  { id: "bits-stage", type: "image", src: "/images/leadership/FC5AA75A-F4E6-42EE-BE82-93A40CAD0B72.JPG", title: "IEEE Published Paper", location: "BITS Pilani", date: "May 2022", category: "Leadership", note: "IEEE Published Paper", tags: ["Keynote", "Supply Chain"] },
+  { id: "vip-presentation", type: "image", src: "/images/leadership/025021CB-F3EE-4AA2-9A91-394FE35C2804.JPG", title: "Talk on Accessibility", location: "Innovation Hub", date: "Aug 2023", category: "Leadership", note: "Talk on Accessibility", tags: ["Strategy", "Stakeholders"] },
+  { id: "christ-award", type: "image", src: "/images/leadership/6A61DCE3-C96F-4E66-963D-26FD6AB98AC4.JPG", title: "IEEE Published Paper", location: "Christ University", date: "Mar 2023", category: "Leadership", note: "IEEE Published Paper", tags: ["Award", "Education"] },
   
   // Community (2nd Category)
   // Col 1: Core Committee + IndiaHCI 2022
-  { id: "madrasters-stairs", type: "image", src: "/images/untitled folder/80A40B55-8E70-4BE0-8DA5-D745B97F08B4.JPG", title: "Core Committee Member", location: "Global Venue", date: "Jan 2024", category: "Community", note: "Core Committee Member", tags: ["Madrasters", "Culture"], col: 1 },
-  { id: "indiahci-2022-frame", type: "image", src: "/images/untitled folder/6C165B99-D425-4DE1-BB5E-2FC08B680B9D.JPG", title: "IndiaHCI 2022", location: "BITS Hyderabad", date: "Nov 2022", category: "Community", note: "India HCI Presentation", tags: ["Academic", "HCI"], col: 1 },
+  { id: "madrasters-stairs", type: "image", src: "/images/leadership/80A40B55-8E70-4BE0-8DA5-D745B97F08B4.JPG", title: "Core Committee Member", location: "Global Venue", date: "Jan 2024", category: "Community", note: "Core Committee Member", tags: ["Madrasters", "Culture"], col: 1 },
+  { id: "indiahci-2022-frame", type: "image", src: "/images/leadership/6C165B99-D425-4DE1-BB5E-2FC08B680B9D.JPG", title: "IndiaHCI 2022", location: "BITS Hyderabad", date: "Nov 2022", category: "Community", note: "India HCI Presentation", tags: ["Academic", "HCI"], col: 1 },
   // Col 2: Giving Back + Design Community
-  { id: "mentorship-circle", type: "image", src: "/images/untitled folder/bc6bbef4-1e89-44a7-987e-84d04c1129f5.jpg", title: "Mentorship", location: "ADPList", date: "Jan 2024", category: "Community", note: "Giving Back", tags: ["ADPList", "Mentorship"], col: 2 },
-  { id: "strategy-talk", type: "image", src: "/images/untitled folder/6623beb2348122000855e532_1713618610056.JPG", title: "Design Community", location: "Product Summit", date: "Jun 2023", category: "Community", note: "Design Community", tags: ["Product Strategy", "Leadership"], col: 2 },
+  { id: "mentorship-circle", type: "image", src: "/images/leadership/bc6bbef4-1e89-44a7-987e-84d04c1129f5.jpg", title: "Mentorship", location: "ADPList", date: "Jan 2024", category: "Community", note: "Giving Back", tags: ["ADPList", "Mentorship"], col: 2 },
+  { id: "strategy-talk", type: "image", src: "/images/leadership/6623beb2348122000855e532_1713618610056.JPG", title: "Design Community", location: "Product Summit", date: "Jun 2023", category: "Community", note: "Design Community", tags: ["Product Strategy", "Leadership"], col: 2 },
   // Col 3: Events and Talks + India HCI Banner
-  { id: "designmyx-collage", type: "image", src: "/images/untitled folder/InShot_20231203_144932996.jpg", title: "Events and Talks", location: "Zeta HQ", date: "Dec 2023", category: "Community", note: "Events and Talks", tags: ["Event", "Mentorship"], col: 3 },
-  { id: "indiahci-banner", type: "image", src: "/images/untitled folder/BA5F20C7-B944-44AA-A7EF-4543EDF3B36F.JPG", title: "India HCI Presentation", location: "IndiaHCI '22", date: "Nov 2022", category: "Community", note: "India HCI Presentation", tags: ["Research", "Academic"], col: 3 },
+  { id: "designmyx-collage", type: "image", src: "/images/leadership/InShot_20231203_144932996.jpg", title: "Events and Talks", location: "Zeta HQ", date: "Dec 2023", category: "Community", note: "Events and Talks", tags: ["Event", "Mentorship"], col: 3 },
+  { id: "indiahci-banner", type: "image", src: "/images/leadership/BA5F20C7-B944-44AA-A7EF-4543EDF3B36F.JPG", title: "India HCI Presentation", location: "IndiaHCI '22", date: "Nov 2022", category: "Community", note: "India HCI Presentation", tags: ["Research", "Academic"], col: 3 },
 
   // Design Team (3rd Category)
   // Col 1: Design Fam
-  { id: "madrasters-group", type: "image", src: "/images/untitled folder/IMG-20220518-WA0051.jpg", title: "Design Fam", location: "Madrasters HQ", date: "May 2022", category: "DesignTeam", note: "Design Fam", tags: ["Meetup", "Regional"], col: 1 },
+  { id: "madrasters-group", type: "image", src: "/images/leadership/IMG-20220518-WA0051.jpg", title: "Design Fam", location: "Madrasters HQ", date: "May 2022", category: "DesignTeam", note: "Design Fam", tags: ["Meetup", "Regional"], col: 1 },
   // Col 2: Team Boeing + Whiteboarding Days
-  { id: "boeing-group-photo", type: "image", src: "/images/untitled folder/C3EDEE2F-D8F6-4AA6-8A96-A3730B03BC62.JPG", title: "Boeing Design Team", location: "Boeing India", date: "Oct 2023", category: "DesignTeam", note: "Team Boeing!", tags: ["Aviation", "Team"], col: 2 },
-  { id: "strategy-board", type: "image", src: "/images/untitled folder/CC423C12-E0DD-4880-8184-0E3C6DF52624.JPG", title: "Systems Mapping", location: "Zeta HQ", date: "Sep 2023", category: "DesignTeam", note: "Whiteboarding Days", tags: ["Systems Design", "Workshop"], col: 2 },
+  { id: "boeing-group-photo", type: "image", src: "/images/leadership/C3EDEE2F-D8F6-4AA6-8A96-A3730B03BC62.JPG", title: "Boeing Design Team", location: "Boeing India", date: "Oct 2023", category: "DesignTeam", note: "Team Boeing!", tags: ["Aviation", "Team"], col: 2 },
+  { id: "strategy-board", type: "image", src: "/images/leadership/CC423C12-E0DD-4880-8184-0E3C6DF52624.JPG", title: "Systems Mapping", location: "Zeta HQ", date: "Sep 2023", category: "DesignTeam", note: "Whiteboarding Days", tags: ["Systems Design", "Workshop"], col: 2 },
   // Col 3: Leading at HQ
-  { id: "hq-campus", type: "image", src: "/images/untitled folder/78B30DBB-A0E1-4DE2-948F-6F133CB1DC15.JPG", title: "Leading at HQ", location: "Global HQ", date: "Jan 2024", category: "DesignTeam", note: "Leading at HQ", tags: ["Enterprise", "Internal"], col: 3 },
+  { id: "hq-campus", type: "image", src: "/images/leadership/78B30DBB-A0E1-4DE2-948F-6F133CB1DC15.JPG", title: "Leading at HQ", location: "Global HQ", date: "Jan 2024", category: "DesignTeam", note: "Leading at HQ", tags: ["Enterprise", "Internal"], col: 3 },
 ];
 
 const CATEGORIES = [
