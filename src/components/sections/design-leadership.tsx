@@ -48,7 +48,7 @@ const galleryItems: GalleryItem[] = [
 ];
 
 const CATEGORIES = [
-  { id: "Leadership", label: "Leadership Talks" },
+  { id: "Leadership", label: "Design Leadership" },
   { id: "Community", label: "Community" },
   { id: "DesignTeam", label: "Design Team" },
 ];
@@ -139,17 +139,19 @@ export function DesignLeadership() {
                                     className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
                                 ) : (
-                                <div className="relative w-full aspect-video bg-neutral-950">
+                                <div className="relative w-full aspect-video bg-neutral-950/20 dark:bg-canvas rounded-xl overflow-hidden">
                                     <video 
                                         src={item.src} 
                                         className="w-full h-full object-cover" 
                                         muted 
                                         loop 
+                                        playsInline
+                                        preload="metadata"
                                         aria-label={`${item.note || item.title} - ${item.location}`}
                                     />
-                                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition-colors">
+                                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition-colors pointer-events-none">
                                         <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
-                                            <Play className="w-6 h-6 text-white" />
+                                            <Play className="w-6 h-6 text-white translate-x-0.5" />
                                         </div>
                                     </div>
                                 </div>
