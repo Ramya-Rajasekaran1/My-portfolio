@@ -49,7 +49,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NoiseOverlay />
+          {/* Overlays disabled to prevent click-blocking issues */}
+          {/* <NoiseOverlay /> */}
           <SkipLink />
           <ConditionalBackground />
 
@@ -62,7 +63,7 @@ export default function RootLayout({
           <ScrollToTop />
           <AccessibilityWidget />
           <ReaderView />
-          <InteractiveCursor />
+          {/* <InteractiveCursor /> */}
         </ThemeProvider>
       </body>
     </html>
