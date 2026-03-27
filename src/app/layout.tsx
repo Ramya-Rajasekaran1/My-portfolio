@@ -52,13 +52,16 @@ export default function RootLayout({
           {/* Overlays disabled to prevent click-blocking issues */}
           {/* <NoiseOverlay /> */}
           <SkipLink />
-          <ConditionalBackground />
-
+          <div className="relative z-0 pointer-events-none">
+            <ConditionalBackground />
+          </div>
 
           <Navbar />
-          <div id="main-content">
+          
+          <main id="main-content" className="relative z-10">
             {children}
-          </div>
+          </main>
+
           <PortfolioFooter />
           <ScrollToTop />
           <AccessibilityWidget />

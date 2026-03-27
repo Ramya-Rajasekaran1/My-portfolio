@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -10,6 +11,7 @@ import { cn } from "@/lib/utils";
 export function Navbar() {
     const [isScrolled, setIsScrolled] = React.useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+    const pathname = usePathname();
     const menuRef = React.useRef<HTMLDivElement>(null);
     const menuButtonRef = React.useRef<HTMLButtonElement>(null);
 
@@ -82,6 +84,11 @@ export function Navbar() {
             />
         </svg>
     );
+
+    const isProjectPage = pathname?.startsWith("/work/") && 
+                          pathname.replace(/\/$/, "") !== "/work";
+
+    if (isProjectPage) return null;
 
     return (
         <>

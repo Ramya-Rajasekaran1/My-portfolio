@@ -318,12 +318,8 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
             <style jsx global>{`
                 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;700;800&display=swap');
                 
-                header[class*="fixed"] {
-                    display: none !important;
-                }
-                nav[class*="fixed"]:not([class*="z-50"]) {
-                    display: none !important;
-                }
+                /* Navigation overrides - only target component scope if needed */
+                .inclusivity-nav { z-index: 50; }
                 @keyframes float {
                     0%, 100% { transform: translateY(0); }
                     50% { transform: translateY(-15px); }

@@ -763,7 +763,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
                 .sh-vision-card:hover { background: #1a1a1a !important; transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
                 .sh-sticky:hover { transform: rotate(0deg) scale(1.03) !important; box-shadow: 6px 12px 32px rgba(0,0,0,0.6) !important; z-index: 10; }
                 .sh-outcome-hover:hover { border-left-color: #FFF8F0 !important; background: rgba(110,191,223,0.1) !important; }
-                header[class*="fixed"], nav.site-nav { display: none !important; }
+                /* Navbar visibility handled by layout now */
             `}</style>
 
       {/* ── NAV ── */}

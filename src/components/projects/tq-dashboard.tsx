@@ -21,7 +21,7 @@ export function TQDashboardProject({ project }: { project: Project }) {
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@400;500;600;700;900&display=swap');
         .tq-card-hover:hover { background: rgba(124,58,237,0.08) !important; }
         .tq-img-hover:hover { opacity: 0.9; cursor: zoom-in; }
-        header[class*="fixed"], nav.site-nav { display: none !important; }
+        /* Navbar visibility handled by layout now */
       `}</style>
 
             {/* ── NAV ── */}

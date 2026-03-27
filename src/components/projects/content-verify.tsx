@@ -173,12 +173,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
         <main className="min-h-screen bg-[#FDFBF7] dark:bg-[#0a0a0a] text-neutral-900 dark:text-neutral-100 font-serif selection:bg-yellow-200 dark:selection:bg-yellow-900/30">
             {/* Styles for this page */}
             <style jsx global>{`
-                header[class*="fixed"] {
-                    display: none !important;
-                }
-                nav[class*="fixed"]:not([class*="z-50"]) {
-                    display: none !important;
-                }
+                /* Navbar visibility handled by layout now */
                 @keyframes dash {
                     to {
                         stroke-dashoffset: -8;
