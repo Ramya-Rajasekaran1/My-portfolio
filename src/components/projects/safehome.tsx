@@ -35,10 +35,10 @@ function IAFlowDiagram({ seq }: { seq: string }) {
             <div className="card-title">Insurance Info</div>
             <div className="card-desc">Earthquake &amp; disaster insurance companies to consider</div>
           </div>
-          <div className="feature-card">
-            <div className="card-title">Elderly &amp; Disabled</div>
-            <div className="card-desc">Dedicated support resources and accessible guidance</div>
-            <span className="card-tag tag-access">Accessibility Opp</span>
+          <div className="feature-card" style={{ background: "#FFFFFF" }}>
+            <div className="card-title" style={{ color: "#000000" }}>Elderly &amp; Disabled</div>
+            <div className="card-desc" style={{ color: "#000000" }}>Dedicated support resources and accessible guidance</div>
+            <span className="card-tag tag-access" style={{ color: "#000000", borderColor: "rgba(0,0,0,0.1)" }}>Accessibility Opp</span>
           </div>
           <div className="feature-card">
             <div className="card-title">Community Forums</div>
@@ -61,10 +61,10 @@ function IAFlowDiagram({ seq }: { seq: string }) {
             <div className="card-title">Community Volunteers</div>
             <div className="card-desc">Locate volunteers and neighbourhood responders nearby</div>
           </div>
-          <div className="feature-card">
-            <div className="card-title">Push Alerts</div>
-            <div className="card-desc">Immediate app-level notifications on seismic activity</div>
-            <span className="card-tag tag-future">Future Phase</span>
+          <div className="feature-card" style={{ background: "#FFFFFF" }}>
+            <div className="card-title" style={{ color: "#000000" }}>Push Alerts</div>
+            <div className="card-desc" style={{ color: "#000000" }}>Immediate app-level notifications on seismic activity</div>
+            <span className="card-tag tag-future" style={{ color: "#000000", borderColor: "rgba(0,0,0,0.1)" }}>Future Phase</span>
           </div>
         </>
       );
@@ -83,10 +83,10 @@ function IAFlowDiagram({ seq }: { seq: string }) {
             <div className="card-desc">Estimate property damage and connect with resources</div>
             <span className="card-tag tag-design">Design Opp</span>
           </div>
-          <div className="feature-card">
-            <div className="card-title">Elderly &amp; Disabled</div>
-            <div className="card-desc">Post-event specific support and aid resources</div>
-            <span className="card-tag tag-access">Accessibility</span>
+          <div className="feature-card" style={{ background: "#FFFFFF" }}>
+            <div className="card-title" style={{ color: "#000000" }}>Elderly &amp; Disabled</div>
+            <div className="card-desc" style={{ color: "#000000" }}>Post-event specific support and aid resources</div>
+            <span className="card-tag tag-access" style={{ color: "#000000", borderColor: "rgba(0,0,0,0.1)" }}>Accessibility</span>
           </div>
         </>
       );
@@ -154,9 +154,22 @@ function IAFlowDiagram({ seq }: { seq: string }) {
 
         #ia-flow-container .flow-layout {
           display: grid;
-          grid-template-columns: 460px 1fr;
-          gap: 40px;
+          grid-template-columns: minmax(320px, 460px) 1fr;
+          gap: min(40px, 4vw);
           align-items: start;
+        }
+
+        #ia-flow-container button {
+          border: none;
+          background: none;
+          padding: 0;
+          margin: 0;
+          font: inherit;
+          color: inherit;
+          text-align: inherit;
+          cursor: pointer;
+          display: block;
+          width: 100%;
         }
 
         #ia-flow-container .left-col {
@@ -286,13 +299,9 @@ function IAFlowDiagram({ seq }: { seq: string }) {
           font-family: ui-monospace, monospace;
           font-size: 0.8rem;
           letter-spacing: 0.2em;
-          color: #FFFFFF;
+          color: #FFFFFF !important;
           font-weight: 700;
           flex-shrink: 0;
-        }
-        
-        #ia-flow-container .phase-row.open .node-num {
-          color: var(--c);
         }
 
         #ia-flow-container .node-info { flex: 1; }
@@ -302,9 +311,8 @@ function IAFlowDiagram({ seq }: { seq: string }) {
           font-size: 1.2rem;
           font-weight: 700;
           transition: color 0.2s;
-          color: #fff;
+          color: #FFFFFF !important;
         }
-        #ia-flow-container .phase-row.open .node-title { color: var(--c); }
 
         #ia-flow-container .node-sub {
           font-size: 0.85rem;
@@ -314,13 +322,10 @@ function IAFlowDiagram({ seq }: { seq: string }) {
 
         #ia-flow-container .node-chevron {
           font-size: 1.5rem;
-          color: var(--muted);
-          transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), color 0.2s;
+          color: #FFFFFF !important;
+          transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
           flex-shrink: 0;
           line-height: 1;
-        }
-        #ia-flow-container .phase-row.open .node-chevron {
-          color: var(--c);
         }
 
         #ia-flow-container .phase-connector {
@@ -416,19 +421,20 @@ function IAFlowDiagram({ seq }: { seq: string }) {
         #ia-flow-container .card-tag {
           display: inline-block;
           font-family: ui-monospace, monospace;
-          font-size: 0.65rem;
+          font-size: 12px;
           letter-spacing: 0.2em;
           text-transform: uppercase;
-          font-weight: 600;
+          font-weight: 700;
           margin-top: auto;
           padding-top: 0.8rem;
           border-top: 1px solid rgba(255,255,255,0.05);
+          color: #FFFFFF !important;
         }
-        #ia-flow-container .tag-design  { color: #FFFFFF; border-color: #FFFFFF; font-weight: 900; }
-        #ia-flow-container .tag-critical{ color: #FFFFFF; border-color: #FFFFFF; font-weight: 900; }
-        #ia-flow-container .tag-future  { color: #FFFFFF; border-color: #FFFFFF; font-weight: 900; }
-        #ia-flow-container .tag-access  { color: #FFFFFF; border-color: #FFFFFF; font-weight: 900; }
-        #ia-flow-container .tag-color   { color: #FFFFFF; border-color: #FFFFFF; font-weight: 900; }
+        #ia-flow-container .tag-design  { color: #FFFFFF; border-color: #FFFFFF; }
+        #ia-flow-container .tag-critical{ color: #FFFFFF; border-color: #FFFFFF; }
+        #ia-flow-container .tag-future  { color: #FFFFFF; border-color: #FFFFFF; }
+        #ia-flow-container .tag-access  { color: #FFFFFF; border-color: #FFFFFF; }
+        #ia-flow-container .tag-color   { color: #FFFFFF; border-color: #FFFFFF; }
 
         #ia-flow-container .legend {
           display: flex;
@@ -512,7 +518,7 @@ function IAFlowDiagram({ seq }: { seq: string }) {
                   position: "relative"
                 }}>
                   <div style={{ width: 12, height: 12, background: "#FFF8F0", borderRadius: "50%", position: "absolute", top: -6, left: "20px" }} />
-                  <p style={{ color: "#1a1a1a", fontSize: 14, fontWeight: 300, lineHeight: 1.5, margin: 0 }}>
+                  <p style={{ color: "#1a1a1a", fontSize: 14, fontWeight: 700, lineHeight: 1.5, margin: 0 }}>
                     Quick-access alerts and interactive hazard awareness designed for mobile agility during stressful situations.
                   </p>
                 </div>
@@ -658,7 +664,13 @@ function IAFlowDiagram({ seq }: { seq: string }) {
 
           {/* 01 PRE EVENT */}
           <div className={`phase-row${activePhase === 'pre' ? ' open' : ''}`} style={{ "--c": "var(--pre)" } as any}>
-            <div className="node-row" onClick={() => setActivePhase('pre')}>
+            <button 
+              className="node-row" 
+              onClick={() => setActivePhase('pre')}
+              aria-label="Filter features for Pre-Event Preparedness"
+              aria-expanded={activePhase === 'pre'}
+              aria-current={activePhase === 'pre' ? 'step' : undefined}
+            >
               <div className="spine-dot"><div className="spine-dot-ring"><div className="spine-dot-fill"></div></div></div>
               <div className="h-line"></div>
               <div className="h-arrowhead"></div>
@@ -668,12 +680,12 @@ function IAFlowDiagram({ seq }: { seq: string }) {
                   <div className="node-title">Pre-Event Preparedness</div>
                   <div className="node-sub">Before disaster strikes — resources &amp; risk awareness</div>
                 </div>
-                <span className="node-chevron">›</span>
+                <span className="node-chevron" aria-hidden="true">›</span>
               </div>
-            </div>
+            </button>
           </div>
 
-          <div className="phase-connector" style={{ "--from-c": "var(--pre)", "--to-c": "var(--during)" } as any}>
+          <div className="phase-connector" style={{ "--from-c": "var(--pre)", "--to-c": "var(--during)" } as any} aria-hidden="true">
             <div className="pc-line"></div>
             <div className="pc-arrow"></div>
             <span className="pc-label">event occurs</span>
@@ -681,7 +693,13 @@ function IAFlowDiagram({ seq }: { seq: string }) {
 
           {/* 02 DURING EVENT */}
           <div className={`phase-row${activePhase === 'during' ? ' open' : ''}`} style={{ "--c": "var(--during)" } as any}>
-            <div className="node-row" onClick={() => setActivePhase('during')}>
+            <button 
+              className="node-row" 
+              onClick={() => setActivePhase('during')}
+              aria-label="Filter features for During Event Safety"
+              aria-expanded={activePhase === 'during'}
+              aria-current={activePhase === 'during' ? 'step' : undefined}
+            >
               <div className="spine-dot"><div className="spine-dot-ring"><div className="spine-dot-fill"></div></div></div>
               <div className="h-line"></div>
               <div className="h-arrowhead"></div>
@@ -691,12 +709,12 @@ function IAFlowDiagram({ seq }: { seq: string }) {
                   <div className="node-title">During Event — Real-Time Safety</div>
                   <div className="node-sub">Live data &amp; offline-first tools when every second counts</div>
                 </div>
-                <span className="node-chevron">›</span>
+                <span className="node-chevron" aria-hidden="true">›</span>
               </div>
-            </div>
+            </button>
           </div>
 
-          <div className="phase-connector" style={{ "--from-c": "var(--during)", "--to-c": "var(--post)" } as any}>
+          <div className="phase-connector" style={{ "--from-c": "var(--during)", "--to-c": "var(--post)" } as any} aria-hidden="true">
             <div className="pc-line"></div>
             <div className="pc-arrow"></div>
             <span className="pc-label">immediate aftermath</span>
@@ -704,7 +722,13 @@ function IAFlowDiagram({ seq }: { seq: string }) {
 
           {/* 03 AFTER EVENT */}
           <div className={`phase-row${activePhase === 'post' ? ' open' : ''}`} style={{ "--c": "var(--post)" } as any}>
-            <div className="node-row" onClick={() => setActivePhase('post')}>
+            <button 
+              className="node-row" 
+              onClick={() => setActivePhase('post')}
+              aria-label="Filter features for After Event Recovery"
+              aria-expanded={activePhase === 'post'}
+              aria-current={activePhase === 'post' ? 'step' : undefined}
+            >
               <div className="spine-dot"><div className="spine-dot-ring"><div className="spine-dot-fill"></div></div></div>
               <div className="h-line"></div>
               <div className="h-arrowhead"></div>
@@ -714,9 +738,9 @@ function IAFlowDiagram({ seq }: { seq: string }) {
                   <div className="node-title">After Event — Recovery</div>
                   <div className="node-sub">Reconnect, assess damage, access post-disaster support</div>
                 </div>
-                <span className="node-chevron">›</span>
+                <span className="node-chevron" aria-hidden="true">›</span>
               </div>
-            </div>
+            </button>
           </div>
         </div>
 
@@ -860,7 +884,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
             },
             {
               title: "No Mobile Experience",
-              subtext: "The platform was inaccessible on mobile — a critical miss for a public safety product meant to reach all residents, including those with limited desktop access.",
+              subtext: "The platform was inaccessible on mobile a critical miss for a public safety product meant to reach all residents, including those with limited desktop access.",
             },
             {
               title: "Team Misalignment & Chaos",
@@ -885,37 +909,97 @@ export function SafeHomeProject({ project }: { project: Project }) {
           <h2 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 200, lineHeight: 1.05, marginBottom: 32, color: "#FFF8F0" }}>Leadership & <em style={{ color: "#FFF8F0", fontStyle: "italic" }}>Results</em></h2>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "start" }}>
-            <div>
-              <p style={{ fontSize: 19, lineHeight: 1.75, color: "#e5e7eb", marginBottom: 40 }}>
-                As UX Lead, I built the infrastructure from scratch, aligning a fractured volunteer team to deliver a premium civic product in record time.
-              </p>
-
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "#272727" }}>
+            {/* LEFT COLUMN: THE NUMBERS */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+              {/* WINS GRID */}
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 2, background: "#333", border: "1px solid #333" }}>
+                <div style={{ gridColumn: "span 2", background: "rgba(74,222,128,0.05)", padding: "12px 20px", borderBottom: "1px solid rgba(74,222,128,0.2)" }}>
+                  <h3 style={{ fontFamily: "ui-monospace, monospace", fontSize: 12, color: "#4ade80", textTransform: "uppercase", letterSpacing: "0.25em", margin: 0 }}>The Wins</h3>
+                </div>
                 {[
-                  { label: "STRATEGIC", title: "Breaking Deadlocks", desc: "Clarified ownership and prioritised user impact over technical silos." },
-                  { label: "OPERATIONAL", title: "Velocity Overhaul", desc: "Introduced OKR systems that doubled feature delivery speed." },
-                ].map(s => (
-                  <div key={s.title} style={{ background: "#000000", padding: "28px 24px" }}>
-                    <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 12, color: "#FFF8F0", display: "block", marginBottom: 8, fontWeight: 300 }}>{s.label}</span>
-                    <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 18, fontWeight: 300, marginBottom: 8 }}>{s.title}</h3>
-                    <p style={{ fontSize: 13, color: "#999", lineHeight: 1.5 }}>{s.desc}</p>
+                  { val: "+76.5%", title: "Active Growth", sub: "Monthly increase." },
+                  { val: "6.5m", title: "Engagement", sub: "Avg session duration." },
+                  { val: "+600%", title: "Visibility", sub: "Organic SEO growth." },
+                  { val: "51%", title: "Initial Trust", sub: "Early conversion." },
+                ].map((w, i) => (
+                  <div key={i} style={{ background: "#1a1a1a", padding: "20px 16px" }}>
+                    <div style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 24, fontWeight: 200, color: "#4ade80", lineHeight: 1, marginBottom: 6 }}>{w.val}</div>
+                    <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 12, color: "#FFF8F0", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 3, fontWeight: 700 }}>{w.title}</div>
+                    <div style={{ fontSize: 12, color: "#a1a1aa", lineHeight: 1.3 }}>{w.sub}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* GAPS GRID */}
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 2, background: "#333", border: "1px solid #333" }}>
+                <div style={{ gridColumn: "span 2", background: "rgba(251,113,133,0.05)", padding: "12px 20px", borderBottom: "1px solid rgba(251,113,133,0.2)", borderTop: "1px solid #333" }}>
+                  <h3 style={{ fontFamily: "ui-monospace, monospace", fontSize: 12, color: "#fb7185", textTransform: "uppercase", letterSpacing: "0.25em", margin: 0 }}>The Gaps</h3>
+                </div>
+                {[
+                  { val: "-85%", title: "Mobile Gap", sub: "UX friction on mobile." },
+                  { val: "93.7%", title: "Abandonment", sub: "Journey drop-off." },
+                  { val: "64%", title: "Churn Rate", sub: "Inactivity post-visit." },
+                  { val: "Low Vol.", title: "SEO Volume", sub: "Low absolute count." },
+                ].map((g, i) => (
+                  <div key={i} style={{ background: "#1a1a1a", padding: "20px 16px" }}>
+                    <div style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 24, fontWeight: 200, color: "#fb7185", lineHeight: 1, marginBottom: 6 }}>{g.val}</div>
+                    <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 12, color: "#FFF8F0", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 3, fontWeight: 700 }}>{g.title}</div>
+                    <div style={{ fontSize: 12, color: "#a1a1aa", lineHeight: 1.3 }}>{g.sub}</div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "#333" }}>
-              {[
-                { num: "60%", label: "User Retention" },
-                { num: "75%", label: "Mobile Traffic" },
-                { num: "2×", label: "Project Velocity" },
-                { num: "100%", label: "UX Adoption" },
-              ].map(m => (
-                <div key={m.label} style={{ background: "#1a1a1a", padding: "30px 20px", textAlign: "center" }}>
-                  <div style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 42, fontWeight: 200, color: "#FFF8F0", lineHeight: 1, marginBottom: 4 }}>{m.num}</div>
-                  <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, color: "#888", textTransform: "uppercase", letterSpacing: "0.1em" }}>{m.label}</div>
+            {/* RIGHT COLUMN: THE LESSONS */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
+              <div>
+                <p style={{ fontSize: 19, lineHeight: 1.75, color: "#e5e7eb", marginBottom: 40 }}>
+                  As UX Lead, I built the infrastructure from scratch, aligning a fractured volunteer team to deliver a premium civic product in record time.
+                </p>
+
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "#272727", marginBottom: 40 }}>
+                  {[
+                    { label: "STRATEGIC", title: "Breaking Deadlocks", desc: "Clarified ownership and prioritised user impact." },
+                    { label: "OPERATIONAL", title: "Velocity Overhaul", desc: "Introduced OKR systems that doubled speed." },
+                  ].map(s => (
+                    <div key={s.title} style={{ background: "#000000", padding: "28px 24px" }}>
+                      <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, color: "#FFF8F0", display: "block", marginBottom: 8, fontWeight: 300 }}>{s.label}</span>
+                      <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 16, fontWeight: 300, marginBottom: 8 }}>{s.title}</h3>
+                      <p style={{ fontSize: 12, color: "#999", lineHeight: 1.5 }}>{s.desc}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 40, borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: 32 }}>
+                <div>
+                  <h4 style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, color: "#FFF8F0", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 16, fontWeight: 400 }}>Learnings</h4>
+                  <ul style={{ padding: 0, margin: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 12 }}>
+                    <li style={{ fontSize: 16, color: "#d4d4d8", lineHeight: 1.6, paddingLeft: 16, position: "relative" }}>
+                      <span style={{ position: "absolute", left: 0, top: 0, color: "#FFF8F0" }}>•</span>
+                      Clarity is the primary driver of trust in high-stress, civic products.
+                    </li>
+                    <li style={{ fontSize: 16, color: "#d4d4d8", lineHeight: 1.6, paddingLeft: 16, position: "relative" }}>
+                      <span style={{ position: "absolute", left: 0, top: 0, color: "#FFF8F0" }}>•</span>
+                      Evidence-based prioritization is critical when leading volunteer teams.
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, color: "#FFF8F0", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 16, fontWeight: 400 }}>What's Next</h4>
+                  <ul style={{ padding: 0, margin: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 12 }}>
+                    <li style={{ fontSize: 16, color: "#d4d4d8", lineHeight: 1.6, paddingLeft: 16, position: "relative" }}>
+                      <span style={{ position: "absolute", left: 0, top: 0, color: "#FFF8F0" }}>•</span>
+                      Optimizing mobile flow to close the 85% engagement gap.
+                    </li>
+                    <li style={{ fontSize: 16, color: "#d4d4d8", lineHeight: 1.6, paddingLeft: 16, position: "relative" }}>
+                      <span style={{ position: "absolute", left: 0, top: 0, color: "#FFF8F0" }}>•</span>
+                      Scaling organic content strategy to increase absolute SEO volume.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -967,8 +1051,12 @@ export function SafeHomeProject({ project }: { project: Project }) {
             </p>
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-              {[["#FF0000", "High"], ["#FF8C3B", "Medium"], ["#FFF8F0", "Low"]].map(([bg, label]) => (
-                <div key={label} style={{ background: bg, color: "#FFF8F0", padding: "8px 20px", fontFamily: "ui-monospace, monospace", fontSize: 12, fontWeight: 300, letterSpacing: "0.1em", textTransform: "uppercase", borderRadius: 2 }}>{label}</div>
+              {[
+                { bg: "#ef4444", text: "#FFF8F0", label: "High" },
+                { bg: "#f59e0b", text: "#000000", label: "Medium" },
+                { bg: "#10b981", text: "#000000", label: "Low" }
+              ].map(({ bg, text, label }) => (
+                <div key={label} style={{ background: bg, color: text, padding: "8px 20px", fontFamily: "ui-monospace, monospace", fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", borderRadius: 2 }}>{label}</div>
               ))}
             </div>
           </div>
@@ -989,7 +1077,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
               zIndex: 20
             }}>
               <div style={{ width: 12, height: 12, background: "#FFF8F0", borderRadius: "50%", position: "absolute", top: -6, left: "20px" }} />
-              <p style={{ color: "#1a1a1a", fontSize: 14, fontWeight: 300, lineHeight: 1.5, margin: 0 }}>
+              <p style={{ color: "#1a1a1a", fontSize: 14, fontWeight: 700, lineHeight: 1.5, margin: 0 }}>
                 One of the sharpest design challenges was legal. Official terminology like Liquefaction carried strict regulatory meaning that we could not redefine.
               </p>
             </div>
@@ -1052,7 +1140,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
             gap: 2rem;
           }
           .flow-container .header-label {
-            font-size:.6rem; letter-spacing:.3em; text-transform:uppercase;
+            font-size: 12px; letter-spacing:.3em; text-transform:uppercase;
             color:#FFFFFF; margin-bottom:.5rem; font-weight:400; font-family: ui-monospace, monospace;
           }
           .flow-container .header h2 {
@@ -1132,31 +1220,31 @@ export function SafeHomeProject({ project }: { project: Project }) {
               <rect x="700" y="195" width="880" height="155" rx="6" fill="rgba(255,140,59,0.18)" stroke="rgba(255,140,59,0.35)" strokeWidth="1" />
               <rect x="700" y="370" width="880" height="155" rx="6" fill="rgba(59,204,122,0.18)" stroke="rgba(59,204,122,0.35)" strokeWidth="1" />
 
-              <circle cx="749" cy="40" r="5" fill="#3B8BFF" />
-              <text x="760" y="44" fontFamily="ui-monospace, monospace" fontSize="11" fontWeight="700" fill="#FFFFFF" letterSpacing="2">PRE EVENT</text>
+              <circle cx="749" cy="40" r="5" fill="#3B8BFF" aria-hidden="true" />
+              <text x="760" y="45" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="700" fill="#FFFFFF" letterSpacing="2">PRE EVENT</text>
 
-              <circle cx="749" cy="215" r="5" fill="#FF8C3B" />
-              <text x="760" y="219" fontFamily="ui-monospace, monospace" fontSize="11" fontWeight="700" fill="#FFFFFF" letterSpacing="2">DURING EVENT</text>
+              <circle cx="749" cy="215" r="5" fill="#FF8C3B" aria-hidden="true" />
+              <text x="760" y="220" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="700" fill="#FFFFFF" letterSpacing="2">DURING EVENT</text>
 
-              <circle cx="749" cy="390" r="5" fill="#FFF8F0" />
-              <text x="760" y="394" fontFamily="ui-monospace, monospace" fontSize="11" fontWeight="700" fill="#FFFFFF" letterSpacing="2">AFTER EVENT</text>
+              <circle cx="749" cy="390" r="5" fill="#FFF8F0" aria-hidden="true" />
+              <text x="760" y="395" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="700" fill="#FFFFFF" letterSpacing="2">AFTER EVENT</text>
 
-              <circle cx="36" cy="248" r="5" fill="#FFFFFF" />
-              <text x="47" y="252" fontFamily="ui-monospace, monospace" fontSize="11" fontWeight="700" fill="#FFFFFF" letterSpacing="2">ENTRY</text>
+              <circle cx="36" cy="248" r="5" fill="#FFFFFF" aria-hidden="true" />
+              <text x="47" y="253" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="700" fill="#FFFFFF" letterSpacing="2">ENTRY</text>
 
-              <text x="28" y="273" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="400" fill="rgba(232,237,233,0.8)">Enter</text>
-              <text x="28" y="290" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="400" fill="rgba(232,237,233,0.8)">SafeHome</text>
+              <text x="28" y="278" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="400" fill="#FFFFFF">Enter</text>
+              <text x="28" y="295" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="400" fill="#FFFFFF">SafeHome</text>
 
-              <rect x="140" y="250" width="220" height="52" rx="26" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeDasharray="5,3" />
-              <text x="250" y="272" fontFamily="ui-monospace, monospace" fontSize="11" fill="rgba(255,255,255,0.85)" textAnchor="middle" fontStyle="italic">Input address &amp;</text>
-              <text x="250" y="288" fontFamily="ui-monospace, monospace" fontSize="11" fill="rgba(255,255,255,0.85)" textAnchor="middle" fontStyle="italic">Map interaction</text>
+              <rect x="140" y="250" width="220" height="60" rx="30" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeDasharray="5,3" />
+              <text x="250" y="275" fontFamily="ui-monospace, monospace" fontSize="12" fill="#FFFFFF" textAnchor="middle" fontStyle="italic">Input address &amp;</text>
+              <text x="250" y="292" fontFamily="ui-monospace, monospace" fontSize="12" fill="#FFFFFF" textAnchor="middle" fontStyle="italic">Map interaction</text>
 
               <line x1="360" y1="276" x2="418" y2="276" stroke="rgba(110,191,223,0.3)" strokeWidth="1.5" markerEnd="url(#arr-entry)" />
 
               <rect x="420" y="238" width="180" height="76" rx="6" fill="#FFFFFF" stroke="rgba(255,255,255,0.4)" strokeWidth="2" />
               <text x="510" y="266" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Personalised</text>
               <text x="510" y="282" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Resource List</text>
-              <text x="510" y="302" fontFamily="ui-monospace, monospace" fontSize="9" fill="rgba(0,0,0,0.6)" textAnchor="middle">Action Items</text>
+              <text x="510" y="302" fontFamily="ui-monospace, monospace" fontSize="12" fill="#000000" textAnchor="middle" fontWeight="700">Action Items</text>
 
               <line x1="600" y1="276" x2="660" y2="276" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" markerEnd="url(#arr-branch)" />
 
@@ -1169,7 +1257,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
               <rect x="730" y="55" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
               <text x="820" y="82" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">"Go Bag"</text>
               <text x="820" y="97" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Checklist</text>
-              <text x="820" y="114" fontFamily="ui-monospace, monospace" fontSize="8" fill="rgba(0,0,0,0.6)" textAnchor="middle">Design Opp</text>
+              <text x="820" y="118" fontFamily="ui-monospace, monospace" fontSize="12" fill="#000000" textAnchor="middle" fontWeight="700">Design Opp</text>
 
               <line x1="910" y1="97" x2="930" y2="97" stroke="rgba(59,139,255,0.45)" strokeWidth="1.5" markerEnd="url(#arr-pre)" />
 
@@ -1192,7 +1280,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
               <rect x="730" y="230" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
               <text x="820" y="262" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Offline</text>
               <text x="820" y="277" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Maps + Routes</text>
-              <text x="820" y="297" fontFamily="ui-monospace, monospace" fontSize="8" fill="rgba(0,0,0,0.6)" textAnchor="middle">Critical Feature</text>
+              <text x="820" y="300" fontFamily="ui-monospace, monospace" fontSize="12" fill="#000000" textAnchor="middle" fontWeight="700">Critical Feature</text>
 
               <line x1="910" y1="272" x2="930" y2="272" stroke="rgba(255,140,59,0.5)" strokeWidth="1.5" markerEnd="url(#arr-during)" />
 
@@ -1333,7 +1421,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
                 zIndex: 20
               }}>
                 <div style={{ width: 12, height: 12, background: "#FFF8F0", borderRadius: "50%", position: "absolute", top: -6, left: "50%", transform: "translateX(-50%)" }} />
-                <p style={{ color: "#1a1a1a", fontSize: 14, fontWeight: 300, lineHeight: 1.5 }}>
+                <p style={{ color: "#1a1a1a", fontSize: 14, fontWeight: 700, lineHeight: 1.5 }}>
                   Getting started with the foundational Design System. Ensuring accessibility and consistent UI elements across the volunteers' work.
                 </p>
               </div>
@@ -1383,8 +1471,8 @@ export function SafeHomeProject({ project }: { project: Project }) {
             ].map((s, i) => (
               <div key={i} className="sh-sticky" style={{ background: s.bg, padding: "28px 26px 24px", position: "relative", transform: `rotate(${s.r})`, boxShadow: "3px 6px 20px rgba(0,0,0,0.35)", transition: "transform 0.2s, box-shadow 0.2s" }}>
                 <div style={{ width: 14, height: 14, background: "#FFF8F0", borderRadius: "50%", position: "absolute", top: -7, left: "50%", transform: "translateX(-50%)", boxShadow: "0 2px 4px rgba(0,0,0,0.3)" }} />
-                <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 17, fontWeight: 300, color: "#1a1a1a", marginBottom: 10, lineHeight: 1.2 }}>{s.title}</h3>
-                <p style={{ fontSize: 14, color: "#272727", lineHeight: 1.65, fontWeight: 500 }}>{s.text}</p>
+                <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 17, fontWeight: 700, color: "#1a1a1a", marginBottom: 10, lineHeight: 1.2 }}>{s.title}</h3>
+                <p style={{ fontSize: 14, color: "#272727", lineHeight: 1.65, fontWeight: 700 }}>{s.text}</p>
                 <p style={{ marginTop: 12, fontSize: 13, color: "#444", fontStyle: "italic", borderTop: "1px solid rgba(0,0,0,0.1)", paddingTop: 10, fontWeight: 300 }}>{s.resp}</p>
               </div>
             ))}
