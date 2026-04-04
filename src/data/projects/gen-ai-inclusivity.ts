@@ -7,10 +7,9 @@ export const genAiInclusivityProject = {
     slug: "gen-ai-inclusivity",
     sections: [
         {
-            title: "EXECUTIVE SNAPSHOT",
+            title: "",
             content: [
                 "Generative AI is rapidly becoming the [[primary interface to information, creation, and decision-making]]. Yet as these systems grow more powerful, their accessibility and usability lag behind—quietly excluding millions of users.",
-                "This case study combines [[accessibility research]], [[comparative UX audits]], and [[task-performance data]] across leading Gen AI tools to answer one core question:",
                 "> Can Generative AI truly be universal if it is not reliably usable by everyone?"
             ],
             chips: ["Access for All", "Trustworthy AI", "Performance Evidence"],
@@ -86,28 +85,28 @@ export const genAiInclusivityProject = {
             topMargin: true
         },
         {
-            title: "1. COMPARATIVE UX & ACCESSIBILITY AUDIT",
+            title: "COMPARATIVE UX & ACCESSIBILITY AUDIT",
             content: [
                 "Evaluated leading Gen AI tools across keyboard accessibility, screen reader compatibility, navigation clarity, prompt guidance and recovery, and transparency of system feedback."
             ],
             glassCard: true
         },
         {
-            title: "2. TASK-BASED PERFORMANCE STUDY",
+            title: "TASK-BASED PERFORMANCE STUDY",
             content: [
                 "Measured [[real user behavior]] across tasks such as changing themes and language settings.",
                 "Metrics tracked: Time to completion, Completion vs failure rates, Quick finishers (<60s), “Stuck” users (>3 min)."
             ]
         },
         {
-            title: "3. LITERATURE & STANDARDS REVIEW",
+            title: "LITERATURE & STANDARDS REVIEW",
             content: [
                 "Reviewed WCAG 2.x guidelines, conversational agent research, and accessibility studies on dynamic systems."
             ],
             glassCard: true
         },
         {
-            title: "4. FRAMEWORK SYNTHESIS",
+            title: "FRAMEWORK SYNTHESIS",
             content: [
                 "Insights were organized into a [[four-layer accessibility model]]: 1. Foundational, 2. Usability Enhancement, 3. Disability-Specific, 4. Customization & Control."
             ],

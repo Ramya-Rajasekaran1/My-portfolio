@@ -12,9 +12,9 @@ const featuredItems = [
         image: "/images/safehome/safehome_cover_new.jpg",
         slug: "safehome-sf",
         metrics: [
-            { label: "User Retention", value: "60%" },
-            { label: "Mobile First", value: "75%" },
-            { label: "Impact Velocity", value: "2x" }
+            { label: "Active Growth", value: "+76.5%" },
+            { label: "Engagement", value: "6.5m" },
+            { label: "Initial Trust", value: "51%" }
         ],
         alt: "SafeHome SF Project"
     },
@@ -93,10 +93,10 @@ export function FeaturedProjects() {
                                                 </h3>
                                                 <Link
                                                     href={`/work/${item.slug}`}
-                                                    className="group hidden xl:inline-flex shrink-0 items-center gap-3 text-sm font-outfit font-black uppercase tracking-[0.2em] text-white hover:text-blush transition-colors mb-2"
+                                                    className="group hidden xl:inline-flex shrink-0 items-center gap-2 px-5 py-2.5 border border-white/30 rounded-full text-xs font-mono font-bold uppercase tracking-[0.2em] text-white hover:bg-white hover:text-black transition-all duration-200 mb-2"
                                                 >
                                                     Explore case study
-                                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+                                                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                                                 </Link>
                                             </div>
                                         </div>
@@ -118,10 +118,10 @@ export function FeaturedProjects() {
                                         <div className="pt-6 xl:hidden">
                                             <Link
                                                 href={`/work/${item.slug}`}
-                                                className="group inline-flex items-center gap-3 text-sm font-black uppercase tracking-[0.2em] text-white hover:text-blush transition-colors"
+                                                className="group inline-flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-full text-xs font-mono font-bold uppercase tracking-[0.2em] hover:bg-blush transition-all duration-200"
                                             >
                                                 Explore case study
-                                                <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+                                                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                                             </Link>
                                         </div>
                                     </div>
