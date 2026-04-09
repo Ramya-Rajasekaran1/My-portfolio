@@ -46,51 +46,6 @@ export default function AboutPage() {
                         </div>
                     </div>
 
-                    {/* A Bit About Me Section */}
-                    <section className="mb-20">
-                        <div className="flex items-center justify-between mb-8">
-                            <h2 className="text-[32px] font-serif font-light tracking-tight text-neutral-900 dark:text-white uppercase text-center md:text-left">A Bit About Me</h2>
-                            <div className="h-px bg-neutral-200 dark:bg-white/10 flex-1 ml-6 hidden md:block" />
-                        </div>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {[
-                                {
-                                    title: "Led Multi-Billion Dollar Platform Design at Boeing",
-                                    desc: "Redesigned MyBoeingFleet (150+ apps) to streamline UAT logic. Standardized design and accessibility for a $2B+ e-commerce ecosystem."
-                                },
-                                {
-                                    title: "Scaled Global Supply Chain Tools at Fourkites",
-                                    desc: "Owned UX for 3+ supply chain apps used globally by 1.6K+ enterprise clients. Built a unified design system, reducing UX bugs by 90%."
-                                },
-                                {
-                                    title: "Shaped Design for Diverse Domains",
-                                    desc: "Delivered responsive solutions across aviation, logistics, AI, and e-commerce. Led web revamps driving an 85% increase in mobile engagement."
-                                },
-                                {
-                                    title: "Recognized Thought Leader in AI+UX",
-                                    desc: "Presented award-winning AI accessibility research at IEEE and IndiaHCI. Recognized by Gartner & Boeing as an impactful UX strategist."
-                                },
-                                {
-                                    title: "Certified & Versatile in Human-Centered Design",
-                                    desc: "Certified by Stanford, Google, and IBM in AI Design Thinking. Proficient in Figma, accessibility, and rapid enterprise prototyping."
-                                }
-                            ].map((item, i) => (
-                                <GlassCard key={i} className={cn("p-6 md:p-8 flex items-start gap-4 border-neutral-200 dark:border-white/10 bg-gradient-to-br from-white via-white/90 to-white/70 dark:bg-none dark:bg-blue-950/40 hover:bg-neutral-50 dark:hover:bg-white/[0.02] transition-colors shadow-sm", i === 4 ? "md:col-span-2" : "")}>
-                                    <div className="text-xl shrink-0 mt-0.5">🔹</div>
-                                    <div className="flex-1">
-                                        <h3 className="text-lg md:text-xl font-bold font-sans text-neutral-900 dark:text-white mb-2 tracking-tight">
-                                            {item.title}
-                                        </h3>
-                                        <p className="text-[15px] text-neutral-700 dark:text-neutral-300 font-sans leading-relaxed">
-                                            {item.desc}
-                                        </p>
-                                    </div>
-                                </GlassCard>
-                            ))}
-                        </div>
-                    </section>
-
                     {/* Personal Bento Grid Section */}
                     <section className="mb-20">
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
@@ -134,6 +89,51 @@ export default function AboutPage() {
                                 <img src="/images/about/cockpit_final.jpg" alt="New Cockpit Visit" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                                 <HandwrittenCaption text="Inside Cockpit" className="bottom-6 right-4 -rotate-1" />
                             </div>
+                        </div>
+                    </section>
+
+                    {/* A Bit About Me Section */}
+                    <section className="mb-20">
+                        <div className="flex items-center justify-between mb-8">
+                            <h2 className="text-[32px] font-serif font-light tracking-tight text-neutral-900 dark:text-white uppercase text-center md:text-left">A Bit About Me</h2>
+                            <div className="h-px bg-neutral-200 dark:bg-white/10 flex-1 ml-6 hidden md:block" />
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {[
+                                {
+                                    title: "Led Multi-Billion Dollar Platform Design at Boeing",
+                                    desc: "Redesigned MyBoeingFleet (150+ apps) to streamline UAT logic. Standardized design and accessibility for a $2B+ e-commerce ecosystem."
+                                },
+                                {
+                                    title: "Scaled Global Supply Chain Tools at Fourkites",
+                                    desc: "Owned UX for 3+ supply chain apps used globally by 1.6K+ enterprise clients. Built a unified design system, reducing UX bugs by 90%."
+                                },
+                                {
+                                    title: "Shaped Design for Diverse Domains",
+                                    desc: "Delivered responsive solutions across aviation, logistics, AI, and e-commerce. Led web revamps driving an 85% increase in mobile engagement."
+                                },
+                                {
+                                    title: "Recognized Thought Leader in AI+UX",
+                                    desc: "Presented award-winning AI accessibility research at IEEE and IndiaHCI. Recognized by Gartner & Boeing as an impactful UX strategist."
+                                },
+                                {
+                                    title: "Certified & Versatile in Human-Centered Design",
+                                    desc: "Certified by Stanford, Google, and IBM in AI Design Thinking. Proficient in Figma, accessibility, and rapid enterprise prototyping."
+                                }
+                            ].map((item, i) => (
+                                <GlassCard key={i} className={cn("p-6 md:p-8 flex items-start gap-4 border-neutral-200 dark:border-white/10 bg-gradient-to-br from-white via-white/90 to-white/70 dark:bg-none dark:bg-blue-950/40 hover:bg-neutral-50 dark:hover:bg-white/[0.02] transition-colors shadow-sm", i === 4 ? "md:col-span-2" : "")}>
+                                    <div className="text-xl shrink-0 mt-0.5">🔹</div>
+                                    <div className="flex-1">
+                                        <h3 className="text-lg md:text-xl font-bold font-sans text-neutral-900 dark:text-white mb-2 tracking-tight">
+                                            {item.title}
+                                        </h3>
+                                        <p className="text-[15px] text-neutral-700 dark:text-neutral-300 font-sans leading-relaxed">
+                                            {item.desc}
+                                        </p>
+                                    </div>
+                                </GlassCard>
+                            ))}
                         </div>
                     </section>
 

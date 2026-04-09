@@ -2,769 +2,37 @@
 import React from "react";
 import { type Project } from "@/lib/data";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Search, ZoomIn } from "lucide-react";
 
-
-function IAFlowDiagram({ seq }: { seq: string }) {
-  const [activePhase, setActivePhase] = React.useState<string>('pre');
-
-  const renderCards = () => {
-    switch (activePhase) {
-      case 'pre': return (
-        <>
-          <div className="feature-card">
-            <div className="card-title">Go Bag Checklist</div>
-            <div className="card-desc">Prioritised checklist personalised by household size</div>
-            <span className="card-tag tag-design">Design Opp</span>
-          </div>
-          <div className="feature-card">
-            <div className="card-title">State Resources</div>
-            <div className="card-desc">Plain language links to SF government preparedness programs</div>
-          </div>
-          <div className="feature-card">
-            <div className="card-title">Map Risk Scores</div>
-            <div className="card-desc">High / Medium / Low tiers with location specific risk</div>
-            <span className="card-tag tag-color">Color Initiative</span>
-          </div>
-          <div className="feature-card">
-            <div className="card-title">Building Comparison</div>
-            <div className="card-desc">Retrofitting safety scores — compare buildings side by side</div>
-            <span className="card-tag tag-design">Design Opp</span>
-          </div>
-          <div className="feature-card">
-            <div className="card-title">Insurance Info</div>
-            <div className="card-desc">Earthquake &amp; disaster insurance companies to consider</div>
-          </div>
-          <div className="feature-card" style={{ background: "#FFFFFF" }}>
-            <div className="card-title" style={{ color: "#000000" }}>Elderly &amp; Disabled</div>
-            <div className="card-desc" style={{ color: "#000000" }}>Dedicated support resources and accessible guidance</div>
-            <span className="card-tag tag-access" style={{ color: "#000000", borderColor: "rgba(0,0,0,0.1)" }}>Accessibility Opp</span>
-          </div>
-          <div className="feature-card">
-            <div className="card-title">Community Forums</div>
-            <div className="card-desc">Neighbourhood discussions about local preparedness</div>
-          </div>
-        </>
-      );
-      case 'during': return (
-        <>
-          <div className="feature-card">
-            <div className="card-title">Offline Maps</div>
-            <div className="card-desc">Pre-cached escape routes &amp; shelter locations — no signal needed</div>
-            <span className="card-tag tag-critical">Critical Feature</span>
-          </div>
-          <div className="feature-card">
-            <div className="card-title">Live Updates</div>
-            <div className="card-desc">Magnitude readings, aftershock alerts, and real-time warnings</div>
-          </div>
-          <div className="feature-card">
-            <div className="card-title">Community Volunteers</div>
-            <div className="card-desc">Locate volunteers and neighbourhood responders nearby</div>
-          </div>
-          <div className="feature-card" style={{ background: "#FFFFFF" }}>
-            <div className="card-title" style={{ color: "#000000" }}>Push Alerts</div>
-            <div className="card-desc" style={{ color: "#000000" }}>Immediate app-level notifications on seismic activity</div>
-            <span className="card-tag tag-future" style={{ color: "#000000", borderColor: "rgba(0,0,0,0.1)" }}>Future Phase</span>
-          </div>
-        </>
-      );
-      case 'post': return (
-        <>
-          <div className="feature-card">
-            <div className="card-title">Shelter Locations</div>
-            <div className="card-desc">Nearest open shelters mapped with accessibility info</div>
-          </div>
-          <div className="feature-card">
-            <div className="card-title">Hospitals &amp; Emergency</div>
-            <div className="card-desc">Closest hospitals and emergency contacts updated post-event</div>
-          </div>
-          <div className="feature-card">
-            <div className="card-title">Insurance Estimator</div>
-            <div className="card-desc">Estimate property damage and connect with resources</div>
-            <span className="card-tag tag-design">Design Opp</span>
-          </div>
-          <div className="feature-card" style={{ background: "#FFFFFF" }}>
-            <div className="card-title" style={{ color: "#000000" }}>Elderly &amp; Disabled</div>
-            <div className="card-desc" style={{ color: "#000000" }}>Post-event specific support and aid resources</div>
-            <span className="card-tag tag-access" style={{ color: "#000000", borderColor: "rgba(0,0,0,0.1)" }}>Accessibility</span>
-          </div>
-        </>
-      );
-    }
-  };
-
-  const [webImageIndex, setWebImageIndex] = React.useState(0);
-  const webImages = [
-    { src: "/images/safehome/web-side-1.jpg", alt: "Web Dashboard 1" },
-    { src: "/images/safehome/web-side-2.jpg", alt: "Web Dashboard 2" }
-  ];
-
-  const cVar = activePhase === 'pre' ? 'var(--pre)' : activePhase === 'during' ? 'var(--during)' : 'var(--post)';
-
-  return (
-    <div className="flow-wrapper">
-      <style dangerouslySetInnerHTML={{
-        __html: `
-        #ia-flow-container {
-          --bg: #0C0E0D;
-          --surface: #131513;
-          --card: #181C19;
-          --border: rgba(255,255,255,0.07);
-          --pre: #5697B1;
-          --during: #56B19E;
-          --post: #5669B1;
-          --text: #FFFFFF;
-          --muted: #FFFFFF;
-          --tag-design: #5697B1;
-          --tag-critical: #56B19E;
-          --tag-future: rgba(255,255,255,0.25);
-          --tag-access: #6CDBC4;
-          --tag-color: #AEB6DE;
-          font-family: 'Inter', sans-serif;
-        }
-
-        #ia-flow-container .header {
-          margin-bottom: 3rem;
-          display: flex;
-          align-items: flex-start;
-          flex-direction: column;
-        }
-        #ia-flow-container .header-label {
-          font-family: ui-monospace, monospace;
-          font-size: 16px;
-          letter-spacing: 0.4em;
-          text-transform: uppercase;
-          color: #FFF8F0;
-          margin-bottom: 1rem;
-          font-weight: 200;
-        }
-        #ia-flow-container .header h1 {
-          font-family: var(--font-outfit), sans-serif;
-          font-size: clamp(2rem, 3.5vw, 3rem);
-          font-weight: 200;
-          color: #FFF8F0;
-          margin: 0;
-        }
-        #ia-flow-container .title-row {
-          display: flex;
-          align-items: center;
-          gap: 1.5rem;
-          flex-wrap: wrap;
-        }
-
-        #ia-flow-container .flow-layout {
-          display: grid;
-          grid-template-columns: minmax(320px, 460px) 1fr;
-          gap: min(40px, 4vw);
-          align-items: start;
-        }
-
-        #ia-flow-container button {
-          border: none;
-          background: none;
-          padding: 0;
-          margin: 0;
-          font: inherit;
-          color: inherit;
-          text-align: inherit;
-          cursor: pointer;
-          display: block;
-          width: 100%;
-        }
-
-        #ia-flow-container .left-col {
-          position: relative;
-        }
-
-        #ia-flow-container .spine {
-          position: absolute;
-          left: 60px;
-          top: 20px;
-          bottom: 20px;
-          width: 2px;
-          background: linear-gradient(
-            to bottom,
-            var(--pre) 0%,
-            var(--pre) 33%,
-            var(--during) 33%,
-            var(--during) 66%,
-            var(--post) 66%,
-            var(--post) 100%
-          );
-          opacity: 0.25;
-          z-index: 0;
-        }
-
-        #ia-flow-container .phase-row {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-        }
-
-        #ia-flow-container .node-row {
-          display: flex;
-          align-items: center;
-          position: relative;
-          z-index: 2;
-          padding: 10px 0;
-        }
-
-        #ia-flow-container .spine-dot {
-          width: 82px;
-          flex-shrink: 0;
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
-          padding-right: 12px;
-        }
-
-        #ia-flow-container .spine-dot-ring {
-          width: 16px;
-          height: 16px;
-          border-radius: 50%;
-          border: 2px solid var(--c);
-          background: var(--bg);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: transform 0.2s;
-        }
-
-        #ia-flow-container .phase-row.open .spine-dot-ring,
-        #ia-flow-container .phase-row:hover .spine-dot-ring {
-          transform: scale(1.2);
-          background: color-mix(in srgb, var(--c) 20%, var(--bg));
-        }
-
-        #ia-flow-container .spine-dot-fill {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: var(--c);
-          opacity: 0;
-          transition: opacity 0.2s;
-        }
-
-        #ia-flow-container .phase-row.open .spine-dot-fill { opacity: 1; }
-
-        #ia-flow-container .h-line {
-          height: 2px;
-          width: 28px;
-          background: var(--c);
-          opacity: 0.2;
-          flex-shrink: 0;
-          transition: opacity 0.25s, width 0.25s;
-        }
-
-        #ia-flow-container .h-arrowhead {
-          width: 0; height: 0;
-          border-top: 5px solid transparent;
-          border-bottom: 5px solid transparent;
-          border-left: 8px solid var(--c);
-          opacity: 0.2;
-          flex-shrink: 0;
-          transition: opacity 0.25s;
-        }
-
-        #ia-flow-container .phase-row.open .h-line,
-        #ia-flow-container .phase-row:hover .h-line { opacity: 1; }
-        #ia-flow-container .phase-row.open .h-arrowhead,
-        #ia-flow-container .phase-row:hover .h-arrowhead { opacity: 1; }
-
-        #ia-flow-container .phase-node {
-          flex: 1;
-          cursor: pointer;
-          background: var(--surface);
-          border: 1px solid var(--border);
-          border-left: 3px solid var(--c);
-          border-radius: 5px;
-          padding: 1.2rem;
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
-          user-select: none;
-          margin-left: 6px;
-        }
-
-        #ia-flow-container .phase-node:hover { background: #181c18; }
-
-        #ia-flow-container .phase-row.open .phase-node {
-          background: #181c18;
-          border-left-color: var(--c);
-          box-shadow: 0 4px 12px color-mix(in srgb, var(--c) 20%, transparent);
-        }
-
-        #ia-flow-container .node-num {
-          font-family: ui-monospace, monospace;
-          font-size: 0.8rem;
-          letter-spacing: 0.2em;
-          color: #FFFFFF !important;
-          font-weight: 700;
-          flex-shrink: 0;
-        }
-
-        #ia-flow-container .node-info { flex: 1; }
-
-        #ia-flow-container .node-title {
-          font-family: var(--font-outfit), sans-serif;
-          font-size: 1.2rem;
-          font-weight: 700;
-          transition: color 0.2s;
-          color: #FFFFFF !important;
-        }
-
-        #ia-flow-container .node-sub {
-          font-size: 0.85rem;
-          color: var(--muted);
-          margin-top: 0.3rem;
-        }
-
-        #ia-flow-container .node-chevron {
-          font-size: 1.5rem;
-          color: #FFFFFF !important;
-          transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
-          flex-shrink: 0;
-          line-height: 1;
-        }
-
-        #ia-flow-container .phase-connector {
-          display: flex;
-          align-items: center;
-          height: 44px;
-          padding-left: 61px;
-          position: relative;
-          z-index: 1;
-        }
-
-        #ia-flow-container .pc-line {
-          position: absolute;
-          left: 60px;
-          top: 0; bottom: 0;
-          width: 2px;
-          background: linear-gradient(to bottom, var(--from-c), var(--to-c));
-          opacity: 0.3;
-        }
-
-        #ia-flow-container .pc-label {
-          margin-left: 52px;
-          font-size: 0.65rem;
-          letter-spacing: 0.22em;
-          text-transform: uppercase;
-          color: #FFFFFF;
-          font-weight: 700;
-          opacity: 1;
-        }
-
-        #ia-flow-container .pc-arrow {
-          position: absolute;
-          left: 55px;
-          bottom: -1px;
-          width: 0; height: 0;
-          border-left: 5px solid transparent;
-          border-right: 5px solid transparent;
-          border-top: 8px solid var(--to-c);
-          opacity: 0.4;
-        }
-
-        /* Right column styles */
-        #ia-flow-container .right-col {
-          display: flex;
-          flex-direction: column;
-        }
-
-        #ia-flow-container .cards-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-          gap: 1px;
-          background: var(--border);
-          border: 1px solid var(--border);
-          border-radius: 6px;
-          overflow: hidden;
-          position: relative;
-          box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-          animation: fadeSlideIn 0.4s ease-out;
-        }
-
-        @keyframes fadeSlideIn {
-          from { opacity: 0; transform: translateX(20px); }
-          to { opacity: 1; transform: translateX(0); }
-        }
-
-        #ia-flow-container .feature-card {
-          background: var(--card);
-          padding: 1.5rem 1.25rem;
-          display: flex;
-          flex-direction: column;
-          gap: 0.8rem;
-          transition: background 0.2s;
-        }
-        #ia-flow-container .feature-card:hover { background: #1f231f; }
-
-        #ia-flow-container .card-icon { font-size: 1.5rem; margin-bottom: 0.1rem; }
-
-        #ia-flow-container .card-title {
-          font-family: var(--font-outfit), sans-serif;
-          font-size: 1.1rem;
-          font-weight: 700;
-          line-height: 1.2;
-          color: #fff;
-        }
-
-        #ia-flow-container .card-desc {
-          font-size: 0.85rem;
-          color: var(--muted);
-          line-height: 1.6;
-          flex: 1;
-        }
-
-        #ia-flow-container .card-tag {
-          display: inline-block;
-          font-family: ui-monospace, monospace;
-          font-size: 12px;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          font-weight: 700;
-          margin-top: auto;
-          padding-top: 0.8rem;
-          border-top: 1px solid rgba(255,255,255,0.05);
-          color: #FFFFFF !important;
-        }
-        #ia-flow-container .tag-design  { color: #FFFFFF; border-color: #FFFFFF; }
-        #ia-flow-container .tag-critical{ color: #FFFFFF; border-color: #FFFFFF; }
-        #ia-flow-container .tag-future  { color: #FFFFFF; border-color: #FFFFFF; }
-        #ia-flow-container .tag-access  { color: #FFFFFF; border-color: #FFFFFF; }
-        #ia-flow-container .tag-color   { color: #FFFFFF; border-color: #FFFFFF; }
-
-        #ia-flow-container .legend {
-          display: flex;
-          gap: 1.5rem;
-          flex-wrap: wrap;
-          margin-top: 2.5rem;
-          padding-top: 1.5rem;
-          border-top: 1px solid var(--border);
-          font-family: ui-monospace, monospace;
-        }
-        #ia-flow-container .legend-item {
-          display: flex;
-          align-items: center;
-          gap: 0.6rem;
-          font-size: 0.7rem;
-          letter-spacing: 0.15em;
-          text-transform: uppercase;
-          color: #FFFFFF;
-          font-weight: 900;
-        }
-        #ia-flow-container .legend-dot { width: 8px; height: 8px; border-radius: 1px; }
-
-        @media (max-width: 900px) {
-           #ia-flow-container .flow-layout {
-              grid-template-columns: 1fr;
-           }
-        }
-      `}} />
-
-      <section style={{
-        background: "#000000",
-        width: "100%",
-        padding: "100px 0",
-        marginBottom: "60px",
-        position: "relative",
-      }}>
-        {/* Full-width Grid Background */}
-        <div style={{
-          position: "absolute",
-          top: 0, left: 0, right: 0, bottom: 0,
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-          backgroundSize: '40px 40px',
-          zIndex: 0,
-        }} />
-        <div style={{ maxWidth: 1500, margin: "0 auto", padding: "0 60px", position: "relative", zIndex: 1 }}>
-          <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-            <h2 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 200, lineHeight: 1.05, marginBottom: 20, color: "#FFF8F0" }}>From technical portal to <em style={{ color: "#FFF8F0", fontStyle: "italic" }}>human centred safety tool</em></h2>
-            <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 60, fontWeight: 200 }}>TRANSFORMATION</span>
-          </div>
-
-          {/* MOBILE INTERACTIONS SECTION */}
-          <div style={{ marginBottom: 120, maxWidth: 1200, margin: "0 auto 120px" }}>
-            <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 32, fontWeight: 300, marginBottom: 40, color: "#FFF8F0" }}>Mobile Interactions</h3>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 340px", gap: 60, alignItems: "start" }}>
-              <div style={{ position: "relative" }}>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
-                  <div style={{ background: "#111", borderRadius: 12, padding: "12px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 30px 60px rgba(0,0,0,0.5)" }}>
-                    <img src="/images/safehome/Gif 1.gif" alt="Mobile Interaction 1" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
-                  </div>
-                  <div style={{ background: "#111", borderRadius: 12, padding: "12px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 30px 60px rgba(0,0,0,0.5)" }}>
-                    <img src="/images/safehome/Gif 2.gif" alt="Mobile Interaction 2" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-                <div style={{ background: "rgba(110,191,223,0.05)", border: "1px solid rgba(110,191,223,0.2)", borderRadius: 12, padding: "32px", height: "auto" }}>
-                  <h4 style={{ fontFamily: "ui-monospace, monospace", fontSize: 14, color: "#FFF8F0", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 16, fontWeight: 200 }}>Notes</h4>
-                  <p style={{ fontSize: 15, color: "#d1d5db", lineHeight: 1.7 }}>
-                    Moving from undifferentiated map markers to a tiered risk system required a fundamental shift in how we processed and displayed backend data. This simplified UI makes safety information accessible even during high-stress moments.
-                  </p>
-                </div>
-                {/* STICKY NOTE MOVED HERE */}
-                <div className="sh-sticky" style={{
-                  background: "#fef08a",
-                  padding: "24px",
-                  width: "100%",
-                  transform: "rotate(1deg)",
-                  boxShadow: "10px 10px 30px rgba(0,0,0,0.4)",
-                  zIndex: 20,
-                  position: "relative"
-                }}>
-                  <div style={{ width: 12, height: 12, background: "#FFF8F0", borderRadius: "50%", position: "absolute", top: -6, left: "20px" }} />
-                  <p style={{ color: "#1a1a1a", fontSize: 14, fontWeight: 700, lineHeight: 1.5, margin: 0 }}>
-                    Quick-access alerts and interactive hazard awareness designed for mobile agility during stressful situations.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* WEB SECTION */}
-          <div>
-            <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 32, fontWeight: 300, marginBottom: 40, color: "#FFF8F0" }}>Web Experience</h3>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 400px", gap: 32, alignItems: "start" }}>
-              <div style={{ position: "relative", width: "100%" }}>
-                <div style={{ background: "#111", borderRadius: 12, padding: "12px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 30px 60px rgba(0,0,0,0.5)", position: "relative" }}>
-                  <img
-                    src={webImages[webImageIndex].src}
-                    alt={webImages[webImageIndex].alt}
-                    style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }}
-                  />
-
-                  {/* NEXT ARROW */}
-                  <button
-                    onClick={() => setWebImageIndex((prev) => (prev + 1) % webImages.length)}
-                    style={{
-                      position: "absolute",
-                      right: 32,
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                      background: "rgba(0,0,0,0.6)",
-                      border: "1px solid rgba(255,255,255,0.2)",
-                      color: "#FFF8F0",
-                      width: 50,
-                      height: 50,
-                      borderRadius: "50%",
-                      cursor: "pointer",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: 24,
-                      backdropFilter: "blur(4px)",
-                      zIndex: 10
-                    }}
-                  >
-                    →
-                  </button>
-
-                  {/* PAGINATION DOTS */}
-                  <div style={{ position: "absolute", bottom: 40, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 12 }}>
-                    {webImages.map((_, i) => (
-                      <div
-                        key={i}
-                        style={{
-                          width: 8,
-                          height: 8,
-                          borderRadius: "50%",
-                          background: i === webImageIndex ? "#FF8C3B" : "rgba(255,255,255,0.2)"
-                        }}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ background: "rgba(255,140,59,0.05)", border: "1px solid rgba(255,140,59,0.2)", borderRadius: 12, padding: "32px", width: "100%" }}>
-                <h4 style={{ fontFamily: "ui-monospace, monospace", fontSize: 14, color: "#FF8C3B", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 16, fontWeight: 200 }}>Strategy</h4>
-                <p style={{ fontSize: 16, color: "#d1d5db", lineHeight: 1.7 }}>
-                  The desktop experience focuses on deep exploration and preparation. We translated dense government documentation into a single-page dashboard with prioritized "todo-actions" and progressive disclosure.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div >
-      </section >
-
-      {/* ── BEFORE & AFTER ── */}
-      {/* <section style={{ background: "#111", padding: "100px 60px", borderBottom: "1px solid #272727" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20, fontWeight: 200 }}>08 BEFORE & AFTER</span>
-          <h2 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 200, lineHeight: 1.05, marginBottom: 40, color: "#FFF8F0" }}>From technical data portal to <em style={{ color: "#FFF8F0", fontStyle: "italic" }}>human centred safety tool</em></h2>
-          <p style={{ fontSize: 19, lineHeight: 1.75, color: "#d1d5db", maxWidth: 800, marginBottom: 60 }}>
-            Two core experiences were redesigned from the ground up — the risk map and the resource navigation. Both went from overwhelming to immediately actionable.
-          </p>
-
-          <div style={{ marginBottom: 80 }}>
-            <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 24, fontWeight: 300, margin: "0 0 12px", color: "#FFF8F0" }}>1. The Map & Risk Visualisation</h3>
-            <p style={{ fontSize: 15, color: "#888", marginBottom: 32 }}>Uniform markers → tiered risk with mobile search overlays</p>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "#272727" }}>
-              <div style={{ background: "#000000", padding: "24px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-                  <span style={{ fontSize: 10, fontFamily: "ui-monospace, monospace", letterSpacing: "0.2em", background: "rgba(155,34,38,0.1)", color: "#e87c6f", padding: "4px 12px", borderRadius: 2 }}>BEFORE</span>
-                  <span style={{ fontSize: 13, color: "#888", fontWeight: 500 }}>Uniform markers · no visual hierarchy</span>
-                </div>
-                <div style={{ height: 300, background: "#111", borderRadius: 8, border: "1px dashed #333", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <span style={{ color: "#444" }}>[ Legacy Portal Screenshot ]</span>
-                </div>
-                <p style={{ marginTop: 24, fontSize: 14, color: "#666", lineHeight: 1.6 }}>Dense, undifferentiated map markers gave residents no way to assess relative risk at a glance. Overlays were unreadable on mobile.</p>
-              </div>
-              <div style={{ background: "#000000", padding: "24px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-                  <span style={{ fontSize: 10, fontFamily: "ui-monospace, monospace", letterSpacing: "0.2em", background: "rgba(26,107,47,0.1)", color: "#FFF8F0", padding: "4px 12px", borderRadius: 2 }}>AFTER</span>
-                  <span style={{ fontSize: 13, color: "#888", fontWeight: 500 }}>Color Initiative · High/Med/Low tiers</span>
-                </div>
-                <div style={{ height: 300, background: "#111", borderRadius: 8, overflow: "hidden", border: "1px solid rgba(255,255,255,0.05)" }}>
-                  <img src="/images/safehome/web-side-2.jpg" alt="After Map" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                </div>
-                <p style={{ marginTop: 24, fontSize: 14, color: "#d1d5db", lineHeight: 1.6 }}>Implemented the 3-tier Color Initiative with mobile-optimised search overlays. Residents can now identify severity in seconds.</p>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 24, fontWeight: 300, margin: "0 0 12px", color: "#FFF8F0" }}>2. Resource Navigation</h3>
-            <p style={{ fontSize: 15, color: "#888", marginBottom: 32 }}>Text-heavy government links → single-page preparedness dashboard</p>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "#272727" }}>
-              <div style={{ background: "#000000", padding: "24px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-                  <span style={{ fontSize: 10, fontFamily: "ui-monospace, monospace", letterSpacing: "0.2em", background: "rgba(155,34,38,0.1)", color: "#e87c6f", padding: "4px 12px", borderRadius: 2 }}>BEFORE</span>
-                  <span style={{ fontSize: 13, color: "#888", fontWeight: 500 }}>Long lists · text-heavy links</span>
-                </div>
-                <div style={{ height: 300, background: "#111", borderRadius: 8, border: "1px dashed #333", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <span style={{ color: "#444" }}>[ Text-heavy PDF list ]</span>
-                </div>
-                <p style={{ marginTop: 24, fontSize: 14, color: "#666", lineHeight: 1.6 }}>Overwhelming walls of government links left users paralysed. There was no guidance on what to do first or priority.</p>
-              </div>
-              <div style={{ background: "#000000", padding: "24px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-                  <span style={{ fontSize: 10, fontFamily: "ui-monospace, monospace", letterSpacing: "0.2em", background: "rgba(26,107,47,0.1)", color: "#FFF8F0", padding: "4px 12px", borderRadius: 2 }}>AFTER</span>
-                  <span style={{ fontSize: 13, color: "#888", fontWeight: 500 }}>Single-page dashboard · todo-actions</span>
-                </div>
-                <div style={{ height: 300, background: "#111", borderRadius: 8, overflow: "hidden", border: "1px solid rgba(255,255,255,0.05)" }}>
-                  <img src="/images/safehome/web-side-1.jpg" alt="After Resources" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                </div>
-                <p style={{ marginTop: 24, fontSize: 14, color: "#d1d5db", lineHeight: 1.6 }}>A streamlined single-page dashboard with prioritised "todo-actions" and plain-language definitions.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section > */}
-
-      <div className="flow-layout">
-        {/* LEFT COLUMN: The Phases */}
-        <div className="left-col">
-          <div className="spine"></div>
-
-          {/* 01 PRE EVENT */}
-          <div className={`phase-row${activePhase === 'pre' ? ' open' : ''}`} style={{ "--c": "var(--pre)" } as any}>
-            <button 
-              className="node-row" 
-              onClick={() => setActivePhase('pre')}
-              aria-label="Filter features for Pre-Event Preparedness"
-              aria-expanded={activePhase === 'pre'}
-              aria-current={activePhase === 'pre' ? 'step' : undefined}
-            >
-              <div className="spine-dot"><div className="spine-dot-ring"><div className="spine-dot-fill"></div></div></div>
-              <div className="h-line"></div>
-              <div className="h-arrowhead"></div>
-              <div className="phase-node">
-                <span className="node-num">01</span>
-                <div className="node-info">
-                  <div className="node-title">Pre-Event Preparedness</div>
-                  <div className="node-sub">Before disaster strikes — resources &amp; risk awareness</div>
-                </div>
-                <span className="node-chevron" aria-hidden="true">›</span>
-              </div>
-            </button>
-          </div>
-
-          <div className="phase-connector" style={{ "--from-c": "var(--pre)", "--to-c": "var(--during)" } as any} aria-hidden="true">
-            <div className="pc-line"></div>
-            <div className="pc-arrow"></div>
-            <span className="pc-label">event occurs</span>
-          </div>
-
-          {/* 02 DURING EVENT */}
-          <div className={`phase-row${activePhase === 'during' ? ' open' : ''}`} style={{ "--c": "var(--during)" } as any}>
-            <button 
-              className="node-row" 
-              onClick={() => setActivePhase('during')}
-              aria-label="Filter features for During Event Safety"
-              aria-expanded={activePhase === 'during'}
-              aria-current={activePhase === 'during' ? 'step' : undefined}
-            >
-              <div className="spine-dot"><div className="spine-dot-ring"><div className="spine-dot-fill"></div></div></div>
-              <div className="h-line"></div>
-              <div className="h-arrowhead"></div>
-              <div className="phase-node">
-                <span className="node-num">02</span>
-                <div className="node-info">
-                  <div className="node-title">During Event — Real-Time Safety</div>
-                  <div className="node-sub">Live data &amp; offline-first tools when every second counts</div>
-                </div>
-                <span className="node-chevron" aria-hidden="true">›</span>
-              </div>
-            </button>
-          </div>
-
-          <div className="phase-connector" style={{ "--from-c": "var(--during)", "--to-c": "var(--post)" } as any} aria-hidden="true">
-            <div className="pc-line"></div>
-            <div className="pc-arrow"></div>
-            <span className="pc-label">immediate aftermath</span>
-          </div>
-
-          {/* 03 AFTER EVENT */}
-          <div className={`phase-row${activePhase === 'post' ? ' open' : ''}`} style={{ "--c": "var(--post)" } as any}>
-            <button 
-              className="node-row" 
-              onClick={() => setActivePhase('post')}
-              aria-label="Filter features for After Event Recovery"
-              aria-expanded={activePhase === 'post'}
-              aria-current={activePhase === 'post' ? 'step' : undefined}
-            >
-              <div className="spine-dot"><div className="spine-dot-ring"><div className="spine-dot-fill"></div></div></div>
-              <div className="h-line"></div>
-              <div className="h-arrowhead"></div>
-              <div className="phase-node">
-                <span className="node-num">03</span>
-                <div className="node-info">
-                  <div className="node-title">After Event — Recovery</div>
-                  <div className="node-sub">Reconnect, assess damage, access post-disaster support</div>
-                </div>
-                <span className="node-chevron" aria-hidden="true">›</span>
-              </div>
-            </button>
-          </div>
-        </div>
-
-        {/* RIGHT COLUMN: The Features */}
-        <div className="right-col">
-          <div className="cards-grid" key={activePhase} style={{ borderColor: cVar }}>
-            {renderCards()}
-          </div>
-        </div>
-      </div>
-
-      <div className="legend">
-        <div className="legend-item"><div className="legend-dot" style={{ background: "var(--tag-design)" }}></div>Design Opportunity</div>
-        <div className="legend-item"><div className="legend-dot" style={{ background: "var(--tag-critical)" }}></div>Critical Feature</div>
-        <div className="legend-item"><div className="legend-dot" style={{ background: "var(--tag-color)" }}></div>Color Initiative</div>
-        <div className="legend-item"><div className="legend-dot" style={{ background: "var(--tag-access)" }}></div>Accessibility</div>
-        <div className="legend-item"><div className="legend-dot" style={{ background: "rgba(255,255,255,0.25)" }}></div>Future Phase</div>
-      </div>
-    </div >
-  );
-}
 
 
 export function SafeHomeProject({ project }: { project: Project }) {
+  const [showIndex, setShowIndex] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setShowIndex(window.scrollY > 800);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const sections = [
+    { id: "hero", label: "Intro" },
+    { id: "problem", label: "Problem" },
+    { id: "disaster", label: "Disaster" },
+    { id: "pain-points", label: "UX Issues" },
+    { id: "built-from-zero", label: "Built from Zero" },
+    { id: "role-impact", label: "Role & Impact" },
+    { id: "findings", label: "Findings" },
+    { id: "intervention", label: "Intervention" },
+    { id: "transformation", label: "Transformation" },
+    { id: "future-roadmap", label: "Roadmap" },
+    { id: "constraints", label: "Constraints" },
+    { id: "vision", label: "Vision" },
+    { id: "reflection", label: "Reflection" },
+  ];
+
   return (
     <main
       style={{
@@ -775,6 +43,28 @@ export function SafeHomeProject({ project }: { project: Project }) {
         minHeight: "100vh",
       }}
     >
+      {/* ── STICKY INDEX ── */}
+      <div style={{ position: "fixed", left: 40, top: "50%", transform: "translateY(-50%)", zIndex: 100, display: "flex", flexDirection: "column", gap: 14, opacity: showIndex ? 1 : 0, pointerEvents: showIndex ? "auto" : "none", transition: "all 0.4s ease" }} className="hidden lg:flex">
+        {sections.map((s) => (
+          <a
+            key={s.id}
+            href={`#${s.id}`}
+            title={s.label}
+            style={{ width: 12, height: 12, borderRadius: "50%", background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.1)", transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)", cursor: "pointer", position: "relative" }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = "#60a5fa"; e.currentTarget.style.transform = "scale(1.4)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.15)"; e.currentTarget.style.transform = "scale(1)"; }}
+            onClick={(e) => { e.currentTarget.style.background = "#f472b6"; }}
+          >
+            <span style={{ position: "absolute", left: 28, top: "50%", transform: "translateY(-50%)", whiteSpace: "nowrap", fontFamily: "ui-monospace, monospace", fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "#FFF8F0", opacity: 0, transition: "opacity 0.25s", background: "rgba(0,0,0,0.6)", padding: "4px 10px", borderRadius: 4, backdropFilter: "blur(4px)" }} className="sh-nav-label">{s.label}</span>
+          </a>
+        ))}
+      </div>
+      <style jsx global>{`
+        .sh-nav-label { pointer-events: none; }
+        a:hover .sh-nav-label { opacity: 1 !important; }
+        a:active { background: #f472b6 !important; }
+      `}</style>
+
       <style jsx global>{`
                 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Caveat:wght@400;600;700&display=swap');
                 .sh-paper { background: #000000; }
@@ -803,15 +93,28 @@ export function SafeHomeProject({ project }: { project: Project }) {
       </nav>
 
       {/* ── HERO ── */}
-      <section style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "100vh", paddingTop: 60 }}>
+      <section id="hero" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "100vh", paddingTop: 60 }}>
 
         {/* Left – dark */}
         <div style={{ background: "#0f0f0f", padding: "80px 60px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
           <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, letterSpacing: "0.2em", textTransform: "uppercase", color: "#d1d5db" }}>UX Case Study 2025</span>
           <div>
             <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, letterSpacing: "0.25em", textTransform: "uppercase", color: "#d1d5db", marginBottom: 28 }}>Nonprofit Civic Tech Public Safety</div>
-            <h1 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: "clamp(52px,6vw,88px)", fontWeight: 200, letterSpacing: "-0.02em", lineHeight: 0.95, color: "#FFF8F0", marginBottom: 16 }}>
-              Safe<span style={{ color: "#FFF8F0", fontStyle: "italic", fontWeight: 400 }}>Home</span>
+            <h1 style={{ 
+              fontFamily: "var(--font-outfit), sans-serif", 
+              fontSize: "clamp(52px,6vw,88px)", 
+              fontWeight: 800, 
+              letterSpacing: "-0.02em", 
+              lineHeight: 1.1, 
+              marginBottom: 20,
+              background: "linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              display: "inline-block",
+              padding: "10px 40px 10px 0",
+              overflow: "visible"
+            }}>
+              Safe<span style={{ fontStyle: "italic", fontWeight: 800 }}>Home</span>
             </h1>
             <h2 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: "clamp(24px,3vw,36px)", fontWeight: 700, lineHeight: 1.2, color: "#FFF8F0", marginBottom: 12, maxWidth: 460 }}>
               Earthquake &amp; Disaster preparedness for San Francisco.
@@ -841,7 +144,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
           <img
             src="/images/safehome/safehome_cover_new.jpg"
             alt="SafeHome Project Mockup"
-            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "20% center", display: "block" }}
+            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "5% center", display: "block" }}
           />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(0,0,0,0.4), transparent 30%)" }} />
           <div style={{ position: "absolute", top: 40, right: -20, fontFamily: "var(--font-outfit), sans-serif", fontSize: 160, fontWeight: 200, color: "rgba(255,255,255,0.05)", lineHeight: 0.9, whiteSpace: "pre", pointerEvents: "none" }}>{"SAFE\nHOME"}</div>
@@ -849,7 +152,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
       </section>
 
       {/* ── THE PROBLEM ── */}
-      <section style={{ maxWidth: 1100, margin: "0 auto", padding: "100px 60px" }}>
+      <section id="problem" style={{ maxWidth: 1100, margin: "0 auto", padding: "100px 60px" }}>
         <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20, fontWeight: 200 }}>01 THE PROBLEM</span>
         <h2 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 200, lineHeight: 1.05, marginBottom: 40, color: "#FFF8F0" }}>A product with mission but <em style={{ fontStyle: "italic", color: "#FFF8F0", fontWeight: 400 }}>no direction</em></h2>
 
@@ -886,47 +189,79 @@ export function SafeHomeProject({ project }: { project: Project }) {
 
       <div style={{ height: 1, background: "#272727" }} />
 
-      <div style={{ height: 1, background: "#272727" }} />
+      {/* ── RECENT DISASTER ── */}
+      <section id="disaster" style={{ maxWidth: 1100, margin: "0 auto", padding: "100px 60px" }}>
+        <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20, fontWeight: 200 }}>02 RECENT DISASTER</span>
+        <h2 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: "clamp(32px,4vw,52px)", fontWeight: 200, lineHeight: 1.1, marginBottom: 32, color: "#FFF8F0" }}>California's risk is <em style={{ fontStyle: "italic", color: "#FFF8F0", fontWeight: 400 }}>not theoretical</em></h2>
 
-      {/* ── UX PAIN POINTS ── */}
-      <section style={{ maxWidth: 1400, margin: "0 auto", padding: "80px 60px 100px", paddingTop: "120px" }}>
-        <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20, fontWeight: 200 }}>02 UX PAIN POINTS</span>
-        <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 80, alignItems: "start" }}>
-          <div style={{ width: "100%", height: 500, background: "#1a1a1a", borderRadius: 12, border: "1px solid rgba(255,255,255,0.1)", overflow: "hidden", boxShadow: "0 40px 80px rgba(0,0,0,0.4)" }}>
-            <img src="/images/safehome/pain-points.png" alt="Legacy Portal Pain Points" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+        <div style={{ background: "rgba(239, 68, 68, 0.1)", borderLeft: "4px solid #ef4444", padding: "24px 32px", marginBottom: 48 }}>
+          <p style={{ fontSize: 18, color: "#FFF8F0", lineHeight: 1.6, margin: 0, fontWeight: 300 }}>
+            Earthquakes in California are a constant, visceral reality. Magnitude 4.6 events near Berkeley and Boulder Creek serve as urgent reminders: the "Big One" isn't a if, but a when. Preparedness isn't a choice; it's a necessity for survival.
+          </p>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
+          <div style={{ background: "#111", borderRadius: 12, padding: "12px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 20px 40px rgba(0,0,0,0.4)" }}>
+            <img src="/images/safehome/Screenshot 2026-04-07 at 5.44.31 PM.png" alt="Magnitude 4.6 Boulder Creek" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
           </div>
-          <div>
-            <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 32, fontWeight: 200, marginBottom: 24, color: "#FFF8F0" }}>UX Pain Points</h3>
-            <ul style={{ display: "flex", flexDirection: "column", gap: 24, listStyle: "none", padding: 0 }}>
-              <li style={{ fontSize: 17, color: "#d1d5db", lineHeight: 1.6, position: "relative", paddingLeft: 28 }}>
-                <span style={{ position: "absolute", left: 0, top: 0, color: "#FFF8F0", fontSize: "24px" }}>•</span>
-                <strong style={{ color: "#FFF8F0", display: "block", marginBottom: 4 }}>Critical Information Hidden:</strong> The full-screen map trapped users on mobile without scroll indicators, hiding essential preparedness resources below the fold.
-              </li>
-              <li style={{ fontSize: 17, color: "#d1d5db", lineHeight: 1.6, position: "relative", paddingLeft: 28 }}>
-                <span style={{ position: "absolute", left: 0, top: 0, color: "#FFF8F0", fontSize: "24px" }}>•</span>
-                <strong style={{ color: "#FFF8F0", display: "block", marginBottom: 4 }}>Confusing Terminology:</strong> Technical terms like "Liquefaction" or "Soft Story" lacked plain-English explanations, leaving residents uncertain about their actual risk.
-              </li>
-              <li style={{ fontSize: 17, color: "#d1d5db", lineHeight: 1.6, position: "relative", paddingLeft: 28 }}>
-                <span style={{ position: "absolute", left: 0, top: 0, color: "#FFF8F0", fontSize: "24px" }}>•</span>
-                <strong style={{ color: "#FFF8F0", display: "block", marginBottom: 4 }}>Lack of Responsiveness:</strong> The original portal was completely unable to be used on mobile devices, violating the primary use case for emergency preparedness.
-              </li>
-              <li style={{ fontSize: 17, color: "#d1d5db", lineHeight: 1.6, position: "relative", paddingLeft: 28 }}>
-                <span style={{ position: "absolute", left: 0, top: 0, color: "#FFF8F0", fontSize: "24px" }}>•</span>
-                <strong style={{ color: "#FFF8F0", display: "block", marginBottom: 4 }}>Accessibility Failures:</strong> Poor color contrast and non-semantic structure made the tool inaccessible for users with visual impairments or screen readers.
-              </li>
-            </ul>
+          <div style={{ background: "#111", borderRadius: 12, padding: "12px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 20px 40px rgba(0,0,0,0.4)" }}>
+            <img src="/images/safehome/IMG_6515.jpg" alt="Local Impact" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
           </div>
         </div>
       </section>
 
       <div style={{ height: 1, background: "#272727" }} />
 
-      {/* ── BUILT FROM ZERO STRIP ── Moved here under flow diagram */}
-      <div style={{ background: "#0f0f0f", padding: "80px 60px", borderBottom: "1px solid #272727", position: "relative", zIndex: 10 }}>
+      <div style={{ height: 1, background: "#272727" }} />
+
+      {/* ── UX PAIN POINTS ── */}
+      <section id="pain-points" style={{ maxWidth: 1400, margin: "0 auto", padding: "80px 60px 100px", paddingTop: "120px" }}>
+        <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20 }}>03 UX PAIN POINTS</span>
+        
+        {/* Full Width Image */}
+        <div style={{ position: "relative", width: "100%", marginBottom: 60, borderRadius: 12, border: "1px solid rgba(255,255,255,0.1)", overflow: "hidden", boxShadow: "0 40px 80px rgba(0,0,0,0.4)", background: "#1a1a1a" }}>
+          <img src="/images/safehome/UX issues.jpg" alt="Legacy Portal Pain Points" style={{ width: "100%", height: "auto", display: "block" }} />
+        </div>
+
+        <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 24, fontWeight: 300, marginBottom: 40, color: "#FFF8F0" }}>UX Issues</h3>
+
+        {/* Square Boxes Below */}
+        <div id="pain-points-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
+          {[
+            {
+              title: "CRITICAL INFORMATION HIDDEN",
+              text: "The full-screen map trapped users on mobile without scroll indicators, hiding essential preparedness resources below the fold.",
+            },
+            {
+              title: "CONFUSING TERMINOLOGY",
+              text: "Technical terms like \"Liquefaction\" or \"Soft Story\" lacked plain-English explanations, leaving residents uncertain about their actual risk.",
+            },
+            {
+              title: "LACK OF RESPONSIVENESS",
+              text: "The original portal was completely unable to be used on mobile devices, violating the primary use case for emergency preparedness.",
+            },
+            {
+              title: "ACCESSIBILITY FAILURES",
+              text: "Poor color contrast and non-semantic structure made the tool inaccessible for users with visual impairments or screen readers.",
+            },
+          ].map((p) => (
+            <div key={p.title} style={{ background: "#0f0f0f", border: "1px solid #272727", padding: "32px", borderRadius: 2, display: "flex", flexDirection: "column", gap: 20 }} className="sh-card-hover">
+              <div style={{ height: 2, width: 40, background: "#ef4444" }} />
+              <h3 style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, fontWeight: 700, color: "#FFF8F0", margin: 0, letterSpacing: "0.1em", lineHeight: 1.3 }}>{p.title}</h3>
+              <p style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.7, margin: 0 }}>{p.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <div style={{ height: 1, background: "#272727" }} />
+
+      {/* ── BUILT FROM ZERO STRIP ── */}
+      <div id="built-from-zero" style={{ background: "#0f0f0f", padding: "80px 60px", borderBottom: "1px solid #272727", position: "relative", zIndex: 10 }}>
         <div style={{ maxWidth: 1400, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 60, alignItems: "center" }}>
           <div>
             <h2 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: "clamp(32px,4vw,52px)", fontWeight: 200, color: "#FFF8F0", lineHeight: 1.1, marginBottom: 24 }}>
-            <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20, fontWeight: 200 }}>03 BUILT FROM ZERO</span>
+              <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20, fontWeight: 200 }}>04 BUILT FROM ZERO</span>
               Built UX from zero in 3 work weeks with a volunteer team.
             </h2>
             <p style={{ color: "#d1d5db", fontSize: 15, lineHeight: 1.8, marginBottom: 32 }}>Every framework, every process, every design decision was created in an environment constrained by free tools, limited collaboration time, shifting scope, and no existing UX foundation.</p>
@@ -955,24 +290,23 @@ export function SafeHomeProject({ project }: { project: Project }) {
 
       {/* ── MY ROLE ── */}
       {/* ── MY ROLE & IMPACT COMBINED ── */}
-      <section style={{ background: "#111", padding: "100px 60px", borderBottom: "1px solid #272727" }}>
+      <section id="role-impact" style={{ background: "#111", padding: "100px 60px", borderBottom: "1px solid #272727" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20, fontWeight: 200 }}>04 ROLE & IMPACT</span>
+          <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20, fontWeight: 200 }}>05 ROLE & IMPACT</span>
           <h2 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 200, lineHeight: 1.05, marginBottom: 32, color: "#FFF8F0" }}>Leadership & <em style={{ color: "#FFF8F0", fontStyle: "italic" }}>Results</em></h2>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "start" }}>
-            {/* LEFT COLUMN: THE NUMBERS */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
-              {/* WINS GRID */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, alignItems: "start" }}>
+            {/* LEFT: WHAT'S WORKING */}
+            <div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 2, background: "#333", border: "1px solid #333" }}>
                 <div style={{ gridColumn: "span 2", background: "rgba(74,222,128,0.05)", padding: "12px 20px", borderBottom: "1px solid rgba(74,222,128,0.2)" }}>
-                  <h3 style={{ fontFamily: "ui-monospace, monospace", fontSize: 12, color: "#4ade80", textTransform: "uppercase", letterSpacing: "0.25em", margin: 0 }}>The Wins</h3>
+                  <h3 style={{ fontFamily: "ui-monospace, monospace", fontSize: 12, color: "#4ade80", textTransform: "uppercase", letterSpacing: "0.25em", margin: 0 }}>What's Working</h3>
                 </div>
                 {[
-                  { val: "+76.5%", title: "Active Growth", sub: "Monthly increase." },
+                  { val: "+76.5%", title: "Active Growth", sub: "Page & User visit." },
                   { val: "6.5m", title: "Engagement", sub: "Avg session duration." },
-                  { val: "+600%", title: "Visibility", sub: "Organic SEO growth." },
-                  { val: "51%", title: "Initial Trust", sub: "Early conversion." },
+                  { val: "+600%", title: "Visibility", sub: "0-1K usage." },
+                  { val: "51%", title: "Initial Trust", sub: "Key section interaction." },
                 ].map((w, i) => (
                   <div key={i} style={{ background: "#1a1a1a", padding: "20px 16px" }}>
                     <div style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 24, fontWeight: 200, color: "#4ade80", lineHeight: 1, marginBottom: 6 }}>{w.val}</div>
@@ -981,17 +315,25 @@ export function SafeHomeProject({ project }: { project: Project }) {
                   </div>
                 ))}
               </div>
+              {/* WORKING SUMMARY */}
+              <div style={{ marginTop: 20 }}>
+                <div style={{ background: "#1a1a1a", padding: "24px 28px", borderLeft: "3px solid #4ade80" }}>
+                  <p style={{ fontSize: 15, color: "#d1d5db", lineHeight: 1.6, margin: 0 }}>Scaled reach 600% with 76% acquisition growth. Sustained 6.5-minute sessions with strong early conversion signals across key sections.</p>
+                </div>
+              </div>
+            </div>
 
-              {/* GAPS GRID */}
+            {/* RIGHT: WHAT'S NOT WORKING */}
+            <div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 2, background: "#333", border: "1px solid #333" }}>
-                <div style={{ gridColumn: "span 2", background: "rgba(251,113,133,0.05)", padding: "12px 20px", borderBottom: "1px solid rgba(251,113,133,0.2)", borderTop: "1px solid #333" }}>
-                  <h3 style={{ fontFamily: "ui-monospace, monospace", fontSize: 12, color: "#fb7185", textTransform: "uppercase", letterSpacing: "0.25em", margin: 0 }}>The Gaps</h3>
+                <div style={{ gridColumn: "span 2", background: "rgba(251,113,133,0.05)", padding: "12px 20px", borderBottom: "1px solid rgba(251,113,133,0.2)" }}>
+                  <h3 style={{ fontFamily: "ui-monospace, monospace", fontSize: 12, color: "#fb7185", textTransform: "uppercase", letterSpacing: "0.25em", margin: 0 }}>What's Not Working</h3>
                 </div>
                 {[
-                  { val: "-85%", title: "Mobile Gap", sub: "UX friction on mobile." },
-                  { val: "93.7%", title: "Abandonment", sub: "Journey drop-off." },
-                  { val: "64%", title: "Churn Rate", sub: "Inactivity post-visit." },
-                  { val: "Low Vol.", title: "SEO Volume", sub: "Low absolute count." },
+                  { val: "-85%", title: "Mobile Gap", sub: "Mobile usage dropoff." },
+                  { val: "93.7%", title: "Abandonment", sub: "Last page clicks." },
+                  { val: "64%", title: "Churn Rate", sub: "Unique user drop off, No stickiness." },
+                  { val: "Low Vol.", title: "SEO Volume", sub: "Direction via Name search." },
                 ].map((g, i) => (
                   <div key={i} style={{ background: "#1a1a1a", padding: "20px 16px" }}>
                     <div style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 24, fontWeight: 200, color: "#fb7185", lineHeight: 1, marginBottom: 6 }}>{g.val}</div>
@@ -1000,37 +342,10 @@ export function SafeHomeProject({ project }: { project: Project }) {
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* RIGHT COLUMN: WINS & LEARNINGS */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 48 }}>
-              {/* WINS */}
-              <div>
-                <h4 style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, color: "#4ade80", textTransform: "uppercase", letterSpacing: "0.25em", marginBottom: 20, fontWeight: 700 }}>Wins</h4>
-                <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-                  <div style={{ background: "#1a1a1a", padding: "24px 28px", borderLeft: "3px solid #4ade80" }}>
-                    <h5 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 17, fontWeight: 600, color: "#FFF8F0", marginBottom: 6 }}>Growth</h5>
-                    <p style={{ fontSize: 15, color: "#d1d5db", lineHeight: 1.6, margin: 0 }}>Scaled reach 600% and acquisition 76%.</p>
-                  </div>
-                  <div style={{ background: "#1a1a1a", padding: "24px 28px", borderLeft: "3px solid #4ade80" }}>
-                    <h5 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 17, fontWeight: 600, color: "#FFF8F0", marginBottom: 6 }}>Trust</h5>
-                    <p style={{ fontSize: 15, color: "#d1d5db", lineHeight: 1.6, margin: 0 }}>Sustained 6.5-minute, high-conversion sessions.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* LEARNINGS */}
-              <div>
-                <h4 style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, color: "#fb7185", textTransform: "uppercase", letterSpacing: "0.25em", marginBottom: 20, fontWeight: 700 }}>Learnings</h4>
-                <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-                  <div style={{ background: "#1a1a1a", padding: "24px 28px", borderLeft: "3px solid #fb7185" }}>
-                    <h5 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 17, fontWeight: 600, color: "#FFF8F0", marginBottom: 6 }}>Friction</h5>
-                    <p style={{ fontSize: 15, color: "#d1d5db", lineHeight: 1.6, margin: 0 }}>Severe mobile and journey drop-offs.</p>
-                  </div>
-                  <div style={{ background: "#1a1a1a", padding: "24px 28px", borderLeft: "3px solid #fb7185" }}>
-                    <h5 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 17, fontWeight: 600, color: "#FFF8F0", marginBottom: 6 }}>Retention</h5>
-                    <p style={{ fontSize: 15, color: "#d1d5db", lineHeight: 1.6, margin: 0 }}>High churn despite visibility growth.</p>
-                  </div>
+              {/* NOT WORKING SUMMARY */}
+              <div style={{ marginTop: 20 }}>
+                <div style={{ background: "#1a1a1a", padding: "24px 28px", borderLeft: "3px solid #fb7185" }}>
+                  <p style={{ fontSize: 15, color: "#d1d5db", lineHeight: 1.6, margin: 0 }}>Severe mobile friction driving 85% usage dropoff. 93.7% abandonment at last page with 64% unique user churn and no stickiness despite visibility growth.</p>
                 </div>
               </div>
             </div>
@@ -1039,98 +354,74 @@ export function SafeHomeProject({ project }: { project: Project }) {
       </section>
 
       <div style={{ height: 1, background: "#272727" }} />
-
-      {/* ── 05 OBJECTIVES ── */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", background: "#111111", borderTop: "1px solid #272727", borderBottom: "1px solid #272727" }}>
+      <section id="findings" style={{ background: "#0c0c0c", padding: "100px 60px", borderBottom: "1px solid #272727" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", marginBottom: 60 }}>
+          <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20, fontWeight: 200 }}>06 UX FINDINGS</span>
+          <h2 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 200, lineHeight: 1.05, color: "#FFF8F0" }}>UX <em style={{ fontStyle: "italic", color: "#FFF8F0" }}>Findings</em></h2>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", background: "#111111", borderTop: "1px solid #272727", borderBottom: "1px solid #272727" }}>
         {[
-          { num: "01", title: "Actionable Data", text: <>Decode fragmented government earthquake data into a <span style={{ color: "#FFF8F0", fontWeight: 300 }}>mobile first experience</span> where residents quickly understand how risk applies to their specific home and neighbourhood.</> },
-          { num: "02", title: "Mobile First Resilience", text: <>Translate dense geoscience terminology into tiered <span style={{ color: "#FFF8F0", fontWeight: 300 }}>actionable risk cues</span> that do not require an expert degree and work seamlessly on the phone residents already have.</> },
-          { num: "03", title: "Inclusive Access", text: <>Close the action gap by guiding renters and homeowners toward <span style={{ color: "#FFF8F0", fontWeight: 300 }}>immediate preparedness steps</span> designed for elderly residents, non English speakers, and users with disabilities.</> },
+          { num: "01", title: "Simplify to Act", text: <>Translate fragmented government earthquake data into <span style={{ color: "#FFF8F0", fontWeight: 300 }}>clear, prioritised action items</span> so residents know exactly what to do — not just what's at risk — for their specific home and neighbourhood.</> },
+          { num: "02", title: "Mobile-Native Safety", text: <>Deliver tiered risk information in a <span style={{ color: "#FFF8F0", fontWeight: 300 }}>thumb-friendly, glanceable format</span> that works offline-capable on the phone residents already carry — no expert knowledge or desktop required.</> },
+          { num: "03", title: "Stress-Ready Design", text: <>Design for the moment of crisis: guide renters, homeowners, elderly residents, and non-English speakers toward <span style={{ color: "#FFF8F0", fontWeight: 300 }}>immediate next steps</span> with accessible, low-cognitive-load interfaces.</> },
         ].map((o) => (
           <div key={o.num} className="sh-card-hover" style={{ padding: "44px 40px", borderRight: "1px solid #272727", transition: "background 0.2s", cursor: "default" }}>
-            <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.2em", textTransform: "uppercase", color: "#FFF8F0", marginBottom: 8, display: "block", fontWeight: 200 }}>OBJECTIVE {o.num}</span>
+            <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.2em", textTransform: "uppercase", color: "#FFF8F0", marginBottom: 8, display: "block", fontWeight: 200 }}>FINDING {o.num}</span>
             <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 24, fontWeight: 300, marginBottom: 10, color: "#FFF8F0" }}>{o.title}</h3>
             <p style={{ fontSize: 15, color: "#d1d5db", lineHeight: 1.7 }}>{o.text}</p>
           </div>
         ))}
-      </div>
+        </div>
+      </section>
 
 
       <div style={{ height: 1, background: "#272727" }} />
 
       {/* ── DESIGN DECISIONS ── */}
-      <section style={{ maxWidth: 1100, margin: "0 auto", padding: "40px 60px 100px" }}>
-        <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20, fontWeight: 200 }}>06 UX INTERVENTION</span>
+      <section id="intervention" style={{ maxWidth: 1100, margin: "0 auto", padding: "40px 60px 100px" }}>
+        <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20, fontWeight: 200 }}>07 UX INTERVENTION</span>
         <h2 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 200, lineHeight: 1.05, marginBottom: 32, color: "#FFF8F0" }}>UX INTERVENTION</h2>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 40, alignItems: "center", marginBottom: 80 }}>
-          <div>
-            <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 24, fontWeight: 300, marginBottom: 16, color: "#FFF8F0" }}>Visual Analysis</h3>
-            <p style={{ fontSize: 16, color: "#d1d5db", lineHeight: 1.7, marginBottom: 24 }}>
-              A key part of the redesign was a comprehensive visual analysis of disparate FEMA risk maps and existing natural hazard databases. We extracted the most critical data patterns, translating legacy government UI structures into clear, accessible mobile formats.
-            </p>
-            {/* Navigation Dots Removed as requested */}
-          </div>
-          <div style={{ position: "relative" }}>
-            <img src="/images/safehome/visual-analysis.jpg" alt="Visual Analysis" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block", boxShadow: "0 20px 40px rgba(0,0,0,0.3)" }} />
-            <div style={{ position: "absolute", bottom: 20, right: 20, background: "rgba(0,0,0,0.8)", padding: "10px 18px", borderRadius: 4, backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.1)" }}>
-              <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, color: "#FFF8F0", textTransform: "uppercase", letterSpacing: "0.1em" }}>Ref 01: FEMA Overlay Patterns</span>
+        {/* ── CATEGORY HIERARCHY ── */}
+        <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: "clamp(28px,4vw,42px)", fontWeight: 300, color: "#FFF8F0", marginBottom: 48, lineHeight: 1.2 }}>
+          <em style={{ color: "#FFF8F0", fontStyle: "italic" }}>Category Hierarchy</em>
+        </h3>
+
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "#272727", marginBottom: 0 }}>
+          {/* BEFORE */}
+          <div style={{ background: "#0a0a0a", padding: "40px 36px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
+              <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, letterSpacing: "0.25em", textTransform: "uppercase", background: "rgba(251,113,133,0.12)", color: "#fb7185", padding: "6px 16px", borderRadius: 2, fontWeight: 700 }}>Before</span>
             </div>
+            <div style={{ borderRadius: 8, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", marginBottom: 24 }}>
+              <img src="/images/safehome/color-initiative.jpg" alt="Before — complicated govt data" style={{ width: "100%", height: "auto", display: "block" }} />
+            </div>
+            <p style={{ fontSize: 16, color: "#a1a1aa", lineHeight: 1.7, margin: 0 }}>
+              These were the complicated line up of Govt data used in the website.
+            </p>
           </div>
-        </div>
 
-        <div style={{ position: "relative", marginBottom: 60 }}>
-          {/* Spacer for structure */}
-        </div>
-
-        <div style={{ background: "#0f0f0f", borderRadius: 2, padding: "48px 44px", display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 40, alignItems: "center", border: "1px solid rgba(255,255,255,0.05)" }}>
-          <div>
-            <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 26, fontWeight: 300, color: "#FFF8F0", marginBottom: 14, lineHeight: 1.2 }}>
-              The <em style={{ color: "#FFF8F0", fontStyle: "italic" }}>Color Initiative</em>
-            </h3>
-            <p style={{ fontSize: 17, color: "#FFF8F0", lineHeight: 1.6, marginBottom: 12, fontWeight: 500 }}>
-              <strong>Before:</strong>
-            </p>
-            <p style={{ fontSize: 17, color: "#FFF8F0", lineHeight: 1.6, marginBottom: 12, fontWeight: 500 }}>
-              uniform map markers and dense overlays with no visual hierarchy.
-            </p>
-            <p style={{ fontSize: 17, color: "#FFF8F0", lineHeight: 1.6, marginBottom: 24, fontWeight: 300 }}>
-              <strong>After:</strong>
-            </p>
-            <p style={{ fontSize: 17, color: "#FFF8F0", lineHeight: 1.6, marginBottom: 12, fontWeight: 500 }}>
+          {/* AFTER */}
+          <div style={{ background: "#0f0f0f", padding: "40px 36px", display: "flex", flexDirection: "column" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
+              <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, letterSpacing: "0.25em", textTransform: "uppercase", background: "rgba(74,222,128,0.12)", color: "#4ade80", padding: "6px 16px", borderRadius: 2, fontWeight: 700 }}>After</span>
+            </div>
+            <p style={{ fontSize: 17, color: "#e5e7eb", lineHeight: 1.7, marginBottom: 32, flex: 0 }}>
               High / Medium / Low tiers with distinct color coding readable in seconds on mobile, WCAG compliant, and legally defensible.
             </p>
 
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+            {/* PROMINENT COLOR BADGES */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 12, flex: 1, justifyContent: "center" }}>
               {[
-                { bg: "#ef4444", text: "#FFF8F0", label: "High" },
-                { bg: "#f59e0b", text: "#000000", label: "Medium" },
-                { bg: "#10b981", text: "#000000", label: "Low" }
-              ].map(({ bg, text, label }) => (
-                <div key={label} style={{ background: bg, color: text, padding: "8px 20px", fontFamily: "ui-monospace, monospace", fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", borderRadius: 2 }}>{label}</div>
+                { bg: "#ef4444", text: "#FFF", label: "HIGH", desc: "Immediate risk — evacuate or shelter" },
+                { bg: "#f59e0b", text: "#FFF", label: "MEDIUM", desc: "Elevated caution — review preparedness" },
+                { bg: "#10b981", text: "#FFF", label: "LOW", desc: "Minimal risk — standard awareness" },
+              ].map(({ bg, text, label, desc }) => (
+                <div key={label} style={{ display: "flex", alignItems: "center", gap: 20 }}>
+                  <div style={{ background: bg, color: text, padding: "14px 28px", fontFamily: "ui-monospace, monospace", fontSize: 16, fontWeight: 900, letterSpacing: "0.15em", textTransform: "uppercase", borderRadius: 4, minWidth: 140, textAlign: "center", boxShadow: `0 4px 20px ${bg}44` }}>{label}</div>
+                  <span style={{ fontSize: 14, color: "#FFF", fontWeight: 700, lineHeight: 1.4 }}>{desc.replace(" — ", " ")}</span>
+                </div>
               ))}
-            </div>
-          </div>
-          <div style={{ position: "relative" }}>
-            <span style={{ position: "absolute", bottom: 20, right: 20, background: "rgba(0,0,0,0.7)", color: "#FFF8F0", padding: "4px 12px", fontSize: 10, fontFamily: "ui-monospace, monospace", textTransform: "uppercase", zIndex: 10 }}>Before</span>
-            <img src="/images/safehome/color-initiative.jpg" alt="Color Initiative UI" style={{ width: "100%", height: "auto", display: "block", borderRadius: 8 }} />
-
-            {/* FLOATING COMMENT BOX MOVED TO RIGHT */}
-            <div className="sh-sticky" style={{
-              background: "#fef08a",
-              padding: "24px",
-              position: "absolute",
-              right: "-120px",
-              top: "20px",
-              width: "280px",
-              transform: "rotate(2deg)",
-              boxShadow: "10px 10px 30px rgba(0,0,0,0.4)",
-              zIndex: 20
-            }}>
-              <div style={{ width: 12, height: 12, background: "#FFF8F0", borderRadius: "50%", position: "absolute", top: -6, left: "20px" }} />
-              <p style={{ color: "#1a1a1a", fontSize: 14, fontWeight: 700, lineHeight: 1.5, margin: 0 }}>
-                One of the sharpest design challenges was legal. Official terminology like Liquefaction carried strict regulatory meaning that we could not redefine.
-              </p>
             </div>
           </div>
         </div>
@@ -1140,220 +431,339 @@ export function SafeHomeProject({ project }: { project: Project }) {
 
       <div style={{ height: 1, background: "#272727" }} />
 
-      {/* ── USER FLOW ── */}
-      <section id="ia-flow-container" style={{ padding: "100px 60px", background: "var(--bg, #0C0E0D)", overflow: "hidden", color: "#E8EDE9" }}>
-        <style dangerouslySetInnerHTML={{
-          __html: `
-          .flow-container {
-            --bg: #0C0E0D;
-            --surface: #141614;
-            --pre:    #3B8BFF;
-            --during: #FF8C3B;
-            --post:   #FFF8F0;
-            --entry:  #C8B8FF;
-            --text:   #E8EDE9;
-            --muted:  rgba(232,237,233,0.38);
-            --border: rgba(255,255,255,0.07);
-          }
-          .flow-container .header {
-            margin-bottom: 2.5rem;
-            display:flex; align-items:center; justify-content:space-between;
-            gap: 2rem;
-          }
-          .flow-container .header-label {
-            font-size: 12px; letter-spacing:.3em; text-transform:uppercase;
-            color:#FFFFFF; margin-bottom:.5rem; font-weight:400; font-family: ui-monospace, monospace;
-          }
-          .flow-container .header h2 {
-            font-family: var(--font-outfit), sans-serif;
-            font-size:clamp(1rem,1.8vw,1.3rem);
-            font-weight:700; letter-spacing:.02em; color:#FFFFFF; margin: 0;
-          }
-          .flow-container .legend {
-            display:flex; gap:1.6rem; flex-wrap:wrap; align-items:center;
-          }
-          .flow-container .legend-item {
-            display:flex; align-items:center; gap:.6rem;
-            font-size:.6rem; letter-spacing:.15em; text-transform:uppercase;
-            color:#FFFFFF; font-weight:400; font-family: ui-monospace, monospace;
-          }
-          .flow-container .legend-circle {
-            width:12px; height:12px; border-radius:50%; flex-shrink:0;
-          }
-          .flow-container .diagram-scroll {
-            overflow: visible;
-            padding-bottom: 1rem;
-          }
-          .flow-container .flow-svg {
-            display:block;
-            width: 100%;
-            height: auto;
-          }
-        `}} />
-        <div className="flow-container" style={{ maxWidth: 1500, margin: "0 auto" }}>
 
-          <div className="header">
-            <div>
-              <div className="header-label">07 USER JOURNEY &amp; IA</div>
-              <h2 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: "clamp(32px,4vw,52px)", fontWeight: 200, lineHeight: 1.05, marginBottom: 0, color: "#FFF8F0" }}>Earthquake Safety App</h2>
+
+      {/* ── 08 TRANSFORMATION ── */}
+      <section id="transformation" style={{ background: "#000000", padding: "120px 0", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)", backgroundSize: "40px 40px", zIndex: 0 }} />
+        <div style={{ maxWidth: 1500, margin: "0 auto", padding: "0 60px", position: "relative", zIndex: 1 }}>
+          <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+            <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20, fontWeight: 200 }}>08 TRANSFORMATION</span>
+            <h2 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 200, lineHeight: 1.05, marginBottom: 60, color: "#FFF8F0" }}>From technical portal to <em style={{ color: "#FFF8F0", fontStyle: "italic" }}>human centred safety tool</em></h2>
+          </div>
+
+          {/* MOBILE INTERACTIONS IDEATION SECTION */}
+          <div style={{ marginBottom: 120, maxWidth: 1200, margin: "0 auto 120px" }}>
+            <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 32, fontWeight: 300, marginBottom: 40, color: "#FFF8F0" }}>Mobile Interactions Ideation</h3>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 340px", gap: 60, alignItems: "start" }}>
+              <div style={{ position: "relative" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+                  <div style={{ background: "#111", borderRadius: 12, padding: "12px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 30px 60px rgba(0,0,0,0.5)" }}>
+                    <img src="/images/safehome/Gif 1.gif" alt="Mobile Interaction 1" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
+                  </div>
+                  <div style={{ background: "#111", borderRadius: 12, padding: "12px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 30px 60px rgba(0,0,0,0.5)" }}>
+                    <img src="/images/safehome/Gif 2.gif" alt="Mobile Interaction 2" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
+                  </div>
+                </div>
+                {/* HEATMAP */}
+                <div style={{ marginTop: 60 }}>
+                  <h4 style={{ fontFamily: "ui-monospace, monospace", fontSize: 18, color: "#FFF8F0", textTransform: "uppercase", letterSpacing: "0.25em", marginBottom: 32, fontWeight: 700, textAlign: "center" }}>HEAT MAP VISUALISATION ON INFORMATION HIERARCHY</h4>
+                  
+                  <div style={{ display: "grid", gridTemplateColumns: "140px 1fr 140px", gap: 40, alignItems: "center", maxWidth: 2000, margin: "0 auto" }}>
+                    {/* Left Diagnostic */}
+                    <div style={{ padding: "16px", background: "rgba(255,255,255,0.02)", borderRadius: 4, border: "1px solid rgba(255,140,59,0.3)", height: "fit-content" }}>
+                      <h5 style={{ fontFamily: "ui-monospace, monospace", fontSize: 10, color: "#FF8C3B", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 10, fontWeight: 700 }}>Attention Focus</h5>
+                      <p style={{ color: "#d1d5db", fontSize: 12, lineHeight: 1.5, margin: 0 }}>
+                        The status tags like "At risk" effectively grab attention, validated by high gaze frequency in seismic risk zones.
+                      </p>
+                    </div>
+
+                    {/* Image Center */}
+                    <div style={{ background: "#111", borderRadius: 12, padding: "12px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 30px 60px rgba(0,0,0,0.5)" }}>
+                      <img src="/images/safehome/heatmap-analysis.jpg" alt="Heatmap Analysis" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
+                    </div>
+
+                    {/* Right Diagnostic */}
+                    <div style={{ padding: "16px", background: "rgba(255,255,255,0.02)", borderRadius: 4, border: "1px solid rgba(96,165,250,0.3)", height: "fit-content" }}>
+                      <h5 style={{ fontFamily: "ui-monospace, monospace", fontSize: 10, color: "#60a5fa", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 10, fontWeight: 700 }}>Clarity Score: 43</h5>
+                      <p style={{ color: "#d1d5db", fontSize: 12, lineHeight: 1.5, margin: 0 }}>
+                        Interface clutter results in a dispersed focal point, potentially delaying critical response times during emergencies.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+                <div style={{ background: "rgba(110,191,223,0.05)", border: "1px solid rgba(110,191,223,0.2)", borderRadius: 12, padding: "32px" }}>
+                  <h4 style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, color: "#FFF8F0", textTransform: "uppercase", letterSpacing: "0.25em", marginBottom: 24, fontWeight: 700 }}>ITERATION</h4>
+                  <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 24 }}>
+                    <li style={{ fontSize: 14, color: "#d1d5db", lineHeight: 1.6 }}>
+                      <div style={{ fontSize: 18, fontWeight: 800, color: "#FFF8F0", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.05em" }}>Dropdown collapsible legend</div>
+                      Initial approach: a collapsible panel to toggle hazard layers. Reduced map clutter but buried critical context behind an extra tap.
+                    </li>
+                    <li style={{ fontSize: 14, color: "#d1d5db", lineHeight: 1.6 }}>
+                      <div style={{ fontSize: 18, fontWeight: 800, color: "#FFF8F0", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.05em" }}>Pull-up bar</div>
+                      Final direction: a swipeable bottom sheet that keeps the map visible while surfacing risk details and action items in a thumb-friendly zone.
+                    </li>
+                  </ul>
+                </div>
+                <div className="sh-sticky" style={{ background: "#fef08a", padding: "24px", width: "100%", transform: "rotate(1deg)", boxShadow: "10px 10px 30px rgba(0,0,0,0.4)", zIndex: 20, position: "relative" }}>
+                  <div style={{ width: 12, height: 12, background: "#FFF8F0", borderRadius: "50%", position: "absolute", top: -6, left: "20px" }} />
+                  <p style={{ color: "#1a1a1a", fontSize: 14, fontWeight: 700, lineHeight: 1.5, margin: 0 }}>
+                    Quick-access alerts and interactive hazard awareness designed for mobile agility during stressful situations.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className="legend">
-              <div className="legend-item">
-                <div className="legend-circle" style={{ background: "var(--entry)" }}></div>
-                <span>Entry</span>
+          </div>
+
+          {/* WEB SECTION */}
+          <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 60px" }}>
+            <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 32, fontWeight: 300, marginBottom: 60, color: "#FFF8F0" }}>Web Experience</h3>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: 120 }}>
+              {/* Iteration 1 */}
+              <div>
+                <div style={{ background: "rgba(255,255,255,0.03)", padding: "20px 24px", borderRadius: 4, borderLeft: "4px solid #60a5fa", width: "fit-content", maxWidth: 500, marginBottom: 24 }}>
+                  <p style={{ fontSize: 14, color: "#d1d5db", lineHeight: 1.6, margin: 0 }}>
+                    <strong style={{ color: "#FFF8F0", display: "block", marginBottom: 6, textTransform: "uppercase", fontSize: 11, letterSpacing: "0.15em" }}>Iteration 01: Map-Centric Foundation</strong>
+                    Initial focus on comprehensive map visualization with basic hazard layer toggles.
+                  </p>
+                </div>
+                <div style={{ background: "#111", borderRadius: 12, padding: "20px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 40px 80px rgba(0,0,0,0.5)" }}>
+                  <img src="/images/safehome/Image1.jpg" alt="Web Iteration 1" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
+                </div>
               </div>
-              <div className="legend-item">
-                <div className="legend-circle" style={{ background: "var(--pre)" }}></div>
-                <span>Pre-Event</span>
-              </div>
-              <div className="legend-item">
-                <div className="legend-circle" style={{ background: "var(--during)" }}></div>
-                <span>During Event</span>
-              </div>
-              <div className="legend-item">
-                <div className="legend-circle" style={{ background: "var(--post)" }}></div>
-                <span>After Event</span>
+
+              {/* Iteration 2 */}
+              <div>
+                <div style={{ background: "rgba(255,255,255,0.03)", padding: "20px 24px", borderRadius: 4, borderLeft: "4px solid #f472b6", width: "fit-content", maxWidth: 500, marginBottom: 24 }}>
+                  <p style={{ fontSize: 14, color: "#d1d5db", lineHeight: 1.6, margin: 0 }}>
+                    <strong style={{ color: "#FFF8F0", display: "block", marginBottom: 6, textTransform: "uppercase", fontSize: 11, letterSpacing: "0.15em" }}>Iteration 02: Resource Integration</strong>
+                    Detailed categories displace with action items and other resources on the right.
+                  </p>
+                </div>
+                <div style={{ background: "#111", borderRadius: 12, padding: "20px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 40px 80px rgba(0,0,0,0.4)", width: "100%" }}>
+                  <img src="/images/safehome/web-side-2.jpg" alt="Web Iteration 2" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
+                </div>
               </div>
             </div>
           </div>
 
-          <div style={{ background: "rgba(255,255,255,0.02)", borderRadius: 12, border: "1px solid rgba(255,255,255,0.05)", padding: "20px" }}>
-            <svg className="flow-svg" viewBox="0 0 1600 560" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", height: "auto", minWidth: "auto" }}>
-              <defs>
-                <marker id="arr-entry" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                  <path d="M0,0 L0,6 L8,3 z" fill="rgba(255,255,255,0.45)" />
-                </marker>
-                <marker id="arr-pre" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                  <path d="M0,0 L0,6 L8,3 z" fill="rgba(59,139,255,0.6)" />
-                </marker>
-                <marker id="arr-during" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                  <path d="M0,0 L0,6 L8,3 z" fill="rgba(255,255,255,0.5)" />
-                </marker>
-                <marker id="arr-post" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                  <path d="M0,0 L0,6 L8,3 z" fill="rgba(59,204,122,0.6)" />
-                </marker>
-                <marker id="arr-branch" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                  <path d="M0,0 L0,6 L8,3 z" fill="rgba(255,255,255,0.2)" />
-                </marker>
-              </defs>
+          {/* FUTURE HIERARCHY & DESIGN FLOW */}
+          <section id="future-roadmap" style={{ padding: "100px 0", background: "transparent", overflow: "hidden", color: "#E8EDE9", maxWidth: 1200, margin: "0 auto" }}>
+            <style dangerouslySetInnerHTML={{
+              __html: `
+              .flow-container {
+                --bg: transparent;
+                --surface: #141614;
+                --pre:    #3B8BFF;
+                --during: #FF8C3B;
+                --post:   #FFF8F0;
+                --entry:  #C8B8FF;
+                --text:   #E8EDE9;
+                --muted:  rgba(232,237,233,0.38);
+                --border: rgba(255,255,255,0.07);
+              }
+              .flow-container .header {
+                margin-bottom: 2.5rem;
+                display:flex; align-items:center; justify-content:space-between;
+                gap: 2rem;
+              }
+              .flow-container .header-label {
+                font-size: 12px; letter-spacing:.3em; text-transform:uppercase;
+                color:#FFFFFF; margin-bottom:.5rem; font-weight:400; font-family: ui-monospace, monospace;
+              }
+              .flow-container .header h2 {
+                font-family: var(--font-outfit), sans-serif;
+                font-size:clamp(1rem,1.8vw,1.3rem);
+                font-weight:700; letter-spacing:.02em; color:#FFFFFF; margin: 0;
+              }
+              .flow-container .legend {
+                display:flex; gap:1.6rem; flex-wrap:wrap; align-items:center;
+              }
+              .flow-container .legend-item {
+                display:flex; align-items:center; gap:.6rem;
+                font-size:.6rem; letter-spacing:.15em; text-transform:uppercase;
+                color:#FFFFFF; font-weight:400; font-family: ui-monospace, monospace;
+              }
+              .flow-container .legend-circle {
+                width:12px; height:12px; border-radius:50%; flex-shrink:0;
+              }
+              .flow-container .diagram-scroll {
+                overflow: visible;
+                padding-bottom: 1rem;
+              }
+              .flow-container .flow-svg {
+                display:block;
+                width: 100%;
+                height: auto;
+              }
+            `}} />
+            <div className="flow-container" style={{ width: "100%" }}>
 
-              <rect x="700" y="20" width="880" height="155" rx="6" fill="rgba(59,139,255,0.18)" stroke="rgba(59,139,255,0.35)" strokeWidth="1" />
-              <rect x="700" y="195" width="880" height="155" rx="6" fill="rgba(255,140,59,0.18)" stroke="rgba(255,140,59,0.35)" strokeWidth="1" />
-              <rect x="700" y="370" width="880" height="155" rx="6" fill="rgba(59,204,122,0.18)" stroke="rgba(59,204,122,0.35)" strokeWidth="1" />
+              <div className="header">
+                <div>
+                  <div className="header-label">09 Future Hierarchy & Design Flow</div>
+                  <h2 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: "clamp(32px,4vw,52px)", fontWeight: 200, lineHeight: 1.05, marginBottom: 0, color: "#FFF8F0" }}>Pre event, During event, After Event</h2>
+                </div>
+                <div className="legend">
+                  <div className="legend-item">
+                    <div className="legend-circle" style={{ background: "var(--entry)" }}></div>
+                    <span>Entry</span>
+                  </div>
+                  <div className="legend-item">
+                    <div className="legend-circle" style={{ background: "var(--pre)" }}></div>
+                    <span>Pre-Event</span>
+                  </div>
+                  <div className="legend-item">
+                    <div className="legend-circle" style={{ background: "var(--during)" }}></div>
+                    <span>During Event</span>
+                  </div>
+                  <div className="legend-item">
+                    <div className="legend-circle" style={{ background: "var(--post)" }}></div>
+                    <span>After Event</span>
+                  </div>
+                </div>
+              </div>
 
-              <circle cx="749" cy="40" r="5" fill="#3B8BFF" aria-hidden="true" />
-              <text x="760" y="45" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="700" fill="#FFFFFF" letterSpacing="2">PRE EVENT</text>
+              <div style={{ background: "rgba(255,255,255,0.02)", borderRadius: 12, border: "1px solid rgba(255,255,255,0.05)", padding: "20px" }}>
+                <svg className="flow-svg" viewBox="0 0 1600 560" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", height: "auto", minWidth: "auto" }}>
+                  <defs>
+                    <marker id="arr-entry" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L0,6 L8,3 z" fill="rgba(255,255,255,0.45)" />
+                    </marker>
+                    <marker id="arr-pre" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L0,6 L8,3 z" fill="rgba(59,139,255,0.6)" />
+                    </marker>
+                    <marker id="arr-during" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L0,6 L8,3 z" fill="rgba(255,255,255,0.5)" />
+                    </marker>
+                    <marker id="arr-post" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L0,6 L8,3 z" fill="rgba(59,204,122,0.6)" />
+                    </marker>
+                    <marker id="arr-branch" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                      <path d="M0,0 L0,6 L8,3 z" fill="rgba(255,255,255,0.2)" />
+                    </marker>
+                  </defs>
 
-              <circle cx="749" cy="215" r="5" fill="#FF8C3B" aria-hidden="true" />
-              <text x="760" y="220" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="700" fill="#FFFFFF" letterSpacing="2">DURING EVENT</text>
+                  <rect x="700" y="20" width="880" height="155" rx="6" fill="rgba(59,139,255,0.18)" stroke="rgba(59,139,255,0.35)" strokeWidth="1" />
+                  <rect x="700" y="195" width="880" height="155" rx="6" fill="rgba(255,140,59,0.18)" stroke="rgba(255,140,59,0.35)" strokeWidth="1" />
+                  <rect x="700" y="370" width="880" height="155" rx="6" fill="rgba(59,204,122,0.18)" stroke="rgba(59,204,122,0.35)" strokeWidth="1" />
 
-              <circle cx="749" cy="390" r="5" fill="#FFF8F0" aria-hidden="true" />
-              <text x="760" y="395" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="700" fill="#FFFFFF" letterSpacing="2">AFTER EVENT</text>
+                  <circle cx="749" cy="40" r="5" fill="#3B8BFF" aria-hidden="true" />
+                  <text x="760" y="45" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="700" fill="#FFFFFF" letterSpacing="2">PRE EVENT</text>
 
-              <circle cx="36" cy="248" r="5" fill="#FFFFFF" aria-hidden="true" />
-              <text x="47" y="253" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="700" fill="#FFFFFF" letterSpacing="2">ENTRY</text>
+                  <circle cx="749" cy="215" r="5" fill="#FF8C3B" aria-hidden="true" />
+                  <text x="760" y="220" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="700" fill="#FFFFFF" letterSpacing="2">DURING EVENT</text>
 
-              <text x="28" y="278" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="400" fill="#FFFFFF">Enter</text>
-              <text x="28" y="295" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="400" fill="#FFFFFF">SafeHome</text>
+                  <circle cx="749" cy="390" r="5" fill="#FFF8F0" aria-hidden="true" />
+                  <text x="760" y="395" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="700" fill="#FFFFFF" letterSpacing="2">AFTER EVENT</text>
 
-              <rect x="140" y="250" width="220" height="60" rx="30" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeDasharray="5,3" />
-              <text x="250" y="275" fontFamily="ui-monospace, monospace" fontSize="12" fill="#FFFFFF" textAnchor="middle" fontStyle="italic">Input address &amp;</text>
-              <text x="250" y="292" fontFamily="ui-monospace, monospace" fontSize="12" fill="#FFFFFF" textAnchor="middle" fontStyle="italic">Map interaction</text>
+                  <circle cx="36" cy="248" r="5" fill="#FFFFFF" aria-hidden="true" />
+                  <text x="47" y="253" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="700" fill="#FFFFFF" letterSpacing="2">ENTRY</text>
 
-              <line x1="360" y1="276" x2="418" y2="276" stroke="rgba(110,191,223,0.3)" strokeWidth="1.5" markerEnd="url(#arr-entry)" />
+                  <text x="28" y="278" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="400" fill="#FFFFFF">Enter</text>
+                  <text x="28" y="295" fontFamily="ui-monospace, monospace" fontSize="12" fontWeight="400" fill="#FFFFFF">SafeHome</text>
 
-              <rect x="420" y="238" width="180" height="76" rx="6" fill="#FFFFFF" stroke="rgba(255,255,255,0.4)" strokeWidth="2" />
-              <text x="510" y="266" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Personalised</text>
-              <text x="510" y="282" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Resource List</text>
-              <text x="510" y="302" fontFamily="ui-monospace, monospace" fontSize="12" fill="#000000" textAnchor="middle" fontWeight="700">Action Items</text>
+                  <rect x="140" y="250" width="220" height="60" rx="30" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeDasharray="5,3" />
+                  <text x="250" y="275" fontFamily="ui-monospace, monospace" fontSize="12" fill="#FFFFFF" textAnchor="middle" fontStyle="italic">Input address &amp;</text>
+                  <text x="250" y="292" fontFamily="ui-monospace, monospace" fontSize="12" fill="#FFFFFF" textAnchor="middle" fontStyle="italic">Map interaction</text>
 
-              <line x1="600" y1="276" x2="660" y2="276" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" markerEnd="url(#arr-branch)" />
+                  <line x1="360" y1="276" x2="418" y2="276" stroke="rgba(110,191,223,0.3)" strokeWidth="1.5" markerEnd="url(#arr-entry)" />
 
-              <line x1="660" y1="97" x2="660" y2="447" stroke="rgba(255,255,255,0.1)" strokeWidth="1.5" />
+                  <rect x="420" y="238" width="180" height="76" rx="6" fill="#FFFFFF" stroke="rgba(255,255,255,0.4)" strokeWidth="2" />
+                  <text x="510" y="266" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Personalised</text>
+                  <text x="510" y="282" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Resource List</text>
+                  <text x="510" y="302" fontFamily="ui-monospace, monospace" fontSize="12" fill="#000000" textAnchor="middle" fontWeight="700">Action Items</text>
 
-              <line x1="660" y1="97" x2="700" y2="97" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" markerEnd="url(#arr-pre)" />
-              <line x1="660" y1="272" x2="700" y2="272" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" markerEnd="url(#arr-during)" />
-              <line x1="660" y1="447" x2="700" y2="447" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" markerEnd="url(#arr-post)" />
+                  <line x1="600" y1="276" x2="660" y2="276" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" markerEnd="url(#arr-branch)" />
 
-              <rect x="730" y="55" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
-              <text x="820" y="82" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">"Go Bag"</text>
-              <text x="820" y="97" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Checklist</text>
-              <text x="820" y="118" fontFamily="ui-monospace, monospace" fontSize="12" fill="#000000" textAnchor="middle" fontWeight="700">Design Opp</text>
+                  <line x1="660" y1="97" x2="660" y2="447" stroke="rgba(255,255,255,0.1)" strokeWidth="1.5" />
 
-              <line x1="910" y1="97" x2="930" y2="97" stroke="rgba(59,139,255,0.45)" strokeWidth="1.5" markerEnd="url(#arr-pre)" />
+                  <line x1="660" y1="97" x2="700" y2="97" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" markerEnd="url(#arr-pre)" />
+                  <line x1="660" y1="272" x2="700" y2="272" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" markerEnd="url(#arr-during)" />
+                  <line x1="660" y1="447" x2="700" y2="447" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" markerEnd="url(#arr-post)" />
 
-              <rect x="932" y="55" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
-              <text x="1022" y="89" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">State</text>
-              <text x="1022" y="105" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Resources</text>
+                  <rect x="730" y="55" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
+                  <text x="820" y="82" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">"Go Bag"</text>
+                  <text x="820" y="97" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Checklist</text>
+                  <text x="820" y="118" fontFamily="ui-monospace, monospace" fontSize="12" fill="#000000" textAnchor="middle" fontWeight="700">Design Opp</text>
 
-              <line x1="1112" y1="97" x2="1132" y2="97" stroke="rgba(59,139,255,0.45)" strokeWidth="1.5" markerEnd="url(#arr-pre)" />
+                  <line x1="910" y1="97" x2="930" y2="97" stroke="rgba(59,139,255,0.45)" strokeWidth="1.5" markerEnd="url(#arr-pre)" />
 
-              <rect x="1134" y="55" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
-              <text x="1224" y="89" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Insurance</text>
-              <text x="1224" y="105" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Companies</text>
+                  <rect x="932" y="55" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
+                  <text x="1022" y="89" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">State</text>
+                  <text x="1022" y="105" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Resources</text>
 
-              <line x1="1314" y1="97" x2="1334" y2="97" stroke="rgba(59,139,255,0.45)" strokeWidth="1.5" markerEnd="url(#arr-pre)" />
+                  <line x1="1112" y1="97" x2="1132" y2="97" stroke="rgba(59,139,255,0.45)" strokeWidth="1.5" markerEnd="url(#arr-pre)" />
 
-              <rect x="1336" y="60" width="180" height="74" rx="37" fill="#FFFFFF" stroke="rgba(59,139,255,0.3)" strokeWidth="1.5" />
-              <text x="1426" y="92" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Elderly /</text>
-              <text x="1426" y="108" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Disabled</text>
+                  <rect x="1134" y="55" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
+                  <text x="1224" y="89" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Insurance</text>
+                  <text x="1224" y="105" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Companies</text>
 
-              <rect x="730" y="230" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
-              <text x="820" y="262" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Offline</text>
-              <text x="820" y="277" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Maps + Routes</text>
-              <text x="820" y="300" fontFamily="ui-monospace, monospace" fontSize="12" fill="#000000" textAnchor="middle" fontWeight="700">Critical Feature</text>
+                  <line x1="1314" y1="97" x2="1334" y2="97" stroke="rgba(59,139,255,0.45)" strokeWidth="1.5" markerEnd="url(#arr-pre)" />
 
-              <line x1="910" y1="272" x2="930" y2="272" stroke="rgba(255,140,59,0.5)" strokeWidth="1.5" markerEnd="url(#arr-during)" />
+                  <rect x="1336" y="55" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(59,139,255,0.3)" strokeWidth="1.5" />
+                  <text x="1426" y="89" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Elderly /</text>
+                  <text x="1426" y="105" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Disabled</text>
+                  <text x="1426" y="124" fontFamily="ui-monospace, monospace" fontSize="12" fill="#000000" textAnchor="middle" fontWeight="700">Alert signup</text>
 
-              <rect x="932" y="230" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
-              <text x="1022" y="262" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Live Updates</text>
-              <text x="1022" y="278" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Tsunami Alert</text>
+                  <rect x="730" y="230" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
+                  <text x="820" y="262" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Offline</text>
+                  <text x="820" y="277" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Maps + Routes</text>
+                  <text x="820" y="300" fontFamily="ui-monospace, monospace" fontSize="12" fill="#000000" textAnchor="middle" fontWeight="700">Critical Feature</text>
 
-              <line x1="1112" y1="272" x2="1132" y2="272" stroke="rgba(255,140,59,0.5)" strokeWidth="1.5" markerEnd="url(#arr-during)" />
+                  <line x1="910" y1="272" x2="930" y2="272" stroke="rgba(255,140,59,0.5)" strokeWidth="1.5" markerEnd="url(#arr-during)" />
 
-              <rect x="1134" y="230" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
-              <text x="1224" y="262" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Community</text>
-              <text x="1224" y="278" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Volunteers</text>
+                  <rect x="932" y="230" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
+                  <text x="1022" y="262" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Live Updates</text>
+                  <text x="1022" y="278" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Tsunami Alert</text>
 
-              <line x1="1314" y1="272" x2="1334" y2="272" stroke="rgba(255,140,59,0.5)" strokeWidth="1.5" markerEnd="url(#arr-during)" />
+                  <line x1="1112" y1="272" x2="1132" y2="272" stroke="rgba(255,140,59,0.5)" strokeWidth="1.5" markerEnd="url(#arr-during)" />
 
-              <rect x="1336" y="230" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,140,59,0.25)" strokeWidth="1.5" opacity="0.4" />
-              <text x="1426" y="266" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Push</text>
-              <text x="1426" y="282" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Alerts</text>
-              <text x="1426" y="301" fontFamily="ui-monospace, monospace" fontSize="8" fill="rgba(0,0,0,0.6)" textAnchor="middle">Future Phase</text>
+                  <rect x="1134" y="230" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
+                  <text x="1224" y="262" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Community</text>
+                  <text x="1224" y="278" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Volunteers</text>
 
-              <rect x="730" y="405" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
-              <text x="820" y="439" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Shelter</text>
-              <text x="820" y="455" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Locations</text>
+                  <line x1="1314" y1="272" x2="1334" y2="272" stroke="rgba(255,140,59,0.5)" strokeWidth="1.5" markerEnd="url(#arr-during)" />
 
-              <line x1="910" y1="447" x2="930" y2="447" stroke="rgba(59,204,122,0.5)" strokeWidth="1.5" markerEnd="url(#arr-post)" />
+                  <rect x="1336" y="230" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,140,59,0.35)" strokeWidth="1.5" />
+                  <text x="1426" y="262" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Push</text>
+                  <text x="1426" y="278" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Alerts</text>
+                  <text x="1426" y="300" fontFamily="ui-monospace, monospace" fontSize="12" fill="#000000" textAnchor="middle" fontWeight="700">Future Phase</text>
 
-              <rect x="932" y="405" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
-              <text x="1022" y="439" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Hospitals &amp;</text>
-              <text x="1022" y="455" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Emergency</text>
+                  <rect x="730" y="405" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
+                  <text x="820" y="439" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Shelter</text>
+                  <text x="820" y="455" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Locations</text>
 
-              <line x1="1112" y1="447" x2="1132" y2="447" stroke="rgba(59,204,122,0.5)" strokeWidth="1.5" markerEnd="url(#arr-post)" />
+                  <line x1="910" y1="447" x2="930" y2="447" stroke="rgba(59,204,122,0.5)" strokeWidth="1.5" markerEnd="url(#arr-post)" />
 
-              <rect x="1134" y="405" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
-              <text x="1224" y="439" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Insurance</text>
-              <text x="1224" y="455" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Estimator</text>
-              <text x="1224" y="474" fontFamily="ui-monospace, monospace" fontSize="8" fill="rgba(0,0,0,0.6)" textAnchor="middle">Design Opp</text>
+                  <rect x="932" y="405" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
+                  <text x="1022" y="439" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Hospitals &amp;</text>
+                  <text x="1022" y="455" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Emergency</text>
 
-              <line x1="1314" y1="447" x2="1334" y2="447" stroke="rgba(59,204,122,0.5)" strokeWidth="1.5" markerEnd="url(#arr-post)" />
+                  <line x1="1112" y1="447" x2="1132" y2="447" stroke="rgba(59,204,122,0.5)" strokeWidth="1.5" markerEnd="url(#arr-post)" />
 
-              <rect x="1336" y="405" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(59,204,122,0.15)" strokeWidth="1.5" opacity="0.6" />
-              <text x="1426" y="439" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Elderly &amp;</text>
-              <text x="1426" y="455" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Disabled</text>
-              <text x="1426" y="474" fontFamily="ui-monospace, monospace" fontSize="8" fill="rgba(0,0,0,0.6)" textAnchor="middle">Accessibility</text>
-            </svg>
-          </div>
+                  <rect x="1134" y="405" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
+                  <text x="1224" y="439" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Insurance</text>
+                  <text x="1224" y="455" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Estimator</text>
+                  <text x="1224" y="474" fontFamily="ui-monospace, monospace" fontSize="12" fill="#000000" textAnchor="middle" fontWeight="700">Design Opp</text>
 
+                  <line x1="1314" y1="447" x2="1334" y2="447" stroke="rgba(59,204,122,0.5)" strokeWidth="1.5" markerEnd="url(#arr-post)" />
 
-          <div style={{ marginBottom: 40 }}>
-            <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20, fontWeight: 200 }}>08 INTERACTIVE IA &amp; TRANSFORMATION</span>
-          </div>
-          <div style={{ marginTop: "100px" }}>
-            <IAFlowDiagram seq="" />
+                  <rect x="1336" y="405" width="180" height="84" rx="5" fill="#FFFFFF" stroke="rgba(59,204,122,0.35)" strokeWidth="1.5" />
+                  <text x="1426" y="439" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Elderly &amp;</text>
+                  <text x="1426" y="455" fontFamily="var(--font-outfit), sans-serif" fontSize="13" fontWeight="700" fill="#000" textAnchor="middle">Disabled</text>
+                  <text x="1426" y="474" fontFamily="ui-monospace, monospace" fontSize="12" fill="#000000" textAnchor="middle" fontWeight="700">Accessibility</text>
+                </svg>
+              </div>
+            </div>
+          </section>
+
+          {/* REDESIGN SECTION */}
+          <div style={{ maxWidth: 1400, margin: "100px auto 0", padding: "0 60px" }}>
+            <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 32, fontWeight: 300, marginBottom: 60, color: "#FFF8F0" }}>Redesign</h3>
+            
+            <div style={{ display: "flex", flexDirection: "column", gap: 100 }}>
+              <div style={{ background: "#111", borderRadius: 16, padding: "24px", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 40px 100px rgba(0,0,0,0.6)" }}>
+                <img src="/images/safehome/UX issues 1.jpg" alt="Redesign Study 1" style={{ width: "100%", height: "auto", display: "block", borderRadius: 8 }} />
+              </div>
+              <div style={{ background: "#111", borderRadius: 16, padding: "24px", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 40px 100px rgba(0,0,0,0.6)" }}>
+                <img src="/images/safehome/UX issues 2.jpg" alt="Redesign Study 2" style={{ width: "100%", height: "auto", display: "block", borderRadius: 8 }} />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1361,9 +771,9 @@ export function SafeHomeProject({ project }: { project: Project }) {
       <div style={{ height: 1, background: "#272727" }} />
 
       {/* ── CONSTRAINTS ── */}
-      <section style={{ background: "#0f0f0f", padding: "100px 60px" }}>
+      <section id="constraints" style={{ background: "#0f0f0f", padding: "100px 60px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20, fontWeight: 200 }}>09 CONSTRAINTS</span>
+          <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20, fontWeight: 200 }}>10 CONSTRAINTS</span>
           <h2 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 200, lineHeight: 1.05, marginBottom: 20, color: "#FFF8F0" }}>The harder parts and <em style={{ color: "#FFF8F0", fontStyle: "italic" }}>what I did with them</em></h2>
           <p style={{ fontSize: 19, lineHeight: 1.75, color: "#d1d5db", maxWidth: 700, marginBottom: 52 }}>Good design under ideal conditions is not remarkable. What matters is what you build under real pressure.</p>
 
@@ -1390,9 +800,9 @@ export function SafeHomeProject({ project }: { project: Project }) {
       <div style={{ height: 1, background: "#272727" }} />
 
       {/* ── VISION ── */}
-      <section style={{ padding: "100px 60px", background: "#000000" }}>
+      <section id="vision" style={{ padding: "100px 60px", background: "#000000" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20, fontWeight: 200 }}>10 THE VISION</span>
+          <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20, fontWeight: 200 }}>11 THE VISION</span>
           <h2 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 200, lineHeight: 1.05, marginBottom: 40, color: "#FFF8F0" }}>MVP is the foundation. <em style={{ color: "#FFF8F0", fontStyle: "italic" }}>Here's what's next.</em></h2>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 2, background: "#272727" }}>
             {[
@@ -1414,25 +824,28 @@ export function SafeHomeProject({ project }: { project: Project }) {
       <div style={{ height: 1, background: "#272727" }} />
 
       {/* ── REFLECTION ── */}
-      <section style={{ maxWidth: 1100, margin: "0 auto", padding: "100px 60px" }}>
-        <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20, fontWeight: 200 }}>11 REFLECTION</span>
+      <section id="reflection" style={{ maxWidth: 1100, margin: "0 auto", padding: "100px 60px" }}>
+        <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20, fontWeight: 200 }}>12 REFLECTION</span>
         <h2 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: "clamp(42px,5vw,68px)", fontWeight: 200, lineHeight: 1.05, marginBottom: 52, color: "#FFF8F0" }}>What I learned leading through <em style={{ color: "#FFF8F0", fontStyle: "italic" }}>ambiguity</em></h2>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
-          <div>
-            <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 24, fontWeight: 300, marginBottom: 16 }}>On Leadership</h3>
-            <p style={{ fontSize: 15, color: "#e5e7eb", lineHeight: 1.8, marginBottom: 16 }}>Being promoted quickly taught me that UX leadership is not about seniority. It is about making clarity where there is none. The most impactful thing I did was not designing a screen. It was creating the conditions in which better design could happen.</p>
-            <p style={{ fontSize: 15, color: "#e5e7eb", lineHeight: 1.8 }}>I learned to manage upward and across translating user needs into language that resonated with product, engineering, data science, and partnership teams simultaneously.</p>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "#272727" }}>
+          {/* ON LEADERSHIP */}
+          <div style={{ background: "linear-gradient(135deg, #0f0f0f 0%, #141414 100%)", padding: "56px 44px", position: "relative", overflow: "hidden" }}>
+            <div style={{ position: "absolute", top: 16, left: 24, fontFamily: "var(--font-playfair), Georgia, serif", fontSize: 140, fontWeight: 700, color: "rgba(255,248,240,0.04)", lineHeight: 1, pointerEvents: "none" }}>"</div>
+            <h3 style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "#FFF8F0", marginBottom: 28, fontWeight: 400, position: "relative" }}>On Leadership</h3>
+            <p style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 26, fontWeight: 400, color: "#FFF8F0", lineHeight: 1.35, margin: 0, position: "relative" }}>The most impactful thing I did was not designing a screen. It was creating clarity where there was none.</p>
           </div>
-          <div>
-            <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 24, fontWeight: 300, marginBottom: 16 }}>On Constraints as Craft</h3>
-            <p style={{ fontSize: 15, color: "#e5e7eb", lineHeight: 1.8, marginBottom: 16 }}>Working with a volunteer team, free tools, and shifting scope forced a creative rigor. Every process I introduced had to earn its place if it did not demonstrably make things better, it would not survive.</p>
-            <p style={{ fontSize: 15, color: "#e5e7eb", lineHeight: 1.8 }}>I also learned that pushing back on scope or demanding validation is not friction. It is care. The hardest professional moments here were also the most formative.</p>
+
+          {/* ON CONSTRAINTS AS CRAFT */}
+          <div style={{ background: "linear-gradient(135deg, #111 0%, #161616 100%)", padding: "56px 44px", position: "relative", overflow: "hidden" }}>
+            <div style={{ position: "absolute", top: 16, left: 24, fontFamily: "var(--font-playfair), Georgia, serif", fontSize: 140, fontWeight: 700, color: "rgba(255,248,240,0.04)", lineHeight: 1, pointerEvents: "none" }}>"</div>
+            <h3 style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "#FFF8F0", marginBottom: 28, fontWeight: 400, position: "relative" }}>On Constraints as Craft</h3>
+            <p style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 26, fontWeight: 400, color: "#FFF8F0", lineHeight: 1.35, margin: 0, position: "relative" }}>Pushing back on scope is not friction. It is care.</p>
           </div>
         </div>
 
-        <div style={{ borderLeft: "4px solid #FFF8F0", padding: "24px 36px", marginTop: 56, background: "rgba(110,191,223,0.15)", maxWidth: 700 }}>
-          <p style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 22, fontStyle: "italic", lineHeight: 1.5, color: "#FFF8F0" }}>"The best measure of this work isn't a single screen or metric it's that a team of volunteers built something that helps real people understand a real danger to their lives, and they did it with intention, evidence, and care."</p>
+        <div style={{ borderLeft: "4px solid #FFF8F0", padding: "24px 36px", marginTop: 56, background: "rgba(110,191,223,0.08)" }}>
+          <p style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 20, fontWeight: 300, fontStyle: "italic", lineHeight: 1.5, margin: 0, background: "linear-gradient(135deg, #60a5fa, #34d399, #a78bfa)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>"Volunteers built something that helps real people understand real danger. With intention, evidence, and care."</p>
         </div>
       </section>
 
