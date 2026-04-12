@@ -93,46 +93,87 @@ export default function AboutPage() {
                     </section>
 
                     {/* A Bit About Me Section */}
-                    <section className="mb-20">
-                        <div className="flex items-center justify-between mb-8">
-                            <h2 className="text-[32px] font-serif font-light tracking-tight text-neutral-900 dark:text-white uppercase text-center md:text-left">A Bit About Me</h2>
+                    <section className="mb-24">
+                        <div className="flex items-center justify-between mb-12">
+                            <h2 className="text-[32px] font-serif font-light tracking-tight text-neutral-900 dark:text-white uppercase text-center md:text-left">The Professional Story</h2>
                             <div className="h-px bg-neutral-200 dark:bg-white/10 flex-1 ml-6 hidden md:block" />
                         </div>
                         
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 auto-rows-[minmax(180px,auto)]">
                             {[
                                 {
                                     title: "Led Multi-Billion Dollar Platform Design at Boeing",
-                                    desc: "Redesigned MyBoeingFleet (150+ apps) to streamline UAT logic. Standardized design and accessibility for a $2B+ e-commerce ecosystem."
+                                    desc: "Redesigned MyBoeingFleet (150+ apps) to streamline UAT logic. Standardized design and accessibility for a $2B+ e-commerce ecosystem.",
+                                    gridClass: "md:col-span-3 lg:col-span-7",
+                                    bg: "bg-blue-600/5",
+                                    accent: "#3b82f6"
                                 },
                                 {
                                     title: "Scaled Global Supply Chain Tools at Fourkites",
-                                    desc: "Owned UX for 3+ supply chain apps used globally by 1.6K+ enterprise clients. Built a unified design system, reducing UX bugs by 90%."
+                                    desc: "Owned UX for 3+ supply chain apps used globally by 1.6K+ enterprise clients. Built a unified design system, reducing UX bugs by 90%.",
+                                    gridClass: "md:col-span-3 lg:col-span-5",
+                                    bg: "bg-emerald-600/5",
+                                    accent: "#10b981"
                                 },
                                 {
                                     title: "Shaped Design for Diverse Domains",
-                                    desc: "Delivered responsive solutions across aviation, logistics, AI, and e-commerce. Led web revamps driving an 85% increase in mobile engagement."
+                                    desc: "Delivered responsive solutions across aviation, logistics, AI, and e-commerce. Led web revamps driving an 85% increase in mobile engagement.",
+                                    gridClass: "md:col-span-3 lg:col-span-4",
+                                    bg: "bg-amber-600/5",
+                                    accent: "#f59e0b"
                                 },
                                 {
-                                    title: "Recognized Thought Leader in AI+UX",
-                                    desc: "Presented award-winning AI accessibility research at IEEE and IndiaHCI. Recognized by Gartner & Boeing as an impactful UX strategist."
+                                    title: "Thought Leader in AI+UX",
+                                    desc: "Presented award-winning AI accessibility research at IEEE and IndiaHCI. Recognized by Gartner & Boeing as an impactful UX strategist.",
+                                    gridClass: "md:col-span-3 lg:col-span-4",
+                                    bg: "bg-purple-600/5",
+                                    accent: "#a855f7"
                                 },
                                 {
-                                    title: "Certified & Versatile in Human-Centered Design",
-                                    desc: "Certified by Stanford, Google, and IBM in AI Design Thinking. Proficient in Figma, accessibility, and rapid enterprise prototyping."
+                                    title: "Certified in HCD",
+                                    desc: "Certified by Stanford, Google, and IBM in AI Design Thinking. Proficient in Figma, accessibility, and rapid enterprise prototyping.",
+                                    gridClass: "md:col-span-6 lg:col-span-4",
+                                    bg: "bg-rose-600/5",
+                                    accent: "#e11d48"
                                 }
                             ].map((item, i) => (
-                                <GlassCard key={i} className={cn("p-6 md:p-8 flex items-start gap-4 border-neutral-200 dark:border-white/10 bg-gradient-to-br from-white via-white/90 to-white/70 dark:bg-none dark:bg-blue-950/40 hover:bg-neutral-50 dark:hover:bg-white/[0.02] transition-colors shadow-sm", i === 4 ? "md:col-span-2" : "")}>
-                                    <div className="text-xl shrink-0 mt-0.5">🔹</div>
-                                    <div className="flex-1">
-                                        <h3 className="text-lg md:text-xl font-bold font-sans text-neutral-900 dark:text-white mb-2 tracking-tight">
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6, delay: i * 0.1 }}
+                                    className={cn(
+                                        "group relative rounded-[32px] p-8 overflow-hidden border border-neutral-200 dark:border-white/5",
+                                        "backdrop-blur-xl bg-white/40 dark:bg-neutral-900/40",
+                                        "hover:border-blush/30 dark:hover:border-blush/20 transition-all duration-500",
+                                        item.gridClass
+                                    )}
+                                >
+                                    {/* Spotlight Glow Effect */}
+                                    <div className="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-[80px] opacity-0 group-hover:opacity-20 transition-opacity duration-500" style={{ background: item.accent }} />
+                                    
+                                    <div className="relative flex flex-col h-full">
+                                        <div className="mb-6 flex items-center justify-between">
+                                            <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-xl shadow-inner border border-white/20 dark:border-white/5" style={{ background: `${item.accent}15`, color: item.accent }}>
+                                                🔹
+                                            </div>
+                                            <span className="font-[var(--font-caveat)] text-2xl text-neutral-300 dark:text-neutral-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                                0{i + 1}
+                                            </span>
+                                        </div>
+                                        
+                                        <h3 className="text-xl md:text-2xl font-serif font-bold text-neutral-900 dark:text-white mb-4 leading-tight tracking-tight">
                                             {item.title}
                                         </h3>
-                                        <p className="text-[15px] text-neutral-700 dark:text-neutral-300 font-sans leading-relaxed">
+                                        <p className="text-[16px] text-neutral-600 dark:text-neutral-400 font-sans font-light leading-relaxed mt-auto">
                                             {item.desc}
                                         </p>
                                     </div>
-                                </GlassCard>
+                                    
+                                    {/* Subtle Gradient Overlay */}
+                                    <div className={cn("absolute inset-0 -z-10 opacity-30 dark:opacity-10", item.bg)} />
+                                </motion.div>
                             ))}
                         </div>
                     </section>
