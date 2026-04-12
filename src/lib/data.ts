@@ -8,8 +8,8 @@ import { genAiAccessibilityProject } from '@/data/projects/gen-ai-accessibility'
 
 export const projects = [
     safehomeProject,
-    genAiInclusivityProject,
     trackingQualityDashboard,
+    genAiInclusivityProject,
     filterRevampProject,
     networkIntelligenceProject,
     contentVerifyProject

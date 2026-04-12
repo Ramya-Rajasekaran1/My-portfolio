@@ -19,19 +19,6 @@ const featuredItems = [
         alt: "SafeHome SF Project"
     },
     {
-        tag: "FEATURED RESEARCH",
-        title: "Designing for Inclusivity in the Age of Generative AI",
-        description: "A futurist UX investigation that benchmarks how inclusive modern generative AI tools are and sketches a blueprint for accessibility-forward experiences. Published at IEEE and IndiaHCI.",
-        image: "/images/work/gen_ai_cover.jpg",
-        slug: "gen-ai-inclusivity",
-        metrics: [
-            { label: "Participants", value: "76" },
-            { label: "AI Platforms", value: "3" },
-            { label: "Best Completion", value: "92%" }
-        ],
-        alt: "Gen AI Research"
-    },
-    {
         tag: "SUPPLY CHAIN • DATA VIZ",
         title: "Tracking Quality Dashboard",
         description: "A complete overhaul of supply chain visibility reporting, transforming complex data into actionable performance metrics for global shippers.",
@@ -43,6 +30,19 @@ const featuredItems = [
             { label: "Decision Speed", value: "3x" }
         ],
         alt: "Tracking Quality Dashboard"
+    },
+    {
+        tag: "FEATURED RESEARCH",
+        title: "Designing for Inclusivity in the Age of Generative AI",
+        description: "A futurist UX investigation that benchmarks how inclusive modern generative AI tools are and sketches a blueprint for accessibility-forward experiences. Published at IEEE and IndiaHCI.",
+        image: "/images/work/gen_ai_cover.jpg",
+        slug: "gen-ai-inclusivity",
+        metrics: [
+            { label: "Participants", value: "76" },
+            { label: "AI Platforms", value: "3" },
+            { label: "Best Completion", value: "92%" }
+        ],
+        alt: "Gen AI Research"
     }
 ];
 
