@@ -10,8 +10,8 @@ export const projects = [
     safehomeProject,
     trackingQualityDashboard,
     genAiInclusivityProject,
-    filterRevampProject,
-    networkIntelligenceProject,
+    // filterRevampProject,
+    // networkIntelligenceProject,
     contentVerifyProject
 ];
 
