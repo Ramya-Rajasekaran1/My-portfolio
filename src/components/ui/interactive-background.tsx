@@ -58,7 +58,6 @@ export const InteractiveBackground = React.memo(function InteractiveBackground({
     hideSphere = false, 
     hideGradients = false 
 }: InteractiveBackgroundProps) {
-    const [tick, setTick] = React.useState(0);
     const mousePositionRef = React.useRef({ x: 50, y: 50 });
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
     const particlesRef = React.useRef<SphereParticle[]>([]);
@@ -66,6 +65,11 @@ export const InteractiveBackground = React.memo(function InteractiveBackground({
     const timeRef = React.useRef(0);
     const sphereCenterRef = React.useRef({ x: 80, y: 50 });
     const lastFrameTime = React.useRef(0);
+
+    // Refs for gradient elements to update without re-renders
+    const purpleRef = React.useRef<HTMLDivElement>(null);
+    const amberRef = React.useRef<HTMLDivElement>(null);
+    const blueRef = React.useRef<HTMLDivElement>(null);
 
     // Initialize particles once
     React.useEffect(() => {
@@ -122,14 +126,28 @@ export const InteractiveBackground = React.memo(function InteractiveBackground({
             }
             lastFrameTime.current = currentTime;
             timeRef.current += 0.01;
+            const time = timeRef.current;
+            const mouse = mousePositionRef.current;
             
-            // Force React re-render for gradient orbs
-            setTick(t => t + 1);
+            // Update gradient positions directly via DOM refs to avoid React re-renders
+            if (!hideGradients) {
+                if (purpleRef.current) {
+                    purpleRef.current.style.left = `${mouse.x + Math.sin(time * 0.3) * 10}%`;
+                    purpleRef.current.style.top = `${mouse.y + Math.cos(time * 0.4) * 10}%`;
+                }
+                if (amberRef.current) {
+                    amberRef.current.style.left = `${mouse.x + Math.sin(time * 0.2) * 25}%`;
+                    amberRef.current.style.top = `${mouse.y + Math.cos(time * 0.25) * 25}%`;
+                }
+                if (blueRef.current) {
+                    blueRef.current.style.left = `${(100 - mouse.x) * 0.8 + 10 + Math.cos(time * 0.25) * 15}%`;
+                    blueRef.current.style.top = `${(100 - mouse.y) * 0.8 + 10 + Math.sin(time * 0.3) * 15}%`;
+                }
+            }
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             if (!hideSphere) {
-                const time = timeRef.current;
                 const minDim = Math.min(canvas.width, canvas.height);
                 const baseRadius = (minDim * 0.75) / 2;
                 const oscillation = Math.sin(time * SPHERE_CONFIG.oscillation.speed) * SPHERE_CONFIG.oscillation.amplitude;
@@ -162,42 +180,36 @@ export const InteractiveBackground = React.memo(function InteractiveBackground({
             window.removeEventListener('resize', updateCanvasSize);
             if (animationRef.current) cancelAnimationFrame(animationRef.current);
         };
-    }, [hideSphere]);
-
-    const time = timeRef.current;
+    }, [hideSphere, hideGradients]);
 
     return (
         <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
             {!hideGradients && (
                 <>
-                {/* Dynamic Mouse-Following Gradients */}
                 <div
+                    ref={purpleRef}
                     className="absolute rounded-full bg-gradient-to-r from-purple-500/35 to-pink-500/35 blur-[120px] transition-transform duration-1000 ease-out will-change-transform"
                     style={{
                         width: `${SPHERE_CONFIG.gradients.purple.size}px`,
                         height: `${SPHERE_CONFIG.gradients.purple.size}px`,
-                        left: `${mousePositionRef.current.x + Math.sin(time * 0.3) * 10}%`,
-                        top: `${mousePositionRef.current.y + Math.cos(time * 0.4) * 10}%`,
                         transform: "translate(-50%, -50%)",
                     }}
                 />
                 <div
+                    ref={amberRef}
                     className="absolute rounded-full bg-gradient-to-r from-amber-500/15 to-yellow-500/10 blur-[140px] transition-transform duration-[2000ms] ease-out will-change-transform"
                     style={{
                         width: `${SPHERE_CONFIG.gradients.amber.size}px`,
                         height: `${SPHERE_CONFIG.gradients.amber.size}px`,
-                        left: `${mousePositionRef.current.x + Math.sin(time * 0.2) * 25}%`,
-                        top: `${mousePositionRef.current.y + Math.cos(time * 0.25) * 25}%`,
                         transform: "translate(-50%, -50%)",
                     }}
                 />
                 <div
+                    ref={blueRef}
                     className="absolute rounded-full bg-gradient-to-r from-cyan-400/25 to-blue-500/25 blur-[120px] transition-transform duration-1000 ease-out will-change-transform"
                     style={{
                         width: `${SPHERE_CONFIG.gradients.blue.size}px`,
                         height: `${SPHERE_CONFIG.gradients.blue.size}px`,
-                        left: `${(100 - mousePositionRef.current.x) * 0.8 + 10 + Math.cos(time * 0.25) * 15}%`,
-                        top: `${(100 - mousePositionRef.current.y) * 0.8 + 10 + Math.sin(time * 0.3) * 15}%`,
                         transform: "translate(-50%, -50%)",
                     }}
                 />

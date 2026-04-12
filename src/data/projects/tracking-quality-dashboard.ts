@@ -1,8 +1,8 @@
 export const trackingQualityDashboard = {
     id: 1,
-    title: "Tracking Quality Dashboard",
+    title: "Tracking quality Dashboard - Supply chain visibility",
     category: "Supply Chain Visibility",
-    description: "A dashboard to measure the accuracy and quality of shipments tracked by the company, highlighting the value added to clients.",
+    description: "The existing dashboard showed consistency percentages that looked low — not because tracking was poor, but because the standards were unrealistically high. No one knew who was responsible for the gap. I built the solution from discovery to delivery.",
     image: "/images/tracking-quality-dashboard/cover_v4.jpg",
     thumbnailImage: "/images/tracking-quality-dashboard/cover_v4.jpg",
     slug: "tracking-quality-dashboard",
@@ -109,7 +109,7 @@ export const trackingQualityDashboard = {
             glassCard: true
         },
         {
-            title: "SOLUTIONS TO FIDELITY SCREENS",
+            title: "DASHBOARD DESIGN",
             content: [
                 "What and why:",
                 "- The reason behind this structure is to give straightforward access to necessary information",
