@@ -142,7 +142,6 @@ export function Navbar() {
                             >
                                 <Search className="w-5 h-5 text-neutral-600 dark:text-parchment" />
                             </button>
-                            <ThemeToggle />
                         </div>
 
                         {/* Mobile Menu Toggle */}
@@ -184,10 +183,6 @@ export function Navbar() {
                                         {link.name}
                                     </Link>
                                 ))}
-                                <div className="flex items-center gap-4 mt-4">
-                                    <ThemeToggle />
-                                    <span className="text-sm font-sans text-neutral-500">Switch Theme</span>
-                                </div>
                             </nav>
                         </motion.div>
                     )
