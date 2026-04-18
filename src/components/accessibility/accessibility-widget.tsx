@@ -67,6 +67,13 @@ export function AccessibilityWidget() {
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, []);
 
+    // Custom event listener for external triggers (like the Navbar)
+    React.useEffect(() => {
+        const handleExternalToggle = () => setIsOpen(true);
+        window.addEventListener("toggle-accessibility", handleExternalToggle);
+        return () => window.removeEventListener("toggle-accessibility", handleExternalToggle);
+    }, []);
+
     const applySettings = (settings: AccessibilitySettings) => {
         const root = document.documentElement;
 
@@ -129,10 +136,10 @@ export function AccessibilityWidget() {
 
     return (
         <>
-            {/* Floating Button */}
+            {/* Floating Button - Desktop Only */}
             <motion.button
                 onClick={() => setIsOpen(true)}
-                className="fixed left-8 bottom-8 z-50 p-3 rounded-full bg-purple-600 hover:bg-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-500/30"
+                className="fixed hidden md:flex left-8 bottom-8 z-50 p-3 rounded-full bg-purple-600 hover:bg-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-500/30"
                 aria-label="Open accessibility settings (Option+A)"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

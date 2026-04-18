@@ -84,7 +84,7 @@ export function FeaturedProjects() {
                                 <div className="order-1 lg:order-2">
                                     <div className="flex flex-col gap-8">
                                         <div className="space-y-4">
-                                            <span className="text-xs md:text-sm font-mono tracking-[0.4em] text-blush font-bold uppercase block">
+                                            <span className="text-[10px] md:text-sm font-mono tracking-[0.15em] md:tracking-[0.4em] text-blush font-bold uppercase block">
                                                 {item.tag}
                                             </span>
                                             <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-6">

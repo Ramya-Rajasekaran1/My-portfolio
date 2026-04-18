@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu, X, Accessibility } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 
@@ -144,16 +144,27 @@ export function Navbar() {
                             </button>
                         </div>
 
-                        {/* Mobile Menu Toggle */}
-                        <button
-                            className="md:hidden p-2 z-50"
-                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            aria-label="Toggle mobile menu"
-                            aria-expanded={isMobileMenuOpen}
-                            aria-controls="mobile-menu"
-                        >
-                            {isMobileMenuOpen ? <X /> : <Menu />}
-                        </button>
+                        {/* Mobile Actions */}
+                        <div className="flex md:hidden items-center gap-2">
+                            <button
+                                className="p-2 z-50 text-neutral-600 dark:text-parchment"
+                                onClick={() => window.dispatchEvent(new Event("toggle-accessibility"))}
+                                aria-label="Open accessibility settings"
+                            >
+                                <Accessibility className="w-5 h-5" />
+                            </button>
+
+                            {/* Mobile Menu Toggle */}
+                            <button
+                                className="p-2 z-50"
+                                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                                aria-label="Toggle mobile menu"
+                                aria-expanded={isMobileMenuOpen}
+                                aria-controls="mobile-menu"
+                            >
+                                {isMobileMenuOpen ? <X /> : <Menu />}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </motion.header >

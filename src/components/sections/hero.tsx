@@ -69,7 +69,7 @@ export function Hero() {
         setHasScrolled(latest > 0.05);
     });
 
-    const expandableMaxHeight = useTransform(revealProgress, [0.05, 0.85], ["0px", "700px"]);
+    const expandableMaxHeight = useTransform(revealProgress, [0.05, 0.85], ["0px", "1000px"]);
 
     const bioOpacity = useTransform(revealProgress, [0.1, 0.3], [0, 1]);
     const bioY = useTransform(revealProgress, [0.1, 0.3], [20, 0]);
@@ -117,13 +117,13 @@ export function Hero() {
 
     return (
         <section ref={sectionRef} className="min-h-[200vh] relative">
-            <div className="sticky top-0 min-h-screen flex items-center justify-center px-4 pt-24 md:pt-32 pb-12 relative overflow-hidden">
+            <div className="sticky top-0 min-h-screen flex items-center justify-center px-4 pt-20 md:pt-32 pb-12 relative overflow-hidden">
 
                 <motion.div
                     initial="hidden"
                     animate="visible"
                     variants={nameTagVariants}
-                    className="max-w-4xl w-full p-6 md:p-10 rounded-3xl md:rounded-[2.5rem] border border-white/10 dark:border-white/[0.05] shadow-2xl bg-white/5 dark:bg-black/[0.1] backdrop-blur-2xl relative overflow-hidden z-10"
+                    className="max-w-4xl w-full p-4 md:p-10 rounded-3xl md:rounded-[2.5rem] border border-white/10 dark:border-white/[0.05] shadow-2xl bg-white/5 dark:bg-black/[0.1] backdrop-blur-2xl relative overflow-hidden z-10"
                 >
                     <div className="absolute inset-0 bg-gradient-to-br from-white/[0.1] to-transparent pointer-none rounded-[inherit]" />
 
@@ -137,7 +137,7 @@ export function Hero() {
                                         layout: { type: "spring", stiffness: 300, damping: 30 },
                                     }}
                                     className={cn(
-                                        "flex gap-6 md:gap-10",
+                                        "flex gap-4 md:gap-10",
                                         hasScrolled
                                             ? "flex-col md:flex-row md:items-start text-left"
                                             : "flex-col items-center text-center"
@@ -150,8 +150,8 @@ export function Hero() {
                                             transition={{ layout: { type: "spring", stiffness: 300, damping: 30 } }}
 
                                             className={cn(
-                                                "rounded-3xl flex items-center justify-center relative shrink-0 bg-white dark:bg-white/5 border border-neutral-200 dark:border-white/10 p-2 shadow-sm",
-                                                hasScrolled ? "w-16 h-16 md:w-20 md:h-20" : "w-24 h-24 md:w-32 md:h-32"
+                                                "rounded-2xl md:rounded-3xl flex items-center justify-center relative shrink-0 bg-white dark:bg-white/5 border border-neutral-200 dark:border-white/10 p-2 shadow-sm",
+                                                hasScrolled ? "w-12 h-12 md:w-20 md:h-20" : "w-20 h-20 md:w-32 md:h-32"
                                             )}
                                         >
                                             <img
@@ -168,18 +168,18 @@ export function Hero() {
                                         transition={{ layout: { type: "spring", stiffness: 300, damping: 30 } }}
                                         className={cn(
                                             "flex flex-col",
-                                            hasScrolled ? "gap-1 items-start" : "gap-3 items-center"
+                                            hasScrolled ? "gap-0.5 items-start" : "gap-2 items-center"
                                         )}
                                     >
                                         <motion.h1
                                             layout
-                                            className="text-3xl md:text-5xl font-extralight tracking-tight text-neutral-900 dark:text-ivory leading-none font-outfit"
+                                            className="text-2xl md:text-5xl font-extralight tracking-tight text-neutral-900 dark:text-ivory leading-none font-outfit"
                                         >
                                             Ramya Rajasekaran
                                         </motion.h1>
                                         <motion.p
                                             layout
-                                            className="text-base md:text-lg leading-tight font-bold font-outfit text-blush-text dark:text-blush tracking-[0.1em]"
+                                            className="text-[13px] md:text-lg leading-tight font-bold font-outfit text-blush-text dark:text-blush tracking-[0.1em]"
                                         >
                                             UX design specialist
                                         </motion.p>
@@ -189,30 +189,30 @@ export function Hero() {
                         </LayoutGroup>
 
                         <motion.div style={{ maxHeight: expandableMaxHeight, overflow: "hidden" }}>
-                            <div className="flex flex-col gap-6 md:gap-8 pt-6 md:pt-8 pb-4">
+                            <div className="flex flex-col gap-4 md:gap-8 pt-4 md:pt-8 pb-2">
                                 <motion.div
                                     style={{ opacity: bioOpacity, y: bioY, filter: useTransform(bioBlur, (v) => `blur(${v}px)`) }}
                                     className="max-w-3xl text-left"
                                 >
-                                    <p className="text-base md:text-lg text-neutral-900 dark:text-white leading-relaxed font-light">
+                                    <p className="text-[15px] md:text-lg text-neutral-900 dark:text-white leading-relaxed font-light">
                                         UX Designer with experience leading end-to-end process across <span className="font-medium dark:text-white">aviation, e-commerce, supply chain, B2B, B2C</span>. I design award-winning solutions and have published research on <span className="font-medium dark:text-white">Designing for Inclusivity in the Age of AI</span>, at IEEE and Industry case study at IndiaHCI.
                                     </p>
                                 </motion.div>
 
                                 <motion.div
                                     style={{ opacity: statsOpacity, y: statsY, filter: useTransform(statsBlur, (v) => `blur(${v}px)`) }}
-                                    className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full"
+                                    className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 w-full"
                                 >
                                     {achievements.map((achievement) => (
                                         <motion.div
                                             key={achievement.label}
                                             whileHover={{ y: -5 }}
-                                            className="group p-5 rounded-2xl bg-blue-955/20 dark:bg-blue-955/40 border border-blue-950/10 dark:border-white/[0.05] flex flex-col items-start transition-colors hover:bg-blush/40 dark:hover:bg-blue-950/60 backdrop-blur-sm"
+                                            className="group p-4 md:p-5 rounded-xl md:rounded-2xl bg-blue-955/20 dark:bg-blue-955/40 border border-blue-950/10 dark:border-white/[0.05] flex flex-col items-start transition-colors hover:bg-blush/40 dark:hover:bg-blue-950/60 backdrop-blur-sm"
                                         >
-                                            <div className="space-y-6 font-outfit w-full">
+                                            <div className="space-y-4 md:space-y-6 font-outfit w-full">
                                                 {/* Stat Values: Navy in Light Mode */}
-                                                <p className="text-2xl font-black text-blue-950 dark:text-ivory leading-none">{achievement.value}</p>
-                                                <p className="text-[14px] capitalize tracking-widest font-black text-blue-950/70 dark:text-blush">{achievement.label}</p>
+                                                <p className="text-xl md:text-2xl font-black text-blue-950 dark:text-ivory leading-none">{achievement.value}</p>
+                                                <p className="text-[12px] md:text-[14px] capitalize tracking-widest font-black text-blue-950/70 dark:text-blush">{achievement.label}</p>
                                             </div>
                                         </motion.div>
                                     ))}
@@ -221,19 +221,19 @@ export function Hero() {
                                 {/* Skills Section */}
                                 <motion.div
                                     style={{ opacity: skillsCardOpacity, y: skillsCardY }}
-                                    className="pt-4 border-t border-neutral-200 dark:border-white/5"
+                                    className="pt-3 md:pt-4 border-t border-neutral-200 dark:border-white/5"
                                 >
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
                                         {skills.map((skill, idx) => (
                                             <motion.div
                                                 key={skill.name}
                                                 initial={{ opacity: 0, scale: 0.9 }}
                                                 animate={{ opacity: hasScrolled ? 1 : 0, scale: hasScrolled ? 1 : 0.9 }}
                                                 transition={{ delay: 0.1 + idx * 0.05 }}
-                                                className="flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-white/10 border border-neutral-200 dark:border-white/10 rounded-full shadow-sm"
+                                                className="flex items-center gap-1.5 md:gap-2 px-2 md:px-3 py-1 md:py-1.5 bg-white dark:bg-white/10 border border-neutral-200 dark:border-white/10 rounded-full shadow-sm"
                                             >
-                                                <div className={cn("w-1.5 h-1.5 rounded-full", skill.color)} />
-                                                <span className="text-[10px] font-black tracking-widest text-black dark:text-ivory uppercase">
+                                                <div className={cn("w-1 md:w-1.5 h-1 md:h-1.5 rounded-full", skill.color)} />
+                                                <span className="text-[10px] md:text-[11px] font-black tracking-widest text-black dark:text-ivory uppercase">
                                                     {skill.name}
                                                 </span>
                                             </motion.div>
