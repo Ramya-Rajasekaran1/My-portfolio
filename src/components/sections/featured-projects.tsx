@@ -68,20 +68,8 @@ export function FeaturedProjects() {
                             className="group"
                         >
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-                                {/* Image Column */}
-                                <div className="order-2 lg:order-1 relative">
-                                    <Link href={`/work/${item.slug}`} className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 group-hover:border-blush/30 transition-colors shadow-2xl">
-                                        <img 
-                                            src={item.image} 
-                                            alt={item.alt}
-                                            className="w-full h-full object-left object-cover transition-transform duration-700 group-hover:scale-105"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    </Link>
-                                </div>
-
                                 {/* Text Column */}
-                                <div className="order-1 lg:order-2">
+                                <div className="lg:order-2">
                                     <div className="flex flex-col gap-8">
                                         <div className="space-y-4">
                                             <span className="text-[10px] md:text-sm font-mono tracking-[0.15em] md:tracking-[0.4em] text-blush font-bold uppercase block">
@@ -115,16 +103,39 @@ export function FeaturedProjects() {
                                             ))}
                                         </div>
 
+                                        {/* Mobile Image: Placed below description and numbers */}
+                                        <div className="lg:hidden relative py-4">
+                                            <Link href={`/work/${item.slug}`} className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 shadow-2xl">
+                                                <img 
+                                                    src={item.image} 
+                                                    alt={item.alt}
+                                                    className="w-full h-full object-left object-cover"
+                                                />
+                                            </Link>
+                                        </div>
+
                                         <div className="pt-6 xl:hidden">
                                             <Link
                                                 href={`/work/${item.slug}`}
-                                                className="group inline-flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-full text-xs font-mono font-bold uppercase tracking-[0.2em] hover:bg-blush transition-all duration-200"
+                                                className="group inline-flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-full text-xs font-mono font-bold uppercase tracking-[0.2em] hover:bg-blush transition-all duration-200 w-full justify-center"
                                             >
                                                 Explore case study
                                                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                                             </Link>
                                         </div>
                                     </div>
+                                </div>
+
+                                {/* Desktop Image Column */}
+                                <div className="hidden lg:block lg:order-1 relative">
+                                    <Link href={`/work/${item.slug}`} className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 group-hover:border-blush/30 transition-colors shadow-2xl">
+                                        <img 
+                                            src={item.image} 
+                                            alt={item.alt}
+                                            className="w-full h-full object-left object-cover transition-transform duration-700 group-hover:scale-105"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    </Link>
                                 </div>
                             </div>
                         </motion.div>
