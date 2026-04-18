@@ -74,6 +74,18 @@ export function AccessibilityWidget() {
         return () => window.removeEventListener("toggle-accessibility", handleExternalToggle);
     }, []);
 
+    // Dispatch state changes for other components (like Navbar)
+    React.useEffect(() => {
+        const eventName = isOpen ? "accessibility-panel-opened" : "accessibility-panel-closed";
+        window.dispatchEvent(new Event(eventName));
+        
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+    }, [isOpen]);
+
     const applySettings = (settings: AccessibilitySettings) => {
         const root = document.documentElement;
 
@@ -157,7 +169,7 @@ export function AccessibilityWidget() {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setIsOpen(false)}
-                            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60]"
+                            className="fixed inset-0 bg-black/60 backdrop-blur-md z-[110]"
                         />
 
                         {/* Panel */}
@@ -166,27 +178,27 @@ export function AccessibilityWidget() {
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: -400, opacity: 0 }}
                             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                            className="fixed left-0 top-0 bottom-0 w-full sm:w-[400px] max-w-[100vw] sm:max-w-[400px] bg-white dark:bg-neutral-900 shadow-2xl z-[70] overflow-y-auto"
+                            className="fixed left-0 top-0 bottom-0 w-full sm:w-[400px] max-w-[100vw] sm:max-w-[400px] bg-white dark:bg-neutral-900 shadow-2xl z-[120] overflow-y-auto"
                         >
                             {/* Header */}
-                            <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white p-6 flex items-center justify-between">
+                            <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white p-6 flex items-center justify-between z-10">
                                 <div className="flex items-center gap-3">
                                     <Accessibility className="w-6 h-6" />
                                     <h2 className="text-xl font-semibold">Accessibility</h2>
                                 </div>
                                 <button
                                     onClick={() => setIsOpen(false)}
-                                    className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+                                    className="p-2 hover:bg-white/20 rounded-lg transition-colors cursor-pointer"
                                     aria-label="Close accessibility panel"
                                 >
-                                    <X className="w-5 h-5" />
+                                    <X className="w-6 h-6" />
                                 </button>
                             </div>
 
                             {/* Keyboard Shortcut Info */}
-                            <div className="px-6 py-4 bg-purple-50 dark:bg-purple-950/30 border-b border-purple-200 dark:border-purple-800">
-                                <p className="text-sm text-purple-900 dark:text-purple-200">
-                                    <strong>Keyboard Shortcut:</strong> <kbd className="px-2 py-1 bg-white dark:bg-neutral-800 rounded border border-purple-300 dark:border-purple-700 text-xs font-mono">Option+A</kbd>
+                            <div className="px-6 py-4 bg-purple-700 dark:bg-purple-800 border-b border-white/10">
+                                <p className="text-sm text-white">
+                                    <strong>Keyboard Shortcut:</strong> <kbd className="px-2 py-1 bg-white/10 rounded border border-white/20 text-xs font-mono text-white">Option+A</kbd>
                                 </p>
                             </div>
 
@@ -196,29 +208,29 @@ export function AccessibilityWidget() {
                                 <div className="space-y-3">
                                     <div className="flex items-center gap-2 text-neutral-900 dark:text-neutral-100">
                                         <Type className="w-5 h-5" />
-                                        <h3 className="font-semibold">Text Size</h3>
+                                        <h3 className="font-semibold text-lg">Text Size</h3>
                                     </div>
                                     <div className="flex items-center gap-4">
                                         <button
                                             onClick={decreaseFontSize}
                                             disabled={settings.fontSize <= 80}
-                                            className="p-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                            className="p-3 rounded-lg bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                                             aria-label="Decrease font size"
                                         >
-                                            <ZoomOut className="w-5 h-5" />
+                                            <ZoomOut className="w-6 h-6" />
                                         </button>
                                         <div className="flex-1 text-center">
-                                            <span className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+                                            <span className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
                                                 {settings.fontSize}%
                                             </span>
                                         </div>
                                         <button
                                             onClick={increaseFontSize}
                                             disabled={settings.fontSize >= 150}
-                                            className="p-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                            className="p-3 rounded-lg bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                                             aria-label="Increase font size"
                                         >
-                                            <ZoomIn className="w-5 h-5" />
+                                            <ZoomIn className="w-6 h-6" />
                                         </button>
                                     </div>
                                 </div>
@@ -261,12 +273,12 @@ export function AccessibilityWidget() {
                                 <div className="border-t border-neutral-200 dark:border-neutral-800" />
 
                                 {/* Browser Accessibility */}
-                                <div className="space-y-3">
+                                <div className="space-y-4">
                                     <div className="flex items-center gap-2 text-neutral-900 dark:text-neutral-100">
                                         <ExternalLink className="w-5 h-5" />
-                                        <h3 className="font-semibold">Browser Accessibility</h3>
+                                        <h3 className="font-semibold text-lg">Browser Accessibility</h3>
                                     </div>
-                                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                                    <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
                                         Access your browser's native accessibility features for additional options like screen readers, voice control, and more.
                                     </p>
                                     <button
@@ -302,7 +314,7 @@ export function AccessibilityWidget() {
 
                                             alert(message);
                                         }}
-                                        className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-purple-100 dark:bg-purple-900/30 hover:bg-purple-200 dark:hover:bg-purple-900/50 rounded-lg transition-colors text-purple-900 dark:text-purple-100 font-medium border border-purple-300 dark:border-purple-700"
+                                        className="w-full flex items-center justify-center gap-2 px-4 py-4 bg-purple-600 hover:bg-purple-700 rounded-xl transition-all shadow-md text-white font-bold border border-white/20"
                                     >
                                         <ExternalLink className="w-5 h-5" />
                                         Browser Accessibility Guide

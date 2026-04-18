@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 export function Navbar() {
     const [isScrolled, setIsScrolled] = React.useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+    const [isAccessibilityPanelOpen, setIsAccessibilityPanelOpen] = React.useState(false);
     const pathname = usePathname();
     const menuRef = React.useRef<HTMLDivElement>(null);
     const menuButtonRef = React.useRef<HTMLButtonElement>(null);
@@ -19,8 +20,18 @@ export function Navbar() {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
         };
+        const handleAccessOpen = () => setIsAccessibilityPanelOpen(true);
+        const handleAccessClose = () => setIsAccessibilityPanelOpen(false);
+
         window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+        window.addEventListener("accessibility-panel-opened", handleAccessOpen);
+        window.addEventListener("accessibility-panel-closed", handleAccessClose);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("accessibility-panel-opened", handleAccessOpen);
+            window.removeEventListener("accessibility-panel-closed", handleAccessClose);
+        };
     }, []);
 
     React.useEffect(() => {
@@ -94,7 +105,8 @@ export function Navbar() {
         <>
             <motion.header
                 className={cn(
-                    "fixed top-0 left-0 right-0 z-[100] transition-all duration-300"
+                    "fixed top-0 left-0 right-0 z-[100] transition-all duration-500",
+                    isAccessibilityPanelOpen && "opacity-0 pointer-events-none -translate-y-full"
                 )}
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
