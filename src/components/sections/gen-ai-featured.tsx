@@ -9,45 +9,13 @@ export function GenAIFeatured() {
         <section className="py-24 md:py-32 px-4 bg-neutral-50 dark:bg-neutral-950/50 overflow-hidden">
             <div className="container mx-auto max-w-7xl">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                    {/* Image Side */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -40 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="relative order-2 lg:order-1"
-                    >
-                        <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                            <img
-                                src="/images/work/gen_ai_cover.jpg"
-                                alt="Designing for Inclusivity in the Age of Generative AI - Research Dashboard"
-                                className="w-full h-auto"
-                                loading="lazy"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-                        </div>
-                        
-                        {/* Floating Badge */}
-                        <div className="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-white dark:bg-neutral-900 rounded-2xl px-5 py-4 shadow-xl border border-neutral-200 dark:border-neutral-800">
-                            <div className="flex items-center gap-3">
-                                <div className="p-2 rounded-xl bg-[#7effa0]/10">
-                                    <BookOpen className="w-5 h-5 text-[#7effa0]" />
-                                </div>
-                                <div>
-                                    <p className="text-[10px] font-mono uppercase tracking-widest text-neutral-500">Published at</p>
-                                    <p className="text-sm font-bold text-neutral-900 dark:text-white">IEEE Xplore</p>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-
                     {/* Content Side */}
                     <motion.div
                         initial={{ opacity: 0, x: 40 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="order-1 lg:order-2"
+                        className="lg:order-2"
                     >
                         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#7effa0]/10 border border-[#7effa0]/20 mb-6">
                             <span className="w-1.5 h-1.5 rounded-full bg-[#7effa0] animate-pulse" />
@@ -89,14 +57,58 @@ export function GenAIFeatured() {
                             </div>
                         </div>
 
+                        {/* Mobile Image: Placed below description and numbers */}
+                        <div className="lg:hidden relative mb-8">
+                            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                                <img
+                                    src="/images/work/gen_ai_cover.jpg"
+                                    alt="Designing for Inclusivity"
+                                    className="w-full h-auto"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                            </div>
+                        </div>
+
                         <div className="lg:hidden">
                             <Link
                                 href="/work/gen-ai-inclusivity"
-                                className="inline-flex items-center gap-3 px-6 py-3 bg-[#7effa0] hover:bg-[#6ee890] text-black font-bold text-sm uppercase tracking-widest rounded-full transition-all group"
+                                className="inline-flex items-center justify-center gap-3 px-6 py-3 bg-[#7effa0] hover:bg-[#6ee890] text-black font-bold text-sm uppercase tracking-widest rounded-full transition-all group w-full"
                             >
                                 Explore case study
                                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </Link>
+                        </div>
+                    </motion.div>
+
+                    {/* Desktop Image Side */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -40 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="hidden lg:block relative lg:order-1"
+                    >
+                        <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                            <img
+                                src="/images/work/gen_ai_cover.jpg"
+                                alt="Designing for Inclusivity"
+                                className="w-full h-auto"
+                                loading="lazy"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                        </div>
+                        
+                        {/* Floating Badge */}
+                        <div className="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-white dark:bg-neutral-900 rounded-2xl px-5 py-4 shadow-xl border border-neutral-200 dark:border-neutral-800">
+                            <div className="flex items-center gap-3">
+                                <div className="p-2 rounded-xl bg-[#7effa0]/10">
+                                    <BookOpen className="w-5 h-5 text-[#7effa0]" />
+                                </div>
+                                <div>
+                                    <p className="text-[10px] font-mono uppercase tracking-widest text-neutral-500">Published at</p>
+                                    <p className="text-sm font-bold text-neutral-900 dark:text-white">IEEE Xplore</p>
+                                </div>
+                            </div>
                         </div>
                     </motion.div>
                 </div>
