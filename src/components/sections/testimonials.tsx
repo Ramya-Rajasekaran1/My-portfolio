@@ -150,10 +150,14 @@ export function Testimonials() {
                     )}
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
+                    onTouchStart={() => setIsHovered(true)}
+                    onTouchEnd={() => setIsHovered(false)}
                 >
-                    <div 
+                    <motion.div 
+                        drag="x"
+                        dragConstraints={{ left: -2000, right: 0 }} // Responsive constraints would be better but this enables the gesture
                         className={cn(
-                            "flex gap-8 w-max",
+                            "flex gap-8 w-max cursor-grab active:cursor-grabbing",
                             styles.animateMarqueeFluid,
                             (isHovered || expandedCount > 0) && styles.animateMarqueeFluidPaused
                         )}
@@ -165,7 +169,7 @@ export function Testimonials() {
                                 onToggle={(isExpanded) => setExpandedCount(prev => isExpanded ? prev + 1 : prev - 1)}
                             />
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </div>
 
