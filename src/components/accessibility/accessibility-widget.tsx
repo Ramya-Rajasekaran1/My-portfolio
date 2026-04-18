@@ -196,7 +196,7 @@ export function AccessibilityWidget() {
                             </div>
 
                             {/* Keyboard Shortcut Info */}
-                            <div className="px-6 py-4 bg-purple-700 dark:bg-purple-800 border-b border-white/10">
+                            <div className="px-6 py-4 bg-purple-950 dark:bg-black border-b border-white/10">
                                 <p className="text-sm text-white">
                                     <strong>Keyboard Shortcut:</strong> <kbd className="px-2 py-1 bg-white/10 rounded border border-white/20 text-xs font-mono text-white">Option+A</kbd>
                                 </p>
@@ -314,7 +314,7 @@ export function AccessibilityWidget() {
 
                                             alert(message);
                                         }}
-                                        className="w-full flex items-center justify-center gap-2 px-4 py-4 bg-purple-600 hover:bg-purple-700 rounded-xl transition-all shadow-md text-white font-bold border border-white/20"
+                                        className="w-full flex items-center justify-center gap-2 px-4 py-4 bg-purple-900 hover:bg-purple-950 rounded-xl transition-all shadow-md text-white font-bold border border-white/10"
                                     >
                                         <ExternalLink className="w-5 h-5" />
                                         Browser Accessibility Guide

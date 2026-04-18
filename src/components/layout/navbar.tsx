@@ -106,11 +106,14 @@ export function Navbar() {
             <motion.header
                 className={cn(
                     "fixed top-0 left-0 right-0 z-[100] transition-all duration-500",
-                    isAccessibilityPanelOpen && "opacity-0 pointer-events-none -translate-y-full"
+                    isAccessibilityPanelOpen && "opacity-0 pointer-events-none"
                 )}
                 initial={{ y: -100 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.5 }}
+                animate={{ y: isAccessibilityPanelOpen ? -130 : 0 }}
+                transition={{ 
+                    duration: 0.6, 
+                    ease: [0.4, 0, 0.2, 1]
+                }}
             >
                 <div className="container mx-auto px-4 flex justify-center">
                     <div className={cn(
