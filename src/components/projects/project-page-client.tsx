@@ -17,7 +17,7 @@ export function ProjectPageClient({ project }: { project: any }) {
                 >
                     <ArrowLeft className="w-4 h-4" />
                     Back to Work
-                </Link>
+                </a>
 
                 <article className="max-w-4xl mx-auto">
                     <div className="mb-12">
