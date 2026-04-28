@@ -80,7 +80,7 @@ export function FeaturedProjects() {
                                                     {item.title}
                                                 </h3>
                                                 <Link
-                                                    href={`/work/${item.slug}`}
+                                                    href={`/work/${item.slug}/`}
                                                     className="group hidden xl:inline-flex shrink-0 items-center gap-2 px-5 py-2.5 border border-white/30 rounded-full text-xs font-mono font-bold uppercase tracking-[0.2em] text-white hover:bg-white hover:text-black transition-all duration-200 mb-2"
                                                 >
                                                     Explore case study
@@ -105,7 +105,7 @@ export function FeaturedProjects() {
 
                                         {/* Mobile Image: Placed below description and numbers */}
                                         <div className="lg:hidden relative py-4">
-                                            <Link href={`/work/${item.slug}`} className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 shadow-2xl">
+                                            <Link href={`/work/${item.slug}/`} className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 shadow-2xl">
                                                 <img 
                                                     src={item.image} 
                                                     alt={item.alt}
@@ -116,7 +116,7 @@ export function FeaturedProjects() {
 
                                         <div className="pt-6 xl:hidden">
                                             <Link
-                                                href={`/work/${item.slug}`}
+                                                href={`/work/${item.slug}/`}
                                                 className="group inline-flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-full text-xs font-mono font-bold uppercase tracking-[0.2em] hover:bg-blush transition-all duration-200 w-full justify-center"
                                             >
                                                 Explore case study
@@ -128,7 +128,7 @@ export function FeaturedProjects() {
 
                                 {/* Desktop Image Column */}
                                 <div className="hidden lg:block lg:order-1 relative">
-                                    <Link href={`/work/${item.slug}`} className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 group-hover:border-blush/30 transition-colors shadow-2xl">
+                                    <Link href={`/work/${item.slug}/`} className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 group-hover:border-blush/30 transition-colors shadow-2xl">
                                         <img 
                                             src={item.image} 
                                             alt={item.alt}
@@ -144,7 +144,7 @@ export function FeaturedProjects() {
 
                 <div className="mt-40 text-center">
                     <Link
-                        href="/work"
+                        href="/work/"
                         className="inline-flex items-center gap-4 px-10 py-5 bg-white text-black font-black uppercase tracking-widest text-sm rounded-full hover:bg-blush transition-colors group"
                     >
                         Explore Research Library

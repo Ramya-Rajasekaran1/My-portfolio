@@ -69,9 +69,9 @@ export function Navbar() {
     }, [isMobileMenuOpen]);
 
     const navLinks = [
-        { name: "About", href: "/about" },
-        { name: "Work", href: "/work" },
-        { name: "Contact", href: "/contact" },
+        { name: "About", href: "/about/" },
+        { name: "Work", href: "/work/" },
+        { name: "Contact", href: "/contact/" },
     ];
 
     const ScribbleUnderline = () => (
