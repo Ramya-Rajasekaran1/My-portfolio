@@ -121,9 +121,9 @@ export function Navbar() {
                         isScrolled ? "glass py-2 px-4 mt-4 max-w-lg backdrop-blur-3xl" : "bg-transparent p-4 mt-6 max-w-5xl"
                     )}>
                         {/* Logo */}
-                        <Link href="/" className="text-xl font-serif font-bold tracking-tight z-50 dark:text-ivory">
+                        <a href="/" className="text-xl font-serif font-bold tracking-tight z-50 dark:text-ivory">
                             Ramya<span className="text-blush">.</span>
-                        </Link>
+                        </a>
 
                         {/* Desktop Nav */}
                         <nav aria-label="Main navigation" className={cn(
@@ -143,7 +143,7 @@ export function Navbar() {
                                         className="text-xs font-bold font-outfit text-neutral-600 dark:text-parchment hover:text-black dark:hover:text-ivory transition-colors uppercase tracking-widest px-1 py-1"
                                     >
                                         {link.name}
-                                    </Link>
+                                    </a>
                                     <ScribbleUnderline />
                                 </motion.div>
                             ))}
@@ -207,7 +207,7 @@ export function Navbar() {
                                         className="block py-2 border-b border-neutral-100 dark:border-neutral-800"
                                     >
                                         {link.name}
-                                    </Link>
+                                    </a>
                                 ))}
                             </nav>
                         </motion.div>

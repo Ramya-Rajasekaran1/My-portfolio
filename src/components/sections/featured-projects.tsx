@@ -85,7 +85,7 @@ export function FeaturedProjects() {
                                                 >
                                                     Explore case study
                                                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                                                </Link>
+                                                </a>
                                             </div>
                                         </div>
 
@@ -105,13 +105,13 @@ export function FeaturedProjects() {
 
                                         {/* Mobile Image: Placed below description and numbers */}
                                         <div className="lg:hidden relative py-4">
-                                            <Link href={`/work/${item.slug}/`} className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 shadow-2xl">
+                                            <a href={`/work/${item.slug}/`} className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 shadow-2xl">
                                                 <img 
                                                     src={item.image} 
                                                     alt={item.alt}
                                                     className="w-full h-full object-left object-cover"
                                                 />
-                                            </Link>
+                                            </a>
                                         </div>
 
                                         <div className="pt-6 xl:hidden">
@@ -121,21 +121,21 @@ export function FeaturedProjects() {
                                             >
                                                 Explore case study
                                                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                                            </Link>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
 
                                 {/* Desktop Image Column */}
                                 <div className="hidden lg:block lg:order-1 relative">
-                                    <Link href={`/work/${item.slug}/`} className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 group-hover:border-blush/30 transition-colors shadow-2xl">
+                                    <a href={`/work/${item.slug}/`} className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 group-hover:border-blush/30 transition-colors shadow-2xl">
                                         <img 
                                             src={item.image} 
                                             alt={item.alt}
                                             className="w-full h-full object-left object-cover transition-transform duration-700 group-hover:scale-105"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    </Link>
+                                    </a>
                                 </div>
                             </div>
                         </motion.div>
@@ -149,7 +149,7 @@ export function FeaturedProjects() {
                     >
                         Explore Research Library
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                    </Link>
+                    </a>
                 </div>
             </div>
         </section>
