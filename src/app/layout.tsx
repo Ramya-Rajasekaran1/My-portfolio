@@ -50,16 +50,8 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          {/* Overlays disabled to prevent click-blocking issues */}
-          {/* <NoiseOverlay /> */}
-          <SkipLink />
-          <div className="relative z-0 pointer-events-none">
-            <ConditionalBackground />
-          </div>
-
-          <Navbar />
-          
-          <main id="main-content" className="relative z-10">
+          <ConditionalBackground />
+          <main className="relative">
             {children}
           </main>
 
@@ -67,6 +59,8 @@ export default function RootLayout({
           <ScrollToTop />
           <AccessibilityWidget />
           <ReaderView />
+          <SkipLink />
+          <Navbar />
           {/* <InteractiveCursor /> */}
         </ThemeProvider>
       </body>

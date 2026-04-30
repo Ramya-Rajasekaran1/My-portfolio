@@ -161,7 +161,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                             Unlock Case Study
                         </button>
                     </form>
-                    <Link href="/work" style={{ display: "inline-block", marginTop: 24, fontSize: 14, color: "#888", textDecoration: "underline" }}>
+                    <Link href="/work/" style={{ display: "inline-block", marginTop: 24, fontSize: 14, color: "#888", textDecoration: "underline" }}>
                         Return to Work
                     </Link>
                 </div>
@@ -189,10 +189,10 @@ export function ContentVerifyProject({ project }: { project: Project }) {
             `}</style>
 
             {/* Navigation */}
-            <nav className="fixed top-0 left-0 right-0 z-50 bg-[#FDFBF7]/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800">
+            <nav className="fixed top-0 left-0 right-0 z-[5000] bg-[#FDFBF7]/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800 pointer-events-auto">
                 <div className="container mx-auto px-4 h-16 flex items-center justify-between">
                     <Link
-                        href="/work"
+                        href="/work/"
                         className="inline-flex items-center gap-2 text-sm font-sans font-medium text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
                     >
                         <ArrowLeft className="w-4 h-4" />
@@ -625,7 +625,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                         {/* Backdrop for click outside */}
                         {focusedBox && (
                             <div
-                                className="fixed inset-0 z-10 cursor-pointer"
+                                className="fixed inset-0 z-[4900] cursor-pointer bg-black/20"
                                 onClick={(e) => { e.stopPropagation(); setFocusedBox(null); }}
                             />
                         )}

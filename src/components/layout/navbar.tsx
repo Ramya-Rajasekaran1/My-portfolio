@@ -69,9 +69,9 @@ export function Navbar() {
     }, [isMobileMenuOpen]);
 
     const navLinks = [
-        { name: "About", href: "/about" },
-        { name: "Work", href: "/work" },
-        { name: "Contact", href: "/contact" },
+        { name: "About", href: "/about/" },
+        { name: "Work", href: "/work/" },
+        { name: "Contact", href: "/contact/" },
     ];
 
     const ScribbleUnderline = () => (
@@ -95,125 +95,94 @@ export function Navbar() {
             />
         </svg>
     );
-
-    const isProjectPage = pathname?.startsWith("/work/") && 
-                          pathname.replace(/\/$/, "") !== "/work";
-
+    const isProjectPage = pathname?.startsWith("/work/") && pathname !== "/work" && pathname !== "/work/";
     if (isProjectPage) return null;
 
     return (
-        <>
-            <motion.header
-                className={cn(
-                    "fixed top-0 left-0 right-0 z-[100] transition-all duration-500",
-                    isAccessibilityPanelOpen && "opacity-0 pointer-events-none"
-                )}
-                initial={{ y: -100 }}
-                animate={{ y: isAccessibilityPanelOpen ? -130 : 0 }}
-                transition={{ 
-                    duration: 0.6, 
-                    ease: [0.4, 0, 0.2, 1]
-                }}
-            >
-                <div className="container mx-auto px-4 flex justify-center">
-                    <div className={cn(
-                        "flex items-center justify-between rounded-full transition-all duration-500 w-full",
-                        isScrolled ? "glass py-2 px-4 mt-4 max-w-lg backdrop-blur-3xl" : "bg-transparent p-4 mt-6 max-w-5xl"
+        <header
+            id="navbar"
+            className={cn(
+                "fixed top-0 left-0 right-0 z-[10000] transition-all duration-500 pointer-events-none",
+                isScrolled ? "py-2" : "py-4"
+            )}
+        >
+            <div className="container mx-auto px-4 flex justify-center pointer-events-none">
+                <div className={cn(
+                    "flex items-center justify-between rounded-full transition-all duration-500 w-full relative z-[3001] pointer-events-auto",
+                    isScrolled ? "glass py-2 px-6 max-w-lg shadow-2xl" : "bg-transparent p-4 max-w-5xl"
+                )}>
+                    <a 
+                        href="/" 
+                        className="text-xl font-serif font-bold tracking-tight z-[10000] dark:text-ivory relative pointer-events-auto"
+                    >
+                        Ramya<span className="text-blush">.</span>
+                    </a>
+
+                    {/* Desktop Nav */}
+                    <nav aria-label="Main navigation" className={cn(
+                        "hidden md:flex items-center transition-all duration-500 z-[10000] relative pointer-events-auto",
+                        isScrolled ? "gap-6" : "gap-10"
                     )}>
-                        {/* Logo */}
-                        <Link href="/" className="text-xl font-serif font-bold tracking-tight z-50 dark:text-ivory">
-                            Ramya<span className="text-blush">.</span>
-                        </Link>
-
-                        {/* Desktop Nav */}
-                        <nav aria-label="Main navigation" className={cn(
-                            "hidden md:flex items-center transition-all duration-500",
-                            isScrolled ? "gap-4" : "gap-8"
-                        )}>
-                            {navLinks.map((link) => (
-                                <motion.div
-                                    key={link.name}
-                                    initial="initial"
-                                    whileHover="hover"
-                                    className="relative flex items-center"
-                                >
-                                    <Link
-                                        href={link.href}
-                                        prefetch={true}
-                                        className="text-xs font-bold font-outfit text-neutral-600 dark:text-parchment hover:text-black dark:hover:text-ivory transition-colors uppercase tracking-widest px-1 py-1"
-                                    >
-                                        {link.name}
-                                    </Link>
-                                    <ScribbleUnderline />
-                                </motion.div>
-                            ))}
-                        </nav>
-
-                        {/* Actions */}
-                        <div className="hidden md:flex items-center gap-4">
-                            <button
-                                className="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-card-hover transition-colors"
-                                aria-label="Search"
+                        {navLinks.map((link) => (
+                            <a
+                                key={link.name}
+                                href={link.href}
+                                className={cn(
+                                    "text-sm font-medium tracking-wide transition-all duration-300 px-2 py-1 z-[10000] cursor-pointer relative pointer-events-auto",
+                                    pathname?.startsWith(link.href) ? "text-blush" : "text-neutral-600 dark:text-parchment hover:text-blush"
+                                )}
                             >
-                                <Search className="w-5 h-5 text-neutral-600 dark:text-parchment" />
-                            </button>
-                        </div>
+                                {link.name}
+                                {pathname?.startsWith(link.href) && (
+                                    <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blush rounded-full" />
+                                )}
+                            </a>
+                        ))}
 
-                        {/* Mobile Actions */}
-                        <div className="flex md:hidden items-center gap-2">
-                            <button
-                                className="p-2 z-50 text-neutral-600 dark:text-parchment"
-                                onClick={() => window.dispatchEvent(new Event("toggle-accessibility"))}
-                                aria-label="Open accessibility settings"
-                            >
-                                <Accessibility className="w-5 h-5" />
-                            </button>
+                        <button
+                            onClick={() => window.dispatchEvent(new Event("toggle-accessibility"))}
+                            className="p-2 rounded-full hover:bg-white/10 transition-colors dark:text-ivory z-[10000] relative pointer-events-auto"
+                            aria-label="Open accessibility settings"
+                        >
+                            <Accessibility className="w-5 h-5" />
+                        </button>
+                    </nav>
 
-                            {/* Mobile Menu Toggle */}
-                            <button
-                                className="p-2 z-50"
-                                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                                aria-label="Toggle mobile menu"
-                                aria-expanded={isMobileMenuOpen}
-                                aria-controls="mobile-menu"
-                            >
-                                {isMobileMenuOpen ? <X /> : <Menu />}
-                            </button>
-                        </div>
-                    </div>
+                    {/* Mobile Menu Toggle */}
+                    <button
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        className="md:hidden p-2 dark:text-ivory z-[10000] relative pointer-events-auto"
+                        aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                    >
+                        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
                 </div>
-            </motion.header >
+            </div>
 
             {/* Mobile Menu Overlay */}
             <AnimatePresence>
-                {
-                    isMobileMenuOpen && (
-                        <motion.div
-                            ref={menuRef}
-                            id="mobile-menu"
-                            role="navigation"
-                            aria-label="Mobile navigation"
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            className="fixed inset-0 z-40 bg-white/95 dark:bg-black/95 backdrop-blur-xl pt-24 px-6 md:hidden"
-                        >
-                            <nav className="flex flex-col gap-6 text-2xl font-black font-outfit uppercase tracking-tighter">
-                                {navLinks.map((link) => (
-                                    <Link
-                                        key={link.name}
-                                        href={link.href}
-                                        onClick={() => setIsMobileMenuOpen(false)}
-                                        className="block py-2 border-b border-neutral-100 dark:border-neutral-800"
-                                    >
-                                        {link.name}
-                                    </Link>
-                                ))}
-                            </nav>
-                        </motion.div>
-                    )
-                }
-            </AnimatePresence >
-        </>
+                {isMobileMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        className="fixed inset-0 z-[10000] bg-white/95 dark:bg-black/95 backdrop-blur-xl pt-24 px-6 md:hidden"
+                    >
+                        <div className="flex flex-col gap-8">
+                             {navLinks.map((link) => (
+                                <a
+                                    key={link.name}
+                                    href={link.href}
+                                    className="text-4xl font-serif font-bold text-neutral-900 dark:text-ivory hover:text-blush transition-colors z-[10000] cursor-pointer relative pointer-events-auto"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    {link.name}
+                                </a>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </header>
     );
 }

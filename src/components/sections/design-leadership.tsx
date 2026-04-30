@@ -122,7 +122,7 @@ export function DesignLeadership() {
                 <div key={colIdx} className="flex-1 flex flex-col gap-6 w-full">
                     <AnimatePresence mode="popLayout">
                         {column.map((item, i) => (
-                            <motion.div
+                            <motion.button
                                 key={item.id}
                                 layout
                                 initial={{ opacity: 0, scale: 0.9 }}
@@ -130,8 +130,9 @@ export function DesignLeadership() {
                                 exit={{ opacity: 0, scale: 0.9 }}
                                 transition={{ duration: 0.4, delay: i * 0.05 }}
                                 onClick={() => setLightboxItem(item)}
-                                className="group relative cursor-pointer rounded-2xl overflow-hidden bg-white dark:bg-card border border-neutral-100 dark:border-white/5 hover:border-blush/40 animate-in fade-in zoom-in duration-500 hover:shadow-2xl transition-all"
+                                className="group relative cursor-pointer rounded-2xl overflow-hidden bg-white dark:bg-card border border-neutral-100 dark:border-white/5 hover:border-blush/40 animate-in fade-in zoom-in duration-500 hover:shadow-2xl transition-all w-full text-left outline-none focus-visible:ring-2 focus-visible:ring-blush"
                                 style={{ transformStyle: 'preserve-3d', backfaceVisibility: 'hidden' }}
+                                aria-label={`View details for ${item.title} at ${item.location}`}
                             >
                                 {item.type === "image" ? (
                                 <img
@@ -177,7 +178,7 @@ export function DesignLeadership() {
                                         ))}
                                     </div>
                                 </div>
-                            </motion.div>
+                            </motion.button>
                         ))}
                     </AnimatePresence>
                 </div>

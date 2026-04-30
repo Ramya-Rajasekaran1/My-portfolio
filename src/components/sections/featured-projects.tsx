@@ -47,8 +47,9 @@ const featuredItems = [
 ];
 
 export function FeaturedProjects() {
+
     return (
-        <section className="py-24 md:py-40 bg-[#0C0A14]">
+        <section id="work" className="py-24 md:py-40 bg-[#0C0A14] relative z-20">
             <div className="container mx-auto px-6 max-w-7xl">
                 <div className="mb-24">
                     <h2 className="text-4xl md:text-6xl font-extralight tracking-tight text-white mb-6 font-outfit">Selected Work</h2>
@@ -76,16 +77,21 @@ export function FeaturedProjects() {
                                                 {item.tag}
                                             </span>
                                             <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-6">
-                                                <h3 className="text-3xl md:text-5xl font-outfit font-extralight text-white leading-tight">
-                                                    {item.title}
-                                                </h3>
-                                                <Link
-                                                    href={`/work/${item.slug}`}
-                                                    className="group hidden xl:inline-flex shrink-0 items-center gap-2 px-5 py-2.5 border border-white/30 rounded-full text-xs font-mono font-bold uppercase tracking-[0.2em] text-white hover:bg-white hover:text-black transition-all duration-200 mb-2"
+                                                <a 
+                                                    href={`/work/${item.slug}/`} 
+                                                    className="hover:text-blush transition-colors z-[10000] relative cursor-pointer pointer-events-auto"
+                                                >
+                                                    <h3 className="text-3xl md:text-5xl font-outfit font-extralight text-white leading-tight">
+                                                        {item.title}
+                                                    </h3>
+                                                </a>
+                                                <a
+                                                    href={`/work/${item.slug}/`}
+                                                    className="group hidden xl:inline-flex shrink-0 items-center gap-2 px-5 py-2.5 border border-white/30 rounded-full text-xs font-mono font-bold uppercase tracking-[0.2em] text-white hover:bg-white hover:text-black transition-all duration-200 mb-2 z-[10000] relative cursor-pointer pointer-events-auto"
                                                 >
                                                     Explore case study
                                                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                                                </Link>
+                                                </a>
                                             </div>
                                         </div>
 
@@ -105,37 +111,42 @@ export function FeaturedProjects() {
 
                                         {/* Mobile Image: Placed below description and numbers */}
                                         <div className="lg:hidden relative py-4">
-                                            <Link href={`/work/${item.slug}`} className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 shadow-2xl">
-                                                <img 
-                                                    src={item.image} 
+                                            <a 
+                                                href={`/work/${item.slug}/`} 
+                                                className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 shadow-2xl z-[10000] cursor-pointer pointer-events-auto"
+                                            >
+                                                <img
+                                                    src={item.image}
                                                     alt={item.alt}
                                                     className="w-full h-full object-left object-cover"
                                                 />
-                                            </Link>
+                                            </a>
                                         </div>
 
                                         <div className="pt-6 xl:hidden">
-                                            <Link
-                                                href={`/work/${item.slug}`}
-                                                className="group inline-flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-full text-xs font-mono font-bold uppercase tracking-[0.2em] hover:bg-blush transition-all duration-200 w-full justify-center"
+                                            <a
+                                                href={`/work/${item.slug}/`}
+                                                className="group inline-flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-full text-xs font-mono font-bold uppercase tracking-[0.2em] hover:bg-blush transition-all duration-200 w-full justify-center z-[10000] relative cursor-pointer pointer-events-auto"
                                             >
                                                 Explore case study
                                                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                                            </Link>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
 
-                                {/* Desktop Image Column */}
                                 <div className="hidden lg:block lg:order-1 relative">
-                                    <Link href={`/work/${item.slug}`} className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 group-hover:border-blush/30 transition-colors shadow-2xl">
-                                        <img 
-                                            src={item.image} 
+                                    <a 
+                                        href={`/work/${item.slug}/`} 
+                                        className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 group-hover:border-blush/30 transition-colors shadow-2xl z-[10000] cursor-pointer pointer-events-auto"
+                                    >
+                                        <img
+                                            src={item.image}
                                             alt={item.alt}
                                             className="w-full h-full object-left object-cover transition-transform duration-700 group-hover:scale-105"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    </Link>
+                                    </a>
                                 </div>
                             </div>
                         </motion.div>
@@ -143,13 +154,13 @@ export function FeaturedProjects() {
                 </div>
 
                 <div className="mt-40 text-center">
-                    <Link
-                        href="/work"
-                        className="inline-flex items-center gap-4 px-10 py-5 bg-white text-black font-black uppercase tracking-widest text-sm rounded-full hover:bg-blush transition-colors group"
+                    <a
+                        href="/work/"
+                        className="inline-flex items-center gap-4 px-10 py-5 bg-white text-black font-black uppercase tracking-widest text-sm rounded-full hover:bg-blush transition-colors group z-[10000] relative cursor-pointer pointer-events-auto"
                     >
                         Explore Research Library
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                    </Link>
+                    </a>
                 </div>
             </div>
         </section>

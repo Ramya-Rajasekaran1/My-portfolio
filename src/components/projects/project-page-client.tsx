@@ -12,7 +12,7 @@ export function ProjectPageClient({ project }: { project: any }) {
         <main className="min-h-screen pt-32 pb-24 bg-white dark:bg-neutral-950 transition-colors duration-500">
             <div className="container mx-auto px-4">
                 <Link
-                    href="/work"
+                    href="/work/"
                     className="inline-flex items-center gap-2 text-xs font-bold font-outfit uppercase tracking-widest text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors mb-8"
                 >
                     <ArrowLeft className="w-4 h-4" />

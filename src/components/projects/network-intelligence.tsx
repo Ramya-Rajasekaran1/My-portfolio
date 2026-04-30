@@ -45,7 +45,7 @@ export function NetworkIntelligenceProject({ project }: NetworkIntelligenceProje
             {/* Custom Navigation */}
             <div className="fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center mix-blend-difference">
                 <Link
-                    href="/work"
+                    href="/work/"
                     className="inline-flex items-center gap-2 text-white hover:text-purple-400 transition-colors uppercase tracking-widest text-sm font-bold"
                 >
                     <ArrowLeft className="w-4 h-4" />

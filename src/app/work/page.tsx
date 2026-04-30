@@ -3,13 +3,13 @@ import { projects } from "@/lib/data";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Work | Ramya Rajsekaran",
+    title: "Work | Ramya Rajasekaran",
     description: "A selection of my recent work in UX Research, Product Design, and UI Design.",
 };
 
 export default function WorkPage() {
     return (
-        <main id="main-content" className="min-h-screen pt-32 pb-24">
+        <main className="min-h-screen pt-32 pb-24 relative z-20">
             <div className="container mx-auto px-4">
                 <div className="max-w-4xl mb-16">
                     <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold mb-6 tracking-tight">Selected Work</h1>

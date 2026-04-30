@@ -6,7 +6,7 @@ import { DesignLeadership } from "@/components/sections/design-leadership";
 
 export default function Home() {
   return (
-    <main id="main-content" className="min-h-screen">
+    <main className="min-h-screen">
       <Hero />
       <FeaturedProjects />
       <DesignLeadership />

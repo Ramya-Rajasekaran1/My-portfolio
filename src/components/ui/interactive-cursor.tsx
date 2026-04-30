@@ -55,8 +55,7 @@ export function InteractiveCursor() {
     if (!isVisible) return null;
 
     return (
-        <div className="fixed inset-0 pointer-events-none z-[9999] overflow-hidden hidden md:block">
-            {/* Main Crosshair Container */}
+        <div className="pointer-events-none z-[9999] hidden md:block">
             <motion.div
                 style={{
                     x: springX,
@@ -64,7 +63,7 @@ export function InteractiveCursor() {
                     translateX: "-50%",
                     translateY: "-50%"
                 }}
-                className="absolute"
+                className="fixed top-0 left-0"
             >
                 {/* Horizontal Scale Line */}
                 <motion.div
@@ -126,7 +125,7 @@ export function InteractiveCursor() {
                     scale: isHovering ? 1.5 : 1
                 }}
                 transition={{ rotate: { duration: 15, repeat: Infinity, ease: "linear" } }}
-                className="absolute w-20 h-20 border border-dashed border-neutral-900/10 dark:border-white/10 flex items-center justify-center opacity-40 transition-colors duration-300"
+                className="fixed top-0 left-0 w-20 h-20 border border-dashed border-neutral-900/10 dark:border-white/10 flex items-center justify-center opacity-40 transition-colors duration-300"
             >
                 <div className="w-1 h-1 bg-neutral-900/20 dark:bg-white/20 rounded-full" />
             </motion.div>
