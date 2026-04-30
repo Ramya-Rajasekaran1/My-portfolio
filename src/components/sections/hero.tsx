@@ -128,26 +128,22 @@ export function Hero() {
                     <div className="absolute inset-0 bg-gradient-to-br from-white/[0.1] to-transparent pointer-events-none rounded-[inherit]" />
 
                     <div className="relative z-10">
-                        <LayoutGroup id="hero-main">
-                            <div className="flex flex-col">
-                                {/* Fixed Smooth Transition: Use absolute positioning for the inner transition or careful sizing */}
-                                <motion.div
-                                    layout
-                                    transition={{
-                                        layout: { type: "spring", stiffness: 300, damping: 30 },
-                                    }}
-                                    className={cn(
-                                        "flex gap-4 md:gap-10",
-                                        hasScrolled
-                                            ? "flex-col md:flex-row md:items-start text-left"
-                                            : "flex-col items-center text-center"
-                                    )}
-                                >
-                                    <motion.div layout transition={{ layout: { type: "spring", stiffness: 300, damping: 30 } }}>
+                        <div className="flex flex-col">
+                            {/* Fixed Smooth Transition: Use absolute positioning for the inner transition or careful sizing */}
+                            <motion.div
+                                transition={{
+                                    layout: { type: "spring", stiffness: 300, damping: 30 },
+                                }}
+                                className={cn(
+                                    "flex gap-4 md:gap-10",
+                                    hasScrolled
+                                        ? "flex-col md:flex-row md:items-start text-left"
+                                        : "flex-col items-center text-center"
+                                )}
+                            >
+                                    <div>
                                         <motion.div
-                                            layout
                                             variants={itemVariants}
-                                            transition={{ layout: { type: "spring", stiffness: 300, damping: 30 } }}
 
                                             className={cn(
                                                 "rounded-2xl md:rounded-3xl flex items-center justify-center relative shrink-0 bg-white dark:bg-white/5 border border-neutral-200 dark:border-white/10 p-2 shadow-sm",
@@ -163,22 +159,18 @@ export function Hero() {
                                     </motion.div>
 
                                     <motion.div
-                                        layout
                                         variants={itemVariants}
-                                        transition={{ layout: { type: "spring", stiffness: 300, damping: 30 } }}
                                         className={cn(
                                             "flex flex-col",
                                             hasScrolled ? "gap-0.5 items-start" : "gap-2 items-center"
                                         )}
                                     >
                                         <motion.h1
-                                            layout
                                             className="text-2xl md:text-5xl font-extralight tracking-tight text-neutral-900 dark:text-ivory leading-none font-outfit"
                                         >
                                             Ramya Rajasekaran
                                         </motion.h1>
                                         <motion.p
-                                            layout
                                             className="text-[13px] md:text-lg leading-tight font-bold font-outfit text-blush-text dark:text-blush tracking-[0.1em]"
                                         >
                                             UX design specialist
@@ -186,7 +178,6 @@ export function Hero() {
                                     </motion.div>
                                 </motion.div>
                             </div>
-                        </LayoutGroup>
 
                         <motion.div style={{ maxHeight: expandableMaxHeight, overflow: "hidden" }}>
                             <div className="flex flex-col gap-4 md:gap-8 pt-4 md:pt-8 pb-2">

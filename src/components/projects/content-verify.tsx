@@ -189,7 +189,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
             `}</style>
 
             {/* Navigation */}
-            <nav className="fixed top-0 left-0 right-0 z-50 bg-[#FDFBF7]/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800">
+            <nav className="fixed top-0 left-0 right-0 z-[5000] bg-[#FDFBF7]/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800 pointer-events-auto">
                 <div className="container mx-auto px-4 h-16 flex items-center justify-between">
                     <Link
                         href="/work/"
@@ -625,7 +625,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                         {/* Backdrop for click outside */}
                         {focusedBox && (
                             <div
-                                className="fixed inset-0 z-10 cursor-pointer"
+                                className="fixed inset-0 z-[4900] cursor-pointer bg-black/20"
                                 onClick={(e) => { e.stopPropagation(); setFocusedBox(null); }}
                             />
                         )}

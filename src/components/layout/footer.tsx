@@ -10,7 +10,7 @@ export function Footer() {
               Ramya<span className="text-purple-600 dark:text-purple-400">.</span>
             </Link>
             <p className="text-sm text-neutral-500 dark:text-neutral-400 font-sans">
-              © {new Date().getFullYear()} Ramya Rajsekaran. All rights reserved.
+              © {new Date().getFullYear()} Ramya Rajasekaran. All rights reserved.
             </p>
           </div>
         </div>

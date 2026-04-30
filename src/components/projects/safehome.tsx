@@ -44,7 +44,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
       }}
     >
       {/* ── STICKY INDEX ── */}
-      <div style={{ position: "fixed", left: 40, top: "50%", transform: "translateY(-50%)", zIndex: 100, display: "flex", flexDirection: "column", gap: 14, opacity: showIndex ? 1 : 0, pointerEvents: showIndex ? "auto" : "none", transition: "all 0.4s ease" }} className="hidden lg:flex">
+      <div style={{ position: "fixed", left: 40, top: "50%", transform: "translateY(-50%)", zIndex: 5000, display: "flex", flexDirection: "column", gap: 14, opacity: showIndex ? 1 : 0, pointerEvents: showIndex ? "auto" : "none", transition: "all 0.4s ease" }} className="hidden lg:flex pointer-events-auto">
         {sections.map((s) => (
           <button
             key={s.id}
@@ -95,7 +95,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
             `}</style>
 
       {/* ── NAV ── */}
-      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50, background: "rgba(10,10,10,0.92)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 5000, background: "rgba(10,10,10,0.92)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.08)", pointerEvents: "auto" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 40px", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <Link href="/work/" style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, fontFamily: "'Inter', sans-serif", color: "#d1d5db", textDecoration: "none" }}>
             <ArrowLeft size={16} /> Back to Work
