@@ -102,7 +102,7 @@ export function Navbar() {
         <header
             id="navbar"
             className={cn(
-                "fixed top-0 left-0 right-0 z-[10000] transition-all duration-500 pointer-events-none",
+                "fixed top-0 left-0 right-0 z-[10000] transition-all duration-500 pointer-events-auto",
                 isScrolled ? "py-2" : "py-4"
             )}
         >

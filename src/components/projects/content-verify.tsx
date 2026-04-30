@@ -191,13 +191,13 @@ export function ContentVerifyProject({ project }: { project: Project }) {
             {/* Navigation */}
             <nav className="fixed top-0 left-0 right-0 z-[5000] bg-[#FDFBF7]/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800 pointer-events-auto">
                 <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-                    <Link
+                    <a
                         href="/work/"
                         className="inline-flex items-center gap-2 text-sm font-sans font-medium text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
                     >
                         <ArrowLeft className="w-4 h-4" />
                         Back to Work
-                    </Link>
+                    </a>
                     <span className="text-sm font-sans font-bold uppercase tracking-wider text-neutral-400 dark:text-neutral-600">
                         ContentVerify Case Study
                     </span>
