@@ -102,7 +102,7 @@ export function Navbar() {
         <header
             id="navbar"
             className={cn(
-                "fixed top-0 left-0 right-0 z-[3000] transition-all duration-500 pointer-events-none",
+                "fixed top-0 left-0 right-0 z-[10000] transition-all duration-500 pointer-events-none",
                 isScrolled ? "py-2" : "py-4"
             )}
         >
@@ -113,14 +113,15 @@ export function Navbar() {
                 )}>
                     <Link 
                         href="/" 
-                        className="text-xl font-serif font-bold tracking-tight z-[3002] dark:text-ivory relative pointer-events-auto"
+                        prefetch={false}
+                        className="text-xl font-serif font-bold tracking-tight z-[10000] dark:text-ivory relative pointer-events-auto"
                     >
                         Ramya<span className="text-blush">.</span>
                     </Link>
 
                     {/* Desktop Nav */}
                     <nav aria-label="Main navigation" className={cn(
-                        "hidden md:flex items-center transition-all duration-500 z-[3002] relative pointer-events-auto",
+                        "hidden md:flex items-center transition-all duration-500 z-[10000] relative pointer-events-auto",
                         isScrolled ? "gap-6" : "gap-10"
                     )}>
                         {navLinks.map((link) => (
@@ -128,7 +129,7 @@ export function Navbar() {
                                 key={link.name}
                                 href={link.href}
                                 className={cn(
-                                    "text-sm font-medium tracking-wide transition-all duration-300 px-2 py-1 z-[3002] cursor-pointer relative pointer-events-auto",
+                                    "text-sm font-medium tracking-wide transition-all duration-300 px-2 py-1 z-[10000] cursor-pointer relative pointer-events-auto",
                                     pathname?.startsWith(link.href) ? "text-blush" : "text-neutral-600 dark:text-parchment hover:text-blush"
                                 )}
                             >
@@ -141,7 +142,7 @@ export function Navbar() {
 
                         <button
                             onClick={() => window.dispatchEvent(new Event("toggle-accessibility"))}
-                            className="p-2 rounded-full hover:bg-white/10 transition-colors dark:text-ivory z-[4100] relative pointer-events-auto"
+                            className="p-2 rounded-full hover:bg-white/10 transition-colors dark:text-ivory z-[10000] relative pointer-events-auto"
                             aria-label="Open accessibility settings"
                         >
                             <Accessibility className="w-5 h-5" />
@@ -151,7 +152,7 @@ export function Navbar() {
                     {/* Mobile Menu Toggle */}
                     <button
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className="md:hidden p-2 dark:text-ivory z-[4100] relative pointer-events-auto"
+                        className="md:hidden p-2 dark:text-ivory z-[10000] relative pointer-events-auto"
                         aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
                     >
                         {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -166,14 +167,14 @@ export function Navbar() {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="fixed inset-0 z-[999] bg-white/95 dark:bg-black/95 backdrop-blur-xl pt-24 px-6 md:hidden"
+                        className="fixed inset-0 z-[10000] bg-white/95 dark:bg-black/95 backdrop-blur-xl pt-24 px-6 md:hidden"
                     >
                         <div className="flex flex-col gap-8">
                              {navLinks.map((link) => (
                                 <Link
                                     key={link.name}
                                     href={link.href}
-                                    className="text-4xl font-serif font-bold text-neutral-900 dark:text-ivory hover:text-blush transition-colors z-[4100] cursor-pointer relative pointer-events-auto"
+                                    className="text-4xl font-serif font-bold text-neutral-900 dark:text-ivory hover:text-blush transition-colors z-[10000] cursor-pointer relative pointer-events-auto"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
                                     {link.name}

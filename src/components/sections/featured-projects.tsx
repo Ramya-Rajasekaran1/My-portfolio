@@ -79,7 +79,7 @@ export function FeaturedProjects() {
                                             <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-6">
                                                 <Link 
                                                     href={`/work/${item.slug}/`} 
-                                                    className="hover:text-blush transition-colors z-[4100] relative cursor-pointer pointer-events-auto"
+                                                    className="hover:text-blush transition-colors z-10 relative cursor-pointer pointer-events-auto"
                                                 >
                                                     <h3 className="text-3xl md:text-5xl font-outfit font-extralight text-white leading-tight">
                                                         {item.title}
@@ -87,7 +87,7 @@ export function FeaturedProjects() {
                                                 </Link>
                                                 <Link
                                                     href={`/work/${item.slug}/`}
-                                                    className="group hidden xl:inline-flex shrink-0 items-center gap-2 px-5 py-2.5 border border-white/30 rounded-full text-xs font-mono font-bold uppercase tracking-[0.2em] text-white hover:bg-white hover:text-black transition-all duration-200 mb-2 z-[4100] relative cursor-pointer pointer-events-auto"
+                                                    className="group hidden xl:inline-flex shrink-0 items-center gap-2 px-5 py-2.5 border border-white/30 rounded-full text-xs font-mono font-bold uppercase tracking-[0.2em] text-white hover:bg-white hover:text-black transition-all duration-200 mb-2 z-10 relative cursor-pointer pointer-events-auto"
                                                 >
                                                     Explore case study
                                                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -113,7 +113,7 @@ export function FeaturedProjects() {
                                         <div className="lg:hidden relative py-4">
                                             <Link 
                                                 href={`/work/${item.slug}/`} 
-                                                className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 shadow-2xl z-[4100] cursor-pointer pointer-events-auto"
+                                                className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 shadow-2xl z-10 cursor-pointer pointer-events-auto"
                                             >
                                                 <img
                                                     src={item.image}
@@ -126,7 +126,7 @@ export function FeaturedProjects() {
                                         <div className="pt-6 xl:hidden">
                                             <Link
                                                 href={`/work/${item.slug}/`}
-                                                className="group inline-flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-full text-xs font-mono font-bold uppercase tracking-[0.2em] hover:bg-blush transition-all duration-200 w-full justify-center z-[4100] relative cursor-pointer pointer-events-auto"
+                                                className="group inline-flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-full text-xs font-mono font-bold uppercase tracking-[0.2em] hover:bg-blush transition-all duration-200 w-full justify-center z-10 relative cursor-pointer pointer-events-auto"
                                             >
                                                 Explore case study
                                                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -138,7 +138,7 @@ export function FeaturedProjects() {
                                 <div className="hidden lg:block lg:order-1 relative">
                                     <Link 
                                         href={`/work/${item.slug}/`} 
-                                        className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 group-hover:border-blush/30 transition-colors shadow-2xl z-[4100] cursor-pointer pointer-events-auto"
+                                        className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 group-hover:border-blush/30 transition-colors shadow-2xl z-10 cursor-pointer pointer-events-auto"
                                     >
                                         <img
                                             src={item.image}
@@ -156,7 +156,7 @@ export function FeaturedProjects() {
                 <div className="mt-40 text-center">
                     <Link
                         href="/work/"
-                        className="inline-flex items-center gap-4 px-10 py-5 bg-white text-black font-black uppercase tracking-widest text-sm rounded-full hover:bg-blush transition-colors group z-[4100] relative cursor-pointer pointer-events-auto"
+                        className="inline-flex items-center gap-4 px-10 py-5 bg-white text-black font-black uppercase tracking-widest text-sm rounded-full hover:bg-blush transition-colors group z-10 relative cursor-pointer pointer-events-auto"
                     >
                         Explore Research Library
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
