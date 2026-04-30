@@ -46,17 +46,31 @@ export function SafeHomeProject({ project }: { project: Project }) {
       {/* ── STICKY INDEX ── */}
       <div style={{ position: "fixed", left: 40, top: "50%", transform: "translateY(-50%)", zIndex: 100, display: "flex", flexDirection: "column", gap: 14, opacity: showIndex ? 1 : 0, pointerEvents: showIndex ? "auto" : "none", transition: "all 0.4s ease" }} className="hidden lg:flex">
         {sections.map((s) => (
-          <a
+          <button
             key={s.id}
-            href={`#${s.id}`}
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById(s.id)?.scrollIntoView({ behavior: 'smooth' });
+            }}
             title={s.label}
-            style={{ width: 12, height: 12, borderRadius: "50%", background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.1)", transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)", cursor: "pointer", position: "relative" }}
+            aria-label={`Scroll to ${s.label}`}
+            style={{ 
+              width: 12, 
+              height: 12, 
+              borderRadius: "50%", 
+              background: "rgba(255,255,255,0.15)", 
+              border: "1px solid rgba(255,255,255,0.1)", 
+              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)", 
+              cursor: "pointer", 
+              position: "relative",
+              outline: "none",
+              padding: 0
+            }}
             onMouseEnter={(e) => { e.currentTarget.style.background = "#60a5fa"; e.currentTarget.style.transform = "scale(1.4)"; }}
             onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.15)"; e.currentTarget.style.transform = "scale(1)"; }}
-            onClick={(e) => { e.currentTarget.style.background = "#f472b6"; }}
           >
             <span style={{ position: "absolute", left: 28, top: "50%", transform: "translateY(-50%)", whiteSpace: "nowrap", fontFamily: "ui-monospace, monospace", fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "#FFF8F0", opacity: 0, transition: "opacity 0.25s", background: "rgba(0,0,0,0.6)", padding: "4px 10px", borderRadius: 4, backdropFilter: "blur(4px)" }} className="sh-nav-label">{s.label}</span>
-          </a>
+          </button>
         ))}
       </div>
       <style jsx global>{`
@@ -83,7 +97,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
       {/* ── NAV ── */}
       <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50, background: "rgba(10,10,10,0.92)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 40px", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <Link href="/work" style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, fontFamily: "'Inter', sans-serif", color: "#d1d5db", textDecoration: "none" }}>
+          <Link href="/work/" style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, fontFamily: "'Inter', sans-serif", color: "#d1d5db", textDecoration: "none" }}>
             <ArrowLeft size={16} /> Back to Work
           </Link>
           <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, letterSpacing: "0.2em", textTransform: "uppercase", color: "#d1d5db" }}>

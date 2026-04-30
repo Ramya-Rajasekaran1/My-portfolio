@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function PortfolioFooter() {
   return (
-    <footer className="border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 py-12 mt-0">
+    <footer className="border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 py-12 mt-0 relative z-20">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center gap-6">
           <div className="flex flex-col items-center md:items-start gap-2">

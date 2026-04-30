@@ -82,8 +82,8 @@ export function Hero() {
     const skillsCardOpacity = useTransform(revealProgress, [0.5, 0.75], [0, 1]);
     const skillsCardY = useTransform(revealProgress, [0.5, 0.75], [20, 0]);
 
-    const globeOpacity = useTransform(revealProgress, [0.4, 0.7], [0, 1]);
-    const globeScale = useTransform(revealProgress, [0.4, 0.7], [0.5, 1]);
+    const globeOpacity = useTransform(revealProgress, [0, 1], [1, 1]);
+    const globeScale = useTransform(revealProgress, [0, 1], [1, 1]);
 
     const scrollIndicatorOpacity = useTransform(revealProgress, [0, 0.1], [1, 0]);
 
@@ -125,7 +125,7 @@ export function Hero() {
                     variants={nameTagVariants}
                     className="max-w-4xl w-full p-4 md:p-10 rounded-3xl md:rounded-[2.5rem] border border-white/10 dark:border-white/[0.05] shadow-2xl bg-white/5 dark:bg-black/[0.1] backdrop-blur-2xl relative overflow-hidden z-10"
                 >
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.1] to-transparent pointer-none rounded-[inherit]" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.1] to-transparent pointer-events-none rounded-[inherit]" />
 
                     <div className="relative z-10">
                         <LayoutGroup id="hero-main">

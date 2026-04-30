@@ -60,16 +60,20 @@ export function TQDashboardProject({ project }: { project: Project }) {
             {/* ── STICKY INDEX ── */}
             <div style={{ position: "fixed", left: 40, top: "50%", transform: "translateY(-50%)", zIndex: 100, display: "flex", flexDirection: "column", gap: 14, opacity: showIndex ? 1 : 0, pointerEvents: showIndex ? "auto" : "none", transition: "all 0.4s ease" }} className="hidden lg:flex">
                 {sections.map((s) => (
-                    <a
-                        key={s.id}
-                        href={`#${s.id}`}
-                        title={s.label}
-                        style={{ width: 12, height: 12, borderRadius: "50%", background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.1)", transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)", cursor: "pointer", position: "relative" }}
-                        onMouseEnter={(e) => { e.currentTarget.style.background = palette.primary; e.currentTarget.style.transform = "scale(1.4)"; }}
-                        onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.15)"; e.currentTarget.style.transform = "scale(1)"; }}
-                    >
-                        <span style={{ position: "absolute", left: 28, top: "50%", transform: "translateY(-50%)", whiteSpace: "nowrap", fontFamily: "ui-monospace, monospace", fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "#FFF8F0", opacity: 0, transition: "opacity 0.25s", background: "rgba(0,0,0,0.6)", padding: "4px 10px", borderRadius: 4, backdropFilter: "blur(4px)" }} className="tq-nav-label">{s.label}</span>
-                    </a>
+                        <button
+                            key={s.id}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                document.getElementById(s.id)?.scrollIntoView({ behavior: 'smooth' });
+                            }}
+                            title={s.label}
+                            aria-label={`Scroll to ${s.label}`}
+                            style={{ width: 12, height: 12, borderRadius: "50%", background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.1)", transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)", cursor: "pointer", position: "relative", outline: "none" }}
+                            onMouseEnter={(e) => { e.currentTarget.style.background = palette.primary; e.currentTarget.style.transform = "scale(1.4)"; }}
+                            onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.15)"; e.currentTarget.style.transform = "scale(1)"; }}
+                        >
+                            <span style={{ position: "absolute", left: 28, top: "50%", transform: "translateY(-50%)", whiteSpace: "nowrap", fontFamily: "ui-monospace, monospace", fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "#FFF8F0", opacity: 0, transition: "opacity 0.25s", background: "rgba(0,0,0,0.6)", padding: "4px 10px", borderRadius: 4, backdropFilter: "blur(4px)" }} className="tq-nav-label">{s.label}</span>
+                        </button>
                 ))}
             </div>
 
@@ -94,7 +98,7 @@ export function TQDashboardProject({ project }: { project: Project }) {
             {/* ── NAV ── */}
             <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50, background: "rgba(10,10,10,0.92)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
                 <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 40px", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <Link href="/work" style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, fontFamily: "var(--font-sans), sans-serif", color: "#d1d5db", textDecoration: "none" }}>
+                    <Link href="/work/" style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, fontFamily: "var(--font-sans), sans-serif", color: "#d1d5db", textDecoration: "none" }}>
                         <ArrowLeft size={16} /> Back to Work
                     </Link>
                     <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, letterSpacing: "0.2em", textTransform: "uppercase", color: "#d1d5db" }}>
@@ -249,7 +253,7 @@ export function TQDashboardProject({ project }: { project: Project }) {
                     </div>
 
                     {/* Middle: Analysis Image (The focus) */}
-                    <div
+                    <button
                         className="tq-img-hover"
                         style={{
                             borderRadius: 24,
@@ -257,8 +261,14 @@ export function TQDashboardProject({ project }: { project: Project }) {
                             border: "1px solid rgba(255,255,255,0.1)",
                             transition: "all 0.4s",
                             boxShadow: "0 40px 100px rgba(0,0,0,0.6)",
-                            position: "relative"
+                            position: "relative",
+                            background: "none",
+                            padding: 0,
+                            display: "block",
+                            width: "100%",
+                            textAlign: "left"
                         }}
+                        aria-label="Enlarge heuristic analysis image"
                         onClick={() => setSelectedImage("/images/tracking-quality-dashboard/heuristic-analysis.jpg")}
                     >
                         <div style={{ position: "absolute", top: 20, left: 20, zIndex: 10, background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)", padding: "4px 12px", borderRadius: 4, fontFamily: "ui-monospace, monospace", fontSize: 12, color: "#fff", border: "1px solid rgba(255,255,255,0.2)" }}>
@@ -269,7 +279,7 @@ export function TQDashboardProject({ project }: { project: Project }) {
                             alt="UX Issues Analysis"
                             style={{ width: "100%", height: "auto", display: "block", filter: "brightness(1.1) contrast(1.1)" }}
                         />
-                    </div>
+                    </button>
 
                     {/* Right: Audit Pointers */}
                     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
@@ -392,9 +402,10 @@ export function TQDashboardProject({ project }: { project: Project }) {
                         </div>
                     </div>
 
-                    <div
+                    <button
                         className="tq-img-hover"
-                        style={{ borderRadius: 16, overflow: "hidden", border: "1px solid #222", boxShadow: "0 30px 60px rgba(0,0,0,0.4)" }}
+                        style={{ borderRadius: 16, overflow: "hidden", border: "1px solid #222", boxShadow: "0 30px 60px rgba(0,0,0,0.4)", background: "none", padding: 0, display: "block", width: "100%" }}
+                        aria-label="Enlarge qualitative feedback image"
                         onClick={() => setSelectedImage("/images/tracking-quality-dashboard/qualitative-feedback.jpg")}
                     >
                         <img
@@ -402,7 +413,7 @@ export function TQDashboardProject({ project }: { project: Project }) {
                             alt="Qualitative Feedback Audit"
                             style={{ width: "100%", height: "auto", display: "block" }}
                         />
-                    </div>
+                    </button>
                 </div>
             </section>
 
@@ -600,15 +611,20 @@ export function TQDashboardProject({ project }: { project: Project }) {
 
                     {/* Image & Sticky Container - Below Text */}
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: 40, alignItems: "center" }}>
-                        <div
+                        <button
                             className="tq-img-hover"
                             style={{
                                 borderRadius: 16,
                                 overflow: "hidden",
                                 border: "1px solid #222",
                                 boxShadow: "0 40px 80px rgba(0,0,0,0.5)",
-                                position: "relative"
+                                position: "relative",
+                                background: "none",
+                                padding: 0,
+                                display: "block",
+                                width: "100%"
                             }}
+                            aria-label="Enlarge affinity flow map"
                             onClick={() => setSelectedImage("/images/tracking-quality-dashboard/affinity-flow.png")}
                         >
                             <img
@@ -616,7 +632,7 @@ export function TQDashboardProject({ project }: { project: Project }) {
                                 alt="Affinity flow analysis"
                                 style={{ width: "100%", height: "auto", display: "block" }}
                             />
-                        </div>
+                        </button>
 
                         {/* Sticky Note - Outside the Image */}
                         <div style={{
