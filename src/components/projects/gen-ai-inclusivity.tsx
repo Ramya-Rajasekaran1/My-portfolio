@@ -389,13 +389,13 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
 
             <nav className="fixed inset-x-0 top-0 z-[5000] bg-[#080808]/90 backdrop-blur border-b border-white/10 pointer-events-auto">
                 <div className="container mx-auto px-6 h-16 flex items-center justify-between max-w-[1100px]">
-                    <Link
+                    <a
                         href="/work/"
                         className="inline-flex items-center gap-2 text-[13px] font-sans text-neutral-300 hover:text-white transition-colors"
                     >
                         <ArrowLeft className="w-4 h-4" />
                         Back to Work
-                    </Link>
+                    </a>
                     <span className="text-[13px] font-mono uppercase tracking-[0.2em] text-neutral-400">
                         Gen AI Inclusivity · Research · 2025
                     </span>

@@ -98,9 +98,9 @@ export function TQDashboardProject({ project }: { project: Project }) {
             {/* ── NAV ── */}
             <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 5000, background: "rgba(10,10,10,0.92)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.08)", pointerEvents: "auto" }}>
                 <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 40px", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <Link href="/work/" style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, fontFamily: "var(--font-sans), sans-serif", color: "#d1d5db", textDecoration: "none" }}>
+                    <a href="/work/" style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, fontFamily: "var(--font-sans), sans-serif", color: "#d1d5db", textDecoration: "none", pointerEvents: "auto" }}>
                         <ArrowLeft size={16} /> Back to Work
-                    </Link>
+                    </a>
                     <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, letterSpacing: "0.2em", textTransform: "uppercase", color: "#d1d5db" }}>
                         Tracking Quality Dashboard - Supply chain visibility · UX Case Study · 2023
                     </span>

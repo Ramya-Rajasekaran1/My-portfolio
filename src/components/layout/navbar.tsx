@@ -102,7 +102,7 @@ export function Navbar() {
         <header
             id="navbar"
             className={cn(
-                "fixed top-0 left-0 right-0 z-[10000] transition-all duration-500 pointer-events-none",
+                "fixed top-0 left-0 right-0 z-[10000] transition-all duration-500 pointer-events-auto",
                 isScrolled ? "py-2" : "py-4"
             )}
         >
@@ -111,13 +111,12 @@ export function Navbar() {
                     "flex items-center justify-between rounded-full transition-all duration-500 w-full relative z-[3001] pointer-events-auto",
                     isScrolled ? "glass py-2 px-6 max-w-lg shadow-2xl" : "bg-transparent p-4 max-w-5xl"
                 )}>
-                    <Link 
+                    <a 
                         href="/" 
-                        prefetch={false}
                         className="text-xl font-serif font-bold tracking-tight z-[10000] dark:text-ivory relative pointer-events-auto"
                     >
                         Ramya<span className="text-blush">.</span>
-                    </Link>
+                    </a>
 
                     {/* Desktop Nav */}
                     <nav aria-label="Main navigation" className={cn(
@@ -125,7 +124,7 @@ export function Navbar() {
                         isScrolled ? "gap-6" : "gap-10"
                     )}>
                         {navLinks.map((link) => (
-                            <Link
+                            <a
                                 key={link.name}
                                 href={link.href}
                                 className={cn(
@@ -137,7 +136,7 @@ export function Navbar() {
                                 {pathname?.startsWith(link.href) && (
                                     <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blush rounded-full" />
                                 )}
-                            </Link>
+                            </a>
                         ))}
 
                         <button
@@ -171,14 +170,14 @@ export function Navbar() {
                     >
                         <div className="flex flex-col gap-8">
                              {navLinks.map((link) => (
-                                <Link
+                                <a
                                     key={link.name}
                                     href={link.href}
                                     className="text-4xl font-serif font-bold text-neutral-900 dark:text-ivory hover:text-blush transition-colors z-[10000] cursor-pointer relative pointer-events-auto"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
                                     {link.name}
-                                </Link>
+                                </a>
                             ))}
                         </div>
                     </motion.div>

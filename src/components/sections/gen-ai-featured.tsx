@@ -24,22 +24,22 @@ export function GenAIFeatured() {
 
                         <div className="flex items-end justify-between gap-4 mb-6">
                             <div>
-                                <Link 
+                                <a 
                                     href="/work/gen-ai-inclusivity/" 
                                     className="hover:text-[#7effa0] transition-colors z-10 relative cursor-pointer pointer-events-auto"
                                 >
                                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-neutral-900 dark:text-white leading-tight">
                                     Designing for <span className="text-[#7effa0] italic">Inclusivity</span> in the Age of Generative AI
                                 </h2>
-                                </Link>
+                                </a>
                             </div>
-                             <Link
+                             <a
                                  href="/work/gen-ai-inclusivity/"
                                  className="hidden lg:inline-flex shrink-0 items-center justify-center gap-3 px-5 py-2.5 bg-[#7effa0] hover:bg-[#6ee890] text-black font-bold text-xs uppercase tracking-widest rounded-full transition-all group mb-2 z-10 relative cursor-pointer pointer-events-auto"
                              >
                                  Explore case study
                                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                             </Link>
+                             </a>
                         </div>
 
                         <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
@@ -63,7 +63,7 @@ export function GenAIFeatured() {
                         </div>
 
                         <div className="lg:hidden relative mb-8">
-                            <Link 
+                            <a 
                                 href="/work/gen-ai-inclusivity/" 
                                 className="block outline-none z-10 relative pointer-events-auto"
                             >
@@ -75,17 +75,17 @@ export function GenAIFeatured() {
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
                             </div>
-                            </Link>
+                            </a>
                         </div>
 
                         <div className="lg:hidden">
-                             <Link
+                             <a
                                  href="/work/gen-ai-inclusivity/"
                                  className="inline-flex items-center justify-center gap-3 px-6 py-3 bg-[#7effa0] hover:bg-[#6ee890] text-black font-bold text-sm uppercase tracking-widest rounded-full transition-all group w-full z-10 relative cursor-pointer pointer-events-auto"
                              >
                                  Explore case study
                                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                             </Link>
+                             </a>
                         </div>
                     </motion.div>
 
@@ -97,7 +97,7 @@ export function GenAIFeatured() {
                         transition={{ duration: 0.8 }}
                         className="hidden lg:block relative lg:order-1"
                     >
-                        <Link 
+                        <a 
                             href="/work/gen-ai-inclusivity/" 
                             className="block outline-none z-10 relative cursor-pointer pointer-events-auto"
                         >
@@ -110,7 +110,7 @@ export function GenAIFeatured() {
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
                         </div>
-                        </Link>
+                        </a>
                         
                         {/* Floating Badge */}
                         <div className="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-white dark:bg-neutral-900 rounded-2xl px-5 py-4 shadow-xl border border-neutral-200 dark:border-neutral-800">
