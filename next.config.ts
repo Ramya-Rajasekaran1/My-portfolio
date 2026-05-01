@@ -4,11 +4,11 @@ const isGithubActions = process.env.GITHUB_ACTIONS || false;
 let assetPrefix = "";
 let basePath = "";
 
-if (isGithubActions) {
+if (isGithubActions || process.env.NEXT_PUBLIC_BASE_PATH) {
   // Use the repository name for GitHub Pages
-  const repo = "My-portfolio"; // The repo name from the 404s
-  assetPrefix = `/${repo}/`;
-  basePath = `/${repo}`;
+  const repo = "My-portfolio"; 
+  basePath = process.env.NEXT_PUBLIC_BASE_PATH || `/${repo}`;
+  assetPrefix = `${basePath}/`;
 }
 
 const nextConfig: NextConfig = {
