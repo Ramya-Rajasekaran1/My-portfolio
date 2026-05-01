@@ -90,7 +90,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                         </div>
                     </div>
                 </div>
-            </Link>
+            </a>
         </motion.div>
     );
 }
