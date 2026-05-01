@@ -259,9 +259,9 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
     }, []);
 
     const scopeImages = [
-        { name: "ChatGPT", src: "/images/gen-ai/Screenshot_2026-04-21_at_9.55.57_PM.png", tag: "System 01" },
-        { name: "Copilot", src: "/images/gen-ai/Screenshot_2026-04-21_at_9.55.23_PM.png", tag: "System 02" },
-        { name: "Gemini", src: "/images/gen-ai/Screenshot_2026-04-21_at_9.57.35_PM.png", tag: "System 03" }
+        { name: "ChatGPT", src: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/gen-ai/Screenshot_2026-04-21_at_9.55.57_PM.png`, tag: "System 01" },
+        { name: "Copilot", src: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/gen-ai/Screenshot_2026-04-21_at_9.55.23_PM.png`, tag: "System 02" },
+        { name: "Gemini", src: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/gen-ai/Screenshot_2026-04-21_at_9.57.35_PM.png`, tag: "System 03" }
     ];
 
     useEffect(() => {
@@ -389,8 +389,7 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
 
             <nav className="fixed inset-x-0 top-0 z-[5000] bg-[#080808]/90 backdrop-blur border-b border-white/10 pointer-events-auto">
                 <div className="container mx-auto px-6 h-16 flex items-center justify-between max-w-[1100px]">
-                    <a
-                        href="/work/"
+                    <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/`}
                         className="inline-flex items-center gap-2 text-[13px] font-sans text-neutral-300 hover:text-white transition-colors"
                     >
                         <ArrowLeft className="w-4 h-4" />
@@ -979,13 +978,13 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                             <div className="md:col-span-8 group relative overflow-hidden rounded-[2rem] border border-neutral-800 bg-neutral-900 shadow-2xl">
-                                <img src="/images/gen-ai/UX - AI Research.jpg" alt="Research Audit Board" className="w-full h-auto opacity-80 group-hover:opacity-100 transition-opacity duration-700" />
+                                <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/gen-ai/UX - AI Research.jpg`} alt="Research Audit Board" className="w-full h-auto opacity-80 group-hover:opacity-100 transition-opacity duration-700" />
                                 <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black to-transparent">
                                     <span className="text-[12px] font-mono text-[#F4E5E9] font-light uppercase tracking-widest">Feature mapping & UI annotation board — Gemini, ChatGPT, Copilot</span>
                                 </div>
                             </div>
                             <div className="md:col-span-4 group relative overflow-hidden rounded-[2rem] border border-neutral-800 bg-neutral-900 shadow-2xl">
-                                <img src="/images/gen-ai/UX - AI Research1.jpg" alt="Feature Taxonomy" className="w-full h-auto opacity-80 group-hover:opacity-100 transition-opacity duration-700" />
+                                <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/gen-ai/UX - AI Research1.jpg`} alt="Feature Taxonomy" className="w-full h-auto opacity-80 group-hover:opacity-100 transition-opacity duration-700" />
                                 <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black to-transparent">
                                     <span className="text-[12px] font-mono text-[#F4E5E9] font-light uppercase tracking-widest">Comprehensive taxonomy</span>
                                 </div>
@@ -1008,7 +1007,7 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                                 <div className="bg-[#0f0f0f] border border-white/5 rounded-[2rem] p-10 flex flex-col group hover:border-blue-500/20 transition-all duration-500 h-fit">
                                     <div className="flex flex-col items-center text-center gap-6 mb-10 border-b border-white/5 pb-10">
                                         <div className="w-16 h-16 rounded-2xl bg-white p-3 shadow-xl flex items-center justify-center overflow-hidden">
-                                            <img src="/images/gen-ai/gemini_icon-logo_brandlogos.net_aacx5-512x512.png" alt="Gemini" className="w-full h-full object-contain" />
+                                            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/gen-ai/gemini_icon-logo_brandlogos.net_aacx5-512x512.png`} alt="Gemini" className="w-full h-full object-contain" />
                                         </div>
                                         <div className="space-y-1">
                                             <h3 className="text-2xl font-outfit font-light tracking-tight text-white">Google Gemini</h3>
@@ -1052,7 +1051,7 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                                 <div className="bg-[#0f0f0f] border border-white/5 rounded-[2rem] p-10 flex flex-col group hover:border-[#10B981]/20 transition-all duration-500 h-fit">
                                     <div className="flex flex-col items-center text-center gap-6 mb-10 border-b border-white/5 pb-10">
                                         <div className="w-16 h-16 rounded-2xl bg-white p-2 shadow-xl flex items-center justify-center overflow-hidden">
-                                            <img src="/images/gen-ai/ChatGPT-Logo.png" alt="ChatGPT" className="w-[85%] h-auto" />
+                                            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/gen-ai/ChatGPT-Logo.png`} alt="ChatGPT" className="w-[85%] h-auto" />
                                         </div>
                                         <div className="space-y-1">
                                             <h3 className="text-2xl font-outfit font-light tracking-tight text-white">OpenAI ChatGPT</h3>
@@ -1099,7 +1098,7 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                                 <div className="bg-[#0f0f0f] border border-white/5 rounded-[2rem] p-10 flex flex-col group hover:border-[#914364]/20 transition-all duration-500 h-fit">
                                     <div className="flex flex-col items-center text-center gap-6 mb-10 border-b border-white/5 pb-10">
                                         <div className="w-16 h-16 rounded-2xl bg-white p-3 shadow-xl flex items-center justify-center overflow-hidden">
-                                            <img src="/images/gen-ai/copilot-color.png" alt="Copilot" className="w-full h-full object-contain" />
+                                            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/gen-ai/copilot-color.png`} alt="Copilot" className="w-full h-full object-contain" />
                                         </div>
                                         <div className="space-y-1">
                                             <h3 className="text-2xl font-outfit font-light tracking-tight text-white">Microsoft Copilot</h3>

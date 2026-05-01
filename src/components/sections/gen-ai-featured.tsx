@@ -24,8 +24,7 @@ export function GenAIFeatured() {
 
                         <div className="flex items-end justify-between gap-4 mb-6">
                             <div>
-                                <a 
-                                    href="/work/gen-ai-inclusivity/" 
+                                <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/gen-ai-inclusivity/`} 
                                     className="hover:text-[#7effa0] transition-colors z-10 relative cursor-pointer pointer-events-auto"
                                 >
                                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-neutral-900 dark:text-white leading-tight">
@@ -33,8 +32,7 @@ export function GenAIFeatured() {
                                 </h2>
                                 </a>
                             </div>
-                             <a
-                                 href="/work/gen-ai-inclusivity/"
+                             <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/gen-ai-inclusivity/`}
                                  className="hidden lg:inline-flex shrink-0 items-center justify-center gap-3 px-5 py-2.5 bg-[#7effa0] hover:bg-[#6ee890] text-black font-bold text-xs uppercase tracking-widest rounded-full transition-all group mb-2 z-10 relative cursor-pointer pointer-events-auto"
                              >
                                  Explore case study
@@ -63,13 +61,12 @@ export function GenAIFeatured() {
                         </div>
 
                         <div className="lg:hidden relative mb-8">
-                            <a 
-                                href="/work/gen-ai-inclusivity/" 
+                            <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/gen-ai-inclusivity/`} 
                                 className="block outline-none z-10 relative pointer-events-auto"
                             >
                             <div className="relative rounded-3xl overflow-hidden shadow-2xl transition-transform duration-500 hover:scale-[1.02]">
                                 <img
-                                    src="/images/work/gen_ai_cover.jpg"
+                                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/work/gen_ai_cover.jpg`}
                                     alt="Designing for Inclusivity"
                                     className="w-full h-auto"
                                 />
@@ -79,8 +76,7 @@ export function GenAIFeatured() {
                         </div>
 
                         <div className="lg:hidden">
-                             <a
-                                 href="/work/gen-ai-inclusivity/"
+                             <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/gen-ai-inclusivity/`}
                                  className="inline-flex items-center justify-center gap-3 px-6 py-3 bg-[#7effa0] hover:bg-[#6ee890] text-black font-bold text-sm uppercase tracking-widest rounded-full transition-all group w-full z-10 relative cursor-pointer pointer-events-auto"
                              >
                                  Explore case study
@@ -97,13 +93,12 @@ export function GenAIFeatured() {
                         transition={{ duration: 0.8 }}
                         className="hidden lg:block relative lg:order-1"
                     >
-                        <a 
-                            href="/work/gen-ai-inclusivity/" 
+                        <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/gen-ai-inclusivity/`} 
                             className="block outline-none z-10 relative cursor-pointer pointer-events-auto"
                         >
                         <div className="relative rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:shadow-[#7effa0]/10 hover:shadow-3xl">
                             <img
-                                src="/images/work/gen_ai_cover.jpg"
+                                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/work/gen_ai_cover.jpg`}
                                 alt="Designing for Inclusivity"
                                 className="w-full h-auto"
                                 loading="lazy"

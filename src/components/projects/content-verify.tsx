@@ -191,8 +191,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
             {/* Navigation */}
             <nav className="fixed top-0 left-0 right-0 z-[5000] bg-[#FDFBF7]/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800 pointer-events-auto">
                 <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-                    <a
-                        href="/work/"
+                    <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/`}
                         className="inline-flex items-center gap-2 text-sm font-sans font-medium text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
                     >
                         <ArrowLeft className="w-4 h-4" />
@@ -545,13 +544,13 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                 </div>
                                 <div className="space-y-4">
                                     <div className="aspect-[3/1] relative rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-800 grayscale group-hover:grayscale-0 transition-all duration-700 cursor-pointer bg-neutral-50 dark:bg-neutral-900"
-                                        onClick={() => setLightboxImage({ src: "/images/content-verify/wiki-timeline.png", alt: "Wikipedia Article Status Timeline" })}>
-                                        <img src="/images/content-verify/wiki-timeline.png" alt="Wikipedia Timeline" className="w-full h-full object-contain" />
+                                        onClick={() => setLightboxImage({ src: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/content-verify/wiki-timeline.png`, alt: "Wikipedia Article Status Timeline" })}>
+                                        <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/content-verify/wiki-timeline.png`} alt="Wikipedia Timeline" className="w-full h-full object-contain" />
                                         <div className="absolute inset-0 bg-red-500/5 mix-blend-multiply dark:mix-blend-overlay" />
                                     </div>
                                     <div className="aspect-[4/3] relative rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-800 grayscale group-hover:grayscale-0 transition-all duration-700 cursor-pointer"
-                                        onClick={() => setLightboxImage({ src: "/images/content-verify/wiki-criteria.jpg", alt: "Wikipedia Quality Criteria Table" })}>
-                                        <img src="/images/content-verify/wiki-criteria.jpg" alt="Wikipedia Criteria" className="w-full h-full object-cover" />
+                                        onClick={() => setLightboxImage({ src: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/content-verify/wiki-criteria.jpg`, alt: "Wikipedia Quality Criteria Table" })}>
+                                        <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/content-verify/wiki-criteria.jpg`} alt="Wikipedia Criteria" className="w-full h-full object-cover" />
                                         <div className="absolute inset-0 bg-red-500/5 mix-blend-multiply dark:mix-blend-overlay" />
                                     </div>
                                 </div>
@@ -582,8 +581,8 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                     <span className="px-3 py-1 rounded-full bg-[#34BF4B]/10 text-[#34BF4B] text-[10px] font-bold uppercase tracking-widest border border-[#34BF4B]/20">New UX</span>
                                 </div>
                                 <div className="relative rounded-xl overflow-hidden border border-white/10 group-hover:border-[#34BF4B]/50 transition-all duration-700 cursor-pointer bg-white"
-                                    onClick={() => setLightboxImage({ src: "/images/content-verify/new-ux-alert.png", alt: "Context Alert UI View" })}>
-                                    <img src="/images/content-verify/new-ux-alert.png" alt="Context Alert UI" className="w-full h-auto object-contain" />
+                                    onClick={() => setLightboxImage({ src: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/content-verify/new-ux-alert.png`, alt: "Context Alert UI View" })}>
+                                    <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/content-verify/new-ux-alert.png`} alt="Context Alert UI" className="w-full h-auto object-contain" />
                                 </div>
                             </div>
                             <div className="p-8 space-y-6 flex-1 shadow-[inset_0_0_100px_rgba(52,191,75,0.02)]">
@@ -679,7 +678,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                 {/* Image Container */}
                                 <div className={`relative transition-all duration-500 ${focusedBox === 'image' ? 'w-full lg:w-[60%] aspect-[16/9]' : 'w-full aspect-[16/9] md:aspect-[21/9]'}`}>
                                     <img
-                                        src="/images/content-verify/scouting-ui.jpg"
+                                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/content-verify/scouting-ui.jpg`}
                                         alt="Scouting for UI interactions and Ideation"
                                         className="w-full h-full object-cover transition-transform duration-1000 group-hover/img:scale-105"
                                     />
@@ -699,7 +698,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                         </div>
 
                                         <button
-                                            onClick={(e) => { e.stopPropagation(); setLightboxImage({ src: "/images/content-verify/scouting-ui.jpg", alt: "Scouting for UI interactions and Ideation" }); }}
+                                            onClick={(e) => { e.stopPropagation(); setLightboxImage({ src: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/content-verify/scouting-ui.jpg`, alt: "Scouting for UI interactions and Ideation" }); }}
                                             className="px-6 py-3 rounded-full bg-[#34BF4B] text-black text-[10px] font-sans font-bold uppercase tracking-widest hover:bg-[#34BF4B]/90 transition-all hover:scale-105 shadow-[0_0_20px_rgba(52,191,75,0.3)] shrink-0"
                                         >
                                             View Full Board
@@ -709,7 +708,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                     {/* Keep View Full Board button when expanded */}
                                     {focusedBox === 'image' && (
                                         <button
-                                            onClick={(e) => { e.stopPropagation(); setLightboxImage({ src: "/images/content-verify/scouting-ui.jpg", alt: "Scouting for UI interactions and Ideation" }); }}
+                                            onClick={(e) => { e.stopPropagation(); setLightboxImage({ src: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/content-verify/scouting-ui.jpg`, alt: "Scouting for UI interactions and Ideation" }); }}
                                             className="absolute bottom-6 right-6 px-6 py-3 rounded-full bg-[#34BF4B] text-black text-[10px] font-sans font-bold uppercase tracking-widest hover:bg-[#34BF4B]/90 transition-all hover:scale-105 shadow-[0_0_20px_rgba(52,191,75,0.3)] shrink-0 z-10 animate-in fade-in duration-500"
                                         >
                                             Expand Image
@@ -862,7 +861,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                 {/* Image Container */}
                                 <div className={`relative transition-all duration-500 ${focusedBox === 'ux-audit' ? 'w-full lg:w-[60%] aspect-[16/10]' : 'w-full aspect-[16/10]'}`}>
                                     <img
-                                        src="/images/content-verify/ux-audit.png"
+                                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/content-verify/ux-audit.png`}
                                         alt="UX Audit"
                                         className="w-full h-full object-cover transition-transform duration-1000 group-hover/img:scale-105"
                                     />
@@ -886,7 +885,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                     {/* Expand Image Button */}
                                     {focusedBox === 'ux-audit' && (
                                         <button
-                                            onClick={(e) => { e.stopPropagation(); setLightboxImage({ src: "/images/content-verify/ux-audit.png", alt: "UX Audit" }); }}
+                                            onClick={(e) => { e.stopPropagation(); setLightboxImage({ src: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/content-verify/ux-audit.png`, alt: "UX Audit" }); }}
                                             className="absolute bottom-6 right-6 px-6 py-3 rounded-full bg-blue-500 text-white text-[10px] font-sans font-bold uppercase tracking-widest hover:bg-blue-600 transition-all hover:scale-105 shadow-[0_0_20px_rgba(59,130,246,0.3)] shrink-0 z-10 animate-in fade-in duration-500"
                                         >
                                             Expand Image
@@ -950,7 +949,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                 <div className={`relative transition-all duration-500 flex flex-col ${focusedBox === 'accessibility' ? 'w-full lg:w-[60%] min-h-[400px]' : 'w-full h-full'}`}>
                                     <div className="flex-1 relative min-h-[300px]">
                                         <img
-                                            src="/images/content-verify/accessibility.png"
+                                            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/content-verify/accessibility.png`}
                                             alt="Accessibility Standards"
                                             className="w-full h-full object-cover transition-transform duration-1000 group-hover/img:scale-105 absolute inset-0"
                                         />
@@ -974,7 +973,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                         <>
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                                             <button
-                                                onClick={(e) => { e.stopPropagation(); setLightboxImage({ src: "/images/content-verify/accessibility.png", alt: "Accessibility Standards" }); }}
+                                                onClick={(e) => { e.stopPropagation(); setLightboxImage({ src: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/content-verify/accessibility.png`, alt: "Accessibility Standards" }); }}
                                                 className="absolute bottom-6 right-6 px-6 py-3 rounded-full bg-[#34BF4B] text-black text-[10px] font-sans font-bold uppercase tracking-widest hover:bg-[#34BF4B]/90 transition-all hover:scale-105 shadow-[0_0_20px_rgba(52,191,75,0.3)] shrink-0 z-10 animate-in fade-in duration-500"
                                             >
                                                 Expand Image
@@ -1073,7 +1072,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                 <section className="max-w-4xl mx-auto mb-24 px-4">
                     <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/40 shadow-[0_25px_45px_rgba(0,0,0,0.45)]">
                         <img
-                            src="/images/content-verify/ScreenRecording2026-02-21at11.00.52AM-ezgif.com-video-to-gif-converter.gif"
+                            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/content-verify/ScreenRecording2026-02-21at11.00.52AM-ezgif.com-video-to-gif-converter.gif`}
                             alt="Content Verify UX highlights animation"
                             className="w-full h-auto object-cover"
                         />

@@ -69,9 +69,9 @@ export function Navbar() {
     }, [isMobileMenuOpen]);
 
     const navLinks = [
-        { name: "About", href: "/about/" },
-        { name: "Work", href: "/work/" },
-        { name: "Contact", href: "/contact/" },
+        { name: "About", href: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/about/` },
+        { name: "Work", href: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/` },
+        { name: "Contact", href: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/contact/` },
     ];
 
     const ScribbleUnderline = () => (
@@ -111,8 +111,7 @@ export function Navbar() {
                     "flex items-center justify-between rounded-full transition-all duration-500 w-full relative z-[3001] pointer-events-auto",
                     isScrolled ? "glass py-2 px-6 max-w-lg shadow-2xl" : "bg-transparent p-4 max-w-5xl"
                 )}>
-                    <a 
-                        href="/" 
+                    <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/`} 
                         className="text-xl font-serif font-bold tracking-tight z-[10000] dark:text-ivory relative pointer-events-auto"
                     >
                         Ramya<span className="text-blush">.</span>

@@ -24,7 +24,7 @@ export default function ContactPage() {
                                 {/* Profile Photo - New Fountain Shot Fit */}
                                 <div className="w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden border-[4px] border-white dark:border-white/20 shadow-xl dark:shadow-[0_0_50px_rgba(255,255,255,0.05)] relative bg-neutral-100 dark:bg-neutral-900 group">
                                     <img 
-                                        src="/images/brand/ramya-contact.jpg" 
+                                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/brand/ramya-contact.jpg`} 
                                         alt="Ramya Rajasekaran" 
                                         className="w-full h-full object-cover object-[center_5%] scale-[1.0] transition-transform duration-700 group-hover:scale-[1.1]" 
                                     />

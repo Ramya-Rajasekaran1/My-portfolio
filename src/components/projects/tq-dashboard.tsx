@@ -98,7 +98,7 @@ export function TQDashboardProject({ project }: { project: Project }) {
             {/* ── NAV ── */}
             <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 5000, background: "rgba(10,10,10,0.92)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.08)", pointerEvents: "auto" }}>
                 <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 40px", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <a href="/work/" style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, fontFamily: "var(--font-sans), sans-serif", color: "#d1d5db", textDecoration: "none", pointerEvents: "auto" }}>
+                    <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/`} style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, fontFamily: "var(--font-sans), sans-serif", color: "#d1d5db", textDecoration: "none", pointerEvents: "auto" }}>
                         <ArrowLeft size={16} /> Back to Work
                     </a>
                     <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, letterSpacing: "0.2em", textTransform: "uppercase", color: "#d1d5db" }}>
@@ -223,7 +223,7 @@ export function TQDashboardProject({ project }: { project: Project }) {
 
                         <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                             <img
-                                src="/images/tracking-quality-dashboard/man-illustration.png"
+                                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/man-illustration.png`}
                                 alt="UX Discovery Persona"
                                 style={{
                                     maxWidth: "75%",
@@ -275,7 +275,7 @@ export function TQDashboardProject({ project }: { project: Project }) {
                             UX ANALYSIS · 2K
                         </div>
                         <img
-                            src="/images/tracking-quality-dashboard/heuristic-analysis.jpg"
+                            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/heuristic-analysis.jpg`}
                             alt="UX Issues Analysis"
                             style={{ width: "100%", height: "auto", display: "block", filter: "brightness(1.1) contrast(1.1)" }}
                         />
@@ -341,7 +341,7 @@ export function TQDashboardProject({ project }: { project: Project }) {
                                 zIndex: 0
                             }} />
                             <img
-                                src="/images/tracking-quality-dashboard/jackie-chan-confused.jpg"
+                                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/jackie-chan-confused.jpg`}
                                 alt="User Confusion"
                                 style={{
                                     width: "100%",
@@ -409,7 +409,7 @@ export function TQDashboardProject({ project }: { project: Project }) {
                         onClick={() => setSelectedImage("/images/tracking-quality-dashboard/qualitative-feedback.jpg")}
                     >
                         <img
-                            src="/images/tracking-quality-dashboard/qualitative-feedback.jpg"
+                            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/qualitative-feedback.jpg`}
                             alt="Qualitative Feedback Audit"
                             style={{ width: "100%", height: "auto", display: "block" }}
                         />
@@ -473,7 +473,7 @@ export function TQDashboardProject({ project }: { project: Project }) {
                         style={{ borderRadius: 12, overflow: "hidden", border: "1px solid #222", transition: "opacity 0.2s", gridColumn: "1 / -1", marginBottom: 40 }}
                         onClick={() => setSelectedImage("/images/tracking-quality-dashboard/truck-load-pings.jpg")}
                     >
-                        <img src="/images/tracking-quality-dashboard/truck-load-pings.jpg" alt="Solution exploration 1" style={{ width: "100%", height: "auto", display: "block" }} />
+                        <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/truck-load-pings.jpg`} alt="Solution exploration 1" style={{ width: "100%", height: "auto", display: "block" }} />
                     </div>
 
                     {/* New Pointers Section */}
@@ -628,7 +628,7 @@ export function TQDashboardProject({ project }: { project: Project }) {
                             onClick={() => setSelectedImage("/images/tracking-quality-dashboard/affinity-flow.png")}
                         >
                             <img
-                                src="/images/tracking-quality-dashboard/affinity-flow.png"
+                                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/affinity-flow.png`}
                                 alt="Affinity flow analysis"
                                 style={{ width: "100%", height: "auto", display: "block" }}
                             />
@@ -760,7 +760,7 @@ export function TQDashboardProject({ project }: { project: Project }) {
                             style={{ borderRadius: 16, overflow: "hidden", border: "1px solid #222", transition: "opacity 0.2s" }}
                             onClick={() => setSelectedImage("/images/tracking-quality-dashboard/ideation-to-solution.jpg")}
                         >
-                            <img src="/images/tracking-quality-dashboard/ideation-to-solution.jpg" alt="Ideation" style={{ width: "100%", height: "auto", display: "block" }} />
+                            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/ideation-to-solution.jpg`} alt="Ideation" style={{ width: "100%", height: "auto", display: "block" }} />
                         </div>
                     </div>
                 </div>
@@ -792,7 +792,7 @@ export function TQDashboardProject({ project }: { project: Project }) {
                     style={{ borderRadius: 16, overflow: "hidden", border: "1px solid #222", transition: "opacity 0.2s" }}
                     onClick={() => setSelectedImage("/images/tracking-quality-dashboard/TQ note.jpg")}
                 >
-                    <img src="/images/tracking-quality-dashboard/TQ note.jpg" alt="Annotated Dashboard Design" style={{ width: "100%", height: "auto", display: "block" }} />
+                    <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/TQ note.jpg`} alt="Annotated Dashboard Design" style={{ width: "100%", height: "auto", display: "block" }} />
                 </div>
 
 
@@ -857,8 +857,8 @@ export function TQDashboardProject({ project }: { project: Project }) {
                         {/* LEFT: IMAGES */}
                         <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
                             {[
-                                { src: "/images/tracking-quality-dashboard/quantitative-chart-1.png", label: "Measurement Growth" },
-                                { src: "/images/tracking-quality-dashboard/quantitative-chart-2.png", label: "Distribution Accuracy" },
+                                { src: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/quantitative-chart-1.png`, label: "Measurement Growth" },
+                                { src: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/quantitative-chart-2.png`, label: "Distribution Accuracy" },
                             ].map((img, i) => (
                                 <div key={i}>
                                     <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 10, letterSpacing: "0.2em", color: palette.secondary, textTransform: "uppercase", marginBottom: 16, fontWeight: 900 }}>

@@ -151,7 +151,7 @@ export function Hero() {
                                             )}
                                         >
                                             <img
-                                                src="/images/brand/logo.png"
+                                                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/brand/logo.png`}
                                                 alt="Logo"
                                                 className="w-full h-full object-contain brightness-110 dark:brightness-100 block"
                                             />

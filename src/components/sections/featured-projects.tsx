@@ -154,8 +154,7 @@ export function FeaturedProjects() {
                 </div>
 
                 <div className="mt-40 text-center">
-                    <a
-                        href="/work/"
+                    <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/`}
                         className="inline-flex items-center gap-4 px-10 py-5 bg-white text-black font-black uppercase tracking-widest text-sm rounded-full hover:bg-blush transition-colors group z-[10000] relative cursor-pointer pointer-events-auto"
                     >
                         Explore Research Library

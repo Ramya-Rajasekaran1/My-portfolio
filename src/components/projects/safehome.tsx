@@ -97,7 +97,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
       {/* ── NAV ── */}
       <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 5000, background: "rgba(10,10,10,0.92)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.08)", pointerEvents: "auto" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 40px", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <a href="/work/" style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, fontFamily: "'Inter', sans-serif", color: "#d1d5db", textDecoration: "none", pointerEvents: "auto" }}>
+          <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/`} style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, fontFamily: "'Inter', sans-serif", color: "#d1d5db", textDecoration: "none", pointerEvents: "auto" }}>
             <ArrowLeft size={16} /> Back to Work
           </a>
           <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, letterSpacing: "0.2em", textTransform: "uppercase", color: "#d1d5db" }}>
@@ -156,7 +156,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
         {/* Right – Featured Image Mockup */}
         <div style={{ position: "relative", overflow: "hidden", borderLeft: "1px solid rgba(255,255,255,0.1)", background: "#000000" }}>
           <img
-            src="/images/safehome/safehome_cover_new.jpg"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/safehome/safehome_cover_new.jpg`}
             alt="SafeHome Project Mockup"
             style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "5% center", display: "block" }}
           />
@@ -216,10 +216,10 @@ export function SafeHomeProject({ project }: { project: Project }) {
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
           <div style={{ background: "#111", borderRadius: 12, padding: "12px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 20px 40px rgba(0,0,0,0.4)" }}>
-            <img src="/images/safehome/Screenshot 2026-04-07 at 5.44.31 PM.png" alt="Magnitude 4.6 Boulder Creek" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
+            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/safehome/Screenshot 2026-04-07 at 5.44.31 PM.png`} alt="Magnitude 4.6 Boulder Creek" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
           </div>
           <div style={{ background: "#111", borderRadius: 12, padding: "12px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 20px 40px rgba(0,0,0,0.4)" }}>
-            <img src="/images/safehome/IMG_6515.jpg" alt="Local Impact" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
+            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/safehome/IMG_6515.jpg`} alt="Local Impact" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
           </div>
         </div>
       </section>
@@ -234,7 +234,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
         
         {/* Full Width Image */}
         <div style={{ position: "relative", width: "100%", marginBottom: 60, borderRadius: 12, border: "1px solid rgba(255,255,255,0.1)", overflow: "hidden", boxShadow: "0 40px 80px rgba(0,0,0,0.4)", background: "#1a1a1a" }}>
-          <img src="/images/safehome/UX issues.jpg" alt="Legacy Portal Pain Points" style={{ width: "100%", height: "auto", display: "block" }} />
+          <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/safehome/UX issues.jpg`} alt="Legacy Portal Pain Points" style={{ width: "100%", height: "auto", display: "block" }} />
         </div>
 
         <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 24, fontWeight: 300, marginBottom: 40, color: "#FFF8F0" }}>UX Issues</h3>
@@ -295,7 +295,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
             </div>
           </div>
           <div style={{ height: "100%", minHeight: 400 }}>
-            <img src="/images/safehome/map.png" alt="SafeHome Map" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: 8, boxShadow: "0 20px 40px rgba(0,0,0,0.4)" }} />
+            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/safehome/map.png`} alt="SafeHome Map" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: 8, boxShadow: "0 20px 40px rgba(0,0,0,0.4)" }} />
           </div>
         </div>
       </div>
@@ -408,7 +408,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
               <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, letterSpacing: "0.25em", textTransform: "uppercase", background: "rgba(251,113,133,0.12)", color: "#fb7185", padding: "6px 16px", borderRadius: 2, fontWeight: 700 }}>Before</span>
             </div>
             <div style={{ borderRadius: 8, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", marginBottom: 24 }}>
-              <img src="/images/safehome/color-initiative.jpg" alt="Before — complicated govt data" style={{ width: "100%", height: "auto", display: "block" }} />
+              <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/safehome/color-initiative.jpg`} alt="Before — complicated govt data" style={{ width: "100%", height: "auto", display: "block" }} />
             </div>
             <p style={{ fontSize: 16, color: "#a1a1aa", lineHeight: 1.7, margin: 0 }}>
               These were the complicated line up of Govt data used in the website.
@@ -463,10 +463,10 @@ export function SafeHomeProject({ project }: { project: Project }) {
               <div style={{ position: "relative" }}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
                   <div style={{ background: "#111", borderRadius: 12, padding: "12px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 30px 60px rgba(0,0,0,0.5)" }}>
-                    <img src="/images/safehome/Gif 1.gif" alt="Mobile Interaction 1" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
+                    <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/safehome/Gif 1.gif`} alt="Mobile Interaction 1" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
                   </div>
                   <div style={{ background: "#111", borderRadius: 12, padding: "12px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 30px 60px rgba(0,0,0,0.5)" }}>
-                    <img src="/images/safehome/Gif 2.gif" alt="Mobile Interaction 2" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
+                    <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/safehome/Gif 2.gif`} alt="Mobile Interaction 2" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
                   </div>
                 </div>
                 {/* HEATMAP */}
@@ -484,7 +484,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
 
                     {/* Image Center */}
                     <div style={{ background: "#111", borderRadius: 12, padding: "12px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 30px 60px rgba(0,0,0,0.5)" }}>
-                      <img src="/images/safehome/heatmap-analysis.jpg" alt="Heatmap Analysis" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
+                      <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/safehome/heatmap-analysis.jpg`} alt="Heatmap Analysis" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
                     </div>
 
                     {/* Right Diagnostic */}
@@ -536,7 +536,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
                   </p>
                 </div>
                 <div style={{ background: "#111", borderRadius: 12, padding: "20px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 40px 80px rgba(0,0,0,0.5)" }}>
-                  <img src="/images/safehome/Image1.jpg" alt="Web Iteration 1" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
+                  <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/safehome/Image1.jpg`} alt="Web Iteration 1" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
                 </div>
               </div>
 
@@ -549,7 +549,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
                   </p>
                 </div>
                 <div style={{ background: "#111", borderRadius: 12, padding: "20px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 40px 80px rgba(0,0,0,0.4)", width: "100%" }}>
-                  <img src="/images/safehome/web-side-2.jpg" alt="Web Iteration 2" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
+                  <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/safehome/web-side-2.jpg`} alt="Web Iteration 2" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
                 </div>
               </div>
             </div>
@@ -772,10 +772,10 @@ export function SafeHomeProject({ project }: { project: Project }) {
             
             <div style={{ display: "flex", flexDirection: "column", gap: 100 }}>
               <div style={{ background: "#111", borderRadius: 16, padding: "24px", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 40px 100px rgba(0,0,0,0.6)" }}>
-                <img src="/images/safehome/UX issues 1.jpg" alt="Redesign Study 1" style={{ width: "100%", height: "auto", display: "block", borderRadius: 8 }} />
+                <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/safehome/UX issues 1.jpg`} alt="Redesign Study 1" style={{ width: "100%", height: "auto", display: "block", borderRadius: 8 }} />
               </div>
               <div style={{ background: "#111", borderRadius: 16, padding: "24px", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 40px 100px rgba(0,0,0,0.6)" }}>
-                <img src="/images/safehome/UX issues 2.jpg" alt="Redesign Study 2" style={{ width: "100%", height: "auto", display: "block", borderRadius: 8 }} />
+                <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/safehome/UX issues 2.jpg`} alt="Redesign Study 2" style={{ width: "100%", height: "auto", display: "block", borderRadius: 8 }} />
               </div>
             </div>
           </div>

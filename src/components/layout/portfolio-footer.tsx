@@ -6,7 +6,7 @@ export default function PortfolioFooter() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center gap-6">
           <div className="flex flex-col items-center md:items-start gap-2">
-            <a href="/" className="text-xl font-serif font-bold tracking-tight">
+            <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/`} className="text-xl font-serif font-bold tracking-tight">
               Ramya<span className="text-purple-500 dark:text-purple-400">.</span>
             </a>
             <p className="text-sm text-neutral-500 dark:text-neutral-400 font-sans">
