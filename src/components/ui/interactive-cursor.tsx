@@ -65,69 +65,38 @@ export function InteractiveCursor() {
                 }}
                 className="fixed top-0 left-0"
             >
-                {/* Horizontal Scale Line */}
-                <motion.div
-                    animate={{ width: isHovering ? 80 : 40 }}
-                    className="h-[1.5px] bg-neutral-900 dark:bg-white absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 shadow-[0_0_15px_rgba(212,132,154,0.3)] transition-colors duration-300"
-                />
-                {/* Vertical Scale Line */}
-                <motion.div
-                    animate={{ height: isHovering ? 80 : 40 }}
-                    className="w-[1.5px] bg-neutral-900 dark:bg-white absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 shadow-[0_0_15px_rgba(212,132,154,0.3)] transition-colors duration-300"
-                />
-
-                {/* High Contrast Core */}
+                {/* Simplified Dot Core */}
                 <motion.div
                     animate={{
-                        scale: isHovering ? 2 : 1,
-                        rotate: isHovering ? 45 : 0,
-                        backgroundColor: isHovering ? "#D4849A" : "#000", // Using blush highlight
-                        borderColor: isHovering ? "transparent" : (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches ? "#fff" : "transparent")
+                        scale: isHovering ? 2.5 : 1,
+                        backgroundColor: isHovering ? "#F79CBa" : "#F79CBa", // Always blush
+                        opacity: isHovering ? 0.8 : 1
                     }}
-                    className="w-2.5 h-2.5 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 shadow-[0_0_20px_rgba(212,132,154,0.5)] border border-white/20"
+                    className="w-2 h-2 rounded-full absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 shadow-[0_0_15px_rgba(247,156,186,0.5)]"
                 />
 
-                {/* Tracking Metrics */}
+                {/* Outer Ring for Hover */}
                 <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 0.6 }}
-                    className="absolute top-10 left-10 flex flex-col gap-1.5"
-                >
-                    <span className="text-[9px] font-black uppercase tracking-[0.3em] text-neutral-900 dark:text-neutral-400">X {Math.round(coords.x)}</span>
-                    <span className="text-[9px] font-black uppercase tracking-[0.3em] text-neutral-900 dark:text-neutral-400">Y {Math.round(coords.y)}</span>
-                </motion.div>
+                    animate={{
+                        scale: isHovering ? 1.5 : 0,
+                        opacity: isHovering ? 0.3 : 0
+                    }}
+                    className="w-8 h-8 rounded-full border border-[#F79CBa] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+                />
 
                 {/* Contextual Action Tooltip */}
                 <AnimatePresence>
                     {isHovering && (
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.8, x: 20 }}
-                            animate={{ opacity: 1, scale: 1, x: 50 }}
-                            exit={{ opacity: 0, scale: 0.8, x: 20 }}
-                            className="absolute -top-12 left-12 py-1.5 px-4 bg-neutral-900 dark:bg-white text-white dark:text-black text-[10px] font-black uppercase tracking-[0.3em] shadow-[8px_8px_0_#D4849A] whitespace-nowrap transition-colors duration-300"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 30 }}
+                            exit={{ opacity: 0, y: 10 }}
+                            className="absolute left-1/2 -translate-x-1/2 py-1 px-3 bg-neutral-900/80 dark:bg-white/90 text-white dark:text-black text-[9px] font-bold uppercase tracking-[0.2em] rounded-full backdrop-blur-sm whitespace-nowrap"
                         >
                             {hoverLabel}
                         </motion.div>
                     )}
                 </AnimatePresence>
-            </motion.div>
-
-            {/* Background Aesthetic Spinning Layer */}
-            <motion.div
-                style={{
-                    x: springX,
-                    y: springY,
-                    translateX: "-50%",
-                    translateY: "-50%"
-                }}
-                animate={{
-                    rotate: 360,
-                    scale: isHovering ? 1.5 : 1
-                }}
-                transition={{ rotate: { duration: 15, repeat: Infinity, ease: "linear" } }}
-                className="fixed top-0 left-0 w-20 h-20 border border-dashed border-neutral-900/10 dark:border-white/10 flex items-center justify-center opacity-40 transition-colors duration-300"
-            >
-                <div className="w-1 h-1 bg-neutral-900/20 dark:bg-white/20 rounded-full" />
             </motion.div>
         </div>
     );
