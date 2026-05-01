@@ -66,15 +66,7 @@ p {
   margin: 0;
 }
 
-/* Show default pointer cursor on clickable elements */
-a,
-button,
-[role="button"],
-[onclick],
-input[type="submit"],
-input[type="button"] {
-  cursor: pointer !important;
-}
+
 
 
 

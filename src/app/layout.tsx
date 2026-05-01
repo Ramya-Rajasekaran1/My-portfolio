@@ -61,7 +61,7 @@ export default function RootLayout({
           <ReaderView />
           <SkipLink />
           <Navbar />
-          {/* <InteractiveCursor /> */}
+          <InteractiveCursor />
         </ThemeProvider>
       </body>
     </html>
