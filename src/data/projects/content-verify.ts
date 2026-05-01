@@ -3,8 +3,8 @@ export const contentVerifyProject = {
     title: "ContentVerify",
     category: "AI / UX Design",
     description: "A Content Verification AI Tool that analyzes text in real-time to highlight controversial claims, surface potential bias, and link to opposing sources to promote critical thinking.",
-    image: "/images/content-verify/cover.jpg",
-    misinfoMeme: "/images/content-verify/misinfo-meme.png",
+    image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/content-verify/cover.jpg`,
+    misinfoMeme: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/content-verify/misinfo-meme.png`,
     slug: "content-verify",
     sections: [
         {
@@ -40,7 +40,7 @@ export const contentVerifyProject = {
                 "- nuanced 'risk' assessment rather than binary judgment",
                 "- Immediate linkage to opposing viewpoints"
             ],
-            image: "/images/content-verify/pipeline.png",
+            image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/content-verify/pipeline.png`,
             sideBySide: true,
             imageRight: true,
             showDivider: true,
@@ -85,7 +85,7 @@ export const contentVerifyProject = {
             ],
             sideBySide: true,
             imageLeft: true,
-            image: "/images/content-verify/impact.jpg", // Reusing generic image for now
+            image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/content-verify/impact.jpg`, // Reusing generic image for now
             topMargin: true
         },
         {

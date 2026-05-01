@@ -211,21 +211,21 @@ export default function AboutPage() {
                             `}} />
                             <div className="marquee-container">
                                 {[
-                                    { name: "Figma", logo: "/images/about/figma-new.png" },
-                                    { name: "Cursor", logo: "/images/about/cursor_code_editor-logo_brandlogos.net_r1yfy.png" },
-                                    { name: "Gemini", logo: "/images/about/gemini-logo.jpg" },
-                                    { name: "ChatGPT", logo: "/images/about/chatgpt-new.png" },
-                                    { name: "Claude", logo: "/images/about/claude logo.jpeg" },
-                                    { name: "Uizard", logo: "/images/about/uizard-new.png" },
-                                    { name: "Antigravity", logo: "/images/about/antigravity-new.png" },
+                                    { name: "Figma", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/figma-new.png` },
+                                    { name: "Cursor", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/cursor_code_editor-logo_brandlogos.net_r1yfy.png` },
+                                    { name: "Gemini", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/gemini-logo.jpg` },
+                                    { name: "ChatGPT", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/chatgpt-new.png` },
+                                    { name: "Claude", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/claude logo.jpeg` },
+                                    { name: "Uizard", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/uizard-new.png` },
+                                    { name: "Antigravity", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/antigravity-new.png` },
                                     // Duplicate for seamless loop
-                                    { name: "Figma", logo: "/images/about/figma-new.png" },
-                                    { name: "Cursor", logo: "/images/about/cursor_code_editor-logo_brandlogos.net_r1yfy.png" },
-                                    { name: "Gemini", logo: "/images/about/gemini-logo.jpg" },
-                                    { name: "ChatGPT", logo: "/images/about/chatgpt-new.png" },
-                                    { name: "Claude", logo: "/images/about/claude logo.jpeg" },
-                                    { name: "Uizard", logo: "/images/about/uizard-new.png" },
-                                    { name: "Antigravity", logo: "/images/about/antigravity-new.png" },
+                                    { name: "Figma", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/figma-new.png` },
+                                    { name: "Cursor", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/cursor_code_editor-logo_brandlogos.net_r1yfy.png` },
+                                    { name: "Gemini", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/gemini-logo.jpg` },
+                                    { name: "ChatGPT", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/chatgpt-new.png` },
+                                    { name: "Claude", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/claude logo.jpeg` },
+                                    { name: "Uizard", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/uizard-new.png` },
+                                    { name: "Antigravity", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/antigravity-new.png` },
                                 ].map((tool, i) => (
                                     <div key={i} className="min-w-[160px] h-[120px] bg-transparent flex flex-col items-center justify-center gap-3 group transition-all duration-300">
                                         <div className="w-20 h-20 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-110">

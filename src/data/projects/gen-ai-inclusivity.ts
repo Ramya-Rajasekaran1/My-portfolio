@@ -3,7 +3,7 @@ export const genAiInclusivityProject = {
     title: "Designing for Inclusivity in the Age of Generative AI",
     category: "AI Usability and Accessibility",
     description: "A futurist UX investigation that benchmarks how inclusive modern generative AI tools are and sketches a blueprint for accessibility-forward experiences.",
-    image: "/images/work/gen_ai_cover.jpg",
+    image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/work/gen_ai_cover.jpg`,
     slug: "gen-ai-inclusivity",
     sections: [
         {

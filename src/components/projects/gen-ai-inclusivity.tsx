@@ -1382,8 +1382,8 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                                 logo: 'GPT',
                                 bgColor: 'bg-[#10a37f]',
                                 logoText: 'text-black',
-                                bGif: '/images/gen-ai/Chatgpt_flow_1.gif',
-                                aGif: '/images/gen-ai/Chatgpt_flow_2.gif',
+                                bGif: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/gen-ai/Chatgpt_flow_1.gif`,
+                                aGif: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/gen-ai/Chatgpt_flow_2.gif`,
                                 bNote: 'Multiple clicks required to find basic accessibility settings. Discoverability is hindered by deep nesting within General settings.',
                                 aNote: 'Integrated accessibility entry points in the primary interaction flow. One-click access to voice and vision controls.'
                             },
@@ -1393,8 +1393,8 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                                 logo: 'Gm',
                                 bgColor: 'bg-[#8ab4f8]',
                                 logoText: 'text-black',
-                                bGif: '/images/gen-ai/Gemini_Flow_1.gif',
-                                aGif: '/images/gen-ai/Gemini_Flow_2_.gif',
+                                bGif: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/gen-ai/Gemini_Flow_1.gif`,
+                                aGif: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/gen-ai/Gemini_Flow_2_.gif`,
                                 bNote: 'Visual layout lacks clear contrast for critical UI elements, making it difficult for low-vision users to navigate.',
                                 aNote: 'High-contrast themes and dynamic text scaling implemented directly into the core UI framework.'
                             },
@@ -1404,8 +1404,8 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                                 logo: 'Co',
                                 bgColor: 'bg-[#0078d4]',
                                 logoText: 'text-[#F4E5E9]',
-                                bGif: '/images/gen-ai/Copilot_flow_1.gif',
-                                aGif: '/images/gen-ai/Copilot_flow_2.gif',
+                                bGif: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/gen-ai/Copilot_flow_1.gif`,
+                                aGif: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/gen-ai/Copilot_flow_2.gif`,
                                 bNote: 'Longest journey paths to toggle accessibility modes. System feedback for screen readers is inconsistent.',
                                 aNote: 'Streamlined flow reducing navigation depth by 60%. Consistent ARIA landmarks and real-time audible status updates.'
                             }

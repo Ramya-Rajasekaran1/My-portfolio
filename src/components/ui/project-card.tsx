@@ -27,7 +27,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             transition={{ delay: index * 0.1, duration: 0.5, ease: "easeOut" }}
             className="group cursor-pointer"
         >
-            <a href={`/work/${project.slug}/`} className="block w-full h-full z-[10000] relative cursor-pointer pointer-events-auto" aria-label={`View ${project.title} case study`}>
+            <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/${project.slug}/`} className="block w-full h-full z-[10000] relative cursor-pointer pointer-events-auto" aria-label={`View ${project.title} case study`}>
                 <div className="flex flex-col">
                     {/* Title & Tag - MOBILE ONLY: above image */}
                     <div className="md:hidden flex flex-col gap-2 mb-4">

@@ -3,7 +3,7 @@ export const safehomeProject = {
     title: "SafeHome SF",
     category: "Civic Tech",
     description: "Lead UX Designer transforming San Francisco’s earthquake data into a mobile-first safety ecosystem that empowers renters and homeowners to take prepared action before, during, and after a seismic event.",
-    image: "/images/safehome/safehome_cover_new.jpg",
+    image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/safehome/safehome_cover_new.jpg`,
     slug: "safehome-sf",
     sections: [
         {
@@ -85,7 +85,7 @@ export const safehomeProject = {
                 "After: Implemented the Color Initiative with High/Medium/Low risk tiers and mobile search overlays so residents can instantly understand their location’s severity."
             ],
             sideBySide: true,
-            image: "/images/safehome/cover.jpg",
+            image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/safehome/cover.jpg`,
             imageRight: true,
             chips: ["Color Initiative", "Mobile Search Overlays"],
             topMargin: true

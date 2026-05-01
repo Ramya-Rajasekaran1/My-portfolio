@@ -3,7 +3,7 @@ export const genAiAccessibilityProject = {
     title: "Gen AI Accessibility",
     category: "UI revamp, Accessibility, Research",
     description: "A seamless booking experience for modern travelers. Integrated social features and personalized recommendations.",
-    image: "/images/gen-ai/cover.jpg",
+    image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/gen-ai/cover.jpg`,
     slug: "travel-booking",
     sections: [
         {

@@ -9,7 +9,7 @@ const featuredItems = [
         tag: "CIVIC TECH • SF GOVT",
         title: "SafeHome SF",
         description: "Redesigning earthquake & tsunami preparedness for the communities of San Francisco. From design chaos to a trusted, accessible civic product.",
-        image: "/images/safehome/safehome_cover_new.jpg",
+        image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/safehome/safehome_cover_new.jpg`,
         slug: "safehome-sf",
         metrics: [
             { label: "Active Growth", value: "+76.5%" },
@@ -22,7 +22,7 @@ const featuredItems = [
         tag: "SUPPLY CHAIN • DATA VIZ",
         title: "Tracking Quality Dashboard",
         description: "A complete overhaul of supply chain visibility reporting, transforming complex data into actionable performance metrics for global shippers.",
-        image: "/images/tracking-quality-dashboard/cover_v4.jpg",
+        image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/cover_v4.jpg`,
         slug: "tracking-quality-dashboard",
         metrics: [
             { label: "Visibility Gain", value: "45%" },
@@ -35,7 +35,7 @@ const featuredItems = [
         tag: "FEATURED RESEARCH",
         title: "Designing for Inclusivity in the Age of Generative AI",
         description: "A futurist UX investigation that benchmarks how inclusive modern generative AI tools are and sketches a blueprint for accessibility-forward experiences. Published at IEEE and IndiaHCI.",
-        image: "/images/work/gen_ai_cover.jpg",
+        image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/work/gen_ai_cover.jpg`,
         slug: "gen-ai-inclusivity",
         metrics: [
             { label: "Participants", value: "76" },
@@ -78,7 +78,7 @@ export function FeaturedProjects() {
                                             </span>
                                             <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-6">
                                                 <a 
-                                                    href={`/work/${item.slug}/`} 
+                                                    href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/${item.slug}/`} 
                                                     className="hover:text-blush transition-colors z-[10000] relative cursor-pointer pointer-events-auto"
                                                 >
                                                     <h3 className="text-3xl md:text-5xl font-outfit font-extralight text-white leading-tight">
@@ -86,7 +86,7 @@ export function FeaturedProjects() {
                                                     </h3>
                                                 </a>
                                                 <a
-                                                    href={`/work/${item.slug}/`}
+                                                    href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/${item.slug}/`}
                                                     className="group hidden xl:inline-flex shrink-0 items-center gap-2 px-5 py-2.5 border border-white/30 rounded-full text-xs font-mono font-bold uppercase tracking-[0.2em] text-white hover:bg-white hover:text-black transition-all duration-200 mb-2 z-[10000] relative cursor-pointer pointer-events-auto"
                                                 >
                                                     Explore case study
@@ -112,7 +112,7 @@ export function FeaturedProjects() {
                                         {/* Mobile Image: Placed below description and numbers */}
                                         <div className="lg:hidden relative py-4">
                                             <a 
-                                                href={`/work/${item.slug}/`} 
+                                                href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/${item.slug}/`} 
                                                 className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 shadow-2xl z-[10000] cursor-pointer pointer-events-auto"
                                             >
                                                 <img
@@ -125,7 +125,7 @@ export function FeaturedProjects() {
 
                                         <div className="pt-6 xl:hidden">
                                             <a
-                                                href={`/work/${item.slug}/`}
+                                                href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/${item.slug}/`}
                                                 className="group inline-flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-full text-xs font-mono font-bold uppercase tracking-[0.2em] hover:bg-blush transition-all duration-200 w-full justify-center z-[10000] relative cursor-pointer pointer-events-auto"
                                             >
                                                 Explore case study
@@ -137,7 +137,7 @@ export function FeaturedProjects() {
 
                                 <div className="hidden lg:block lg:order-1 relative">
                                     <a 
-                                        href={`/work/${item.slug}/`} 
+                                        href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/${item.slug}/`} 
                                         className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 group-hover:border-blush/30 transition-colors shadow-2xl z-[10000] cursor-pointer pointer-events-auto"
                                     >
                                         <img

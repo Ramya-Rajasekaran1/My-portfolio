@@ -3,8 +3,8 @@ export const trackingQualityDashboard = {
     title: "Tracking quality Dashboard - Supply chain visibility",
     category: "Supply Chain Visibility",
     description: "The existing dashboard showed consistency percentages that looked low — not because tracking was poor, but because the standards were unrealistically high. No one knew who was responsible for the gap. I built the solution from discovery to delivery.",
-    image: "/images/tracking-quality-dashboard/cover_v4.jpg",
-    thumbnailImage: "/images/tracking-quality-dashboard/cover_v4.jpg",
+    image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/cover_v4.jpg`,
+    thumbnailImage: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/cover_v4.jpg`,
     slug: "tracking-quality-dashboard",
     sections: [
         {
@@ -39,14 +39,14 @@ export const trackingQualityDashboard = {
         {
             title: "IN-DEPTH ANALYSIS",
             content: "This breakdown helps in understanding existing dashboard sections and the revised proposal. We want to have a very simple definition/approach which is easy to understand and troubleshoot, and this increases consistency across the board.",
-            image: "/images/tracking-quality-dashboard/in-depth-analysis-ideation.jpg",
+            image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/in-depth-analysis-ideation.jpg`,
             showDivider: true
         },
         {
             title: "SAMPLE USER STORY",
             content: "As a Shipper, I want to analyse and identify what aspects/who is accountable for low tracking consistency, so I can keep a tab on which carriers are better performing, I can find out which carriers are causing problems, I can identify problems with my entity, and I can find out what can improve tracking and efficiency.",
             glassCard: true,
-            image: "/images/tracking-quality-dashboard/man-illustration.png"
+            image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/man-illustration.png`
         },
         {
             title: "PAIN POINTS",
@@ -67,7 +67,7 @@ export const trackingQualityDashboard = {
                 "",
                 "- Heuristic analysis is done based on NN principles: Jakob Nielsen's 10 general principles for interaction design"
             ],
-            image: "/images/tracking-quality-dashboard/heuristic-analysis.jpg",
+            image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/heuristic-analysis.jpg`,
             topMargin: true,
             showDivider: true
         },
@@ -102,7 +102,7 @@ export const trackingQualityDashboard = {
                 "",
                 "- Fall recommended actions which were the unique selling point that were not available in the older version"
             ],
-            image: "/images/tracking-quality-dashboard/ideation-to-solution.jpg",
+            image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/ideation-to-solution.jpg`,
             topMargin: true,
             showDivider: true,
             sideBySide: true,
@@ -118,7 +118,7 @@ export const trackingQualityDashboard = {
                 "- Action items and CTA to further analyze are captured and given more prominence",
                 "- Onboarding and walkthrough tour are implemented for all the users given that it's a revamp"
             ],
-            image: "/images/tracking-quality-dashboard/solutions-fidelity.jpg",
+            image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/solutions-fidelity.jpg`,
             showDivider: true,
             glassCard: false,
             sideBySide: true,
@@ -140,7 +140,7 @@ export const trackingQualityDashboard = {
                 "- Change management takes time and is key for user engagement when a new revamp is launched",
                 "- Given the opportunity next time, I will propose to build this in the framework that'll support advanced interactions"
             ],
-            image: "/images/tracking-quality-dashboard/key-learning-character-v2.png",
+            image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/key-learning-character-v2.png`,
             sideBySide: true,
             imageRight: true,
             showDivider: true,
