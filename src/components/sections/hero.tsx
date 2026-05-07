@@ -166,7 +166,7 @@ export function Hero() {
                                                 className="w-full h-full object-contain brightness-110 dark:brightness-100 block"
                                             />
                                         </motion.div>
-                                    </div>
+                                        </motion.div>
 
                                     <motion.div
                                         layout
