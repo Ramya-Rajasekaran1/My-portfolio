@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform, useMotionValueEvent, LayoutGroup } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValueEvent, LayoutGroup, useSpring } from "framer-motion";
 import { Calendar, Users, DollarSign, Package } from "lucide-react";
 import { SpiralGlobe } from "@/components/ui/spiral-globe";
 import { useRef, useState } from "react";
@@ -63,13 +63,22 @@ export function Hero() {
         offset: ["start start", "end start"],
     });
 
-    const revealProgress = useTransform(scrollYProgress, [0, 0.35], [0, 1]);
-
-    useMotionValueEvent(revealProgress, "change", (latest) => {
-        setHasScrolled(latest > 0.05);
+    // Smooth out the raw scroll progress to prevent "snapping" from jumpy scroll inputs
+    const smoothProgress = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001
     });
 
-    const expandableMaxHeight = useTransform(revealProgress, [0.05, 0.85], ["0px", "1000px"]);
+    const revealProgress = useTransform(smoothProgress, [0, 0.85], [0, 1]);
+
+    useMotionValueEvent(revealProgress, "change", (latest) => {
+        // Higher threshold so the layout shift feels intentional, not like a hair-trigger "snap"
+        if (latest > 0.15 && !hasScrolled) setHasScrolled(true);
+        if (latest < 0.1 && hasScrolled) setHasScrolled(false);
+    });
+
+    const expandableMaxHeight = useTransform(revealProgress, [0.15, 0.9], ["0px", "1000px"]);
 
     const bioOpacity = useTransform(revealProgress, [0.1, 0.3], [0, 1]);
     const bioY = useTransform(revealProgress, [0.1, 0.3], [20, 0]);
@@ -116,7 +125,7 @@ export function Hero() {
     };
 
     return (
-        <section ref={sectionRef} className="min-h-[200vh] relative">
+        <section ref={sectionRef} className="min-h-[220vh] relative">
             <div className="sticky top-0 min-h-screen flex items-center justify-center px-4 pt-20 md:pt-32 pb-12 relative overflow-hidden">
 
                 <motion.div
@@ -128,23 +137,24 @@ export function Hero() {
                     <div className="absolute inset-0 bg-gradient-to-br from-white/[0.1] to-transparent pointer-events-none rounded-[inherit]" />
 
                     <div className="relative z-10">
-                        <div className="flex flex-col">
-                            {/* Fixed Smooth Transition: Use absolute positioning for the inner transition or careful sizing */}
-                            <motion.div
-                                transition={{
-                                    layout: { type: "spring", stiffness: 300, damping: 30 },
-                                }}
-                                className={cn(
-                                    "flex gap-4 md:gap-10",
-                                    hasScrolled
-                                        ? "flex-col md:flex-row md:items-start text-left"
-                                        : "flex-col items-center text-center"
-                                )}
-                            >
-                                    <div>
+                        <LayoutGroup>
+                            <div className="flex flex-col">
+                                <motion.div
+                                    layout
+                                    transition={{
+                                        layout: { type: "spring", stiffness: 80, damping: 20, mass: 1.2 },
+                                    }}
+                                    className={cn(
+                                        "flex gap-4 md:gap-10",
+                                        hasScrolled
+                                            ? "flex-col md:flex-row md:items-start text-left"
+                                            : "flex-col items-center text-center"
+                                    )}
+                                >
+                                    <motion.div layout>
                                         <motion.div
                                             variants={itemVariants}
-
+                                            layout
                                             className={cn(
                                                 "rounded-2xl md:rounded-3xl flex items-center justify-center relative shrink-0 bg-white dark:bg-white/5 border border-neutral-200 dark:border-white/10 p-2 shadow-sm",
                                                 hasScrolled ? "w-12 h-12 md:w-20 md:h-20" : "w-20 h-20 md:w-32 md:h-32"
@@ -159,6 +169,7 @@ export function Hero() {
                                     </div>
 
                                     <motion.div
+                                        layout
                                         variants={itemVariants}
                                         className={cn(
                                             "flex flex-col",
@@ -166,11 +177,13 @@ export function Hero() {
                                         )}
                                     >
                                         <motion.h1
+                                            layout
                                             className="text-2xl md:text-5xl font-extralight tracking-tight text-neutral-900 dark:text-ivory leading-none font-outfit"
                                         >
                                             Ramya Rajasekaran
                                         </motion.h1>
                                         <motion.p
+                                            layout
                                             className="text-[13px] md:text-lg leading-tight font-bold font-outfit text-blush-text dark:text-blush tracking-[0.1em]"
                                         >
                                             UX design specialist
@@ -178,6 +191,7 @@ export function Hero() {
                                     </motion.div>
                                 </motion.div>
                             </div>
+                        </LayoutGroup>
 
                         <motion.div style={{ maxHeight: expandableMaxHeight, overflow: "hidden" }}>
                             <div className="flex flex-col gap-4 md:gap-8 pt-4 md:pt-8 pb-2">

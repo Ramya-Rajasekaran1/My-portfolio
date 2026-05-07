@@ -9,7 +9,7 @@ import { SkipLink } from "@/components/accessibility/skip-link";
 import { ScrollToTop } from "@/components/accessibility/scroll-to-top";
 import { AccessibilityWidget } from "@/components/accessibility/accessibility-widget";
 import { ReaderView } from "@/components/accessibility/reader-view";
-import { InteractiveCursor } from "@/components/ui/interactive-cursor";
+
 import { ConditionalBackground } from "@/components/ui/conditional-background";
 import { NoiseOverlay } from "@/components/ui/noise-overlay";
 
@@ -61,7 +61,7 @@ export default function RootLayout({
           <ReaderView />
           <SkipLink />
           <Navbar />
-          <InteractiveCursor />
+
         </ThemeProvider>
       </body>
     </html>
