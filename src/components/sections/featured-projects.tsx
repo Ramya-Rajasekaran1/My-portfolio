@@ -90,6 +90,7 @@ export function FeaturedProjects() {
                                                     className="group hidden xl:inline-flex shrink-0 items-center gap-2 px-5 py-2.5 border border-white/30 rounded-full text-xs font-mono font-bold uppercase tracking-[0.2em] text-white hover:bg-white hover:text-black transition-all duration-200 mb-2 z-[10000] relative cursor-pointer pointer-events-auto"
                                                 >
                                                     Explore case study
+                                                    <span className="sr-only"> about {item.title}</span>
                                                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                                                 </a>
                                             </div>
@@ -129,6 +130,7 @@ export function FeaturedProjects() {
                                                 className="group inline-flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-full text-xs font-mono font-bold uppercase tracking-[0.2em] hover:bg-blush transition-all duration-200 w-full justify-center z-[10000] relative cursor-pointer pointer-events-auto"
                                             >
                                                 Explore case study
+                                                <span className="sr-only"> about {item.title}</span>
                                                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                                             </a>
                                         </div>

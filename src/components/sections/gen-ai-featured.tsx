@@ -36,6 +36,7 @@ export function GenAIFeatured() {
                                  className="hidden lg:inline-flex shrink-0 items-center justify-center gap-3 px-5 py-2.5 bg-[#7effa0] hover:bg-[#6ee890] text-black font-bold text-xs uppercase tracking-widest rounded-full transition-all group mb-2 z-10 relative cursor-pointer pointer-events-auto"
                              >
                                  Explore case study
+                                 <span className="sr-only"> about Designing for Inclusivity</span>
                                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                              </a>
                         </div>
@@ -80,6 +81,7 @@ export function GenAIFeatured() {
                                  className="inline-flex items-center justify-center gap-3 px-6 py-3 bg-[#7effa0] hover:bg-[#6ee890] text-black font-bold text-sm uppercase tracking-widest rounded-full transition-all group w-full z-10 relative cursor-pointer pointer-events-auto"
                              >
                                  Explore case study
+                                 <span className="sr-only"> about Designing for Inclusivity</span>
                                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                              </a>
                         </div>

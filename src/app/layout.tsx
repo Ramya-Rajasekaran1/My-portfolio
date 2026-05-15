@@ -50,8 +50,9 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
+          <SkipLink />
           <ConditionalBackground />
-          <main className="relative">
+          <main id="main-content" className="relative">
             {children}
           </main>
 
@@ -59,7 +60,6 @@ export default function RootLayout({
           <ScrollToTop />
           <AccessibilityWidget />
           <ReaderView />
-          <SkipLink />
           <Navbar />
 
         </ThemeProvider>
