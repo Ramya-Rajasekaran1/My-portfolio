@@ -104,7 +104,7 @@ export function DesignLeadership() {
                         key={cat.id}
                         onClick={() => setFilter(cat.id)}
                         className={cn(
-                            "px-3 py-1.5 rounded-full text-[12px] font-black tracking-widest transition-all duration-300 border flex-shrink-0 uppercase",
+                            "px-3 py-1.5 rounded-full text-[12px] font-black tracking-widest transition-all duration-300 border flex-shrink-0 uppercase cursor-pointer pointer-events-auto relative z-10",
                             filter === cat.id
                                 ? "bg-blush/30 border-blush/40 text-blush-text dark:bg-blush dark:border-blush dark:text-blush-text shadow-md shadow-blush/20"
                                 : "bg-white dark:bg-card border-neutral-300 dark:border-white/10 text-neutral-900 dark:text-ivory hover:border-blush/50"
