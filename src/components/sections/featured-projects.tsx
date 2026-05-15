@@ -49,7 +49,7 @@ const featuredItems = [
 export function FeaturedProjects() {
 
     return (
-        <section id="work" className="py-24 md:py-40 bg-[#0C0A14] relative z-20">
+        <section id="work" className="py-24 md:py-40 bg-canvas relative z-20">
             <div className="container mx-auto px-6 max-w-7xl">
                 <div className="mb-24">
                     <h2 className="text-4xl md:text-6xl font-extralight tracking-tight text-white mb-6 font-outfit">Selected Work</h2>
