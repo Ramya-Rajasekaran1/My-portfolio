@@ -6,6 +6,7 @@ import { ContentVerifyProject } from "@/components/projects/content-verify";
 import { GenAiInclusivityProject } from "@/components/projects/gen-ai-inclusivity";
 import { TQDashboardProject } from "@/components/projects/tq-dashboard";
 import { SafeHomeProject } from "@/components/projects/safehome";
+import { FilterRedesignProject } from "@/components/projects/filter-redesign";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -55,6 +56,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
     if (slug === "safehome-sf") {
         return <SafeHomeProject project={project} />;
+    }
+
+    if (slug === "filter-revamp") {
+        return <FilterRedesignProject />;
     }
 
     return <ProjectPageClient project={project} />;
