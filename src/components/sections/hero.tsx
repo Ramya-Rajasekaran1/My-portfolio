@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform, useMotionValueEvent, LayoutGroup, useSpring } from "framer-motion";
-import { Calendar, Users, DollarSign, Package } from "lucide-react";
+import { Calendar, Users, ShoppingCart, Package } from "lucide-react";
 import { SpiralGlobe } from "@/components/ui/spiral-globe";
 import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -13,7 +13,7 @@ export function Hero() {
     const achievements = [
         {
             icon: Calendar,
-            value: "4+",
+            value: "5+",
             label: "Years Experience",
             color: "text-purple-600",
             bgColor: "bg-purple-500/10",
@@ -28,17 +28,17 @@ export function Hero() {
             borderColor: "border-indigo-500/20"
         },
         {
-            icon: Package,
-            value: "3.2M",
-            label: "Daily Shipments",
+            icon: ShoppingCart,
+            value: "70K+",
+            label: "Ecomm Redesign",
             color: "text-purple-700",
             bgColor: "bg-purple-600/10",
             borderColor: "border-purple-600/20"
         },
         {
-            icon: DollarSign,
-            value: "$2B",
-            label: "Revenue Impact",
+            icon: Package,
+            value: "3.2M",
+            label: "Tracking Platform Redesign",
             color: "text-indigo-700",
             bgColor: "bg-indigo-600/10",
             borderColor: "border-indigo-600/20"
