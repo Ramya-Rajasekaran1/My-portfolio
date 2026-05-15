@@ -151,7 +151,7 @@ export function AccessibilityWidget() {
             {/* Floating Button - Desktop Only */}
             <motion.button
                 onClick={() => setIsOpen(true)}
-                className="fixed hidden md:flex left-8 bottom-8 z-50 p-3 rounded-full bg-purple-600 hover:bg-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-500/30"
+                className="fixed hidden md:flex left-8 bottom-8 z-50 p-3 rounded-full bg-purple-600 hover:bg-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-500/30 cursor-pointer"
                 aria-label="Open accessibility settings (Option+A)"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

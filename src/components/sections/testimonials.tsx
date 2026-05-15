@@ -82,10 +82,10 @@ export function Testimonials() {
                         ))}
                     </div>
                     <div className="flex gap-3">
-                        <button onClick={scrollLeft} className="p-4 rounded-full bg-blush hover:bg-blush/90 text-blush-text shadow-lg transition-all active:scale-95" aria-label="Scroll left">
+                        <button onClick={scrollLeft} className="p-4 rounded-full bg-blush hover:bg-blush/90 text-blush-text shadow-lg transition-all active:scale-95 cursor-pointer" aria-label="Scroll left">
                             <ChevronLeft className="w-6 h-6" />
                         </button>
-                        <button onClick={scrollRight} className="p-4 rounded-full bg-blush hover:bg-blush/90 text-blush-text shadow-lg transition-all active:scale-95" aria-label="Scroll right">
+                        <button onClick={scrollRight} className="p-4 rounded-full bg-blush hover:bg-blush/90 text-blush-text shadow-lg transition-all active:scale-95 cursor-pointer" aria-label="Scroll right">
                             <ChevronRight className="w-6 h-6" />
                         </button>
                     </div>
@@ -131,10 +131,10 @@ export function Testimonials() {
 
                     {/* Row 3: Arrows */}
                     <div className="flex gap-4">
-                        <button onClick={scrollLeft} className="p-3 rounded-full bg-blush hover:bg-blush/90 text-blush-text shadow-md transition-all active:scale-95" aria-label="Scroll left">
+                        <button onClick={scrollLeft} className="p-3 rounded-full bg-blush hover:bg-blush/90 text-blush-text shadow-md transition-all active:scale-95 cursor-pointer" aria-label="Scroll left">
                             <ChevronLeft className="w-5 h-5" />
                         </button>
-                        <button onClick={scrollRight} className="p-3 rounded-full bg-blush hover:bg-blush/90 text-blush-text shadow-md transition-all active:scale-95" aria-label="Scroll right">
+                        <button onClick={scrollRight} className="p-3 rounded-full bg-blush hover:bg-blush/90 text-blush-text shadow-md transition-all active:scale-95 cursor-pointer" aria-label="Scroll right">
                             <ChevronRight className="w-5 h-5" />
                         </button>
                     </div>
