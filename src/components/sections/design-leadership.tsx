@@ -22,7 +22,7 @@ const galleryItems: GalleryItem[] = [
   // Leadership talks (1st Category) - Ordered: Talk on Accessibility then IEEE
   { id: "keynote-video", type: "video", src: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/leadership/97D84054-555D-4EC6-A756-4AB511568DC3.MP4`, title: "Leadership Connect on UX at Boeing", location: "DesignConf", date: "Apr 2024", category: "Leadership", note: "Leadership Connect on UX at Boeing", tags: ["Design Systems", "Talk"] },
   { id: "community-talk", type: "image", src: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/leadership/0c9cfc13-4e6a-4b76-ac91-542d4a50c761.jpg`, title: "Talk on Accessibility", location: "Virtual Stage", date: "Mar 2024", category: "Leadership", note: "Talk on Accessibility", tags: ["Virtual", "Communication"] },
-  { id: "bits-stage", type: "image", src: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/leadership/FC5AA75A-F4E6-42EE-BE82-93A40CAD0B72.JPG`, title: "IEEE Published Paper", location: "BITS Pilani", date: "May 2022", category: "Leadership", note: "IEEE Published Paper", tags: ["Keynote", "Supply Chain"] },
+  { id: "bits-stage", type: "image", src: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/leadership/FC5AA75A-F4E6-42EE-BE82-93A40CAD0B72.JPG`, title: "India HCI Industry Case Study", location: "BITS Pilani", date: "May 2022", category: "Leadership", note: "India HCI Industry Case Study", tags: ["Case Study", "HCI"] },
   { id: "vip-presentation", type: "image", src: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/leadership/025021CB-F3EE-4AA2-9A91-394FE35C2804.JPG`, title: "Talk on Accessibility", location: "Innovation Hub", date: "Aug 2023", category: "Leadership", note: "Talk on Accessibility", tags: ["Strategy", "Stakeholders"] },
   { id: "christ-award", type: "image", src: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/leadership/6A61DCE3-C96F-4E66-963D-26FD6AB98AC4.JPG`, title: "IEEE Published Paper", location: "Christ University", date: "Mar 2023", category: "Leadership", note: "IEEE Published Paper", tags: ["Award", "Education"] },
   
@@ -130,8 +130,8 @@ export function DesignLeadership() {
                                 exit={{ opacity: 0, scale: 0.9 }}
                                 transition={{ duration: 0.4, delay: i * 0.05 }}
                                 onClick={() => setLightboxItem(item)}
-                                className="group relative cursor-pointer rounded-2xl overflow-hidden bg-white dark:bg-card border border-neutral-100 dark:border-white/5 hover:border-blush/40 animate-in fade-in zoom-in duration-500 hover:shadow-2xl transition-all w-full text-left outline-none focus-visible:ring-2 focus-visible:ring-blush"
-                                style={{ transformStyle: 'preserve-3d', backfaceVisibility: 'hidden' }}
+                                className="group relative cursor-pointer pointer-events-auto z-10 rounded-2xl overflow-hidden bg-white dark:bg-card border border-neutral-100 dark:border-white/5 hover:border-blush/40 hover:shadow-2xl transition-all w-full text-left outline-none focus-visible:ring-2 focus-visible:ring-blush"
+                                style={{ transformStyle: 'preserve-3d', backfaceVisibility: 'hidden', display: 'block' }}
                                 aria-label={`View details for ${item.title} at ${item.location}`}
                             >
                                 {item.type === "image" ? (

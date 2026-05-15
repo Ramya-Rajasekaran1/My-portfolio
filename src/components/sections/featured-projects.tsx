@@ -49,7 +49,7 @@ const featuredItems = [
 export function FeaturedProjects() {
 
     return (
-        <section id="work" className="py-24 md:py-40 bg-canvas relative z-20">
+        <section id="work" className="py-24 md:py-40 bg-[#0C0A14] relative z-20">
             <div className="container mx-auto px-6 max-w-7xl">
                 <div className="mb-24">
                     <h2 className="text-4xl md:text-6xl font-extralight tracking-tight text-white mb-6 font-outfit">Selected Work</h2>
@@ -77,8 +77,8 @@ export function FeaturedProjects() {
                                                 {item.tag}
                                             </span>
                                             <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-6">
-                                                <a 
-                                                    href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/${item.slug}/`} 
+                                                <a
+                                                    href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/${item.slug}/`}
                                                     className="hover:text-blush transition-colors z-[10000] relative cursor-pointer pointer-events-auto"
                                                 >
                                                     <h3 className="text-3xl md:text-5xl font-outfit font-extralight text-white leading-tight">
@@ -112,8 +112,8 @@ export function FeaturedProjects() {
 
                                         {/* Mobile Image: Placed below description and numbers */}
                                         <div className="lg:hidden relative py-4">
-                                            <a 
-                                                href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/${item.slug}/`} 
+                                            <a
+                                                href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/${item.slug}/`}
                                                 className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 shadow-2xl z-[10000] cursor-pointer pointer-events-auto"
                                             >
                                                 <img
@@ -138,8 +138,8 @@ export function FeaturedProjects() {
                                 </div>
 
                                 <div className="hidden lg:block lg:order-1 relative">
-                                    <a 
-                                        href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/${item.slug}/`} 
+                                    <a
+                                        href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/${item.slug}/`}
                                         className="block relative aspect-[4/3] rounded-3xl overflow-hidden bg-white/5 border border-white/10 group-hover:border-blush/30 transition-colors shadow-2xl z-[10000] cursor-pointer pointer-events-auto"
                                     >
                                         <img
