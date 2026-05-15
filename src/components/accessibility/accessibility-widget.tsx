@@ -169,7 +169,7 @@ export function AccessibilityWidget() {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setIsOpen(false)}
-                            className="fixed inset-0 bg-black/60 backdrop-blur-md z-[110]"
+                            className="fixed inset-0 bg-black/60 backdrop-blur-md z-[15000]"
                         />
 
                         {/* Panel */}
@@ -178,7 +178,7 @@ export function AccessibilityWidget() {
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: -400, opacity: 0 }}
                             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                            className="fixed left-0 top-0 bottom-0 w-full sm:w-[400px] max-w-[100vw] sm:max-w-[400px] bg-white dark:bg-neutral-900 shadow-2xl z-[120] overflow-y-auto"
+                            className="fixed left-0 top-0 bottom-0 w-full sm:w-[400px] max-w-[100vw] sm:max-w-[400px] bg-white dark:bg-neutral-900 shadow-2xl z-[15001] overflow-y-auto"
                         >
                             {/* Header */}
                             <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white p-6 flex items-center justify-between z-10">
