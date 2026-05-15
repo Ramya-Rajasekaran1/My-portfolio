@@ -177,7 +177,7 @@ export function NetworkIntelligenceProject({ project }: NetworkIntelligenceProje
                         <div className="space-y-24">
                             {designs.multiImage.map((img, i) => (
                                 <div key={i} className="rounded-xl overflow-hidden shadow-2xl transition-transform hover:scale-[1.01] cursor-pointer" onClick={() => setLightboxImage({ src: img, alt: "Visual Design" })}>
-                                    <img src={img} alt="Design Mockup" className="w-full h-auto" />
+                                    <img src={img} alt={`Visual Design Mockup ${i + 1} for ${project.title}`} className="w-full h-auto" />
                                 </div>
                             ))}
                         </div>
