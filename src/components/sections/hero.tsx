@@ -83,6 +83,7 @@ export function Hero() {
     const bioOpacity = useTransform(revealProgress, [0.1, 0.3], [0, 1]);
     const bioY = useTransform(revealProgress, [0.1, 0.3], [20, 0]);
     const bioBlur = useTransform(revealProgress, [0.1, 0.3], [8, 0]);
+    const imageScale = useTransform(revealProgress, [0.1, 0.3], [0.95, 1]);
 
     const statsOpacity = useTransform(revealProgress, [0.3, 0.55], [0, 1]);
     const statsY = useTransform(revealProgress, [0.3, 0.55], [20, 0]);
@@ -125,22 +126,22 @@ export function Hero() {
     };
 
     return (
-        <section ref={sectionRef} className="min-h-[260vh] relative">
+        <section ref={sectionRef} className="min-h-[220vh] relative">
             <div className="sticky top-0 min-h-screen flex items-center justify-center px-4 pt-20 md:pt-32 pb-12 relative overflow-hidden">
 
                 <motion.div
                     initial="hidden"
                     animate="visible"
                     variants={nameTagVariants}
-                    className="max-w-5xl w-full p-4 md:p-10 rounded-3xl md:rounded-[2.5rem] border border-white/10 dark:border-white/[0.05] shadow-2xl bg-white/5 dark:bg-black/[0.1] backdrop-blur-2xl relative overflow-hidden z-10"
+                    className="max-w-6xl w-full p-4 md:py-8 md:px-10 rounded-3xl md:rounded-[2.5rem] border border-white/10 dark:border-white/[0.05] shadow-2xl bg-white/5 dark:bg-black/[0.1] backdrop-blur-2xl relative overflow-hidden z-10"
                 >
                     <div className="absolute inset-0 bg-gradient-to-br from-white/[0.1] to-transparent pointer-events-none rounded-[inherit]" />
 
                     <div className="relative z-10 w-full">
                         {/* Desktop Absolute Image */}
                         <motion.div 
-                            style={{ opacity: bioOpacity }}
-                            className="hidden md:flex absolute top-0 left-0 w-80 h-full pb-2"
+                            style={{ opacity: bioOpacity, scale: imageScale }}
+                            className="hidden md:flex absolute top-8 left-8 w-[26rem] h-[340px]"
                         >
                             <div className="w-full h-full relative rounded-2xl overflow-hidden border border-neutral-200 dark:border-white/10 shadow-sm">
                                 <img 
@@ -159,9 +160,9 @@ export function Hero() {
                                         layout: { type: "spring", stiffness: 80, damping: 20, mass: 1.2 },
                                     }}
                                     className={cn(
-                                        "flex gap-4 md:gap-10",
+                                        "flex gap-4 md:gap-6",
                                         hasScrolled
-                                            ? "flex-col md:flex-row md:items-start md:pl-[22rem] text-left"
+                                            ? "flex-col md:flex-row md:items-start md:pl-[30rem] text-left"
                                             : "flex-col items-center text-center"
                                     )}
                                 >
@@ -222,7 +223,7 @@ export function Hero() {
                                 </div>
                             </motion.div>
 
-                            <div className="flex flex-col gap-4 md:gap-8 pt-4 md:pt-8 pb-2 md:pl-[22rem]">
+                            <div className="flex flex-col gap-4 md:gap-6 pt-4 md:pt-6 pb-2 md:pl-[30rem]">
                                 <motion.div
                                     style={{ opacity: bioOpacity, y: bioY, filter: useTransform(bioBlur, (v) => `blur(${v}px)`) }}
                                     className="w-full text-left"
@@ -240,9 +241,9 @@ export function Hero() {
                                         <motion.div
                                             key={achievement.label}
                                             whileHover={{ y: -5 }}
-                                            className="group p-4 md:p-5 rounded-xl md:rounded-2xl bg-blue-955/20 dark:bg-blue-955/40 border border-blue-950/10 dark:border-white/[0.05] flex flex-col items-start transition-colors hover:bg-blush/40 dark:hover:bg-blue-950/60 backdrop-blur-sm"
+                                            className="group p-3 md:p-4 rounded-xl md:rounded-2xl bg-blue-955/20 dark:bg-blue-955/40 border border-blue-950/10 dark:border-white/[0.05] flex flex-col items-start transition-colors hover:bg-blush/40 dark:hover:bg-blue-950/60 backdrop-blur-sm"
                                         >
-                                            <div className="space-y-4 md:space-y-6 font-outfit w-full">
+                                            <div className="space-y-2 md:space-y-3 font-outfit w-full">
                                                 {/* Stat Values: Navy in Light Mode */}
                                                 <p className="text-xl md:text-2xl font-black text-blue-950 dark:text-ivory leading-none">{achievement.value}</p>
                                                 <p className="text-[12px] md:text-[14px] capitalize tracking-widest font-black text-blue-950/70 dark:text-blush">{achievement.label}</p>
