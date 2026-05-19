@@ -223,7 +223,7 @@ export function Hero() {
                                 </div>
                             </motion.div>
 
-                            <div className="flex flex-col gap-4 md:gap-6 pt-4 md:pt-6 pb-2 md:pl-[30rem]">
+                            <div className="flex flex-col gap-4 md:gap-6 pt-4 md:pt-6 pb-2 md:pl-[30rem] md:min-h-[240px]">
                                 <motion.div
                                     style={{ opacity: bioOpacity, y: bioY, filter: useTransform(bioBlur, (v) => `blur(${v}px)`) }}
                                     className="w-full text-left"
@@ -251,30 +251,30 @@ export function Hero() {
                                         </motion.div>
                                     ))}
                                 </motion.div>
-
-                                {/* Skills Section */}
-                                <motion.div
-                                    style={{ opacity: skillsCardOpacity, y: skillsCardY }}
-                                    className="pt-3 md:pt-4 border-t border-neutral-200 dark:border-white/5"
-                                >
-                                    <div className="flex flex-wrap justify-between gap-y-3 gap-x-2 w-full">
-                                        {skills.map((skill, idx) => (
-                                            <motion.div
-                                                key={skill.name}
-                                                initial={{ opacity: 0, scale: 0.9 }}
-                                                animate={{ opacity: hasScrolled ? 1 : 0, scale: hasScrolled ? 1 : 0.9 }}
-                                                transition={{ delay: 0.1 + idx * 0.05 }}
-                                                className="flex items-center gap-1.5 md:gap-2 px-2 md:px-3 py-1 md:py-1.5 bg-white dark:bg-white/10 border border-neutral-200 dark:border-white/10 rounded-full shadow-sm"
-                                            >
-                                                <div className={cn("w-1 md:w-1.5 h-1 md:h-1.5 rounded-full", skill.color)} />
-                                                <span className="text-[10px] md:text-[11px] font-black tracking-widest text-black dark:text-ivory uppercase">
-                                                    {skill.name}
-                                                </span>
-                                            </motion.div>
-                                        ))}
-                                    </div>
-                                </motion.div>
                             </div>
+
+                            {/* Skills Section */}
+                            <motion.div
+                                style={{ opacity: skillsCardOpacity, y: skillsCardY }}
+                                className="pt-4 md:pt-6 border-t border-neutral-200 dark:border-white/10 mt-4 w-full"
+                            >
+                                <div className="flex flex-wrap justify-start gap-1.5 md:gap-2.5 w-full">
+                                    {skills.map((skill, idx) => (
+                                        <motion.div
+                                            key={skill.name}
+                                            initial={{ opacity: 0, scale: 0.9 }}
+                                            animate={{ opacity: hasScrolled ? 1 : 0, scale: hasScrolled ? 1 : 0.9 }}
+                                            transition={{ delay: 0.1 + idx * 0.05 }}
+                                            className="flex items-center gap-1.5 md:gap-2 px-2 md:px-3 py-1 md:py-1.5 bg-white dark:bg-white/10 border border-neutral-200 dark:border-white/10 rounded-full shadow-sm"
+                                        >
+                                            <div className={cn("w-1 md:w-1.5 h-1 md:h-1.5 rounded-full", skill.color)} />
+                                            <span className="text-[10px] md:text-[11px] font-black tracking-widest text-black dark:text-ivory uppercase">
+                                                {skill.name}
+                                            </span>
+                                        </motion.div>
+                                    ))}
+                                </div>
+                            </motion.div>
                         </motion.div>
                     </div>
 
