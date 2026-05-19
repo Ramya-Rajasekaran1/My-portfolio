@@ -257,7 +257,7 @@ export function Hero() {
                                     style={{ opacity: skillsCardOpacity, y: skillsCardY }}
                                     className="pt-3 md:pt-4 border-t border-neutral-200 dark:border-white/5"
                                 >
-                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
+                                    <div className="flex flex-wrap justify-between gap-y-3 gap-x-2 w-full">
                                         {skills.map((skill, idx) => (
                                             <motion.div
                                                 key={skill.name}
