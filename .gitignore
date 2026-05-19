@@ -43,3 +43,6 @@ next-env.d.ts
 # untracked generated scripts and raw files
 *.py
 *.HEIC
+
+# Local Netlify folder
+.netlify

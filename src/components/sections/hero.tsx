@@ -70,7 +70,7 @@ export function Hero() {
         restDelta: 0.001
     });
 
-    const revealProgress = useTransform(smoothProgress, [0, 0.85], [0, 1]);
+    const revealProgress = useTransform(smoothProgress, [0, 0.65], [0, 1]);
 
     useMotionValueEvent(revealProgress, "change", (latest) => {
         // Higher threshold so the layout shift feels intentional, not like a hair-trigger "snap"
@@ -125,18 +125,32 @@ export function Hero() {
     };
 
     return (
-        <section ref={sectionRef} className="min-h-[220vh] relative">
+        <section ref={sectionRef} className="min-h-[260vh] relative">
             <div className="sticky top-0 min-h-screen flex items-center justify-center px-4 pt-20 md:pt-32 pb-12 relative overflow-hidden">
 
                 <motion.div
                     initial="hidden"
                     animate="visible"
                     variants={nameTagVariants}
-                    className="max-w-4xl w-full p-4 md:p-10 rounded-3xl md:rounded-[2.5rem] border border-white/10 dark:border-white/[0.05] shadow-2xl bg-white/5 dark:bg-black/[0.1] backdrop-blur-2xl relative overflow-hidden z-10"
+                    className="max-w-5xl w-full p-4 md:p-10 rounded-3xl md:rounded-[2.5rem] border border-white/10 dark:border-white/[0.05] shadow-2xl bg-white/5 dark:bg-black/[0.1] backdrop-blur-2xl relative overflow-hidden z-10"
                 >
                     <div className="absolute inset-0 bg-gradient-to-br from-white/[0.1] to-transparent pointer-events-none rounded-[inherit]" />
 
-                    <div className="relative z-10">
+                    <div className="relative z-10 w-full">
+                        {/* Desktop Absolute Image */}
+                        <motion.div 
+                            style={{ opacity: bioOpacity }}
+                            className="hidden md:flex absolute top-0 left-0 w-80 h-full pb-2"
+                        >
+                            <div className="w-full h-full relative rounded-2xl overflow-hidden border border-neutral-200 dark:border-white/10 shadow-sm">
+                                <img 
+                                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/brand/profile.jpg`}
+                                    alt="Ramya Rajasekaran"
+                                    className="w-full h-full object-cover object-[20%_center] absolute inset-0"
+                                />
+                            </div>
+                        </motion.div>
+
                         <LayoutGroup>
                             <div className="flex flex-col">
                                 <motion.div
@@ -147,7 +161,7 @@ export function Hero() {
                                     className={cn(
                                         "flex gap-4 md:gap-10",
                                         hasScrolled
-                                            ? "flex-col md:flex-row md:items-start text-left"
+                                            ? "flex-col md:flex-row md:items-start md:pl-[22rem] text-left"
                                             : "flex-col items-center text-center"
                                     )}
                                 >
@@ -194,12 +208,26 @@ export function Hero() {
                         </LayoutGroup>
 
                         <motion.div style={{ maxHeight: expandableMaxHeight, overflow: "hidden" }}>
-                            <div className="flex flex-col gap-4 md:gap-8 pt-4 md:pt-8 pb-2">
+                            {/* Mobile Image */}
+                            <motion.div 
+                                style={{ opacity: bioOpacity }}
+                                className="flex md:hidden w-full flex-col h-72 pt-4"
+                            >
+                                <div className="w-full flex-1 relative rounded-xl overflow-hidden border border-neutral-200 dark:border-white/10 shadow-sm">
+                                    <img 
+                                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/brand/profile.jpg`}
+                                        alt="Ramya Rajasekaran"
+                                        className="w-full h-full object-cover object-[20%_center] absolute inset-0"
+                                    />
+                                </div>
+                            </motion.div>
+
+                            <div className="flex flex-col gap-4 md:gap-8 pt-4 md:pt-8 pb-2 md:pl-[22rem]">
                                 <motion.div
                                     style={{ opacity: bioOpacity, y: bioY, filter: useTransform(bioBlur, (v) => `blur(${v}px)`) }}
-                                    className="max-w-3xl text-left"
+                                    className="w-full text-left"
                                 >
-                                    <p className="text-[15px] md:text-lg text-neutral-900 dark:text-white leading-relaxed font-light">
+                                    <p className="text-[14px] md:text-lg text-neutral-900 dark:text-white leading-relaxed font-light">
                                         UX Designer with experience leading end-to-end process across <span className="font-medium dark:text-white">aviation, e-commerce, supply chain, B2B, B2C</span>. I design award-winning solutions and have published research on <span className="font-medium dark:text-white">Designing for Inclusivity in the Age of AI</span>, at IEEE and Industry case study at IndiaHCI.
                                     </p>
                                 </motion.div>
