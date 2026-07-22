@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Cal Labs | 3D Interactive Robot Calibration</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/assets/index-DZfv3sAT.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-vmXjcTFf.css">
+</head>
+<body class="industrial-theme">
+  <!-- Scanline Overlay for CRT monitor look -->
+  <div class="scanlines"></div>
+
+  <!-- Header -->
+  <header class="sys-header">
+    <div class="header-left">
+      <div class="status-indicator">
+        <span class="status-dot pulsing"></span>
+        <span class="status-text">SYS_STATUS: ACTIVE</span>
+      </div>
+      <h1 class="logo-text">AI CAL <span class="accent-text">LABS</span></h1>
+    </div>
+    <div class="header-center">
+      <div class="coordinates-hud">
+        <span class="coord-label">LAT:</span> <span class="coord-val">37.8715° N</span>
+        <span class="coord-divider">|</span>
+        <span class="coord-label">LNG:</span> <span class="coord-val">122.2730° W</span>
+        <span class="coord-divider">|</span>
+        <span class="coord-label">ZONE:</span> <span class="coord-val">CA_BAY_01</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="clock-hud" id="sys-clock">00:00:00:00</div>
+      <div class="system-version">VER_4.89b</div>
+    </div>
+  </header>
+
+  <!-- Main Scroll Scrubber Container -->
+  <div class="scroll-container">
+    <div class="video-sticky-wrapper">
+      
+      <!-- Video Element -->
+      <div class="video-container">
+        <video id="robot-video" src="/assets/Three-legged_robot_revolving_view_202607190319-De3XvI49.mp4" muted playsinline preload="auto">
+          Your browser does not support the video tag.
+        </video>
+        
+        <!-- Canvas Overlay for overlay graphics/crosshairs -->
+        <div class="hud-reticle">
+          <div class="crosshair-h"></div>
+          <div class="crosshair-v"></div>
+          <div class="reticle-circle-1"></div>
+          <div class="reticle-circle-2"></div>
+          <!-- HUD corner marks -->
+          <div class="hud-corner top-left"></div>
+          <div class="hud-corner top-right"></div>
+          <div class="hud-corner bottom-left"></div>
+          <div class="hud-corner bottom-right"></div>
+        </div>
+
+        <!-- Model Tag Overlay -->
+        <div class="model-tag-overlay">
+          <span class="model-tag-text">cal3 Tripod</span>
+        </div>
+
+        <!-- Patch covering the AI watermark baked into the video corner -->
+        <div class="wm-cover" id="wm-cover"></div>
+      </div>
+
+      <!-- Dotted scroll rail (in-page scroll indicator) -->
+      <nav class="stage-rail" id="stage-rail" aria-label="Rotation stages">
+        <div class="rail-line"></div>
+        <button class="rail-dot active" data-stage="0" aria-label="Unit overview"></button>
+        <button class="rail-dot" data-stage="1" aria-label="Sensor array"></button>
+        <button class="rail-dot" data-stage="2" aria-label="Locomotion"></button>
+        <button class="rail-dot" data-stage="3" aria-label="Chassis"></button>
+        <button class="rail-dot" data-stage="4" aria-label="Power and core"></button>
+        <div class="rail-readout" id="rot-readout">ROT 000°</div>
+      </nav>
+
+      <!-- Editorial reveal - appears only on the final scroll stage -->
+      <div class="reveal-copy" id="reveal-copy" aria-hidden="true">
+        <h2 class="reveal-title">CAL-3<br>TRIPOD</h2>
+        <p class="reveal-desc">An ancient autonomous calibration bot, constructed to navigate terrain no wheeled rig can reach.</p>
+      </div>
+
+      <!-- Scroll Callout Prompt -->
+      <div class="scroll-prompt" id="scroll-prompt-element">
+        <div class="scroll-prompt-text">SCROLL TO ROTATE</div>
+        <div class="scroll-prompt-arrow">↓</div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="sys-footer">
+    <div class="footer-left">
+      © 2026 AI CAL LABS. 3D SYSTEM RENDER.
+    </div>
+    <div class="footer-center">
+      <div class="status-grid">
+        <span class="status-item"><span class="lbl">MEM:</span> <span class="val text-green">OK</span></span>
+        <span class="status-item"><span class="lbl">TEMP:</span> <span class="val text-green">34.0°C</span></span>
+        <span class="status-item"><span class="lbl">LATENCY:</span> <span class="val text-green">1.2ms</span></span>
+      </div>
+    </div>
+    <div class="footer-right">
+      LABS_SECURE_NODE_9
+    </div>
+  </footer>
+
+  <!-- GPU-Accelerated Real-Time Sharpen Filter -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none; width: 0; height: 0;">
+    <filter id="sharpen-filter">
+      <feConvolveMatrix order="3" kernelMatrix="0 -0.75 0 -0.75 4 -0.75 0 -0.75 0" preserveAlpha="true"/>
+    </filter>
+  </svg>
+
+</body>
+</html>
