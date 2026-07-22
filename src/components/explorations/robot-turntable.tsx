@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, ExternalLink, Maximize2, Minimize2 } from "lucide-react";
 import type { Exploration } from "@/data/explorations";
 import { useState } from "react";
+import { assetPath } from "@/lib/base-path";
 
 interface RobotTurntableExplorationProps {
   exploration: Exploration;
@@ -12,6 +13,7 @@ interface RobotTurntableExplorationProps {
 export function RobotTurntableExploration({ exploration }: RobotTurntableExplorationProps) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const demoUrl = "https://calrobot.netlify.app";
+  const localDemoUrl = assetPath(`/demos/${exploration.slug}/index.html`);
 
   return (
     <div className="h-screen w-screen flex flex-col bg-[#07090e] text-[#CFC5BA] overflow-hidden fixed inset-0 z-[9999]">
@@ -82,7 +84,7 @@ export function RobotTurntableExploration({ exploration }: RobotTurntableExplora
           </button>
         )}
         <iframe
-          src={demoUrl}
+          src={localDemoUrl}
           title={exploration.title}
           className="w-full h-full border-none absolute inset-0 bg-[#07090e]"
           allow="autoplay; fullscreen; xr-spatial-tracking"

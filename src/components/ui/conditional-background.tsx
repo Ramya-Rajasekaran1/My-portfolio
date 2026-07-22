@@ -5,13 +5,14 @@ import { InteractiveBackground } from "./interactive-background";
 
 export function ConditionalBackground() {
     const pathname = usePathname();
-    const isWorkPage = pathname === "/work";
-    const isProjectPage = pathname?.startsWith("/work/") && pathname !== "/work";
-    const isAboutPage = pathname === "/about";
+    const isWorkPage = pathname === "/work" || pathname === "/work/";
+    const isExplorationsPage = pathname === "/explorations" || pathname === "/explorations/";
+    const isProjectPage = pathname?.startsWith("/work/") && pathname !== "/work" && pathname !== "/work/";
+    const isExplorationDetailPage = pathname?.startsWith("/explorations/") && pathname !== "/explorations" && pathname !== "/explorations/";
+    const isAboutPage = pathname === "/about" || pathname === "/about/";
 
-    // On Work page and About page, hide everything. On individual project pages, hide only the sphere.
     return <InteractiveBackground 
-        hideSphere={isProjectPage || isAboutPage || isWorkPage} 
-        hideGradients={isAboutPage || isWorkPage} 
+        hideSphere={isProjectPage || isExplorationDetailPage || isAboutPage || isWorkPage || isExplorationsPage} 
+        hideGradients={isAboutPage || isWorkPage || isExplorationsPage || isExplorationDetailPage} 
     />;
 }

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drawing to Reality</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="./assets/index-BbUyCCLy.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-auFkXbDJ.css">
+</head>
+<body>
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a id="back-to-portfolio" class="portfolio-back-link" href="#">← Cal AI Labs</a>
+    <span class="eyebrow">Drawing to Reality</span>
+    <span class="header-mark">ॐ</span>
+  </header>
+
+  <div class="scroll-container">
+    <div class="stage">
+      <blockquote class="stage-quote" id="screen-quote">
+        <p class="stage-quote-text">“The light you carry<br>was never meant<br>to stay hidden.”</p>
+        <cite class="stage-quote-cite">— A blessing</cite>
+      </blockquote>
+
+      <canvas id="canvas" aria-label="Interactive 3D divine portrait"></canvas>
+
+      <div class="third-eye-glow" id="third-eye-glow" aria-hidden="true"></div>
+
+      <div class="stage-copy" id="stage-copy">
+        <p class="stage-eyebrow">She steps forward</p>
+        <h1 class="stage-title">From canvas<br>into presence</h1>
+        <p class="stage-desc">Scroll to draw her forward from the depths.</p>
+      </div>
+
+      <div class="scroll-hint" id="scroll-hint">
+        <ul class="action-list" aria-label="Ways to interact">
+          <li><span class="action-key">Scroll</span> awaken</li>
+        </ul>
+        <span class="scroll-hint-line"></span>
+      </div>
+
+      <div class="depth-readout" id="depth-readout" aria-live="polite">
+        <span class="depth-label">Depth</span>
+        <span class="depth-value" id="depth-value">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <span>Artwork rendered in three dimensions</span>
+    <span class="footer-divider">·</span>
+    <span>Scroll to awaken</span>
+  </footer>
+
+</body>
+</html>

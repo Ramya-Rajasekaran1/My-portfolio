@@ -71,6 +71,7 @@ export function Navbar() {
     const navLinks = [
         { name: "About", href: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/about/` },
         { name: "Work", href: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/` },
+        { name: "Explorations", href: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/explorations/` },
         { name: "Contact", href: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/contact/` },
     ];
 
@@ -96,7 +97,8 @@ export function Navbar() {
         </svg>
     );
     const isProjectPage = pathname?.startsWith("/work/") && pathname !== "/work" && pathname !== "/work/";
-    if (isProjectPage) return null;
+    const isExplorationDetailPage = pathname?.startsWith("/explorations/") && pathname !== "/explorations" && pathname !== "/explorations/";
+    if (isProjectPage || isExplorationDetailPage) return null;
 
     return (
         <header
