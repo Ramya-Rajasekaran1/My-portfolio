@@ -216,7 +216,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
           <div style={{ background: "#111", borderRadius: 12, padding: "12px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 20px 40px rgba(0,0,0,0.4)" }}>
-            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/safehome/Screenshot 2026-04-07 at 5.44.31 PM.png`} alt="Magnitude 4.6 Boulder Creek" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
+            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/safehome/Screenshot 2026-04-07 at 5.44.31 PM.png`} alt="Magnitude 4.6 Boulder Creek" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
           </div>
           <div style={{ background: "#111", borderRadius: 12, padding: "12px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 20px 40px rgba(0,0,0,0.4)" }}>
             <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/safehome/IMG_6515.jpg`} alt="Local Impact" style={{ width: "100%", height: "auto", borderRadius: 8, display: "block" }} />
