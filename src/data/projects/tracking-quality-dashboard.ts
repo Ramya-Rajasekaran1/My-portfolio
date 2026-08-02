@@ -6,6 +6,7 @@ export const trackingQualityDashboard = {
     image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/cover_v4.jpg`,
     thumbnailImage: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/cover_v4.jpg`,
     slug: "tracking-quality-dashboard",
+    externalLink: "https://pitch.com/v/tracking-quality-dashboard-gfpdq7",
     sections: [
         {
             title: "WHAT:",

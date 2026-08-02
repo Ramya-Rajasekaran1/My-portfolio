@@ -12,6 +12,7 @@ interface Project {
     slug: string;
     backgroundColor?: string;
     thumbnailImage?: string;
+    externalLink?: string;
 }
 
 interface ProjectCardProps {
@@ -27,7 +28,13 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             transition={{ delay: index * 0.1, duration: 0.5, ease: "easeOut" }}
             className="group cursor-pointer"
         >
-            <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/${project.slug}/`} className="block w-full h-full z-[10000] relative cursor-pointer pointer-events-auto" aria-label={`View ${project.title} case study`}>
+            <a 
+                href={project.externalLink || `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/${project.slug}/`} 
+                target={project.externalLink ? "_blank" : undefined}
+                rel={project.externalLink ? "noopener noreferrer" : undefined}
+                className="block w-full h-full z-[10000] relative cursor-pointer pointer-events-auto" 
+                aria-label={`View ${project.title} case study`}
+            >
                 <div className="flex flex-col">
                     {/* Title & Tag - MOBILE ONLY: above image */}
                     <div className="md:hidden flex flex-col gap-2 mb-4">

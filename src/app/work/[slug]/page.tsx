@@ -9,7 +9,7 @@ import { SafeHomeProject } from "@/components/projects/safehome";
 import { FilterRedesignProject } from "@/components/projects/filter-redesign";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { ProjectPageClient } from "@/components/projects/project-page-client";
 
 // Generate static params for all project slugs
@@ -51,7 +51,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     }
 
     if (slug === "tracking-quality-dashboard") {
-        return <TQDashboardProject project={project} />;
+        redirect("https://pitch.com/v/tracking-quality-dashboard-gfpdq7");
     }
 
     if (slug === "safehome-sf") {
