@@ -15,13 +15,13 @@ export default function ExplorationsPage() {
     <main className="min-h-screen pt-32 pb-24 relative z-20">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mb-16">
-          <span className="text-xs font-bold font-outfit uppercase tracking-[0.35em] text-[#F79CBa] mb-4 block">
+          <span className="text-xs font-bold font-outfit uppercase tracking-[0.35em] text-blush mb-4 block">
             Cal AI Labs
           </span>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold mb-6 tracking-tight text-white">
             Explorations
           </h1>
-          <p className="text-lg md:text-xl text-[#CFC5BA] max-w-2xl font-sans leading-relaxed">
+          <p className="text-lg md:text-xl text-parchment max-w-2xl font-sans leading-relaxed">
             A lab for interactive prototypes — where artwork, motion, and code meet.
             Each piece is a self-contained experience you can scroll, explore, and feel.
           </p>
@@ -34,12 +34,12 @@ export default function ExplorationsPage() {
         </div>
 
         <div className="mt-20 pt-12 border-t border-white/10 text-center">
-          <p className="text-[#CFC5BA]/70 text-sm mb-6 font-sans">
+          <p className="text-parchment/70 text-sm mb-6 font-sans">
             More experiments coming soon — 3D robotics, gesture interfaces, and beyond.
           </p>
           <Link
             href="/work/"
-            className="inline-flex items-center gap-3 text-xs font-bold font-outfit uppercase tracking-widest text-[#F79CBa] hover:text-[#FFC4D4] transition-colors"
+            className="inline-flex items-center gap-3 text-xs font-bold font-outfit uppercase tracking-widest text-blush hover:text-petal transition-colors"
           >
             View professional case studies
             <ArrowRight className="w-4 h-4" />

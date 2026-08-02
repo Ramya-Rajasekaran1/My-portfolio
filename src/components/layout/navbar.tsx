@@ -125,20 +125,26 @@ export function Navbar() {
                         isScrolled ? "gap-6" : "gap-10"
                     )}>
                         {navLinks.map((link) => (
-                            <a
+                            <motion.a
                                 key={link.name}
                                 href={link.href}
+                                initial="initial"
+                                whileHover="hover"
                                 className={cn(
                                     "text-sm font-medium tracking-wide transition-all duration-300 px-2 py-1 z-[10000] cursor-pointer relative pointer-events-auto",
                                     pathname?.startsWith(link.href) ? "text-blush" : "text-neutral-600 dark:text-parchment hover:text-blush"
                                 )}
                             >
                                 {link.name}
-                                {pathname?.startsWith(link.href) && (
+                                {pathname?.startsWith(link.href) ? (
                                     <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blush rounded-full" />
+                                ) : (
+                                    <ScribbleUnderline />
                                 )}
-                            </a>
+                            </motion.a>
                         ))}
+
+                        <ThemeToggle />
 
                         <button
                             onClick={() => window.dispatchEvent(new Event("toggle-accessibility"))}
@@ -180,6 +186,20 @@ export function Navbar() {
                                     {link.name}
                                 </a>
                             ))}
+                            <div className="flex items-center gap-6 pt-4 border-t border-neutral-200 dark:border-white/10">
+                                <ThemeToggle />
+                                <button
+                                    onClick={() => {
+                                        setIsMobileMenuOpen(false);
+                                        window.dispatchEvent(new Event("toggle-accessibility"));
+                                    }}
+                                    className="flex items-center gap-2 text-lg font-medium text-neutral-600 dark:text-parchment hover:text-blush"
+                                    aria-label="Open accessibility settings"
+                                >
+                                    <Accessibility className="w-5 h-5" />
+                                    Accessibility
+                                </button>
+                            </div>
                         </div>
                     </motion.div>
                 )}

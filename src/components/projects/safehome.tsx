@@ -69,7 +69,24 @@ export function SafeHomeProject({ project }: { project: Project }) {
             onMouseEnter={(e) => { e.currentTarget.style.background = "#60a5fa"; e.currentTarget.style.transform = "scale(1.4)"; }}
             onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.15)"; e.currentTarget.style.transform = "scale(1)"; }}
           >
-            <span style={{ position: "absolute", left: 28, top: "50%", transform: "translateY(-50%)", whiteSpace: "nowrap", fontFamily: "ui-monospace, monospace", fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "#FFF8F0", opacity: 0, transition: "opacity 0.25s", background: "rgba(0,0,0,0.6)", padding: "4px 10px", borderRadius: 4, backdropFilter: "blur(4px)" }} className="sh-nav-label">{s.label}</span>
+            <span style={{ 
+              position: "absolute", 
+              left: 28, 
+              top: "50%", 
+              transform: "translateY(-50%)", 
+              whiteSpace: "nowrap", 
+              fontFamily: "ui-monospace, monospace", 
+              fontSize: 10, 
+              letterSpacing: "0.15em", 
+              textTransform: "uppercase", 
+              color: "#FFF8F0", 
+              opacity: 0, 
+              transition: "opacity 0.25s", 
+              background: "rgba(0,0,0,0.6)", 
+              padding: "4px 10px", 
+              borderRadius: 4, 
+              backdropFilter: "blur(4px)" 
+            }} className="sh-nav-label">{s.label}</span>
           </button>
         ))}
       </div>
@@ -208,7 +225,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
         <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 16, letterSpacing: "0.4em", textTransform: "uppercase", color: "#FFF8F0", display: "block", marginBottom: 20, fontWeight: 200 }}>02 RECENT DISASTER</span>
         <h2 style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: "clamp(32px,4vw,52px)", fontWeight: 200, lineHeight: 1.1, marginBottom: 32, color: "#FFF8F0" }}>California's risk is <em style={{ fontStyle: "italic", color: "#FFF8F0", fontWeight: 400 }}>not theoretical</em></h2>
 
-        <div style={{ background: "rgba(239, 68, 68, 0.1)", borderLeft: "4px solid #ef4444", padding: "24px 32px", marginBottom: 48 }}>
+        <div style={{ background: "rgba(239, 68, 68, 0.1)", border: "1px solid rgba(239, 68, 68, 0.2)", padding: "24px 32px", marginBottom: 48 }}>
           <p style={{ fontSize: 18, color: "#FFF8F0", lineHeight: 1.6, margin: 0, fontWeight: 300 }}>
             Earthquakes in California are a constant, visceral reality. Magnitude 4.6 events near Berkeley and Boulder Creek serve as urgent reminders: the "Big One" isn't a if, but a when. Preparedness isn't a choice; it's a necessity for survival.
           </p>
@@ -331,7 +348,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
               </div>
               {/* WORKING SUMMARY */}
               <div style={{ marginTop: 20 }}>
-                <div style={{ background: "#1a1a1a", padding: "24px 28px", borderLeft: "3px solid #4ade80" }}>
+                <div style={{ background: "#1a1a1a", padding: "24px 28px", border: "1px solid rgba(74, 222, 128, 0.2)" }}>
                   <p style={{ fontSize: 15, color: "#d1d5db", lineHeight: 1.6, margin: 0 }}>Scaled reach 600% with 76% acquisition growth. Sustained 6.5-minute sessions with strong early conversion signals across key sections.</p>
                 </div>
               </div>
@@ -358,7 +375,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
               </div>
               {/* NOT WORKING SUMMARY */}
               <div style={{ marginTop: 20 }}>
-                <div style={{ background: "#1a1a1a", padding: "24px 28px", borderLeft: "3px solid #fb7185" }}>
+                <div style={{ background: "#1a1a1a", padding: "24px 28px", border: "1px solid rgba(251, 113, 133, 0.2)" }}>
                   <p style={{ fontSize: 15, color: "#d1d5db", lineHeight: 1.6, margin: 0 }}>Severe mobile friction driving 85% usage dropoff. 93.7% abandonment at last page with 64% unique user churn and no stickiness despite visibility growth.</p>
                 </div>
               </div>
@@ -529,7 +546,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
             <div style={{ display: "flex", flexDirection: "column", gap: 120 }}>
               {/* Iteration 1 */}
               <div>
-                <div style={{ background: "rgba(255,255,255,0.03)", padding: "20px 24px", borderRadius: 4, borderLeft: "4px solid #60a5fa", width: "fit-content", maxWidth: 500, marginBottom: 24 }}>
+                <div style={{ background: "rgba(255,255,255,0.03)", padding: "20px 24px", borderRadius: 4, border: "1px solid rgba(96, 165, 250, 0.2)", width: "fit-content", maxWidth: 500, marginBottom: 24 }}>
                   <p style={{ fontSize: 14, color: "#d1d5db", lineHeight: 1.6, margin: 0 }}>
                     <strong style={{ color: "#FFF8F0", display: "block", marginBottom: 6, textTransform: "uppercase", fontSize: 11, letterSpacing: "0.15em" }}>Iteration 01: Map-Centric Foundation</strong>
                     Initial focus on comprehensive map visualization with basic hazard layer toggles.
@@ -542,7 +559,7 @@ export function SafeHomeProject({ project }: { project: Project }) {
 
               {/* Iteration 2 */}
               <div>
-                <div style={{ background: "rgba(255,255,255,0.03)", padding: "20px 24px", borderRadius: 4, borderLeft: "4px solid #f472b6", width: "fit-content", maxWidth: 500, marginBottom: 24 }}>
+                <div style={{ background: "rgba(255,255,255,0.03)", padding: "20px 24px", borderRadius: 4, border: "1px solid rgba(244, 114, 182, 0.2)", width: "fit-content", maxWidth: 500, marginBottom: 24 }}>
                   <p style={{ fontSize: 14, color: "#d1d5db", lineHeight: 1.6, margin: 0 }}>
                     <strong style={{ color: "#FFF8F0", display: "block", marginBottom: 6, textTransform: "uppercase", fontSize: 11, letterSpacing: "0.15em" }}>Iteration 02: Resource Integration</strong>
                     Detailed categories displace with action items and other resources on the right.
@@ -858,8 +875,8 @@ export function SafeHomeProject({ project }: { project: Project }) {
           </div>
         </div>
 
-        <div style={{ borderLeft: "4px solid #FFF8F0", padding: "24px 36px", marginTop: 56, background: "rgba(110,191,223,0.08)" }}>
-          <p style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 20, fontWeight: 300, fontStyle: "italic", lineHeight: 1.5, margin: 0, background: "linear-gradient(135deg, #60a5fa, #34d399, #a78bfa)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>"Volunteers built something that helps real people understand real danger. With intention, evidence, and care."</p>
+        <div style={{ border: "1px solid rgba(255, 248, 240, 0.2)", padding: "24px 36px", marginTop: 56, background: "rgba(110,191,223,0.08)" }}>
+          <p style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 20, fontWeight: 300, fontStyle: "italic", lineHeight: 1.5, margin: 0, color: "#FFF8F0" }}>"Volunteers built something that helps real people understand real danger. With intention, evidence, and care."</p>
         </div>
       </section>
 

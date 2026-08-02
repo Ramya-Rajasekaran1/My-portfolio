@@ -151,7 +151,7 @@ export function AccessibilityWidget() {
             {/* Floating Button - Desktop Only */}
             <motion.button
                 onClick={() => setIsOpen(true)}
-                className="fixed hidden md:flex left-8 bottom-8 z-50 p-3 rounded-full bg-purple-600 hover:bg-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-500/30 cursor-pointer"
+                className="fixed hidden md:flex left-8 bottom-8 z-50 p-3 rounded-full bg-blush hover:bg-petal text-blush-text shadow-lg hover:shadow-xl transition-all duration-300 border border-blush/30 cursor-pointer"
                 aria-label="Open accessibility settings (Option+A)"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -181,7 +181,7 @@ export function AccessibilityWidget() {
                             className="fixed left-0 top-0 bottom-0 w-full sm:w-[400px] max-w-[100vw] sm:max-w-[400px] bg-white dark:bg-neutral-900 shadow-2xl z-[15001] overflow-y-auto"
                         >
                             {/* Header */}
-                            <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white p-6 flex items-center justify-between z-10">
+                            <div className="sticky top-0 bg-gradient-to-r from-blush to-petal text-blush-text p-6 flex items-center justify-between z-10">
                                 <div className="flex items-center gap-3">
                                     <Accessibility className="w-6 h-6" />
                                     <h2 className="text-xl font-semibold">Accessibility</h2>
@@ -196,7 +196,7 @@ export function AccessibilityWidget() {
                             </div>
 
                             {/* Keyboard Shortcut Info */}
-                            <div className="px-6 py-4 bg-purple-950 dark:bg-black border-b border-white/10">
+                            <div className="px-6 py-4 bg-card dark:bg-black border-b border-white/10">
                                 <p className="text-sm text-white">
                                     <strong>Keyboard Shortcut:</strong> <kbd className="px-2 py-1 bg-white/10 rounded border border-white/20 text-xs font-mono text-white">Option+A</kbd>
                                 </p>
@@ -314,7 +314,7 @@ export function AccessibilityWidget() {
 
                                             alert(message);
                                         }}
-                                        className="w-full flex items-center justify-center gap-2 px-4 py-4 bg-purple-900 hover:bg-purple-950 rounded-xl transition-all shadow-md text-white font-bold border border-white/10"
+                                        className="w-full flex items-center justify-center gap-2 px-4 py-4 bg-blush hover:bg-petal rounded-xl transition-all shadow-md text-blush-text font-bold border border-white/10"
                                     >
                                         <ExternalLink className="w-5 h-5" />
                                         Browser Accessibility Guide
@@ -364,7 +364,7 @@ function ToggleOption({
                     onClick={onChange}
                     role="switch"
                     aria-checked={checked}
-                    className={`relative w-12 h-6 rounded-full transition-colors ${checked ? "bg-purple-600" : "bg-neutral-300 dark:bg-neutral-700"
+                    className={`relative w-12 h-6 rounded-full transition-colors ${checked ? "bg-blush" : "bg-neutral-300 dark:bg-neutral-700"
                         }`}
                 >
                     <motion.div

@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useEffect, useState, useLayoutEffect } from "react";
-import { motion, useAnimationControls } from "framer-motion";
+import { useRef, useState, useLayoutEffect } from "react";
+import { motion } from "framer-motion";
 import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { testimonials, type Testimonial } from "@/data/testimonials";
 import { cn } from "@/lib/utils";
@@ -19,7 +19,6 @@ export function Testimonials() {
     const [isHovered, setIsHovered] = useState(false);
     const [expandedCount, setExpandedCount] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null);
-    const [trackWidth, setTrackWidth] = useState(0);
 
     const filteredTestimonials = testimonials.filter(t => {
         if (activeCategory === "all") return true;
@@ -210,7 +209,7 @@ function TestimonialCard({ item, onToggle }: { item: Testimonial, onToggle: (isE
                 <div className="text-lg font-bold text-neutral-600 dark:text-parchment font-outfit tracking-tight">
                     {item.name}
                 </div>
-                <div className="text-lg md:text-xl font-serif font-normal text-blush-text dark:text-blush">
+                <div className="text-lg md:text-xl font-serif font-normal text-blush">
                     {item.company}
                 </div>
             </div>
@@ -229,7 +228,7 @@ function TestimonialCard({ item, onToggle }: { item: Testimonial, onToggle: (isE
                 {(isTruncated || isExpanded) && (
                     <button
                         onClick={handleReadMore}
-                        className="text-xs font-bold text-blush-text dark:text-blush hover:text-petal self-start font-outfit uppercase tracking-[0.3em] mt-4"
+                        className="text-xs font-bold text-blush hover:text-petal self-start font-outfit uppercase tracking-[0.3em] mt-4"
                     >
                         {isExpanded ? "Read less" : "Read more"}
                     </button>

@@ -26,13 +26,13 @@ export function CopyEmail({ email, className }: CopyEmailProps) {
         <div className={cn("flex items-center gap-3", className)}>
             <a
                 href={`mailto:${email}`}
-                className="text-xl md:text-2xl font-medium hover:text-purple-600 dark:hover:text-purple-400 transition-colors z-30 relative cursor-pointer"
+                className="text-xl md:text-2xl font-medium hover:text-blush transition-colors z-30 relative cursor-pointer"
             >
                 {email}
             </a>
             <button
                 onClick={handleCopy}
-                className="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-neutral-500 hover:text-purple-600 dark:text-neutral-400 dark:hover:text-purple-400 z-30 relative cursor-pointer"
+                className="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-neutral-500 hover:text-blush dark:text-neutral-400 dark:hover:text-blush z-30 relative cursor-pointer"
                 aria-label="Copy email to clipboard"
                 title="Copy email"
             >

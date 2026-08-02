@@ -35,7 +35,7 @@ export const BehindTheScenesSection = ({ methodologyData }: { methodologyData?: 
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#7effa0]/10 border border-[#7effa0]/20 rounded-full text-[0.65rem] font-mono font-bold text-[#7effa0] uppercase tracking-[0.2em]">
                     <Layers className="w-3.5 h-3.5" /> Research Framework
                 </div>
-                <h2 className="text-4xl md:text-6xl font-['DM_Serif_Display'] text-white">Behind the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7effa0] to-teal-400 italic">Scenes</span></h2>
+                <h2 className="text-4xl md:text-6xl font-['DM_Serif_Display'] text-white">Behind the <span className="text-petal italic">Scenes</span></h2>
                 <p className="text-neutral-500 font-sans text-xs uppercase tracking-[0.3em] max-w-md">The Architectural Logic of the Investigation</p>
             </div>
 

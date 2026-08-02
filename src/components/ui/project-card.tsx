@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 interface Project {
@@ -12,6 +11,7 @@ interface Project {
     image: string;
     slug: string;
     backgroundColor?: string;
+    thumbnailImage?: string;
 }
 
 interface ProjectCardProps {
@@ -31,11 +31,11 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                 <div className="flex flex-col">
                     {/* Title & Tag - MOBILE ONLY: above image */}
                     <div className="md:hidden flex flex-col gap-2 mb-4">
-                        <h3 className="text-xl font-serif font-medium group-hover:text-blush-text dark:group-hover:text-blush transition-colors">
+                        <h3 className="text-xl font-serif font-medium group-hover:text-blush transition-colors">
                             {project.title}
                         </h3>
                         <div className="flex">
-                            <span className="px-3 py-1.5 text-[12px] font-black uppercase tracking-widest bg-blush/30 text-blush-text dark:text-blush rounded-full border border-blush/40 dark:border-blush/20">
+                            <span className="px-3 py-1.5 text-[12px] font-black uppercase tracking-widest bg-blush/30 text-blush rounded-full border border-blush/40 dark:border-blush/20">
                                 {project.category}
                             </span>
                         </div>
@@ -48,7 +48,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                     >
                         <div
                             className="absolute inset-0 bg-cover bg-left bg-no-repeat transition-transform duration-500 group-hover:scale-105"
-                            style={{ backgroundImage: `url(${(project as any).thumbnailImage || project.image})` }}
+                            style={{ backgroundImage: `url(${project.thumbnailImage || project.image})` }}
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                         <div className="absolute top-4 right-4 bg-white/90 dark:bg-black/90 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
@@ -80,11 +80,11 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
                     {/* Title & Tag - DESKTOP ONLY: below image */}
                     <div className="hidden md:flex flex-col gap-4 mt-6">
-                        <h3 className="text-xl md:text-2xl font-serif font-medium group-hover:text-blush-text dark:group-hover:text-blush transition-colors">
+                        <h3 className="text-xl md:text-2xl font-serif font-medium group-hover:text-blush transition-colors">
                             {project.title}
                         </h3>
                         <div className="flex">
-                            <span className="px-3 py-1.5 text-[12px] font-black uppercase tracking-widest bg-blush/30 text-blush-text dark:text-blush rounded-full border border-blush/40 dark:border-blush/20">
+                            <span className="px-3 py-1.5 text-[12px] font-black uppercase tracking-widest bg-blush/30 text-blush rounded-full border border-blush/40 dark:border-blush/20">
                                 {project.category}
                             </span>
                         </div>

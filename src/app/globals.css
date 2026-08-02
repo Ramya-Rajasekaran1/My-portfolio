@@ -3,18 +3,19 @@
 @theme {
   --font-sans: var(--font-inter);
   --font-serif: var(--font-playfair);
-  --font-outfit: var(--font-outfit);
+  --font-outfit: var(--font-inter);
+  --font-mono: var(--font-mono);
 
-  /* New Brand Colors (Brightened) */
-  --color-canvas: #0F0C18;
-  --color-section: #161122;
-  --color-card: #201830;
-  --color-card-hover: #2B203D;
-  --color-blush: #F79CBa; /* Brighter, more vibrant pink */
-  --color-petal: #FFC4D4; /* Lighter, punchier soft pink */
-  --color-ivory: #FFF8F0; /* Brighter, warmer white */
-  --color-parchment: #CFC5BA; /* More legible secondary text */
-  --color-blush-text: #4A152B; /* Contrast text on blush */
+  /* New Brand Colors (Orange & Black Redesign) */
+  --color-canvas: var(--canvas);
+  --color-section: var(--section);
+  --color-card: var(--card);
+  --color-card-hover: var(--card-hover);
+  --color-blush: var(--blush); /* Primary Orange */
+  --color-petal: var(--petal); /* Accent Orange */
+  --color-ivory: var(--ivory); /* Text Primary (Charcoal in Light, White in Dark) */
+  --color-parchment: var(--parchment); /* Secondary text */
+  --color-blush-text: var(--blush-text); /* Contrast text on orange */
 
   /* Global Redirect: Map legacy Purple usage to new Brand palette */
   --color-purple-50: var(--color-canvas);
@@ -28,24 +29,51 @@
   --color-purple-800: var(--color-blush-text);
   --color-purple-900: var(--color-blush-text);
   --color-purple-950: var(--color-blush-text);
+
+  /* Border Radii Tokens */
+  --radius-lg: 8px;
+  --radius-xl: 8px;
+  --radius-2xl: 8px;
+  --radius-3xl: 8px;
+  --radius-card: 8px;
+  --radius-control: 8px;
+  --radius-pill: 9999px;
 }
 
 @variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FAF8F5; /* Ivory Paper (Light Mode) */
+  --foreground: #0A0F1D; /* Deep Navy Blue/Black text */
+  --canvas: #FAF8F5;
+  --section: #FAF8F5;
+  --card: #FFFFFF; /* Pure White card in light mode */
+  --card-hover: #F4F1EC;
+  --blush: #F97316;
+  --petal: #EA580C;
+  --ivory: #0A0F1D; /* Deep Navy Blue/Black display text */
+  --parchment: #334155; /* Muted slate navy */
+  --blush-text: #FFFFFF; /* White text on orange */
 }
 
 .dark {
-  --background: #0C0A14;
-  --foreground: #EDE8E0;
+  --background: #000000;
+  --foreground: #FFFFFF;
+  --canvas: #000000;
+  --section: #000000;
+  --card: #191C21;
+  --card-hover: #22262d;
+  --blush: #F97316;
+  --petal: #EA580C;
+  --ivory: #FFFFFF;
+  --parchment: #E2E8F0;
+  --blush-text: #000000;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans);
+  font-family: var(--font-serif); /* Use Playfair Display for body copy */
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -60,6 +88,7 @@ h5,
 h6 {
   margin: 0;
   line-height: 1.1;
+  font-family: var(--font-sans); /* Use Inter for display headings */
 }
 
 p {
@@ -102,8 +131,8 @@ p {
 }
 
 .dark .glass {
-  background-color: rgba(18, 14, 26, 0.75); /* Closer to --color-section */
-  border: 1px solid rgba(212, 132, 154, 0.1); /* Blush border */
+  background-color: rgba(25, 28, 33, 0.75); /* Surface color background */
+  border: 1px solid rgba(249, 115, 22, 0.15); /* Orange border */
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
 }
 
@@ -125,24 +154,56 @@ p {
 /* Accessibility Features */
 
 /* High Contrast Mode */
-.high-contrast {
+.dark.high-contrast {
   --background: #000000;
   --foreground: #ffffff;
+  --canvas: #000000;
+  --section: #000000;
+  --card: #000000;
+  --card-hover: #111111;
+  --ivory: #ffffff;
+  --parchment: #ffffff;
 }
 
-.high-contrast * {
+html:not(.dark).high-contrast {
+  --background: #ffffff;
+  --foreground: #000000;
+  --canvas: #ffffff;
+  --section: #ffffff;
+  --card: #ffffff;
+  --card-hover: #eeeeee;
+  --ivory: #000000;
+  --parchment: #000000;
+}
+
+.dark.high-contrast * {
   border-color: #ffffff !important;
 }
 
-.high-contrast a {
+.dark.high-contrast a {
   color: #ffff00 !important;
   text-decoration: underline !important;
 }
 
-.high-contrast button {
+.dark.high-contrast button {
   background-color: #ffffff !important;
   color: #000000 !important;
   border: 2px solid #ffffff !important;
+}
+
+html:not(.dark).high-contrast * {
+  border-color: #000000 !important;
+}
+
+html:not(.dark).high-contrast a {
+  color: #0000ee !important;
+  text-decoration: underline !important;
+}
+
+html:not(.dark).high-contrast button {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #000000 !important;
 }
 
 /* Dyslexia-Friendly Font */
@@ -176,6 +237,37 @@ kbd {
   font-size: 0.875em;
 }
 
+/* ==========================================================================
+   Design System Radius Constraints (Card: 8px, Control: 8px)
+   ========================================================================== */
+
+/* 1. Target all Tailwind class rounded-[...] definitions (except rounded-full) */
+[class*="rounded-["],
+[class*="rounded-3xl"],
+[class*="rounded-2xl"],
+[class*="rounded-xl"] {
+  border-radius: 8px !important;
+}
+
+/* 2. Target all React inline style border-radius values matching standard card/box sizes */
+[style*="border-radius: 12px"],
+[style*="border-radius:12px"],
+[style*="border-radius: 16px"],
+[style*="border-radius:16px"],
+[style*="border-radius: 20px"],
+[style*="border-radius:20px"],
+[style*="border-radius: 24px"],
+[style*="border-radius:24px"],
+[style*="border-radius: 32px"],
+[style*="border-radius:32px"],
+[style*="border-radius: 1.5rem"],
+[style*="border-radius: 2rem"],
+[style*="border-radius: 2.5rem"],
+[style*="border-radius: 3rem"],
+[style*="border-radius: 4rem"] {
+  border-radius: 8px !important;
+}
+
 @keyframes float {
 
   0%,
@@ -194,4 +286,20 @@ kbd {
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* Light Mode Font Color Overrides to force navy blue/black contrast */
+html:not(.dark) [class*="text-white"],
+html:not(.dark) [class*="text-neutral-50"],
+html:not(.dark) [class*="text-neutral-100"],
+html:not(.dark) [class*="text-neutral-200"],
+html:not(.dark) [class*="text-neutral-300"],
+html:not(.dark) [class*="text-neutral-900"] {
+  color: var(--foreground) !important;
+}
+
+html:not(.dark) [class*="text-neutral-400"],
+html:not(.dark) [class*="text-neutral-500"],
+html:not(.dark) [class*="text-neutral-600"] {
+  color: var(--parchment) !important;
 }

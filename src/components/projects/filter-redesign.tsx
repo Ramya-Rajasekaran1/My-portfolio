@@ -58,7 +58,24 @@ export function FilterRedesignProject() {
             onMouseEnter={(e) => { e.currentTarget.style.background = "#60a5fa"; e.currentTarget.style.transform = "scale(1.4)"; }}
             onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.15)"; e.currentTarget.style.transform = "scale(1)"; }}
           >
-            <span style={{ position: "absolute", left: 28, top: "50%", transform: "translateY(-50%)", whiteSpace: "nowrap", fontFamily: "ui-monospace, monospace", fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "#FFF8F0", opacity: 0, transition: "opacity 0.25s", background: "rgba(0,0,0,0.6)", padding: "4px 10px", borderRadius: 4, backdropFilter: "blur(4px)" }} className="sh-nav-label">{s.label}</span>
+            <span style={{ 
+              position: "absolute", 
+              left: 28, 
+              top: "50%", 
+              transform: "translateY(-50%)", 
+              whiteSpace: "nowrap", 
+              fontFamily: "ui-monospace, monospace", 
+              fontSize: 10, 
+              letterSpacing: "0.15em", 
+              textTransform: "uppercase", 
+              color: "#FFF8F0", 
+              opacity: 0, 
+              transition: "opacity 0.25s", 
+              background: "rgba(0,0,0,0.6)", 
+              padding: "4px 10px", 
+              borderRadius: 4, 
+              backdropFilter: "blur(4px)" 
+            }} className="sh-nav-label">{s.label}</span>
           </button>
         ))}
       </div>
@@ -203,7 +220,14 @@ export function FilterRedesignProject() {
                 "Prominent viewing of Applied Filters with Collapse functionality.",
                 "Ability to Collapse once setup is complete."
              ].map((feature, idx) => (
-                <div key={idx} style={{ background: "#1a1a1a", padding: "24px 28px", borderLeft: "3px solid #60a5fa" }}>
+                <div 
+                  key={idx} 
+                  style={{ 
+                    background: "#1a1a1a", 
+                    padding: "24px 28px", 
+                    border: "1px solid rgba(247, 156, 186, 0.2)" 
+                  }}
+                >
                     <p style={{ fontSize: 15, color: "#d1d5db", lineHeight: 1.6, margin: 0 }}>{feature}</p>
                 </div>
              ))}

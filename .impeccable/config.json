@@ -1,0 +1,11 @@
+{
+  "detector": {
+    "ignoreRules": [
+      "design-system-color",
+      "design-system-font",
+      "design-system-radius"
+    ],
+    "ignoreFiles": [],
+    "ignoreValues": []
+  }
+}

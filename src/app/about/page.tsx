@@ -32,7 +32,7 @@ export default function AboutPage() {
                             {/* Text Content - Full Width for Intro */}
                             <div className="max-w-3xl pr-12">
                                 <div className="relative">
-                                    <h1 className="text-[40px] font-serif font-bold tracking-tight bg-gradient-to-r from-purple-600 via-indigo-500 to-purple-600 bg-clip-text text-transparent mb-6">
+                                    <h1 className="text-[40px] font-serif font-bold tracking-tight text-white mb-6">
                                         Ramya Rajasekaran
                                     </h1>
 
@@ -126,8 +126,8 @@ export default function AboutPage() {
                                     title: "Thought Leader in AI+UX",
                                     desc: "Presented award-winning AI accessibility research at IEEE and IndiaHCI. Recognized by Gartner & Boeing as an impactful UX strategist.",
                                     gridClass: "md:col-span-3 lg:col-span-4",
-                                    bg: "bg-purple-600/5",
-                                    accent: "#a855f7"
+                                    bg: "bg-blush/5",
+                                    accent: "#F97316"
                                 },
                                 {
                                     title: "Certified in HCD",
@@ -343,12 +343,12 @@ function ExperienceSection() {
                                 <span className="text-[15px] font-bold font-outfit text-neutral-900 dark:text-ivory">
                                     {job.year}
                                 </span>
-                                <p className="text-[13px] font-black text-blush-text dark:text-blush mt-0.5 tracking-wider">{job.duration}</p>
+                                <p className="text-[13px] font-black text-blush mt-0.5 tracking-wider">{job.duration}</p>
                             </div>
                             <div className="flex-1">
                                 <div className="flex items-start justify-between gap-6">
                                     <div className="flex-1">
-                                        <h3 className="text-xl md:text-2xl font-sans font-bold text-neutral-900 dark:text-ivory group-hover:text-blush-text dark:group-hover:text-blush transition-colors duration-300 tracking-tight">
+                                        <h3 className="text-xl md:text-2xl font-sans font-bold text-neutral-900 dark:text-ivory group-hover:text-blush transition-colors duration-300 tracking-tight">
                                             {job.title}
                                         </h3>
                                         <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-1 mb-1">
@@ -357,7 +357,7 @@ function ExperienceSection() {
                                             </p>
                                             {job.location && (
                                                 <>
-                                                    <span className="text-purple-500 text-sm">•</span>
+                                                    <span className="text-blush text-sm">•</span>
                                                     <p className="text-[12px] font-normal text-neutral-900 dark:text-white tracking-wider">{job.location}</p>
                                                 </>
                                             )}
@@ -365,7 +365,7 @@ function ExperienceSection() {
                                     </div>
 
                                     <div className="flex items-center gap-4 shrink-0 mt-1">
-                                        {job.link && <ExternalLink className="w-5 h-5 text-neutral-400 dark:text-neutral-500 group-hover:text-purple-500 transition-colors" />}
+                                        {job.link && <ExternalLink className="w-5 h-5 text-neutral-400 dark:text-neutral-500 group-hover:text-blush transition-colors" />}
                                     </div>
                                 </div>
 
@@ -403,7 +403,7 @@ function ExperienceSection() {
                         <h3 className="text-[32px] font-serif font-light text-neutral-900 dark:text-white tracking-tight uppercase text-left w-full md:w-auto">
                             Internships
                         </h3>
-                        <div className="flex items-center gap-3 text-blush-text dark:text-blush font-bold underline decoration-2 underline-offset-4 decoration-blush-text/30 dark:decoration-blush/30 group-hover:decoration-blush-text dark:group-hover:decoration-blush transition-all self-start md:self-auto">
+                        <div className="flex items-center gap-3 text-blush font-bold underline decoration-2 underline-offset-4 decoration-blush/30 group-hover:decoration-blush transition-all self-start md:self-auto">
                             <span className="text-sm uppercase tracking-widest">{showInternships ? "Collapse" : "Expand"} ({internships.length})</span>
                             <div className="p-1 rounded-full bg-blush/10 transition-transform duration-300">
                                 {showInternships ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
@@ -420,12 +420,12 @@ function ExperienceSection() {
                                             <span className="text-[14px] font-bold font-outfit text-neutral-900 dark:text-ivory uppercase tracking-wider">
                                                 {job.year}
                                             </span>
-                                            <p className="text-[12px] font-black text-blush-text/90 dark:text-blush/80 mt-0.5 tracking-wide">{job.duration}</p>
+                                            <p className="text-[12px] font-black text-blush mt-0.5 tracking-wide">{job.duration}</p>
                                         </div>
                                         <div className="flex-1">
                                             <div className="flex items-start justify-between gap-6">
                                                 <div className="flex-1">
-                                                    <h4 className="text-lg font-sans font-bold text-neutral-900 dark:text-ivory group-hover:text-blush-text dark:group-hover:text-blush transition-colors uppercase tracking-tight">
+                                                    <h4 className="text-lg font-sans font-bold text-neutral-900 dark:text-ivory group-hover:text-blush transition-colors uppercase tracking-tight">
                                                         {job.title}
                                                     </h4>
                                                     <p className="text-[14px] font-bold font-outfit text-neutral-600 dark:text-parchment mt-[2px]">
@@ -434,7 +434,7 @@ function ExperienceSection() {
                                                 </div>
 
                                                 <div className="flex items-center gap-4 shrink-0 mt-1">
-                                                    {job.link && job.link !== "#" && <ExternalLink className="w-5 h-5 text-neutral-400 dark:text-neutral-500 group-hover:text-purple-500 transition-colors" />}
+                                                     {job.link && job.link !== "#" && <ExternalLink className="w-5 h-5 text-neutral-400 dark:text-neutral-500 group-hover:text-blush transition-colors" />}
                                                 </div>
                                             </div>
                                         </div>

@@ -4,6 +4,7 @@ import React from "react";
 import { type Project } from "@/lib/data";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { ImageLightbox } from "@/components/ui/image-lightbox";
 
 const bluePalette = {
     primary: "#3b82f6",
@@ -72,7 +73,24 @@ export function TQDashboardProject({ project }: { project: Project }) {
                             onMouseEnter={(e) => { e.currentTarget.style.background = palette.primary; e.currentTarget.style.transform = "scale(1.4)"; }}
                             onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.15)"; e.currentTarget.style.transform = "scale(1)"; }}
                         >
-                            <span style={{ position: "absolute", left: 28, top: "50%", transform: "translateY(-50%)", whiteSpace: "nowrap", fontFamily: "ui-monospace, monospace", fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase", color: "#FFF8F0", opacity: 0, transition: "opacity 0.25s", background: "rgba(0,0,0,0.6)", padding: "4px 10px", borderRadius: 4, backdropFilter: "blur(4px)" }} className="tq-nav-label">{s.label}</span>
+                            <span style={{ 
+                                position: "absolute", 
+                                left: 28, 
+                                top: "50%", 
+                                transform: "translateY(-50%)", 
+                                whiteSpace: "nowrap", 
+                                fontFamily: "ui-monospace, monospace", 
+                                fontSize: 10, 
+                                letterSpacing: "0.15em", 
+                                textTransform: "uppercase", 
+                                color: "#FFF8F0", 
+                                opacity: 0, 
+                                transition: "opacity 0.25s", 
+                                background: "rgba(0,0,0,0.6)", 
+                                padding: "4px 10px", 
+                                borderRadius: 4, 
+                                backdropFilter: "blur(4px)" 
+                            }} className="tq-nav-label">{s.label}</span>
                         </button>
                 ))}
             </div>
@@ -1036,22 +1054,14 @@ export function TQDashboardProject({ project }: { project: Project }) {
                 </p>
         </div>
 
-            {/* ── LIGHTBOX ── */ }
-    {
-        selectedImage && (
-            <div
-                onClick={() => setSelectedImage(null)}
-                style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0,0,0,0.95)", zIndex: 9999, display: "flex", alignItems: "center", justifyContent: "center", cursor: "zoom-out", padding: "40px", backdropFilter: "blur(20px)" }}
-            >
-                <img
+            {/* ── LIGHTBOX ── */}
+            {selectedImage && (
+                <ImageLightbox
                     src={selectedImage}
                     alt="Expanded view"
-                    style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain", borderRadius: "16px", boxShadow: "0 60px 120px rgba(0,0,0,0.8)", border: "1px solid rgba(255,255,255,0.1)" }}
+                    onClose={() => setSelectedImage(null)}
                 />
-                <div style={{ position: "absolute", top: 40, right: 40, color: "#fff", fontSize: 20, fontWeight: 900, fontFamily: "ui-monospace, monospace", cursor: "pointer", background: "rgba(255,255,255,0.1)", width: 44, height: 44, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%", backdropFilter: "blur(4px)" }}>✕</div>
-            </div>
-        )
-    }
-        </main >
+            )}
+        </main>
     );
 }

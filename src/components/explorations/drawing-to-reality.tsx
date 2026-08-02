@@ -20,12 +20,12 @@ export function DrawingToRealityExploration({ exploration }: DrawingToRealityExp
   }, [exploration.slug]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-6 bg-[#120603] text-[#CFC5BA] px-6">
+    <div className="min-h-screen flex flex-col items-center justify-center gap-6 bg-canvas text-parchment px-6">
       <p className="font-serif text-xl text-white">Opening {exploration.title}…</p>
       {demoUrl ? (
         <a
           href={demoUrl}
-          className="inline-flex items-center gap-2 bg-[#F79CBa] hover:bg-[#FFC4D4] text-[#4A152B] font-bold px-6 py-3 rounded-full text-xs uppercase tracking-widest"
+          className="inline-flex items-center gap-2 bg-blush hover:bg-petal text-blush-text font-bold px-6 py-3 rounded-full text-xs uppercase tracking-widest"
         >
           Open experience
           <ExternalLink className="w-4 h-4" />
@@ -33,7 +33,7 @@ export function DrawingToRealityExploration({ exploration }: DrawingToRealityExp
       ) : null}
       <Link
         href="/explorations/"
-        className="inline-flex items-center gap-2 text-xs font-bold font-outfit uppercase tracking-widest hover:text-[#FFC4D4] transition-colors"
+        className="inline-flex items-center gap-2 text-xs font-bold font-outfit uppercase tracking-widest hover:text-petal transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
         Back to Explorations

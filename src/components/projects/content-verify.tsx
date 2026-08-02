@@ -170,7 +170,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
     }
 
     return (
-        <main className="min-h-screen bg-[#FDFBF7] dark:bg-[#0a0a0a] text-neutral-900 dark:text-neutral-100 font-serif selection:bg-yellow-200 dark:selection:bg-yellow-900/30">
+        <main className="min-h-screen bg-[#0a0a0a] text-neutral-100 font-serif selection:bg-blush/30">
             {/* Styles for this page */}
             <style jsx global>{`
                 /* Navbar visibility handled by layout now */
@@ -510,7 +510,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                         </div>
 
                         <h2 className="text-3xl md:text-5xl font-serif font-bold text-white leading-tight mb-8">
-                            "A seamless, non-intrusive assistant that surfaces <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34BF4B] to-blue-400">alternative perspectives</span> without disrupting reading flow."
+                            "A seamless, non-intrusive assistant that surfaces <span className="text-petal">alternative perspectives</span> without disrupting reading flow."
                         </h2>
 
                         <div className="flex justify-center gap-8 mt-4">
@@ -617,7 +617,7 @@ export function ContentVerifyProject({ project }: { project: Project }) {
                                 <span className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-white">Secondary Research</span>
                             </div>
                             <h2 className="text-3xl md:text-5xl font-serif font-bold text-white leading-tight mb-8">
-                                Uncovering <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34BF4B] to-emerald-400">UI and interactions</span>
+                                Uncovering <span className="text-petal">UI and interactions</span>
                             </h2>
                         </div>
 

@@ -211,7 +211,7 @@ export function DesignLeadership() {
                 <video src={lightboxItem.src} className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl" controls autoPlay />
               )}
               <div className="mt-8 text-center bg-black/60 backdrop-blur-xl px-10 py-8 rounded-[2rem] border border-white/10 shadow-3xl">
-                <span className="font-caveat text-3xl text-purple-200 mb-2 block tracking-wide italic leading-none">
+                <span className="font-caveat text-3xl text-petal mb-2 block tracking-wide italic leading-none">
                     &ldquo;{lightboxItem.note || lightboxItem.title}&rdquo;
                 </span>
                 <div className="flex flex-wrap justify-center gap-2 mb-4">

@@ -68,7 +68,7 @@ export function Certifications() {
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ duration: 0.5 }}
                         >
-                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blush/30 border border-blush/40 text-blush-text dark:text-blush text-[12px] font-black uppercase tracking-widest mb-8 md:mb-6">
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blush/30 border border-blush/40 text-blush text-[12px] font-black uppercase tracking-widest mb-8 md:mb-6">
                                 <Award className="w-3 h-3" />
                                 Professional Growth
                             </div>

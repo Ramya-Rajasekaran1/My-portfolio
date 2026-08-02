@@ -41,12 +41,12 @@ export function NetworkIntelligenceProject({ project }: NetworkIntelligenceProje
     const designs = getSection("VISUAL DESIGNS");
 
     return (
-        <main className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-purple-500/30">
+        <main className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-blush/30">
             {/* Custom Navigation */}
             <div className="fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center mix-blend-difference">
                 <Link
                     href="/work/"
-                    className="inline-flex items-center gap-2 text-white hover:text-purple-400 transition-colors uppercase tracking-widest text-sm font-bold"
+                    className="inline-flex items-center gap-2 text-white hover:text-blush transition-colors uppercase tracking-widest text-sm font-bold"
                 >
                     <ArrowLeft className="w-4 h-4" />
                     Back
@@ -57,10 +57,10 @@ export function NetworkIntelligenceProject({ project }: NetworkIntelligenceProje
             <section className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-12 overflow-hidden">
                 <div className="container mx-auto px-4 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div className="order-2 lg:order-1 space-y-8">
-                        <span className="text-purple-400 font-bold tracking-[0.2em] uppercase text-sm">
+                        <span className="text-blush font-bold tracking-[0.2em] uppercase text-sm">
                             CASE STUDY — 2022
                         </span>
-                        <h1 className="text-5xl md:text-7xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-neutral-400">
+                        <h1 className="text-5xl md:text-7xl font-bold leading-tight text-ivory">
                             Orders &<br />Inventory
                         </h1>
                         <p className="text-xl md:text-2xl text-neutral-400 max-w-lg leading-relaxed">
@@ -79,7 +79,7 @@ export function NetworkIntelligenceProject({ project }: NetworkIntelligenceProje
                     </div>
 
                     <div className="order-1 lg:order-2 relative group cursor-pointer" onClick={() => setLightboxImage({ src: project.image, alt: project.title })}>
-                        <div className="absolute inset-0 bg-purple-500/20 blur-[100px] rounded-full opacity-50 grouphover:opacity-70 transition-opacity" />
+                        <div className="absolute inset-0 bg-blush/20 blur-[100px] rounded-full opacity-50 group-hover:opacity-70 transition-opacity" />
                         <img
                             src={project.image}
                             alt={project.title}
@@ -111,14 +111,14 @@ export function NetworkIntelligenceProject({ project }: NetworkIntelligenceProje
                     <div className="container mx-auto px-4">
                         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
                             <div className="md:w-1/3">
-                                <h2 className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
+                                <h2 className="text-4xl font-bold mb-6 text-ivory">
                                     Project Modules
                                 </h2>
                                 <p className="text-neutral-500">The ecosystem consists of several interconnected modules.</p>
                             </div>
                             <div className="md:w-2/3 flex flex-wrap gap-4 justify-end">
                                 {Array.isArray(modules.content) && modules.content.map((item, i) => (
-                                    <span key={i} className="px-6 py-3 rounded-full border border-purple-500/30 text-purple-300 text-sm font-bold uppercase tracking-wider hover:bg-purple-500/10 transition-colors cursor-default">
+                                    <span key={i} className="px-6 py-3 rounded-full border border-blush/30 text-petal text-sm font-bold uppercase tracking-wider hover:bg-blush/10 transition-colors cursor-default">
                                         {item}
                                     </span>
                                 ))}
@@ -137,8 +137,8 @@ export function NetworkIntelligenceProject({ project }: NetworkIntelligenceProje
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {Array.isArray(painPoints.content) && painPoints.content.map((point, i) => (
                                 <div key={i} className="p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-all hover:-translate-y-2 group">
-                                    <div className="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center mb-6 group-hover:bg-purple-500/40 transition-colors">
-                                        <span className="text-purple-400 font-bold">{i + 1}</span>
+                                    <div className="w-10 h-10 rounded-full bg-blush/20 flex items-center justify-center mb-6 group-hover:bg-blush/40 transition-colors">
+                                        <span className="text-blush font-bold">{i + 1}</span>
                                     </div>
                                     <p className="text-lg text-neutral-300 leading-relaxed">
                                         {point.startsWith("-") ? point.substring(1).trim() : point}
@@ -154,11 +154,11 @@ export function NetworkIntelligenceProject({ project }: NetworkIntelligenceProje
             {solutioning && (
                 <section className="py-24 bg-[#0a0a0a]">
                     <div className="container mx-auto px-4 max-w-4xl">
-                        <h2 className="text-3xl font-bold mb-12 uppercase tracking-widest text-purple-400">Solution Approach</h2>
+                        <h2 className="text-3xl font-bold mb-12 uppercase tracking-widest text-blush">Solution Approach</h2>
                         <div className="space-y-6">
                             {Array.isArray(solutioning.content) && solutioning.content.map((line, i) => (
                                 <div key={i} className="flex gap-4">
-                                    {line.startsWith("-") && <span className="text-purple-500 mt-1">•</span>}
+                                    {line.startsWith("-") && <span className="text-blush mt-1">•</span>}
                                     <p className={`text-xl ${line.startsWith("-") ? "text-neutral-400" : "text-white font-bold text-2xl mb-4"}`}>
                                         {line.startsWith("-") ? line.substring(1).trim() : line}
                                     </p>

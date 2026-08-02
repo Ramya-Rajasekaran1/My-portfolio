@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
 
 // ============================================
 // CONFIGURATION - Easy to customize
@@ -188,7 +187,7 @@ export const InteractiveBackground = React.memo(function InteractiveBackground({
                 <>
                 <div
                     ref={purpleRef}
-                    className="absolute rounded-full bg-gradient-to-r from-purple-500/35 to-pink-500/35 blur-[120px] transition-transform duration-1000 ease-out will-change-transform"
+                    className="absolute rounded-full bg-gradient-to-r from-blush/35 to-petal/35 blur-[120px] transition-transform duration-1000 ease-out will-change-transform"
                     style={{
                         width: `${SPHERE_CONFIG.gradients.purple.size}px`,
                         height: `${SPHERE_CONFIG.gradients.purple.size}px`,

@@ -46,7 +46,7 @@ const renderContentLines = (
 
                 if (isQuote) {
                     return (
-                        <blockquote key={index} className={`border-l-4 border-[#10B981] pl-6 py-2 my-6 text-xl font-sans font-extralight ${textClass} bg-[#10B981]/5 rounded-r-lg`}>
+                        <blockquote key={index} className={`border-l border-[#10B981] pl-6 py-2 my-6 text-xl font-sans font-extralight ${textClass} bg-[#10B981]/5 rounded-r-lg`}>
                             {cleanLine}
                         </blockquote>
                     );
@@ -81,10 +81,9 @@ const arrayToList = (content?: string | string[]) => {
                 const trimmed = item.trim();
                 const isQuote = trimmed.startsWith(">");
                 const cleanItem = trimmed.replace(/^\> /, "");
-
                 if (isQuote) {
                     return (
-                        <blockquote key={index} className="border-l-4 border-[#10B981] pl-6 py-3 my-6 text-xl font-sans font-extralight text-[#FFF8F0] bg-[#10B981]/5 rounded-r-lg">
+                        <blockquote key={index} className="border-l border-[#10B981] pl-6 py-3 my-6 text-xl font-sans font-extralight text-[#FFF8F0] bg-[#10B981]/5 rounded-r-lg">
                             {cleanItem}
                         </blockquote>
                     );
@@ -380,10 +379,7 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                     animation: scan 4s linear infinite;
                 }
                 .digital-grid {
-                    background-size: 30px 30px;
-                    background-image: 
-                        linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
-                        linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+                    background: transparent;
                 }
             `}</style>
 
@@ -641,7 +637,7 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                                             {/* NPS */}
                                             <div className="space-y-4">
                                                 <h3 className="text-lg font-sans font-extralight tracking-tight text-[#FFF8F0] pb-4">Net Promoter Score</h3>
-                                                <div className="bg-[#13131A] border-l-2 border-[#10B981] rounded-xl p-6 flex flex-col justify-center min-h-[160px]">
+                                                <div className="bg-[#13131A] border border-[#10B981]/20 rounded-xl p-6 flex flex-col justify-center min-h-[160px]">
                                                     <div className="flex items-center gap-6 mb-4 pb-4 border-b border-neutral-800/50">
                                                         <div className="text-5xl font-sans font-extralight tracking-tight text-[#10B981]">−55</div>
                                                         <div className="text-[12px] font-mono uppercase tracking-[0.4em] text-neutral-400 leading-tight">Overall<br />NPS Score</div>
@@ -719,7 +715,7 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
 
                                             <div className="space-y-4">
                                                 <h3 className="text-lg font-sans font-light tracking-tight text-[#F4E5E9] pb-4">Net Promoter Score</h3>
-                                                <div className="bg-[#13131A] border-l-2 border-[#914364] rounded-xl p-6 flex flex-col justify-center min-h-[160px]">
+                                                <div className="bg-[#13131A] border border-[#914364]/20 rounded-xl p-6 flex flex-col justify-center min-h-[160px]">
                                                     <div className="flex items-center gap-6 mb-4 pb-4 border-b border-neutral-800/50">
                                                         <div className="text-5xl font-sans font-light tracking-tight text-[#914364]">−65</div>
                                                         <div className="text-[12px] font-mono uppercase tracking-widest text-[#A1979B] leading-tight">Overall<br />NPS Score</div>
@@ -801,7 +797,7 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
 
                                             <div className="space-y-4">
                                                 <h3 className="text-lg font-sans font-light tracking-tight text-[#F4E5E9] pb-4">Net Promoter Score</h3>
-                                                <div className="bg-[#13131A] border-l-2 border-[#C37B99] rounded-xl p-6 flex flex-col justify-center min-h-[160px]">
+                                                <div className="bg-[#13131A] border border-[#C37B99]/20 rounded-xl p-6 flex flex-col justify-center min-h-[160px]">
                                                     <div className="flex items-center gap-6 mb-4 pb-4 border-b border-neutral-800/50">
                                                         <div className="text-5xl font-sans font-light tracking-tight text-[#C37B99]">−60</div>
                                                         <div className="text-[12px] font-mono uppercase tracking-widest text-[#A1979B] leading-tight">Overall<br />NPS Score</div>
@@ -877,7 +873,7 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                         </div>
 
                         <div className="space-y-6 mb-12">
-                            <p className="text-[clamp(32px,5vw,72px)] font-outfit font-extrabold tracking-tighter leading-[1.05] bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-rose-500/90 to-emerald-500 uppercase">
+                            <p className="text-[clamp(32px,5vw,72px)] font-outfit font-extrabold tracking-tighter leading-[1.05] text-ivory uppercase">
                                 A forward-looking, Gen-AI specific accessibility blueprint.
                             </p>
                         </div>
@@ -1074,7 +1070,7 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                                                         const isWarning = f.includes("issues") || f.includes("Pain");
                                                         return (
                                                             <span key={f}
-                                                                className={`px-4 py-3 rounded-xl bg-white/5 border border-white/5 text-[13px] text-neutral-300 font-sans font-light transition-all duration-300 ${showMatrixTags ? 'animate-in fade-in slide-in-from-bottom-2' : 'opacity-0'} ${isWarning ? 'bg-red-500/10 border-red-500/20 text-red-100' : ''}`}
+                                                                className={`px-4 py-3 rounded-xl text-[13px] font-sans font-light transition-all duration-300 ${showMatrixTags ? 'animate-in fade-in slide-in-from-bottom-2' : 'opacity-0'} ${isWarning ? 'bg-rose-950/40 border border-blush/20 text-rose-200' : 'bg-white/5 border border-white/5 text-parchment'}`}
                                                                 style={{ animationDelay: `${(cIdx * 3 + i) * 50}ms` }}
                                                             >
                                                                 {f}
@@ -1275,7 +1271,7 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                         <div className="lg:col-span-8 relative min-h-[500px]">
                             {findings[selectedFinding] && (
                                 <div className="h-full ml-0 lg:ml-8 rounded-[3rem] bg-[#0A0A0E] border border-white/10 shadow-3xl relative overflow-hidden flex flex-col animate-in fade-in slide-in-from-bottom-8 duration-700">
-                                    <div className="digital-grid absolute inset-0 opacity-40" />
+                                    {/* Digital grid removed */}
                                     <div className="digital-scanner" />
 
                                     {/* Header Telemetry */}
@@ -1493,9 +1489,9 @@ export function GenAiInclusivityProject({ project }: { project: Project }) {
                             </div>
 
                             {/* Copilot */}
-                            <div className="bg-[#13151A] rounded-[2rem] p-8 border border-neutral-800/20 bg-gradient-to-br from-[#13151A] to-indigo-500/5 hover:border-indigo-500/50 transition-all duration-300 group flex flex-col gap-6 shadow-[0_10px_30px_rgba(99,102,241,0.05)]">
-                                <div className="inline-flex items-center w-max px-3 py-1 rounded-full border border-indigo-500/20 bg-indigo-500/10 text-indigo-400 text-[11px] font-mono uppercase tracking-[0.4em] font-bold">Needs Intervention</div>
-                                <h3 className="text-3xl font-outfit font-extralight tracking-tight text-white transition-colors group-hover:text-indigo-400">Copilot</h3>
+                            <div className="bg-[#13151A] rounded-[2rem] p-8 border border-neutral-800/20 bg-gradient-to-br from-[#13151A] to-blush/5 hover:border-blush/50 transition-all duration-300 group flex flex-col gap-6 shadow-[0_10px_30px_rgba(247,156,186,0.05)]">
+                                <div className="inline-flex items-center w-max px-3 py-1 rounded-full border border-blush/20 bg-blush/10 text-blush text-[11px] font-mono uppercase tracking-[0.4em] font-bold">Needs Intervention</div>
+                                <h3 className="text-3xl font-outfit font-extralight tracking-tight text-white transition-colors group-hover:text-blush">Copilot</h3>
                                 <p className="text-neutral-300 font-sans font-extralight leading-relaxed">Longest journeys, highest “stuck” rates, unpredictable navigation.</p>
                             </div>
                         </div>
