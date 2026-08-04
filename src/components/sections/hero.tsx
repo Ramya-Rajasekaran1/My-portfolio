@@ -96,7 +96,7 @@ export function Hero() {
                             {/* Top-Left Corner lines */}
                             <motion.div
                                 style={{ scaleX: lineScaleX }}
-                                className="absolute right-full top-0 w-[50vw] h-[2px] bg-neutral-400 dark:bg-neutral-700 origin-right pointer-events-none z-[-1] overflow-hidden"
+                                className="absolute right-full top-0 w-[50vw] h-[2px] bg-blue-400/60 dark:bg-blue-500/50 origin-right pointer-events-none z-[-1] overflow-hidden"
                             >
                                 <motion.div
                                     animate={{ x: ["-100%", "200%"] }}
@@ -106,7 +106,7 @@ export function Hero() {
                             </motion.div>
                             <motion.div
                                 style={{ scaleY: lineScaleY }}
-                                className="absolute bottom-full left-0 h-[50vh] w-[2px] bg-neutral-400 dark:bg-neutral-700 origin-bottom pointer-events-none z-[-1] overflow-hidden"
+                                className="absolute bottom-full left-0 h-[50vh] w-[2px] bg-blue-400/60 dark:bg-blue-500/50 origin-bottom pointer-events-none z-[-1] overflow-hidden"
                             >
                                 <motion.div
                                     animate={{ y: ["100%", "-200%"] }}
@@ -118,7 +118,7 @@ export function Hero() {
                             {/* Top-Right Corner lines */}
                             <motion.div
                                 style={{ scaleX: lineScaleX }}
-                                className="absolute left-full top-0 w-[50vw] h-[2px] bg-neutral-400 dark:bg-neutral-700 origin-left pointer-events-none z-[-1] overflow-hidden"
+                                className="absolute left-full top-0 w-[50vw] h-[2px] bg-blue-400/60 dark:bg-blue-500/50 origin-left pointer-events-none z-[-1] overflow-hidden"
                             >
                                 <motion.div
                                     animate={{ x: ["-100%", "200%"] }}
@@ -128,7 +128,7 @@ export function Hero() {
                             </motion.div>
                             <motion.div
                                 style={{ scaleY: lineScaleY }}
-                                className="absolute bottom-full right-0 h-[50vh] w-[2px] bg-neutral-400 dark:bg-neutral-700 origin-bottom pointer-events-none z-[-1] overflow-hidden"
+                                className="absolute bottom-full right-0 h-[50vh] w-[2px] bg-blue-400/60 dark:bg-blue-500/50 origin-bottom pointer-events-none z-[-1] overflow-hidden"
                             >
                                 <motion.div
                                     animate={{ y: ["100%", "-200%"] }}
@@ -140,7 +140,7 @@ export function Hero() {
                             {/* Bottom-Left Corner lines */}
                             <motion.div
                                 style={{ scaleX: lineScaleX }}
-                                className="absolute right-full bottom-0 w-[50vw] h-[2px] bg-neutral-400 dark:bg-neutral-700 origin-right pointer-events-none z-[-1] overflow-hidden"
+                                className="absolute right-full bottom-0 w-[50vw] h-[2px] bg-blue-400/60 dark:bg-blue-500/50 origin-right pointer-events-none z-[-1] overflow-hidden"
                             >
                                 <motion.div
                                     animate={{ x: ["-100%", "200%"] }}
@@ -150,7 +150,7 @@ export function Hero() {
                             </motion.div>
                             <motion.div
                                 style={{ scaleY: lineScaleY }}
-                                className="absolute top-full left-0 h-[50vh] w-[2px] bg-neutral-400 dark:bg-neutral-700 origin-top pointer-events-none z-[-1] overflow-hidden"
+                                className="absolute top-full left-0 h-[50vh] w-[2px] bg-blue-400/60 dark:bg-blue-500/50 origin-top pointer-events-none z-[-1] overflow-hidden"
                             >
                                 <motion.div
                                     animate={{ y: ["-100%", "200%"] }}
@@ -162,7 +162,7 @@ export function Hero() {
                             {/* Bottom-Right Corner lines */}
                             <motion.div
                                 style={{ scaleX: lineScaleX }}
-                                className="absolute left-full bottom-0 w-[50vw] h-[2px] bg-neutral-400 dark:bg-neutral-700 origin-left pointer-events-none z-[-1] overflow-hidden"
+                                className="absolute left-full bottom-0 w-[50vw] h-[2px] bg-blue-400/60 dark:bg-blue-500/50 origin-left pointer-events-none z-[-1] overflow-hidden"
                             >
                                 <motion.div
                                     animate={{ x: ["-100%", "200%"] }}
@@ -172,7 +172,7 @@ export function Hero() {
                             </motion.div>
                             <motion.div
                                 style={{ scaleY: lineScaleY }}
-                                className="absolute top-full right-0 h-[50vh] w-[2px] bg-neutral-400 dark:bg-neutral-700 origin-top pointer-events-none z-[-1] overflow-hidden"
+                                className="absolute top-full right-0 h-[50vh] w-[2px] bg-blue-400/60 dark:bg-blue-500/50 origin-top pointer-events-none z-[-1] overflow-hidden"
                             >
                                 <motion.div
                                     animate={{ y: ["-100%", "200%"] }}

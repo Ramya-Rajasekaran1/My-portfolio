@@ -35,12 +35,12 @@ export function AnimatedBlueprintLines({ opacity }: AnimatedBlueprintLinesProps)
                         </feMerge>
                     </filter>
                 </defs>
-                {/* Background line (subtle light gray) */}
+                {/* Background line (subtle light blue) */}
                 <path 
                     d="M 30,30 H 260 V 220 H 480" 
-                    stroke="#D9D9D9" 
+                    stroke="#3b82f6" 
                     strokeWidth="1.5" 
-                    className="opacity-45 dark:opacity-[0.08]" 
+                    className="opacity-45 dark:opacity-[0.15]" 
                 />
                 {/* Travelling glowing highlight path */}
                 <motion.path 
@@ -80,12 +80,12 @@ export function AnimatedBlueprintLines({ opacity }: AnimatedBlueprintLinesProps)
                         </feMerge>
                     </filter>
                 </defs>
-                {/* Background line (subtle light gray) */}
+                {/* Background line (subtle light blue) */}
                 <path 
                     d="M 470,30 H 240 V 220 H 20" 
-                    stroke="#D9D9D9" 
+                    stroke="#3b82f6" 
                     strokeWidth="1.5" 
-                    className="opacity-45 dark:opacity-[0.08]" 
+                    className="opacity-45 dark:opacity-[0.15]" 
                 />
                 {/* Travelling glowing highlight path */}
                 <motion.path 
@@ -126,12 +126,12 @@ export function AnimatedBlueprintLines({ opacity }: AnimatedBlueprintLinesProps)
                         </feMerge>
                     </filter>
                 </defs>
-                {/* Background line (subtle light gray) */}
+                {/* Background line (subtle light blue) */}
                 <path 
                     d="M 30,370 H 260 V 180 H 480" 
-                    stroke="#D9D9D9" 
+                    stroke="#3b82f6" 
                     strokeWidth="1.5" 
-                    className="opacity-45 dark:opacity-[0.08]" 
+                    className="opacity-45 dark:opacity-[0.15]" 
                 />
                 {/* Travelling glowing highlight path */}
                 <motion.path 
@@ -172,12 +172,12 @@ export function AnimatedBlueprintLines({ opacity }: AnimatedBlueprintLinesProps)
                         </feMerge>
                     </filter>
                 </defs>
-                {/* Background line (subtle light gray) */}
+                {/* Background line (subtle light blue) */}
                 <path 
                     d="M 470,370 H 240 V 180 H 20" 
-                    stroke="#D9D9D9" 
+                    stroke="#3b82f6" 
                     strokeWidth="1.5" 
-                    className="opacity-45 dark:opacity-[0.08]" 
+                    className="opacity-45 dark:opacity-[0.15]" 
                 />
                 {/* Travelling glowing highlight path */}
                 <motion.path 

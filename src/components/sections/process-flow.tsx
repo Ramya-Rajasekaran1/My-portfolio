@@ -218,16 +218,20 @@ export function ProcessFlow() {
                                      style={{ y, opacity, scale, zIndex: idx }}
                                      className="absolute inset-0 w-full h-full flex items-center justify-center"
                                  >
-                                    {/* Glassmorphic storytelling card without dropshadow */}
-                                    <div className="bg-white/80 dark:bg-black/75 backdrop-blur-xl rounded-[24px] p-8 md:p-12 flex flex-col justify-between w-full h-full relative overflow-hidden group">
-                                        
+                                    {/* Glassmorphic storytelling card with dropshadow */}
+                                    <div 
+                                        className="bg-white/80 dark:bg-black/75 backdrop-blur-xl rounded-[24px] p-8 md:p-12 flex flex-col justify-between w-full h-full relative overflow-hidden group shadow-[0_30px_70px_rgba(0,0,0,0.03)] dark:shadow-[0_40px_90px_rgba(0,0,0,0.6)]"
+                                        style={{
+                                            boxShadow: `0 20px 50px -10px ${step.glowColor || "rgba(0,0,0,0.05)"}`
+                                        }}
+                                    >
                                         {/* Moving Gradient Border Overlay */}
                                         <div className="absolute inset-0 rounded-[24px] pointer-events-none p-[1.5px] overflow-hidden z-0">
                                             <motion.div 
                                                 className="absolute w-[200%] h-[200%] top-[-50%] left-[-50%]"
                                                 animate={{ rotate: 360 }}
                                                 transition={{
-                                                    duration: 5,
+                                                    duration: 2, // faster gradient rotation
                                                     repeat: Infinity,
                                                     ease: "linear"
                                                 }}

@@ -45,43 +45,51 @@ export function PhilosophyQuote() {
                         Philosophy & Leadership
                     </span>
 
-                    {/* Quote container with floating animation */}
-                    <motion.div 
-                        animate={{ y: [0, -10, 0] }}
-                        transition={{
-                            duration: 4,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                        }}
+                    {/* Outer Scroll-Reveal Container */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
                         className="relative max-w-4xl"
                     >
-                        {/* Quote mark decoration */}
-                        <span className="absolute -top-12 -left-6 text-7xl md:text-9xl font-serif italic text-neutral-100 dark:text-neutral-900/40 select-none pointer-events-none">
-                            “
-                        </span>
-
-                        {/* Text Layer: Split Staggered character entrance */}
-                        <motion.h3 
-                            variants={containerVariants}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, margin: "-100px" }}
-                            className="text-3xl md:text-4xl lg:text-5xl font-normal font-outfit tracking-tight leading-[1.25] text-neutral-900 dark:text-white select-text flex flex-wrap justify-center"
+                        {/* Inner Quote container with faster floating animation */}
+                        <motion.div 
+                            animate={{ y: [0, -12, 0] }}
+                            transition={{
+                                duration: 2.5,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
                         >
-                            {words.map((word, wIdx) => (
-                                <span key={wIdx} className="inline-block mr-2.5 mb-1 whitespace-nowrap">
-                                    {word.split("").map((char, cIdx) => (
-                                        <motion.span 
-                                            key={cIdx} 
-                                            variants={charVariants} 
-                                            className="inline-block"
-                                        >
-                                            {char}
-                                        </motion.span>
-                                    ))}
-                                </span>
-                            ))}
-                        </motion.h3>
+                            {/* Quote mark decoration */}
+                            <span className="absolute -top-12 -left-6 text-7xl md:text-9xl font-serif italic text-neutral-100 dark:text-neutral-900/40 select-none pointer-events-none">
+                                “
+                            </span>
+
+                            {/* Text Layer: Split Staggered character entrance */}
+                            <motion.h3 
+                                variants={containerVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, margin: "-100px" }}
+                                className="text-3xl md:text-4xl lg:text-5xl font-normal font-outfit tracking-tight leading-[1.25] text-neutral-900 dark:text-white select-text flex flex-wrap justify-center"
+                            >
+                                {words.map((word, wIdx) => (
+                                    <span key={wIdx} className="inline-block mr-2.5 mb-1 whitespace-nowrap">
+                                        {word.split("").map((char, cIdx) => (
+                                            <motion.span 
+                                                key={cIdx} 
+                                                variants={charVariants} 
+                                                className="inline-block"
+                                            >
+                                                {char}
+                                            </motion.span>
+                                        ))}
+                                    </span>
+                                ))}
+                            </motion.h3>
+                        </motion.div>
                     </motion.div>
 
                 </div>
