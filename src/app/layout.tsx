@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, Outfit, Caveat, JetBrains_Mono } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -14,10 +14,7 @@ import { ConditionalBackground } from "@/components/ui/conditional-background";
 import { NoiseOverlay } from "@/components/ui/noise-overlay";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
-const caveat = Caveat({ subsets: ["latin"], variable: "--font-caveat" });
-const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
   title: "Ramya Rajasekaran | UX design specialist",
@@ -40,10 +37,7 @@ export default function RootLayout({
       <body className={cn(
         "min-h-screen bg-neutral-50 dark:bg-canvas text-neutral-900 dark:text-ivory antialiased transition-colors duration-300",
         inter.variable,
-        playfair.variable,
-        outfit.variable,
-        caveat.variable,
-        jetbrains.variable
+        outfit.variable
       )}>
         <ThemeProvider
           attribute="class"

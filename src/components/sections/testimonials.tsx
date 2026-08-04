@@ -53,7 +53,7 @@ export function Testimonials() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                     >
-                        <h2 className="text-4xl md:text-5xl font-extralight mb-6 tracking-tight text-neutral-900 dark:text-white leading-none">
+                        <h2 className="text-4xl md:text-5xl font-extralight mb-6 tracking-tight text-neutral-900 dark:text-white leading-none font-outfit">
                             Kind Words <span className="font-serif italic font-light">& Impact</span>
                         </h2>
                         <p className="text-neutral-700 dark:text-white/80 max-w-xl text-base md:text-lg font-light leading-relaxed">
@@ -72,8 +72,8 @@ export function Testimonials() {
                                 className={cn(
                                     "px-3 py-1.5 rounded-full text-[12px] font-black font-outfit uppercase tracking-widest transition-all duration-300 border h-fit",
                                     activeCategory === cat.id
-                                        ? "bg-blush/30 border-blush/40 text-blush-text dark:bg-blush dark:border-blush dark:text-blush-text shadow-md shadow-blush/20"
-                                        : "bg-white dark:bg-card border-neutral-300 dark:border-white/10 text-neutral-900 dark:text-ivory hover:border-blush/50"
+                                        ? "bg-blush border-blush text-white shadow-md shadow-blush/20"
+                                        : "bg-white dark:bg-black border-neutral-300 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 hover:border-blush/50"
                                 )}
                             >
                                 {cat.label}
@@ -101,8 +101,8 @@ export function Testimonials() {
                                 className={cn(
                                     "px-3 py-1.5 rounded-full text-[12px] font-black font-outfit uppercase tracking-widest transition-all duration-300 border h-fit",
                                     activeCategory === cat.id
-                                        ? "bg-blush/30 border-blush/40 text-blush-text dark:bg-blush dark:border-blush dark:text-blush-text shadow-md shadow-blush/20"
-                                        : "bg-white dark:bg-card border-neutral-300 dark:border-white/10 text-neutral-900 dark:text-ivory hover:border-blush/50"
+                                        ? "bg-blush border-blush text-white shadow-md shadow-blush/20"
+                                        : "bg-white dark:bg-black border-neutral-300 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 hover:border-blush/50"
                                 )}
                             >
                                 {cat.label}
@@ -119,8 +119,8 @@ export function Testimonials() {
                                 className={cn(
                                     "px-3 py-1.5 rounded-full text-[12px] font-black font-outfit uppercase tracking-widest transition-all duration-300 border h-fit",
                                     activeCategory === cat.id
-                                        ? "bg-blush/30 border-blush/40 text-blush-text dark:bg-blush dark:border-blush dark:text-blush-text shadow-md shadow-blush/20"
-                                        : "bg-white dark:bg-card border-neutral-300 dark:border-white/10 text-neutral-900 dark:text-ivory hover:border-blush/50"
+                                        ? "bg-blush border-blush text-white shadow-md shadow-blush/20"
+                                        : "bg-white dark:bg-black border-neutral-300 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 hover:border-blush/50"
                                 )}
                             >
                                 {cat.label}

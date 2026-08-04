@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, Maximize2, Minimize2 } from "lucide-react";
 import type { Exploration } from "@/data/explorations";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { assetPath } from "@/lib/base-path";
 
 interface RobotTurntableExplorationProps {
@@ -14,6 +14,14 @@ export function RobotTurntableExploration({ exploration }: RobotTurntableExplora
   const [isFullscreen, setIsFullscreen] = useState(false);
   const demoUrl = "https://calrobot.netlify.app";
   const localDemoUrl = assetPath(`/demos/${exploration.slug}/index.html`);
+
+  useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
 
   return (
     <div className="h-screen w-screen flex flex-col bg-canvas text-parchment overflow-hidden fixed inset-0 z-[9999]">

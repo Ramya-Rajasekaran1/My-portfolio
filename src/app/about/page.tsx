@@ -5,11 +5,12 @@ import * as React from "react";
 import { ExternalLink, ChevronDown, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { Certifications } from "@/components/sections/certifications";
 
 const HandwrittenCaption = ({ text, className }: { text: string; className?: string }) => (
     <div className={cn(
         "absolute z-20 bg-white dark:bg-neutral-800 px-4 py-1.5 rounded-sm shadow-md border border-neutral-200 dark:border-white/10",
-        "font-[var(--font-caveat)] text-xl md:text-2xl text-neutral-900 dark:text-neutral-50 pointer-events-none whitespace-nowrap",
+        "font-outfit font-black italic uppercase tracking-wider text-[11px] md:text-xs text-blush dark:text-orange-400 pointer-events-none whitespace-nowrap",
         className
     )}>
         <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-white/40 dark:bg-black/20 backdrop-blur-sm rotate-2 border border-black/5" />
@@ -19,29 +20,44 @@ const HandwrittenCaption = ({ text, className }: { text: string; className?: str
 
 export default function AboutPage() {
     return (
-        <main id="main-content" className="min-h-screen pt-20 pb-16 transition-colors duration-300 bg-neutral-50 dark:bg-neutral-950 overflow-x-hidden">
+        <main id="main-content" className="min-h-screen pt-32 md:pt-36 pb-16 transition-colors duration-300 bg-neutral-50 dark:bg-neutral-950 overflow-x-hidden">
             <div className="container mx-auto px-4">
                 <div className="max-w-6xl mx-auto">
 
-                    {/* Top Section with Graph Background - No Border */}
-                    <div className="relative mb-16 rounded-[32px] overflow-hidden bg-white/30 dark:bg-neutral-900/20 backdrop-blur-sm">
+                    {/* Top Section with Graph Background - Redesigned in two columns */}
+                    <div className="relative mb-16 rounded-[24px] overflow-hidden bg-white/30 dark:bg-neutral-900/20 backdrop-blur-sm border border-neutral-200/20 dark:border-white/5 shadow-md">
                         {/* Graph Box Background */}
                         <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_70%,transparent_100%)] opacity-40 dark:opacity-20" />
 
-                        <div className="p-8 md:p-12">
-                            {/* Text Content - Full Width for Intro */}
-                            <div className="max-w-3xl pr-12">
-                                <div className="relative">
-                                    <h1 className="text-[40px] font-serif font-bold tracking-tight text-white mb-6">
-                                        Ramya Rajasekaran
-                                    </h1>
+                        <div className="p-8 md:p-12 flex flex-col lg:flex-row gap-8 items-center justify-between">
+                            {/* Left Column: Text Content */}
+                            <div className="flex-1 max-w-2xl">
+                                <span className="inline-flex items-center gap-2 text-xs font-bold font-outfit uppercase tracking-[0.08em] text-blush mb-3">
+                                    <span className="w-4 h-[3px] bg-blush rounded-[2px]" />
+                                    About Me
+                                </span>
+                                <h1 className="text-4xl md:text-5xl lg:text-7xl font-outfit font-extralight tracking-tight text-neutral-900 dark:text-white mb-6">
+                                    Ramya Rajasekaran
+                                </h1>
 
-                                    <div className="space-y-6 max-w-2xl pt-2">
-                                        <p className="text-[20px] text-neutral-800 dark:text-neutral-200 leading-relaxed font-sans font-normal italic">
-                                            I love Music both carnatic & Western. I am a big coffee lover and love Dogs and animals in general. I am keen on being physically fit and always curious to try new things: Pickleball, badminton, canyoneering, jetski, hikes, zumba.
-                                        </p>
-                                    </div>
+                                <div className="space-y-6 pt-2">
+                                    <p className="text-lg md:text-xl text-neutral-700 dark:text-neutral-300 leading-relaxed font-serif font-normal italic">
+                                        I love Music both carnatic & Western. I am a big coffee lover and love Dogs and animals in general. I am keen on being physically fit and always curious to try new things: Pickleball, badminton, canyoneering, jetski, hikes, zumba.
+                                    </p>
                                 </div>
+                            </div>
+
+                            {/* Right Column: Illustration (Claymorphic Capybara Mascot) */}
+                            <div className="w-[280px] h-[280px] md:w-[320px] md:h-[320px] shrink-0 relative flex items-center justify-center">
+                                <div className="w-full h-full rounded-[24px] p-4 bg-white dark:bg-black shadow-[0_30px_60px_-15px_rgba(15,23,42,0.12),inset_-6px_-6px_12px_rgba(15,23,42,0.04),inset_6px_6px_12px_rgba(255,255,255,1)] dark:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8),inset_-6px_-6px_12px_rgba(0,0,0,0.8),inset_6px_6px_12px_rgba(255,255,255,0.03)] border border-neutral-200/20 dark:border-neutral-800 flex items-center justify-center overflow-hidden animate-float-3d">
+                                    <img
+                                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/brand/claymorphic_capybara.png`}
+                                        alt="Ramya's Claymorphic Capybara Mascot"
+                                        className="w-full h-full object-cover rounded-[16px]"
+                                    />
+                                </div>
+                                <div className="absolute css-sphere w-8 h-8 -top-3 -right-3" style={{ animationDuration: "5s" }} />
+                                <div className="absolute css-sphere w-6 h-6 -bottom-2 -left-2" style={{ animationDuration: "4s", animationDelay: "-2s" }} />
                             </div>
                         </div>
                     </div>
@@ -56,49 +72,52 @@ export default function AboutPage() {
                                     alt="Waterfall Adventure"
                                     loading="lazy"
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
+                                ></img>
                                 <HandwrittenCaption text="canyoneering" className="top-6 right-8 rotate-3" />
                                 <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                             </div>
 
-                            {/* 2. Music - Vertical */}
+                            {/* 2. Chicago Skydeck */}
+                            <div className="col-span-1 row-span-2 rounded-3xl overflow-hidden group relative shadow-lg">
+                                <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/new_photo_1.jpg`} alt="Chicago Skydeck" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <HandwrittenCaption text="Chicago Skydeck" className="top-6 left-6 -rotate-2 scale-90" />
+                            </div>
+
+                            {/* 3. Paris Las Vegas */}
+                            <div className="col-span-1 row-span-2 rounded-3xl overflow-hidden border border-neutral-200 dark:border-white/5 group relative shadow-md">
+                                <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/new_photo_2.jpg`} alt="Paris Las Vegas" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <HandwrittenCaption text="Paris Las Vegas" className="top-6 left-4 -rotate-3 scale-90" />
+                            </div>
+
+                            {/* 4. Music */}
                             <div className="col-span-1 row-span-2 rounded-3xl overflow-hidden group relative shadow-lg">
                                 <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/music_ukulele.jpg`} alt="Playing Ukulele" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                                <HandwrittenCaption text="Music" className="top-6 left-6 -rotate-2 scale-90" />
+                                <HandwrittenCaption text="Music" className="top-6 left-6 rotate-2 scale-90" />
                             </div>
 
-                            {/* 3. Canyon Hike (Narrows) - Vertical tag on top */}
+                            {/* 5. Bryce Canyon */}
                             <div className="col-span-1 row-span-2 rounded-3xl overflow-hidden border border-neutral-200 dark:border-white/5 group relative shadow-md">
-                                <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/canyon-hike.jpg`} alt="Canyon Hike" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                                <HandwrittenCaption text="Narrows hike" className="top-6 left-4 -rotate-3 scale-90" />
+                                <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/new_photo_3.jpg`} alt="Bryce Canyon" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <HandwrittenCaption text="Bryce Canyon" className="top-6 left-4 rotate-3 scale-90" />
                             </div>
 
-                            {/* 4. Beta NYSE - NO TAG */}
-                            <div className="col-span-1 row-span-1 rounded-3xl overflow-hidden border border-neutral-200 dark:border-white/5 group relative shadow-md">
-                                <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/beta-nyse.jpg`} alt="BETA NYSE" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                            </div>
-
-                            {/* 5. Aviation - Chinook */}
-                            <div className="col-span-1 row-span-1 rounded-3xl overflow-hidden border border-neutral-200 dark:border-white/5 group relative shadow-md">
-                                <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/aviation-museum.jpg`} alt="Chinook Helicopter" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                                <HandwrittenCaption text="Aviation" className="top-4 right-4 rotate-1 scale-75" />
-                            </div>
-
-                            {/* 6. Cockpit Visit - Last Wide */}
-                            <div className="col-span-2 row-span-1 rounded-3xl overflow-hidden group relative shadow-lg bg-neutral-100 dark:bg-neutral-900/50">
+                            {/* 6. Cockpit Visit */}
+                            <div className="col-span-2 row-span-2 rounded-3xl overflow-hidden group relative shadow-lg bg-neutral-100 dark:bg-neutral-900/50">
                                 <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/cockpit_final.jpg`} alt="New Cockpit Visit" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                                 <HandwrittenCaption text="Inside Cockpit" className="bottom-6 right-4 -rotate-1" />
                             </div>
                         </div>
                     </section>
 
+
+
                     {/* A Bit About Me Section */}
                     <section className="mb-24">
                         <div className="flex items-center justify-between mb-12">
-                            <h2 className="text-[32px] font-serif font-light tracking-tight text-neutral-900 dark:text-white uppercase text-center md:text-left">The Professional Story</h2>
-                            <div className="h-px bg-neutral-200 dark:bg-white/10 flex-1 ml-6 hidden md:block" />
+                            <h2 className="text-4xl md:text-5xl font-outfit font-extralight tracking-tight text-neutral-900 dark:text-white text-center md:text-left">The Professional Story</h2>
+                            <div className="h-px bg-neutral-200/50 dark:bg-white/5 flex-1 ml-6 hidden md:block" />
                         </div>
-                        
+
                         <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 auto-rows-[minmax(180px,auto)]">
                             {[
                                 {
@@ -144,33 +163,31 @@ export default function AboutPage() {
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.6, delay: i * 0.1 }}
                                     className={cn(
-                                        "group relative rounded-[32px] p-8 overflow-hidden border border-neutral-200 dark:border-white/5",
-                                        "backdrop-blur-xl bg-white/40 dark:bg-neutral-900/40",
-                                        "hover:border-blush/30 dark:hover:border-blush/20 transition-all duration-500",
+                                        "clay-card group relative p-8 overflow-hidden rounded-[24px]",
                                         item.gridClass
                                     )}
                                 >
                                     {/* Spotlight Glow Effect */}
                                     <div className="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-[80px] opacity-0 group-hover:opacity-20 transition-opacity duration-500" style={{ background: item.accent }} />
-                                    
-                                    <div className="relative flex flex-col h-full">
+
+                                    <div className="relative flex flex-col h-full z-10">
                                         <div className="mb-6 flex items-center justify-between">
-                                            <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-xl shadow-inner border border-white/20 dark:border-white/5" style={{ background: `${item.accent}15`, color: item.accent }}>
+                                            <div className="w-12 h-12 rounded-[12px] flex items-center justify-center text-xl shadow-inner border border-neutral-200/50 dark:border-white/5" style={{ background: `${item.accent}15`, color: item.accent }}>
                                                 🔹
                                             </div>
-                                            <span className="font-[var(--font-caveat)] text-2xl text-neutral-300 dark:text-neutral-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                            <span className="font-outfit font-black italic text-2xl text-neutral-350 dark:text-neutral-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                                 0{i + 1}
                                             </span>
                                         </div>
-                                        
-                                        <h3 className="text-xl md:text-2xl font-serif font-bold text-neutral-900 dark:text-white mb-4 leading-tight tracking-tight">
+
+                                        <h3 className="text-xl md:text-2xl font-outfit font-black text-neutral-900 dark:text-white mb-4 leading-tight tracking-tight">
                                             {item.title}
                                         </h3>
-                                        <p className="text-[16px] text-neutral-600 dark:text-neutral-400 font-sans font-light leading-relaxed mt-auto">
+                                        <p className="text-[15px] text-neutral-600 dark:text-neutral-400 font-serif font-normal leading-relaxed mt-auto">
                                             {item.desc}
                                         </p>
                                     </div>
-                                    
+
                                     {/* Subtle Gradient Overlay */}
                                     <div className={cn("absolute inset-0 -z-10 opacity-30 dark:opacity-10", item.bg)} />
                                 </motion.div>
@@ -178,71 +195,13 @@ export default function AboutPage() {
                         </div>
                     </section>
 
-                    {/* Tool Exploration - Auto Moving Carousel with Real Logos */}
-                    <section className="mb-16">
-                        <div className="flex items-center justify-between mb-8">
-                            <h2 className="text-[32px] font-serif font-light tracking-tight text-neutral-900 dark:text-white uppercase text-center md:text-left">Tool Exploration</h2>
-                            <div className="h-px bg-neutral-200 dark:bg-white/10 flex-1 ml-6 hidden md:block" />
-                        </div>
 
-                        <div className="relative w-full overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing">
-                            <style dangerouslySetInnerHTML={{ __html: `
-                                @keyframes marquee {
-                                    0% { transform: translateX(0); }
-                                    100% { transform: translateX(-1400px); }
-                                }
-                                .marquee-container {
-                                    display: flex;
-                                    gap: 1rem;
-                                    width: max-content;
-                                    padding: 1rem 0;
-                                    animation: marquee 35s linear infinite;
-                                }
-                                .marquee-container:active {
-                                    animation-play-state: paused;
-                                }
-                                .no-scrollbar::-webkit-scrollbar {
-                                    display: none;
-                                }
-                                .no-scrollbar {
-                                    -ms-overflow-style: none;
-                                    scrollbar-width: none;
-                                }
-                            `}} />
-                            <div className="marquee-container">
-                                {[
-                                    { name: "Figma", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/figma-new.png` },
-                                    { name: "Cursor", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/cursor_code_editor-logo_brandlogos.net_r1yfy.png` },
-                                    { name: "Gemini", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/gemini-logo.jpg` },
-                                    { name: "ChatGPT", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/chatgpt-new.png` },
-                                    { name: "Claude", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/claude logo.jpeg` },
-                                    { name: "Uizard", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/uizard-new.png` },
-                                    { name: "Antigravity", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/antigravity-new.png` },
-                                    // Duplicate for seamless loop
-                                    { name: "Figma", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/figma-new.png` },
-                                    { name: "Cursor", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/cursor_code_editor-logo_brandlogos.net_r1yfy.png` },
-                                    { name: "Gemini", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/gemini-logo.jpg` },
-                                    { name: "ChatGPT", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/chatgpt-new.png` },
-                                    { name: "Claude", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/claude logo.jpeg` },
-                                    { name: "Uizard", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/uizard-new.png` },
-                                    { name: "Antigravity", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/antigravity-new.png` },
-                                ].map((tool, i) => (
-                                    <div key={i} className="min-w-[160px] h-[120px] bg-transparent flex flex-col items-center justify-center gap-3 group transition-all duration-300">
-                                        <div className="w-20 h-20 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-110">
-                                            <img src={tool.logo} alt={tool.name} loading="lazy" className="w-full h-full object-contain" />
-                                        </div>
-                                        <span className="text-[10px] font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-widest">{tool.name}</span>
-                                    </div>
-                                ))}
-                            </div>
 
-                            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-neutral-50 dark:from-neutral-950 to-transparent z-10" />
-                            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-neutral-50 dark:from-neutral-950 to-transparent z-10" />
-                        </div>
-                    </section>
+                    {/* Certifications Section */}
+                    <Certifications />
 
                     {/* Background Grid Pattern for Experience */}
-                    <div className="relative">
+                    <div className="relative mb-20">
                         <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-50 dark:opacity-20 translate-y-[-50px]" />
                         <ExperienceSection />
                     </div>
@@ -330,50 +289,44 @@ function ExperienceSection() {
     ];
 
     return (
-        <GlassCard className="p-6 md:p-10 border-neutral-200 dark:border-white/10 bg-gradient-to-br from-white via-white/90 to-white/70 dark:bg-none dark:bg-blue-950/40 backdrop-blur-3xl shadow-xl">
-            <h2 className="text-[32px] font-serif font-light border-b border-neutral-200 dark:border-neutral-800 pb-2 mb-8 tracking-tight text-neutral-900 dark:text-white uppercase">
+        <div className="clay-card p-6 md:p-10">
+            <h2 className="text-4xl md:text-5xl font-outfit font-extralight border-b border-neutral-200/50 dark:border-white/5 pb-4 mb-8 tracking-tight text-neutral-900 dark:text-white">
                 Experience
             </h2>
 
             <div className="space-y-4">
                 {fullTimeJobs.map((job, idx) => {
                     const Content = (
-                        <div key={idx} className={`flex flex-col md:flex-row md:items-baseline gap-4 md:gap-10 group py-2 transition-all duration-300 ${idx === 0 ? "pt-2" : ""}`}>
+                        <div key={idx} className={`flex flex-col md:flex-row md:items-baseline gap-4 md:gap-10 group py-4 transition-all duration-300 ${idx === 0 ? "pt-2" : ""}`}>
                             <div className="w-40 shrink-0">
-                                <span className="text-[15px] font-bold font-outfit text-neutral-900 dark:text-ivory">
+                                <span className="text-[15px] font-bold font-outfit text-neutral-900 dark:text-white">
                                     {job.year}
                                 </span>
-                                <p className="text-[13px] font-black text-blush mt-0.5 tracking-wider">{job.duration}</p>
+                                <p className="text-[13px] font-bold text-blush mt-0.5 tracking-wider">{job.duration}</p>
                             </div>
                             <div className="flex-1">
                                 <div className="flex items-start justify-between gap-6">
                                     <div className="flex-1">
-                                        <h3 className="text-xl md:text-2xl font-sans font-bold text-neutral-900 dark:text-ivory group-hover:text-blush transition-colors duration-300 tracking-tight">
+                                        <h3 className="text-lg md:text-xl font-outfit font-black text-neutral-900 dark:text-white group-hover:text-blush transition-colors duration-300 tracking-tight uppercase">
                                             {job.title}
                                         </h3>
                                         <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-1 mb-1">
-                                            <p className="text-[15px] font-bold font-outfit text-neutral-900 dark:text-white">
+                                            <p className="text-[14px] font-bold font-outfit text-neutral-700 dark:text-neutral-300">
                                                 {job.company}
                                             </p>
                                             {job.location && (
                                                 <>
                                                     <span className="text-blush text-sm">•</span>
-                                                    <p className="text-[12px] font-normal text-neutral-900 dark:text-white tracking-wider">{job.location}</p>
+                                                    <p className="text-[12px] font-normal text-neutral-500 dark:text-neutral-400 tracking-wider">{job.location}</p>
                                                 </>
                                             )}
                                         </div>
                                     </div>
 
                                     <div className="flex items-center gap-4 shrink-0 mt-1">
-                                        {job.link && <ExternalLink className="w-5 h-5 text-neutral-400 dark:text-neutral-500 group-hover:text-blush transition-colors" />}
+                                        {job.link && <ExternalLink className="w-4 h-4 text-neutral-400 dark:text-neutral-500 group-hover:text-blush transition-colors" />}
                                     </div>
                                 </div>
-
-                                {job.desc && (
-                                    <p className="text-base text-neutral-900 dark:text-white max-w-2xl font-sans italic font-normal leading-relaxed mt-1">
-                                        {job.desc}
-                                    </p>
-                                )}
                             </div>
                         </div>
                     );
@@ -395,12 +348,12 @@ function ExperienceSection() {
                     );
                 })}
 
-                <div className="pt-8 mt-4 border-t-2 border-neutral-900 dark:border-white">
+                <div className="pt-8 mt-4 border-t border-neutral-200/50 dark:border-white/5">
                     <button
                         onClick={() => setShowInternships(!showInternships)}
                         className="w-full flex flex-col md:flex-row md:items-center justify-between group transition-colors mb-6 gap-2"
                     >
-                        <h3 className="text-[32px] font-serif font-light text-neutral-900 dark:text-white tracking-tight uppercase text-left w-full md:w-auto">
+                        <h3 className="text-2xl font-outfit font-black text-neutral-900 dark:text-white tracking-tight uppercase text-left w-full md:w-auto">
                             Internships
                         </h3>
                         <div className="flex items-center gap-3 text-blush font-bold underline decoration-2 underline-offset-4 decoration-blush/30 group-hover:decoration-blush transition-all self-start md:self-auto">
@@ -415,26 +368,26 @@ function ExperienceSection() {
                         <div className="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
                             {internships.map((job, idx) => {
                                 const Content = (
-                                    <div key={idx} className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-10 group py-1 transition-all duration-300">
+                                    <div key={idx} className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-10 group py-4 transition-all duration-300">
                                         <div className="w-40 shrink-0">
-                                            <span className="text-[14px] font-bold font-outfit text-neutral-900 dark:text-ivory uppercase tracking-wider">
+                                            <span className="text-[14px] font-bold font-outfit text-neutral-900 dark:text-white uppercase tracking-wider">
                                                 {job.year}
                                             </span>
-                                            <p className="text-[12px] font-black text-blush mt-0.5 tracking-wide">{job.duration}</p>
+                                            <p className="text-[12px] font-bold text-blush mt-0.5 tracking-wide">{job.duration}</p>
                                         </div>
                                         <div className="flex-1">
                                             <div className="flex items-start justify-between gap-6">
                                                 <div className="flex-1">
-                                                    <h4 className="text-lg font-sans font-bold text-neutral-900 dark:text-ivory group-hover:text-blush transition-colors uppercase tracking-tight">
+                                                    <h4 className="text-base font-outfit font-black text-neutral-900 dark:text-white group-hover:text-blush transition-colors uppercase tracking-tight">
                                                         {job.title}
                                                     </h4>
-                                                    <p className="text-[14px] font-bold font-outfit text-neutral-600 dark:text-parchment mt-[2px]">
+                                                    <p className="text-[14px] font-bold font-outfit text-neutral-500 dark:text-neutral-400 mt-[2px]">
                                                         {job.company}
                                                     </p>
                                                 </div>
 
                                                 <div className="flex items-center gap-4 shrink-0 mt-1">
-                                                     {job.link && job.link !== "#" && <ExternalLink className="w-5 h-5 text-neutral-400 dark:text-neutral-500 group-hover:text-blush transition-colors" />}
+                                                    {job.link && job.link !== "#" && <ExternalLink className="w-4 h-4 text-neutral-400 dark:text-neutral-500 group-hover:text-blush transition-colors" />}
                                                 </div>
                                             </div>
                                         </div>
@@ -461,6 +414,6 @@ function ExperienceSection() {
                     )}
                 </div>
             </div>
-        </GlassCard>
+        </div>
     );
 }

@@ -5,6 +5,7 @@ export const safehomeProject = {
     description: "Lead UX Designer transforming San Francisco’s earthquake data into a mobile-first safety ecosystem that empowers renters and homeowners to take prepared action before, during, and after a seismic event.",
     image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/safehome/safehome_cover_new.jpg`,
     slug: "safehome-sf",
+    externalLink: "https://pitch.com/v/safehome-emwcbe",
     sections: [
         {
             title: "ROLE & TIMELINE",

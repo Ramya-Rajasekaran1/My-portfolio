@@ -21,7 +21,7 @@ export const PublicationsAndArticles: React.FC = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     {/* Publications Section */}
                     <div className="flex flex-col">
-                        <h2 className="text-3xl md:text-4xl font-extralight mb-3 text-white tracking-tight">
+                        <h2 className="text-3xl md:text-4xl font-extralight mb-3 text-white tracking-tight font-outfit">
                             Publications
                         </h2>
 

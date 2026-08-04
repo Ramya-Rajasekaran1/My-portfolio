@@ -97,7 +97,6 @@ export function SafeHomeProject({ project }: { project: Project }) {
       `}</style>
 
       <style jsx global>{`
-                @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Caveat:wght@400;600;700&display=swap');
                 .sh-paper { background: #000000; }
                 .sh-ink { background: #111111; }
                 .sh-accent { background: #FFF8F0; }
@@ -862,14 +861,14 @@ export function SafeHomeProject({ project }: { project: Project }) {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "#272727" }}>
           {/* ON LEADERSHIP */}
           <div style={{ background: "linear-gradient(135deg, #0f0f0f 0%, #141414 100%)", padding: "56px 44px", position: "relative", overflow: "hidden" }}>
-            <div style={{ position: "absolute", top: 16, left: 24, fontFamily: "var(--font-playfair), Georgia, serif", fontSize: 140, fontWeight: 700, color: "rgba(255,248,240,0.04)", lineHeight: 1, pointerEvents: "none" }}>"</div>
+            <div style={{ position: "absolute", top: 16, left: 24, fontFamily: "Georgia, serif", fontSize: 140, fontWeight: 700, color: "rgba(255,248,240,0.04)", lineHeight: 1, pointerEvents: "none" }}>"</div>
             <h3 style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "#FFF8F0", marginBottom: 28, fontWeight: 400, position: "relative" }}>On Leadership</h3>
             <p style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 26, fontWeight: 400, color: "#FFF8F0", lineHeight: 1.35, margin: 0, position: "relative" }}>The most impactful thing I did was not designing a screen. It was creating clarity where there was none.</p>
           </div>
 
           {/* ON CONSTRAINTS AS CRAFT */}
           <div style={{ background: "linear-gradient(135deg, #111 0%, #161616 100%)", padding: "56px 44px", position: "relative", overflow: "hidden" }}>
-            <div style={{ position: "absolute", top: 16, left: 24, fontFamily: "var(--font-playfair), Georgia, serif", fontSize: 140, fontWeight: 700, color: "rgba(255,248,240,0.04)", lineHeight: 1, pointerEvents: "none" }}>"</div>
+            <div style={{ position: "absolute", top: 16, left: 24, fontFamily: "Georgia, serif", fontSize: 140, fontWeight: 700, color: "rgba(255,248,240,0.04)", lineHeight: 1, pointerEvents: "none" }}>"</div>
             <h3 style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "#FFF8F0", marginBottom: 28, fontWeight: 400, position: "relative" }}>On Constraints as Craft</h3>
             <p style={{ fontFamily: "var(--font-outfit), sans-serif", fontSize: 26, fontWeight: 400, color: "#FFF8F0", lineHeight: 1.35, margin: 0, position: "relative" }}>Pushing back on scope is not friction. It is care.</p>
           </div>

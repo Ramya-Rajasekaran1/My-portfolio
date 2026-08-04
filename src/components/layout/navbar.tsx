@@ -111,12 +111,16 @@ export function Navbar() {
             <div className="container mx-auto px-4 flex justify-center pointer-events-none">
                 <div className={cn(
                     "flex items-center justify-between rounded-full transition-all duration-500 w-full relative z-[3001] pointer-events-auto",
-                    isScrolled ? "glass py-2 px-6 max-w-lg shadow-2xl" : "bg-transparent p-4 max-w-5xl"
+                    isScrolled
+                        ? "glass py-2 px-6 max-w-2xl shadow-[0_20px_40px_-10px_rgba(15,23,42,0.12)] border border-neutral-200/50 dark:border-white/10"
+                        : "glass py-3.5 px-8 max-w-5xl border border-neutral-200/30 dark:border-white/5"
                 )}>
-                    <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/`} 
-                        className="text-xl font-serif font-bold tracking-tight z-[10000] dark:text-ivory relative pointer-events-auto"
+                    <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/`}
+                        className="flex items-center z-[10000] relative pointer-events-auto group mr-8"
                     >
-                        Ramya<span className="text-blush">.</span>
+                        <span className="text-lg font-sans font-black tracking-tight text-neutral-900 dark:text-white">
+                            Ramya<span className="text-blush">.</span>
+                        </span>
                     </a>
 
                     {/* Desktop Nav */}
@@ -131,7 +135,7 @@ export function Navbar() {
                                 initial="initial"
                                 whileHover="hover"
                                 className={cn(
-                                    "text-sm font-medium tracking-wide transition-all duration-300 px-2 py-1 z-[10000] cursor-pointer relative pointer-events-auto",
+                                    "text-sm font-medium tracking-wide transition-all duration-300 px-2 py-1 z-[10000] cursor-pointer relative pointer-events-auto rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-blush",
                                     pathname?.startsWith(link.href) ? "text-blush" : "text-neutral-600 dark:text-parchment hover:text-blush"
                                 )}
                             >
@@ -148,7 +152,7 @@ export function Navbar() {
 
                         <button
                             onClick={() => window.dispatchEvent(new Event("toggle-accessibility"))}
-                            className="p-2 rounded-full hover:bg-white/10 transition-colors dark:text-ivory z-[10000] relative pointer-events-auto"
+                            className="p-2 rounded-full hover:bg-white/10 transition-colors dark:text-ivory z-[10000] relative pointer-events-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-blush"
                             aria-label="Open accessibility settings"
                         >
                             <Accessibility className="w-5 h-5" />
@@ -158,7 +162,7 @@ export function Navbar() {
                     {/* Mobile Menu Toggle */}
                     <button
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className="md:hidden p-2 dark:text-ivory z-[10000] relative pointer-events-auto"
+                        className="md:hidden p-2 dark:text-ivory z-[10000] relative pointer-events-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-blush"
                         aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
                     >
                         {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -176,11 +180,11 @@ export function Navbar() {
                         className="fixed inset-0 z-[10000] bg-white/95 dark:bg-black/95 backdrop-blur-xl pt-24 px-6 md:hidden"
                     >
                         <div className="flex flex-col gap-8">
-                             {navLinks.map((link) => (
+                            {navLinks.map((link) => (
                                 <a
                                     key={link.name}
                                     href={link.href}
-                                    className="text-4xl font-serif font-bold text-neutral-900 dark:text-ivory hover:text-blush transition-colors z-[10000] cursor-pointer relative pointer-events-auto"
+                                    className="text-4xl font-serif font-bold text-neutral-900 dark:text-ivory hover:text-blush transition-colors z-[10000] cursor-pointer relative pointer-events-auto rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-blush"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
                                     {link.name}

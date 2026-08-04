@@ -18,7 +18,7 @@ export default function ExplorationsPage() {
           <span className="text-xs font-bold font-outfit uppercase tracking-[0.35em] text-blush mb-4 block">
             Cal AI Labs
           </span>
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold mb-6 tracking-tight text-white">
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-outfit font-extralight mb-6 tracking-tight text-white">
             Explorations
           </h1>
           <p className="text-lg md:text-xl text-parchment max-w-2xl font-sans leading-relaxed">

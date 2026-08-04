@@ -1,18 +1,19 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { HoverGradientChip } from "@/components/ui/hover-gradient-chip";
 
 export function SkillsAndStats() {
     const achievements = [
         {
-            value: "5+",
+            value: "6+",
             label: "Years Experience",
             color: "text-purple-600",
             bgColor: "bg-purple-500/10",
             borderColor: "border-purple-500/20"
         },
         {
-            value: "1M+",
+            value: "5M",
             label: "Users Reached",
             color: "text-indigo-600",
             bgColor: "bg-indigo-500/10",
@@ -20,14 +21,14 @@ export function SkillsAndStats() {
         },
         {
             value: "70K+",
-            label: "Ecomm Redesign",
+            label: "Products Ecomm Redesign",
             color: "text-purple-700",
             bgColor: "bg-purple-600/10",
             borderColor: "border-purple-600/20"
         },
         {
             value: "3.2M",
-            label: "Tracking Platform Redesign",
+            label: "Revamped daily shipment tracking platform",
             color: "text-indigo-700",
             bgColor: "bg-indigo-600/10",
             borderColor: "border-indigo-600/20"
@@ -48,20 +49,23 @@ export function SkillsAndStats() {
     ];
 
     return (
-        <section className="py-12 md:py-16 bg-canvas border-t border-b border-neutral-200 dark:border-white/10">
-            <div className="container mx-auto px-4 max-w-6xl flex flex-col gap-10">
+        <section className="py-16 bg-canvas border-t border-b border-neutral-200/50 dark:border-white/5 relative overflow-hidden">
+            {/* Ambient Background Sphere for section decoration */}
+            <div className="absolute top-1/2 -right-16 w-32 h-32 css-sphere opacity-10 hidden md:block" style={{ animationDelay: "-3s" }} />
+
+            <div className="container mx-auto px-4 max-w-6xl flex flex-col gap-12 relative z-10">
                 {/* Top: Stats Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full">
                     {achievements.map((achievement) => (
                         <div
                             key={achievement.label}
-                            className="group p-4 md:p-6 rounded-card bg-neutral-100 dark:bg-card/40 border border-neutral-200 dark:border-white/[0.05] flex flex-col items-start transition-colors hover:bg-blush/10 dark:hover:bg-blue-950/20"
+                            className="clay-card p-6 flex flex-col items-start"
                         >
                             <div className="space-y-2 font-outfit w-full">
-                                <p className="text-2xl md:text-3xl font-black text-neutral-900 dark:text-ivory leading-none">
+                                <p className="text-3xl md:text-4xl font-black text-blush leading-none">
                                     {achievement.value}
                                 </p>
-                                <p className="text-[11px] md:text-[12px] capitalize tracking-widest font-black text-neutral-500 dark:text-blush">
+                                <p className="text-[11px] md:text-[12px] uppercase tracking-widest font-bold text-neutral-500 dark:text-neutral-400">
                                     {achievement.label}
                                 </p>
                             </div>
@@ -70,24 +74,17 @@ export function SkillsAndStats() {
                 </div>
 
                 {/* Divider Line */}
-                <div className="h-px bg-neutral-200 dark:bg-white/10 w-full" />
+                <div className="h-px bg-neutral-200/50 dark:bg-white/5 w-full" />
 
                 {/* Bottom: Skills Grid */}
-                <div className="flex flex-col gap-4">
-                    <span className="text-[12px] font-black uppercase tracking-widest text-neutral-500 dark:text-blush">
+                <div className="flex flex-col gap-5">
+                    <span className="text-xs font-bold uppercase tracking-[0.08em] text-blush flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-blush" />
                         Core Competencies
                     </span>
-                    <div className="flex flex-wrap justify-start gap-2 md:gap-3 w-full">
+                    <div className="flex flex-wrap justify-start gap-2.5 md:gap-3.5 w-full">
                         {skills.map((skill) => (
-                            <div
-                                key={skill.name}
-                                className="flex items-center gap-2 px-3.5 py-2 bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/10 rounded-pill shadow-sm"
-                            >
-                                <div className={cn("w-1.5 h-1.5 rounded-full", skill.color)} />
-                                <span className="text-[10px] md:text-[11px] font-black tracking-widest text-neutral-900 dark:text-ivory uppercase">
-                                    {skill.name}
-                                </span>
-                            </div>
+                            <HoverGradientChip key={skill.name} text={skill.name} />
                         ))}
                     </div>
                 </div>

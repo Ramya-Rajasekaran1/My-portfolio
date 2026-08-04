@@ -89,7 +89,7 @@ export function DesignLeadership() {
         {/* ── Header ── */}
         <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div className="max-w-xl">
-                <h2 className="text-4xl md:text-5xl font-extralight mb-6 tracking-[0.05em] text-neutral-900 dark:text-ivory leading-none">
+                <h2 className="text-4xl md:text-5xl font-extralight mb-6 tracking-[0.05em] text-neutral-900 dark:text-ivory leading-none font-outfit">
                     Design Leadership
                 </h2>
                 <p className="text-neutral-600 dark:text-parchment text-base md:text-lg font-light leading-relaxed">
@@ -106,8 +106,8 @@ export function DesignLeadership() {
                         className={cn(
                             "px-3 py-1.5 rounded-full text-[12px] font-black tracking-widest transition-all duration-300 border flex-shrink-0 uppercase cursor-pointer pointer-events-auto relative z-10",
                             filter === cat.id
-                                ? "bg-blush/30 border-blush/40 text-blush-text dark:bg-blush dark:border-blush dark:text-blush-text shadow-md shadow-blush/20"
-                                : "bg-white dark:bg-card border-neutral-300 dark:border-white/10 text-neutral-900 dark:text-ivory hover:border-blush/50"
+                                ? "bg-blush border-blush text-white shadow-md shadow-blush/20"
+                                : "bg-white dark:bg-black border-neutral-300 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 hover:border-blush/50"
                         )}
                     >
                         {cat.label}
@@ -145,15 +145,11 @@ export function DesignLeadership() {
                                         className="w-full h-full object-cover" 
                                         muted 
                                         loop 
+                                        autoPlay
                                         playsInline
                                         preload="metadata"
                                         aria-label={`${item.note || item.title} - ${item.location}`}
                                     />
-                                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition-colors pointer-events-none">
-                                        <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
-                                            <Play className="w-6 h-6 text-white translate-x-0.5" />
-                                        </div>
-                                    </div>
                                 </div>
                                 )}
 
@@ -161,7 +157,7 @@ export function DesignLeadership() {
                                 <div className="absolute top-4 left-4 z-20 transition-transform duration-500 group-hover:-rotate-3 group-hover:scale-110">
                                     <div className="relative px-3 py-1.5 bg-black dark:bg-canvas shadow-md transform -rotate-2 border-l-2 border-blush">
                                         <div className="absolute top-[-6px] left-1/2 -translate-x-1/2 w-6 h-3 bg-white/20 block backdrop-blur-sm pointer-events-none" style={{ clipPath: 'polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%)' }} />
-                                        <span className="font-caveat text-sm text-white tracking-tight leading-none whitespace-nowrap">
+                                        <span className="font-outfit font-black italic uppercase tracking-wider text-[10px] text-white leading-none whitespace-nowrap">
                                             {item.note || item.title}
                                         </span>
                                     </div>
@@ -211,7 +207,7 @@ export function DesignLeadership() {
                 <video src={lightboxItem.src} className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl" controls autoPlay />
               )}
               <div className="mt-8 text-center bg-black/60 backdrop-blur-xl px-10 py-8 rounded-[2rem] border border-white/10 shadow-3xl">
-                <span className="font-caveat text-3xl text-petal mb-2 block tracking-wide italic leading-none">
+                <span className="font-outfit font-black italic text-xl md:text-2xl text-petal mb-2 block tracking-wide leading-none">
                     &ldquo;{lightboxItem.note || lightboxItem.title}&rdquo;
                 </span>
                 <div className="flex flex-wrap justify-center gap-2 mb-4">

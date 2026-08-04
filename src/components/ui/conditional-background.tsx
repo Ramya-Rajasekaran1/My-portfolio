@@ -12,6 +12,6 @@ export function ConditionalBackground() {
 
     return <InteractiveBackground 
         hideSphere={true} 
-        hideGradients={isAboutPage || isWorkPage || isExplorationsPage || isExplorationDetailPage} 
+        hideGradients={true} 
     />;
 }
