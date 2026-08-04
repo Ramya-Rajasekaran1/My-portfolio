@@ -139,6 +139,17 @@ export function ProcessFlow() {
     const endPad = 0.9;
     const scrollRange = endPad - startPad;
 
+    const handleDotClick = (idx: number) => {
+        if (!containerRef.current) return;
+        const scrollHeight = containerRef.current.scrollHeight - window.innerHeight;
+        const center = startPad + (idx / (N - 1)) * scrollRange;
+        const targetY = containerRef.current.offsetTop + center * scrollHeight;
+        window.scrollTo({
+            top: targetY,
+            behavior: "smooth"
+        });
+    };
+
     return (
         /* The container determines the total scroll length. 8 steps = 1000vh for comfortable and slow vertical storytelling. */
         <div ref={containerRef} className="relative h-[1000vh] bg-canvas border-b border-neutral-200/50 dark:border-white/5 z-20">
@@ -293,26 +304,30 @@ export function ProcessFlow() {
                                 </motion.div>
                             );
                         })}
+
+                        {/* Vertical Dots on the Right Side */}
+                        <div className="absolute right-[-24px] md:right-[-48px] top-1/2 -translate-y-1/2 flex flex-col gap-3.5 z-30">
+                            {STEPS.map((_, idx) => (
+                                <motion.button
+                                    key={idx}
+                                    onClick={() => handleDotClick(idx)}
+                                    className="w-1.5 rounded-full bg-neutral-300 dark:bg-neutral-800 hover:bg-neutral-400 dark:hover:bg-neutral-700 transition-colors focus:outline-none"
+                                    animate={{
+                                        height: idx === activeIdx ? 24 : 6
+                                    }}
+                                    style={{
+                                        backgroundColor: idx === activeIdx ? "var(--blush)" : undefined
+                                    }}
+                                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                                    title={`Go to Phase ${idx + 1}`}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
 
-                {/* Footer Section (Step indicators and loop context) */}
+                {/* Footer Section (loop context only) */}
                 <div className="container mx-auto px-6 max-w-4xl shrink-0 mt-6 flex flex-col items-center gap-4">
-                    {/* Stepper Horizontal Progress Indicator bar */}
-                    <div className="flex gap-2 items-center">
-                        {STEPS.map((_, idx) => (
-                            <motion.div
-                                key={idx}
-                                className="h-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800"
-                                style={{
-                                    width: idx === activeIdx ? "24px" : "8px",
-                                    backgroundColor: idx === activeIdx ? "var(--blush)" : undefined,
-                                    transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)"
-                                }}
-                            />
-                        ))}
-                    </div>
-
                     <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-blush/5 dark:bg-blush/[0.02] border border-blush/20 dark:border-blush/10 shadow-sm">
                         <RotateCw className="w-4 h-4 text-blush animate-[spin_8s_linear_infinite]" />
                         <span className="text-[11px] font-bold font-outfit text-neutral-700 dark:text-neutral-300 uppercase tracking-wide">

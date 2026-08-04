@@ -139,7 +139,7 @@ export function FeaturedProjects() {
                                     {[
                                         { name: "Figma", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/figma-new.png` },
                                         { name: "Cursor", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/cursor_code_editor-logo_brandlogos.net_r1yfy.png` },
-                                        { name: "Gemini", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/gemini-logo.jpg` },
+                                        { name: "Gemini", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/gemini-logo.png` },
                                         { name: "ChatGPT", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/chatgpt-new.png` },
                                         { name: "Claude", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/claude logo.jpeg` },
                                         { name: "Uizard", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/uizard-new.png` },
@@ -147,7 +147,7 @@ export function FeaturedProjects() {
                                         // Duplicate
                                         { name: "Figma", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/figma-new.png` },
                                         { name: "Cursor", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/cursor_code_editor-logo_brandlogos.net_r1yfy.png` },
-                                        { name: "Gemini", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/gemini-logo.jpg` },
+                                        { name: "Gemini", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/gemini-logo.png` },
                                         { name: "ChatGPT", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/chatgpt-new.png` },
                                         { name: "Claude", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/claude logo.jpeg` },
                                         { name: "Uizard", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/uizard-new.png` },
@@ -357,7 +357,7 @@ export function FeaturedProjects() {
                                     {[
                                         { name: "Figma", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/figma-new.png` },
                                         { name: "Cursor", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/cursor_code_editor-logo_brandlogos.net_r1yfy.png` },
-                                        { name: "Gemini", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/gemini-logo.jpg` },
+                                        { name: "Gemini", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/gemini-logo.png` },
                                         { name: "ChatGPT", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/chatgpt-new.png` },
                                         { name: "Claude", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/claude logo.jpeg` },
                                         { name: "Uizard", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/uizard-new.png` },
@@ -365,7 +365,7 @@ export function FeaturedProjects() {
                                         // Duplicate for seamless loop
                                         { name: "Figma", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/figma-new.png` },
                                         { name: "Cursor", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/cursor_code_editor-logo_brandlogos.net_r1yfy.png` },
-                                        { name: "Gemini", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/gemini-logo.jpg` },
+                                        { name: "Gemini", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/gemini-logo.png` },
                                         { name: "ChatGPT", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/chatgpt-new.png` },
                                         { name: "Claude", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/claude logo.jpeg` },
                                         { name: "Uizard", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/uizard-new.png` },
