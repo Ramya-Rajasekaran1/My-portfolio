@@ -15,10 +15,10 @@ export default function ExplorationsPage() {
     <main className="min-h-screen pt-32 pb-24 relative z-20">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mb-16">
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-outfit font-extralight mb-6 tracking-tight text-white">
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-outfit font-extralight mb-6 tracking-tight text-neutral-900 dark:text-white">
             Explorations
           </h1>
-          <p className="text-lg md:text-xl text-parchment max-w-2xl font-sans leading-relaxed">
+          <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl font-sans leading-relaxed">
             A lab for interactive prototypes — where artwork, motion, and code meet.
             Each piece is a self-contained experience you can scroll, explore, and feel.
           </p>
