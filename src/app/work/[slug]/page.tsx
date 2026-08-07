@@ -7,6 +7,7 @@ import { GenAiInclusivityProject } from "@/components/projects/gen-ai-inclusivit
 import { TQDashboardProject } from "@/components/projects/tq-dashboard";
 import { SafeHomeProject } from "@/components/projects/safehome";
 import { FilterRedesignProject } from "@/components/projects/filter-redesign";
+import { CustomerServicePortalProject } from "@/components/projects/customer-service-portal";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
@@ -43,11 +44,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     }
 
     if (slug === "content-verify") {
-        return <ContentVerifyProject project={project} />;
+        redirect("https://pitch.com/v/content-verify-87nes4");
     }
 
     if (slug === "gen-ai-inclusivity") {
-        return <GenAiInclusivityProject project={project} />;
+        redirect("https://pitch.com/v/ai-usability-and-accessibility-ux-research-3c9p4k");
     }
 
     if (slug === "tracking-quality-dashboard") {
@@ -60,6 +61,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
     if (slug === "filter-revamp") {
         return <FilterRedesignProject />;
+    }
+
+    if (slug === "customer-service-portal") {
+        redirect("https://pitch.com/v/customer-service-portal-udpuh9");
     }
 
     return <ProjectPageClient project={project} />;

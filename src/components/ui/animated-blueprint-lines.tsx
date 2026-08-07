@@ -1,10 +1,9 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import { motion, MotionValue } from "framer-motion";
 
 interface AnimatedBlueprintLinesProps {
-    opacity: any; // Mapped to scroll progress
+    opacity: MotionValue<number>; // Mapped to scroll progress
 }
 
 export function AnimatedBlueprintLines({ opacity }: AnimatedBlueprintLinesProps) {

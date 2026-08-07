@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { HoverGradientChip } from "@/components/ui/hover-gradient-chip";
+import { cn } from "@/lib/utils";
 
 const featuredItems = [
     {
@@ -27,6 +28,7 @@ const featuredItems = [
         description: "A complete overhaul of supply chain visibility reporting, transforming complex data into actionable performance metrics for global shippers.",
         image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/cover_v4.jpg`,
         slug: "tracking-quality-dashboard",
+        externalLink: "https://pitch.com/v/tracking-quality-dashboard-gfpdq7",
         metrics: [
             { label: "Visibility Gain", value: "45%" },
             { label: "Audit Accuracy", value: "98%" },
@@ -40,6 +42,7 @@ const featuredItems = [
         description: "A futurist UX investigation that benchmarks how inclusive modern generative AI tools are and sketches a blueprint for accessibility-forward experiences. Published at IEEE and IndiaHCI.",
         image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/work/gen_ai_cover.jpg`,
         slug: "gen-ai-inclusivity",
+        externalLink: "https://pitch.com/v/ai-usability-and-accessibility-ux-research-3c9p4k",
         metrics: [
             { label: "Participants", value: "76" },
             { label: "AI Platforms", value: "3" },
@@ -55,6 +58,7 @@ export function FeaturedProjects() {
 
     const [maxScroll, setMaxScroll] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
+    const [activeCompetencyIdx, setActiveCompetencyIdx] = useState(0);
 
     useEffect(() => {
         const handleResize = () => {
@@ -88,31 +92,43 @@ export function FeaturedProjects() {
                                     <span className="w-1.5 h-1.5 rounded-full bg-blush" />
                                     Core Competencies
                                 </span>
-                                <div className="flex flex-wrap gap-2">
+                                <div 
+                                    onMouseLeave={() => setActiveCompetencyIdx(0)}
+                                    className="flex flex-wrap gap-2"
+                                >
                                     {[
                                         "UX Research", "Prototyping", "Usability Testing", "Design Strategy",
                                         "Design Systems", "Accessibility", "Figma", "AI Inclusivity Advocate",
                                         "AI Tools", "Human-Centered Design"
-                                    ].map((skill) => (
-                                        <HoverGradientChip key={skill} text={skill} paddingClass="px-3 py-1.5" />
+                                    ].map((skill, idx) => (
+                                        <div
+                                            key={skill}
+                                            onMouseEnter={() => setActiveCompetencyIdx(idx)}
+                                        >
+                                            <HoverGradientChip 
+                                                text={skill} 
+                                                paddingClass="px-3 py-1.5" 
+                                                isHighlighted={idx === activeCompetencyIdx}
+                                            />
+                                        </div>
                                     ))}
                                 </div>
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
-                                <div className="clay-card p-4">
+                                <div className="bg-neutral-100/60 dark:bg-neutral-900/60 backdrop-blur-md p-4 rounded-[20px] border-none shadow-sm flex flex-col justify-center">
                                     <p className="text-2xl font-black text-blush font-outfit">6+</p>
                                     <p className="text-[9px] font-bold uppercase tracking-widest text-neutral-500">Years Experience</p>
                                 </div>
-                                <div className="clay-card p-4">
+                                <div className="bg-neutral-100/60 dark:bg-neutral-900/60 backdrop-blur-md p-4 rounded-[20px] border-none shadow-sm flex flex-col justify-center">
                                     <p className="text-2xl font-black text-blush font-outfit font-sans">5 Million +</p>
                                     <p className="text-[9px] font-bold uppercase tracking-widest text-neutral-500">Users Reached</p>
                                 </div>
-                                <div className="clay-card p-4">
+                                <div className="bg-neutral-100/60 dark:bg-neutral-900/60 backdrop-blur-md p-4 rounded-[20px] border-none shadow-sm flex flex-col justify-center">
                                     <p className="text-2xl font-black text-blush font-outfit">70K+</p>
                                     <p className="text-[9px] font-bold uppercase tracking-widest text-neutral-500">Products Ecomm Redesign</p>
                                 </div>
-                                <div className="clay-card p-4">
+                                <div className="bg-neutral-100/60 dark:bg-neutral-900/60 backdrop-blur-md p-4 rounded-[20px] border-none shadow-sm flex flex-col justify-center">
                                     <p className="text-2xl font-black text-blush font-outfit">3.2 Million</p>
                                     <p className="text-[9px] font-bold uppercase tracking-widest text-neutral-500">Tracking Platform Redesign</p>
                                 </div>
@@ -121,9 +137,7 @@ export function FeaturedProjects() {
                             {/* Small Capybara Mascot */}
                             <div className="flex justify-center mt-4">
                                 <div className="relative w-[140px] h-[140px] shrink-0 animate-float-3d">
-                                    <div className="w-full h-full rounded-[24px] p-2 bg-white dark:bg-black shadow-md border border-neutral-200/20 dark:border-neutral-800 flex items-center justify-center overflow-hidden">
-                                        <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/brand/claymorphic_capybara.png`} alt="Capybara Mascot" className="w-full h-full object-cover rounded-[16px]" />
-                                    </div>
+                                    <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/brand/claymorphic_capybara.png`} alt="Capybara Mascot" className="w-full h-full object-contain" />
                                 </div>
                             </div>
                         </div>
@@ -141,7 +155,7 @@ export function FeaturedProjects() {
                                         { name: "Cursor", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/cursor_code_editor-logo_brandlogos.net_r1yfy.png` },
                                         { name: "Gemini", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/gemini-logo.png` },
                                         { name: "ChatGPT", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/chatgpt-new.png` },
-                                        { name: "Claude", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/claude logo.jpeg` },
+                                        { name: "Claude", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/claude-new.png` },
                                         { name: "Uizard", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/uizard-new.png` },
                                         { name: "Antigravity", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/antigravity-new.png` },
                                         // Duplicate
@@ -149,13 +163,21 @@ export function FeaturedProjects() {
                                         { name: "Cursor", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/cursor_code_editor-logo_brandlogos.net_r1yfy.png` },
                                         { name: "Gemini", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/gemini-logo.png` },
                                         { name: "ChatGPT", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/chatgpt-new.png` },
-                                        { name: "Claude", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/claude logo.jpeg` },
+                                        { name: "Claude", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/claude-new.png` },
                                         { name: "Uizard", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/uizard-new.png` },
                                         { name: "Antigravity", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/antigravity-new.png` },
                                     ].map((tool, i) => (
                                         <div key={i} className="min-w-[120px] h-[80px] flex flex-col items-center justify-center gap-1">
                                             <div className="w-10 h-10 flex items-center justify-center">
-                                                <img src={tool.logo} alt={tool.name} className="w-full h-full object-contain" />
+                                                <img 
+                                                    src={tool.logo} 
+                                                    alt={tool.name} 
+                                                    className={cn(
+                                                        "w-full h-full object-contain",
+                                                        (tool.name === "ChatGPT" || tool.name === "Uizard") && "dark:invert"
+                                                    )} 
+                                                    style={tool.name === "Gemini" ? { width: "75%", height: "75%", objectFit: "contain", margin: "auto" } : undefined}
+                                                />
                                             </div>
                                             <span className="text-[8px] font-bold text-neutral-500 uppercase tracking-widest">{tool.name}</span>
                                         </div>
@@ -184,14 +206,14 @@ export function FeaturedProjects() {
                         {featuredItems.map((item) => (
                             <div
                                 key={item.slug}
-                                className="snap-align-start shrink-0 w-[85vw] sm:w-[480px] clay-card p-6 flex flex-col justify-between"
+                                className="snap-align-start shrink-0 w-[85vw] sm:w-[480px] clay-card p-5 flex flex-col justify-between"
                             >
-                                <div className="flex flex-col gap-5">
+                                <div className="flex flex-col gap-4">
                                     <a
                                         href={item.externalLink || `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/${item.slug}/`}
                                         target={item.externalLink ? "_blank" : undefined}
                                         rel={item.externalLink ? "noopener noreferrer" : undefined}
-                                        className="block relative aspect-[16/10] rounded-[16px] overflow-hidden bg-white dark:bg-black border border-neutral-200/20 dark:border-neutral-800 shadow-sm"
+                                        className="block relative aspect-[2/1] rounded-[16px] overflow-hidden bg-white dark:bg-black border border-neutral-200/20 dark:border-neutral-800 shadow-sm"
                                     >
                                         <img
                                             src={item.image}
@@ -271,7 +293,10 @@ export function FeaturedProjects() {
                                         <span className="w-1.5 h-1.5 rounded-full bg-blush" />
                                         Core Competencies
                                     </span>
-                                    <div className="flex flex-wrap gap-2.5">
+                                    <div 
+                                        onMouseLeave={() => setActiveCompetencyIdx(0)}
+                                        className="flex flex-wrap gap-2.5"
+                                    >
                                         {[
                                             "UX Research",
                                             "Prototyping",
@@ -283,8 +308,16 @@ export function FeaturedProjects() {
                                             "AI Inclusivity Advocate",
                                             "AI Tools",
                                             "Human-Centered Design"
-                                        ].map((skill) => (
-                                            <HoverGradientChip key={skill} text={skill} />
+                                        ].map((skill, idx) => (
+                                            <div
+                                                key={skill}
+                                                onMouseEnter={() => setActiveCompetencyIdx(idx)}
+                                            >
+                                                <HoverGradientChip 
+                                                    text={skill} 
+                                                    isHighlighted={idx === activeCompetencyIdx}
+                                                />
+                                            </div>
                                         ))}
                                     </div>
                                 </div>
@@ -292,22 +325,22 @@ export function FeaturedProjects() {
                                 {/* Stats Grid (Moved BELOW competencies) */}
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
                                     {/* Stat 1 */}
-                                    <div className="clay-card p-6">
+                                    <div className="bg-neutral-100/60 dark:bg-neutral-900/60 backdrop-blur-md p-6 rounded-[24px] border-none shadow-sm flex flex-col justify-center">
                                         <p className="text-3xl md:text-4xl font-black text-blush font-outfit">6+</p>
                                         <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mt-1">Years Experience</p>
                                     </div>
                                     {/* Stat 2 */}
-                                    <div className="clay-card p-6">
+                                    <div className="bg-neutral-100/60 dark:bg-neutral-900/60 backdrop-blur-md p-6 rounded-[24px] border-none shadow-sm flex flex-col justify-center">
                                         <p className="text-3xl md:text-4xl font-black text-blush font-outfit font-sans">5 Million +</p>
                                         <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mt-1">Users Reached</p>
                                     </div>
                                     {/* Stat 3 */}
-                                    <div className="clay-card p-6">
+                                    <div className="bg-neutral-100/60 dark:bg-neutral-900/60 backdrop-blur-md p-6 rounded-[24px] border-none shadow-sm flex flex-col justify-center">
                                         <p className="text-3xl md:text-4xl font-black text-blush font-outfit">70K+</p>
                                         <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mt-1">Products Ecomm Redesign</p>
                                     </div>
                                     {/* Stat 4 */}
-                                    <div className="clay-card p-6">
+                                    <div className="bg-neutral-100/60 dark:bg-neutral-900/60 backdrop-blur-md p-6 rounded-[24px] border-none shadow-sm flex flex-col justify-center">
                                         <p className="text-3xl md:text-4xl font-black text-blush font-outfit">3.2 Million</p>
                                         <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mt-1">Tracking Platform Redesign</p>
                                     </div>
@@ -317,13 +350,11 @@ export function FeaturedProjects() {
                             {/* Right Column: Small Capybara Mascot (lg:col-span-4) */}
                             <div className="lg:col-span-4 flex items-center justify-center">
                                 <div className="relative w-[180px] h-[180px] shrink-0 animate-float-3d">
-                                    <div className="w-full h-full rounded-[24px] p-3 bg-white dark:bg-black shadow-[0_20px_40px_-10px_rgba(15,23,42,0.1),inset_-3px_-3px_6px_rgba(15,23,42,0.02),inset_3px_3px_6px_rgba(255,255,255,1)] dark:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.8),inset_-3px_-3px_6px_rgba(0,0,0,0.8),inset_3px_3px_6px_rgba(255,255,255,0.03)] border border-neutral-200/20 dark:border-neutral-800 flex items-center justify-center overflow-hidden">
-                                        <img
-                                            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/brand/claymorphic_capybara.png`}
-                                            alt="Small Capybara Mascot"
-                                            className="w-full h-full object-cover rounded-[16px]"
-                                        />
-                                    </div>
+                                    <img
+                                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/brand/claymorphic_capybara.png`}
+                                        alt="Small Capybara Mascot"
+                                        className="w-full h-full object-contain"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -359,7 +390,7 @@ export function FeaturedProjects() {
                                         { name: "Cursor", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/cursor_code_editor-logo_brandlogos.net_r1yfy.png` },
                                         { name: "Gemini", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/gemini-logo.png` },
                                         { name: "ChatGPT", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/chatgpt-new.png` },
-                                        { name: "Claude", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/claude logo.jpeg` },
+                                        { name: "Claude", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/claude-new.png` },
                                         { name: "Uizard", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/uizard-new.png` },
                                         { name: "Antigravity", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/antigravity-new.png` },
                                         // Duplicate for seamless loop
@@ -367,13 +398,21 @@ export function FeaturedProjects() {
                                         { name: "Cursor", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/cursor_code_editor-logo_brandlogos.net_r1yfy.png` },
                                         { name: "Gemini", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/gemini-logo.png` },
                                         { name: "ChatGPT", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/chatgpt-new.png` },
-                                        { name: "Claude", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/claude logo.jpeg` },
+                                        { name: "Claude", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/claude-new.png` },
                                         { name: "Uizard", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/uizard-new.png` },
                                         { name: "Antigravity", logo: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/antigravity-new.png` },
                                     ].map((tool, i) => (
                                         <div key={i} className="min-w-[160px] h-[100px] bg-transparent flex flex-col items-center justify-center gap-2 group transition-all duration-300">
                                             <div className="w-16 h-16 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-110">
-                                                <img src={tool.logo} alt={tool.name} loading="lazy" className="w-full h-full object-contain" />
+                                                <img 
+                                                    src={tool.logo} 
+                                                    alt={tool.name} 
+                                                    loading="lazy" 
+                                                    className={cn(
+                                                        "w-full h-full object-contain",
+                                                        (tool.name === "ChatGPT" || tool.name === "Uizard") && "dark:invert"
+                                                    )} 
+                                                />
                                             </div>
                                             <span className="text-[9px] font-bold text-neutral-500 uppercase tracking-widest">{tool.name}</span>
                                         </div>
@@ -411,20 +450,20 @@ export function FeaturedProjects() {
                             {featuredItems.map((item) => (
                                 <div
                                     key={item.slug}
-                                    className="shrink-0 w-[85vw] sm:w-[500px] md:w-[600px] clay-card p-8 md:p-10 flex flex-col justify-between"
+                                    className="shrink-0 w-[85vw] sm:w-[500px] md:w-[600px] clay-card p-6 md:p-8 flex flex-col justify-between"
                                 >
-                                    <div className="flex flex-col gap-6">
+                                    <div className="flex flex-col gap-5">
                                         {/* Image */}
                                         <a
                                             href={item.externalLink || `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/work/${item.slug}/`}
                                             target={item.externalLink ? "_blank" : undefined}
                                             rel={item.externalLink ? "noopener noreferrer" : undefined}
-                                            className="block relative aspect-[16/10] rounded-[16px] overflow-hidden bg-white dark:bg-black border border-neutral-200/20 dark:border-neutral-800 shadow-sm group/img cursor-pointer pointer-events-auto"
+                                            className="block relative aspect-[2/1] rounded-[16px] overflow-hidden bg-white dark:bg-black border border-neutral-200/20 dark:border-neutral-800 shadow-sm group/img cursor-pointer pointer-events-auto"
                                         >
                                             <img
                                                 src={item.image}
                                                 alt={item.alt}
-                                                className={`w-full h-full ${item.slug === "tracking-quality-dashboard" ? "object-contain" : "object-left object-cover"} transition-transform duration-700 group-hover/img:scale-105`}
+                                                className="w-full h-full object-left object-cover transition-transform duration-700 group-hover/img:scale-105"
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity" />
                                         </a>
@@ -444,9 +483,6 @@ export function FeaturedProjects() {
                                                     {item.title}
                                                 </h3>
                                             </a>
-                                            <p className="text-neutral-600 dark:text-neutral-400 text-sm md:text-base leading-relaxed font-normal">
-                                                {item.description}
-                                            </p>
                                         </div>
                                     </div>
 

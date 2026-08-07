@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { AnimatedBlueprintLines } from "@/components/ui/animated-blueprint-lines";
 
@@ -19,6 +19,44 @@ export function Hero() {
         damping: 25,
         restDelta: 0.001
     });
+
+    // Scroll snapping logic for Hero section: Name to Details Card transition
+    useEffect(() => {
+        let lastScrollY = window.scrollY;
+
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            const direction = currentScrollY > lastScrollY ? "down" : "up";
+            lastScrollY = currentScrollY;
+
+            if (sectionRef.current) {
+                const rect = sectionRef.current.getBoundingClientRect();
+                const totalHeight = sectionRef.current.offsetHeight;
+                const stickyHeight = window.innerHeight;
+
+                const scrolledAmount = -rect.top;
+                const maxScroll = totalHeight - stickyHeight;
+                const progress = maxScroll > 0 ? Math.min(Math.max(scrolledAmount / maxScroll, 0), 1) : 0;
+
+                // Disable snapping when scrolling up at the top,
+                // or when scrolling down past 80% of Hero height
+                const isAtStartAndScrollingUp = progress <= 0.05 && direction === "up";
+                const isScrollingDownPastHero = progress >= 0.8 && direction === "down";
+
+                if (isAtStartAndScrollingUp || isScrollingDownPastHero || progress > 0.85) {
+                    document.documentElement.style.scrollSnapType = "";
+                } else {
+                    document.documentElement.style.scrollSnapType = "y mandatory";
+                }
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            document.documentElement.style.scrollSnapType = "";
+        };
+    }, []);
 
     // 1. Title/Header transformations
     const titleY = useTransform(smoothProgress, [0, 0.45], [0, -120]);
@@ -45,9 +83,19 @@ export function Hero() {
     // 5. Blueprint lines reveal opacity transformation
     const blueprintOpacity = useTransform(smoothProgress, [0.35, 0.55], [0, 1]);
 
+    // 6. Scroll Indicator transformations (fade/slide out quickly on scroll start)
+    const indicatorOpacity = useTransform(smoothProgress, [0, 0.15], [1, 0]);
+    const indicatorY = useTransform(smoothProgress, [0, 0.15], [0, 20]);
+
     return (
-        /* The container determines scroll length. Increased to 450vh to make the scroll transition much slower. */
-        <section ref={sectionRef} className="relative h-[450vh] bg-canvas">
+        /* The container determines scroll length. Set to 300vh for snappy transition in a single scroll. */
+        <section ref={sectionRef} className="relative h-[300vh] bg-canvas">
+            {/* Snap anchors for Hero */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div style={{ position: "absolute", top: "0%", height: "1px", width: "100%", scrollSnapAlign: "start", scrollSnapStop: "always" }} />
+                <div style={{ position: "absolute", top: "50%", height: "1px", width: "100%", scrollSnapAlign: "start", scrollSnapStop: "always" }} />
+            </div>
+
             {/* Sticky screen container */}
             <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
 
@@ -80,7 +128,7 @@ export function Hero() {
                             Ramya <span className="text-blush italic font-light">Rajasekaran</span>
                         </h1>
                         <p className="text-[20px] md:text-[20px] font-bold font-outfit text-neutral-500 dark:text-neutral-400 tracking-[0.35em] uppercase mt-10 md:mt-14">
-                            Senior Product Designer
+                            Senior product designer
                         </p>
                     </motion.div>
 
@@ -195,13 +243,13 @@ export function Hero() {
                             {/* Details and Actions */}
                             <div className="flex-1 flex flex-col gap-5 text-center md:text-left items-center md:items-start">
                                 <span className="text-[10px] font-bold font-outfit uppercase tracking-widest text-blush">
-                                    UX Lead & Design Researcher
+                                    Senior product designer
                                 </span>
                                 <h2 className="text-2xl md:text-3xl font-bold font-outfit text-neutral-900 dark:text-white leading-tight">
-                                    Designing human-centered solutions for complex B2B and B2C systems.
+                                    AI-focused, end-to-end 0-1 designer leading complex systems.
                                 </h2>
                                 <p className="text-base text-neutral-600 dark:text-neutral-400 leading-relaxed font-serif">
-                                    UX Lead with extensive experience leading end-to-end design lifecycle across <span className="font-semibold text-neutral-900 dark:text-white">aviation, e-commerce, supply chain, B2B, and B2C</span> systems. Published researcher on <span className="font-semibold text-neutral-900 dark:text-white">AI Inclusivity</span> at IEEE and speaker at IndiaHCI.
+                                    UX Designer with experience leading end-to-end process across <span className="font-semibold text-neutral-900 dark:text-white">aviation, e-commerce, supply chain, B2B, B2C</span>. I design award-winning solutions and have published research on <span className="font-semibold text-neutral-900 dark:text-white">Designing for Inclusivity in the Age of AI</span>, at IEEE and Industry case study at IndiaHCI.
                                 </p>
 
                                 {/* Clean Regular Flat Buttons (No Drop Shadow) */}
@@ -221,6 +269,27 @@ export function Hero() {
                                 </div>
                             </div>
                         </div>
+                    </motion.div>
+
+                    {/* Scroll Below Indication (Mouse Wheel / Touch Trackpad visual cue) */}
+                    <motion.div
+                        style={{ opacity: indicatorOpacity, y: indicatorY }}
+                        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2.5 pointer-events-none z-30"
+                    >
+                        <span className="text-[10px] font-bold font-outfit uppercase tracking-[0.2em] text-neutral-450 dark:text-neutral-500">
+                            Scroll to explore
+                        </span>
+                        <motion.div
+                            animate={{ y: [0, 6, 0] }}
+                            transition={{
+                                duration: 1.5,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                            className="w-5 h-8.5 rounded-full border border-neutral-300 dark:border-neutral-800 flex items-start justify-center p-1"
+                        >
+                            <div className="w-1.5 h-2 rounded-full bg-blush animate-pulse" />
+                        </motion.div>
                     </motion.div>
                 </div>
             </div>

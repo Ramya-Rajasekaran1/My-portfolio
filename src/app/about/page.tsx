@@ -48,14 +48,12 @@ export default function AboutPage() {
                             </div>
 
                             {/* Right Column: Illustration (Claymorphic Capybara Mascot) */}
-                            <div className="w-[280px] h-[280px] md:w-[320px] md:h-[320px] shrink-0 relative flex items-center justify-center">
-                                <div className="w-full h-full rounded-[24px] p-4 bg-white dark:bg-black shadow-[0_30px_60px_-15px_rgba(15,23,42,0.12),inset_-6px_-6px_12px_rgba(15,23,42,0.04),inset_6px_6px_12px_rgba(255,255,255,1)] dark:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8),inset_-6px_-6px_12px_rgba(0,0,0,0.8),inset_6px_6px_12px_rgba(255,255,255,0.03)] border border-neutral-200/20 dark:border-neutral-800 flex items-center justify-center overflow-hidden animate-float-3d">
-                                    <img
-                                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/brand/claymorphic_capybara.png`}
-                                        alt="Ramya's Claymorphic Capybara Mascot"
-                                        className="w-full h-full object-cover rounded-[16px]"
-                                    />
-                                </div>
+                            <div className="w-[280px] h-[280px] md:w-[320px] md:h-[320px] shrink-0 relative flex items-center justify-center animate-float-3d bg-white dark:bg-neutral-900 border border-neutral-200/30 dark:border-white/5 rounded-[48px] p-8 shadow-xl">
+                                <img
+                                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/brand/claymorphic_capybara.png`}
+                                    alt="Ramya's Claymorphic Capybara Mascot"
+                                    className="w-full h-full object-contain"
+                                />
                                 <div className="absolute css-sphere w-8 h-8 -top-3 -right-3" style={{ animationDuration: "5s" }} />
                                 <div className="absolute css-sphere w-6 h-6 -bottom-2 -left-2" style={{ animationDuration: "4s", animationDelay: "-2s" }} />
                             </div>
@@ -77,16 +75,16 @@ export default function AboutPage() {
                                 <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                             </div>
 
-                            {/* 2. Chicago Skydeck */}
-                            <div className="col-span-1 row-span-2 rounded-3xl overflow-hidden group relative shadow-lg">
-                                <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/new_photo_1.jpg`} alt="Chicago Skydeck" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                                <HandwrittenCaption text="Chicago Skydeck" className="top-6 left-6 -rotate-2 scale-90" />
-                            </div>
-
-                            {/* 3. Paris Las Vegas */}
+                            {/* 2. Paris Las Vegas */}
                             <div className="col-span-1 row-span-2 rounded-3xl overflow-hidden border border-neutral-200 dark:border-white/5 group relative shadow-md">
                                 <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/new_photo_2.jpg`} alt="Paris Las Vegas" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                                 <HandwrittenCaption text="Paris Las Vegas" className="top-6 left-4 -rotate-3 scale-90" />
+                            </div>
+
+                            {/* 3. Chicago Skydeck */}
+                            <div className="col-span-1 row-span-2 rounded-3xl overflow-hidden group relative shadow-lg">
+                                <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/about/new_photo_1.jpg`} alt="Chicago Skydeck" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <HandwrittenCaption text="Chicago Skydeck" className="top-6 left-6 -rotate-2 scale-90" />
                             </div>
 
                             {/* 4. Music */}
@@ -163,7 +161,7 @@ export default function AboutPage() {
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.6, delay: i * 0.1 }}
                                     className={cn(
-                                        "clay-card group relative p-8 overflow-hidden rounded-[24px]",
+                                        "bg-neutral-100/60 dark:bg-neutral-900/60 backdrop-blur-md border-none shadow-sm group relative p-8 overflow-hidden rounded-[24px]",
                                         item.gridClass
                                     )}
                                 >

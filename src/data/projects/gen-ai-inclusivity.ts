@@ -5,6 +5,7 @@ export const genAiInclusivityProject = {
     description: "A futurist UX investigation that benchmarks how inclusive modern generative AI tools are and sketches a blueprint for accessibility-forward experiences.",
     image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/work/gen_ai_cover.jpg`,
     slug: "gen-ai-inclusivity",
+    externalLink: "https://pitch.com/v/ai-usability-and-accessibility-ux-research-3c9p4k",
     sections: [
         {
             title: "",

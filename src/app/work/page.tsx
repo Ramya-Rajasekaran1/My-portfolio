@@ -12,7 +12,7 @@ export default function WorkPage() {
         <main className="min-h-screen pt-32 pb-24 relative z-20">
             <div className="container mx-auto px-4">
                 <div className="max-w-4xl mb-16">
-                    <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold mb-6 tracking-tight">Selected Work</h1>
+                    <h1 className="text-4xl md:text-5xl lg:text-7xl font-extralight tracking-tight text-neutral-900 dark:text-white mb-6 font-outfit">Selected Work</h1>
                     <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl font-sans">
                         A curated collection of projects where I&apos;ve helped businesses solve problems and create meaningful experiences for their users.
                     </p>

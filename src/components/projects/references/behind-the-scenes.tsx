@@ -25,7 +25,16 @@ export const MethodologyData = [
     }
 ];
 
-export const BehindTheScenesSection = ({ methodologyData }: { methodologyData?: any }) => (
+interface MethodologyItem {
+    title: string;
+    content: string;
+}
+
+export const BehindTheScenesSection = ({ 
+    methodologyData = MethodologyData 
+}: { 
+    methodologyData?: MethodologyItem[] 
+}) => (
     <section className="pb-40 pt-24 border-t border-neutral-800/50 bg-[#080808]/50 overflow-hidden relative">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/5 blur-[150px] -z-10" />
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#7effa0]/5 blur-[150px] -z-10" />
@@ -44,7 +53,7 @@ export const BehindTheScenesSection = ({ methodologyData }: { methodologyData?: 
                 <div className="absolute top-12 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-neutral-800 to-transparent hidden md:block" />
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
-                    {methodologyData.map((step: any, idx: number) => (
+                    {methodologyData.map((step: MethodologyItem, idx: number) => (
                         <div key={idx} className="flex flex-col items-center md:items-start space-y-10 group relative h-full">
                             {/* Marker Circle */}
                             <div className="w-24 h-24 shrink-0 rounded-[2rem] bg-[#0A0B10] border border-neutral-800/80 flex items-center justify-center text-3xl font-['DM_Serif_Display'] text-neutral-600 group-hover:text-[#7effa0] group-hover:border-[#7effa0]/40 group-hover:shadow-[0_0_50px_rgba(126,255,160,0.1)] transition-all duration-700 relative overflow-hidden group-hover:-translate-y-2">

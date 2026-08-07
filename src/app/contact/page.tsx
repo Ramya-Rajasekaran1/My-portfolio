@@ -32,7 +32,7 @@ export default function ContactPage() {
                     </p>
 
                     <div className="pt-2 w-full">
-                        <div className="clay-card p-8 border border-neutral-200/20 dark:border-white/5 max-w-lg mx-auto">
+                        <div className="clay-card p-8 border border-neutral-200/20 dark:border-0 dark:!bg-black max-w-lg mx-auto">
                             <div className="flex flex-col items-center gap-6">
                                 {/* Profile Photo - Clay Avatar Frame */}
                                 <div className="w-32 h-32 md:w-36 md:h-36 rounded-[24px] p-3 bg-white dark:bg-black shadow-[0_10px_20px_-5px_rgba(15,23,42,0.08),inset_-3px_-3px_6px_rgba(15,23,42,0.02),inset_3px_3px_6px_rgba(255,255,255,1)] dark:shadow-[0_10px_20px_-5px_rgba(0,0,0,0.8),inset_-3px_-3px_6px_rgba(0,0,0,0.8),inset_3px_3px_6px_rgba(255,255,255,0.03)] border border-neutral-200/20 dark:border-neutral-800 relative group shrink-0 flex items-center justify-center">

@@ -1,6 +1,6 @@
 export const trackingQualityDashboard = {
     id: 1,
-    title: "Tracking quality Dashboard - Supply chain visibility",
+    title: "Tracking quality Dashboard",
     category: "Supply Chain Visibility",
     description: "The existing dashboard showed consistency percentages that looked low — not because tracking was poor, but because the standards were unrealistically high. No one knew who was responsible for the gap. I built the solution from discovery to delivery.",
     image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/tracking-quality-dashboard/cover_v4.jpg`,

@@ -6,6 +6,7 @@ export const contentVerifyProject = {
     image: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/content-verify/cover.jpg`,
     misinfoMeme: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/content-verify/misinfo-meme.png`,
     slug: "content-verify",
+    externalLink: "https://pitch.com/v/content-verify-87nes4",
     sections: [
         {
             title: "PROJECT OBJECTIVE:",

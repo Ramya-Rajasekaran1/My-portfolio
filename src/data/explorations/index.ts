@@ -24,7 +24,7 @@ export const drawingToRealityExploration: Exploration = {
 export const robotTurntableExploration: Exploration = {
   id: 2,
   title: 'AI Cal Lab',
-  subtitle: 'CAL-3 Tripod Turntable Exploration',
+  subtitle: '',
   description:
     'An interactive, scroll-driven 3D turntable experience displaying the CAL-3 Tripod calibrator robot, featuring GPU-accelerated real-time sharpening filters and responsive HUD gauges.',
   coverImage: '/images/explorations/robot-turntable-cover.jpg',

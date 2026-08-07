@@ -13,6 +13,7 @@ interface Project {
     backgroundColor?: string;
     thumbnailImage?: string;
     externalLink?: string;
+    imageFit?: "cover" | "contain";
 }
 
 interface ProjectCardProps {
@@ -41,9 +42,16 @@ export function ProjectCard({ project, index, isFeatured }: ProjectCardProps) {
                     <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 bg-white/40 dark:bg-black/40 border border-neutral-250/20 dark:border-white/5 backdrop-blur-sm rounded-[32px] p-6 lg:p-10 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.03)] dark:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.6)] transition-all duration-500 hover:-translate-y-2">
                         
                         {/* Image Showcase Container */}
-                        <div className="w-full lg:w-3/5 aspect-[16/10] overflow-hidden rounded-[24px] border border-neutral-200/20 dark:border-neutral-800 relative shrink-0">
+                        <div 
+                            className="w-full lg:w-3/5 aspect-[16/10] overflow-hidden rounded-[24px] border border-neutral-200/20 dark:border-neutral-800 relative shrink-0"
+                            style={{ backgroundColor: project.backgroundColor }}
+                        >
                             <div
-                                className={`absolute inset-0 ${project.slug === "tracking-quality-dashboard" ? "bg-contain bg-center" : "bg-cover bg-left"} bg-no-repeat transition-transform duration-700 group-hover:scale-105`}
+                                className={`absolute inset-0 ${
+                                    project.imageFit === "contain" 
+                                        ? "bg-contain bg-center m-8" 
+                                        : "bg-cover bg-left"
+                                } bg-no-repeat transition-transform duration-700 group-hover:scale-105`}
                                 style={{ backgroundImage: `url(${project.thumbnailImage || project.image})` }}
                             />
                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
@@ -60,9 +68,7 @@ export function ProjectCard({ project, index, isFeatured }: ProjectCardProps) {
                             <h3 className="text-2xl md:text-4xl font-outfit font-black tracking-tight text-neutral-900 dark:text-white group-hover:text-blush transition-colors leading-tight">
                                 {project.title}
                             </h3>
-                            <p className="font-serif text-neutral-600 dark:text-neutral-300 text-sm md:text-base leading-relaxed">
-                                {project.description}
-                            </p>
+
                             <div className="text-xs font-bold text-blush font-outfit uppercase tracking-wider mt-2 flex items-center gap-1.5">
                                 Explore Case Study &rarr;
                             </div>
@@ -106,7 +112,11 @@ export function ProjectCard({ project, index, isFeatured }: ProjectCardProps) {
                         style={{ backgroundColor: project.backgroundColor }}
                     >
                         <div
-                            className={`absolute inset-0 ${project.slug === "tracking-quality-dashboard" ? "bg-contain bg-center" : "bg-cover bg-left"} bg-no-repeat transition-transform duration-700 group-hover:scale-105`}
+                            className={`absolute inset-0 ${
+                                project.imageFit === "contain" 
+                                    ? "bg-contain bg-center m-6" 
+                                    : "bg-cover bg-left"
+                            } bg-no-repeat transition-transform duration-700 group-hover:scale-105`}
                             style={{ backgroundImage: `url(${project.thumbnailImage || project.image})` }}
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
@@ -123,18 +133,7 @@ export function ProjectCard({ project, index, isFeatured }: ProjectCardProps) {
                             }}
                         />
 
-                        {/* Glass Overlay on Hover */}
-                        <div className="absolute bottom-0 left-0 right-0 p-6 glass border-t border-neutral-200/30 dark:border-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 rounded-b-[24px]">
-                            <span className="text-[10px] font-bold font-outfit uppercase tracking-widest text-blush mb-1 block">
-                                {project.category}
-                            </span>
-                            <h3 className="text-lg font-black font-outfit text-neutral-900 dark:text-white mb-2">
-                                {project.title}
-                            </h3>
-                            <p className="font-serif text-neutral-600 dark:text-neutral-300 text-xs leading-relaxed">
-                                {project.description}
-                            </p>
-                        </div>
+
                     </div>
 
                     {/* Title & Tag - DESKTOP ONLY: below image */}
@@ -142,9 +141,7 @@ export function ProjectCard({ project, index, isFeatured }: ProjectCardProps) {
                         <h3 className="text-xl md:text-2xl font-outfit font-black tracking-tight text-neutral-900 dark:text-white group-hover:text-blush transition-colors">
                             {project.title}
                         </h3>
-                        <p className="font-serif text-neutral-600 dark:text-neutral-300 text-xs leading-relaxed">
-                            {project.description}
-                        </p>
+
                         <div className="flex mt-1">
                             <span className="px-3.5 py-1.5 text-[10px] font-bold font-outfit uppercase tracking-widest bg-white dark:bg-black border border-neutral-300 dark:border-neutral-800 text-blush dark:text-orange-400 rounded-full shadow-sm">
                                 {project.category}

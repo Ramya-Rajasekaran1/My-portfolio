@@ -5,7 +5,22 @@ import { ImageLightbox } from "@/components/ui/image-lightbox";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
-export function ProjectPageClient({ project }: { project: any }) {
+interface ProjectSection {
+    title: string;
+    content: string | string[];
+}
+
+interface Project {
+    id: number;
+    title: string;
+    category: string;
+    description: string;
+    image: string;
+    slug: string;
+    sections?: ProjectSection[];
+}
+
+export function ProjectPageClient({ project }: { project: Project }) {
     const [lightboxImage, setLightboxImage] = useState<{ src: string; alt: string } | null>(null);
 
     return (
@@ -46,7 +61,7 @@ export function ProjectPageClient({ project }: { project: any }) {
                     )}
 
                     <div className="space-y-16">
-                        {project.sections?.map((section: any, idx: number) => (
+                        {project.sections?.map((section: ProjectSection, idx: number) => (
                             <section key={idx} className="space-y-6">
                                 <h2 className="text-2xl md:text-3xl font-serif font-bold text-neutral-900 dark:text-white">
                                     {section.title}

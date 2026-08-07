@@ -25,8 +25,8 @@ export function ExplorationCard({ exploration, index }: ExplorationCardProps) {
     >
       <div className="bg-card rounded-card border border-white/5 overflow-hidden transition-all duration-300 hover:border-blush/25">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
-          <a
-            href={demoHref}
+          <Link
+            href={`/explorations/${exploration.slug}/`}
             className="lg:col-span-7 relative aspect-[4/5] lg:aspect-auto lg:min-h-[420px] overflow-hidden block"
             aria-label={`Open ${exploration.title} exploration`}
           >
@@ -39,7 +39,7 @@ export function ExplorationCard({ exploration, index }: ExplorationCardProps) {
             <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm p-2.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
               <ArrowUpRight className="w-4 h-4 text-white" />
             </div>
-          </a>
+          </Link>
 
           <div className="lg:col-span-5 p-8 md:p-10 flex flex-col justify-center gap-6">
             <div>
@@ -66,13 +66,13 @@ export function ExplorationCard({ exploration, index }: ExplorationCardProps) {
             </div>
 
             <div className="flex flex-wrap gap-3 pt-2">
-              <a
-                href={assetPath(`/demos/${exploration.slug}/index.html`)}
+              <Link
+                href={`/explorations/${exploration.slug}/`}
                 className="inline-flex items-center gap-2 bg-blush hover:bg-petal text-blush-text font-bold px-5 py-2.5 rounded-full text-xs uppercase tracking-widest transition-all duration-300"
               >
                 Launch experience
                 <ArrowUpRight className="w-4 h-4" />
-              </a>
+              </Link>
               <Link
                 href={`/explorations/${exploration.slug}/`}
                 className="inline-flex items-center gap-2 border border-white/15 hover:border-white/30 text-white/80 hover:text-white px-5 py-2.5 rounded-full text-xs uppercase tracking-widest transition-all duration-300"

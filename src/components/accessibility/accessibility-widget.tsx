@@ -31,6 +31,42 @@ const defaultSettings: AccessibilitySettings = {
     increaseSpacing: false,
 };
 
+const applySettings = (settings: AccessibilitySettings) => {
+    if (typeof window === "undefined") return;
+    const root = document.documentElement;
+
+    // Font size
+    root.style.fontSize = `${settings.fontSize}%`;
+
+    // High contrast
+    if (settings.highContrast) {
+        root.classList.add("high-contrast");
+    } else {
+        root.classList.remove("high-contrast");
+    }
+
+    // Dyslexia font
+    if (settings.dyslexiaFont) {
+        root.classList.add("dyslexia-font");
+    } else {
+        root.classList.remove("dyslexia-font");
+    }
+
+    // Highlight links
+    if (settings.highlightLinks) {
+        root.classList.add("highlight-links");
+    } else {
+        root.classList.remove("highlight-links");
+    }
+
+    // Increase spacing
+    if (settings.increaseSpacing) {
+        root.classList.add("increase-spacing");
+    } else {
+        root.classList.remove("increase-spacing");
+    }
+};
+
 export function AccessibilityWidget() {
     const [isOpen, setIsOpen] = React.useState(false);
     const [settings, setSettings] = React.useState<AccessibilitySettings>(defaultSettings);
@@ -40,7 +76,10 @@ export function AccessibilityWidget() {
         const saved = localStorage.getItem("accessibility-settings");
         if (saved) {
             try {
-                setSettings(JSON.parse(saved));
+                const parsed = JSON.parse(saved);
+                setTimeout(() => {
+                    setSettings(parsed);
+                }, 0);
             } catch (e) {
                 console.error("Failed to load accessibility settings", e);
             }
@@ -86,40 +125,7 @@ export function AccessibilityWidget() {
         }
     }, [isOpen]);
 
-    const applySettings = (settings: AccessibilitySettings) => {
-        const root = document.documentElement;
 
-        // Font size
-        root.style.fontSize = `${settings.fontSize}%`;
-
-        // High contrast
-        if (settings.highContrast) {
-            root.classList.add("high-contrast");
-        } else {
-            root.classList.remove("high-contrast");
-        }
-
-        // Dyslexia font
-        if (settings.dyslexiaFont) {
-            root.classList.add("dyslexia-font");
-        } else {
-            root.classList.remove("dyslexia-font");
-        }
-
-        // Highlight links
-        if (settings.highlightLinks) {
-            root.classList.add("highlight-links");
-        } else {
-            root.classList.remove("highlight-links");
-        }
-
-        // Increase spacing
-        if (settings.increaseSpacing) {
-            root.classList.add("increase-spacing");
-        } else {
-            root.classList.remove("increase-spacing");
-        }
-    };
 
     const increaseFontSize = () => {
         setSettings((prev) => ({

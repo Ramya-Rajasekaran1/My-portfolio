@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import type { Exploration } from "@/data/explorations";
+import { useEffect } from "react";
 import { assetPath } from "@/lib/base-path";
 
 interface DrawingToRealityExplorationProps {
@@ -11,33 +11,36 @@ interface DrawingToRealityExplorationProps {
 }
 
 export function DrawingToRealityExploration({ exploration }: DrawingToRealityExplorationProps) {
-  const [demoUrl, setDemoUrl] = useState("");
+  const localDemoUrl = assetPath(`/demos/${exploration.slug}/index.html`);
 
   useEffect(() => {
-    const url = assetPath(`/demos/${exploration.slug}/index.html`);
-    setDemoUrl(url);
-    window.location.replace(url);
-  }, [exploration.slug]);
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-6 bg-canvas text-parchment px-6">
-      <p className="font-serif text-xl text-white">Opening {exploration.title}…</p>
-      {demoUrl ? (
-        <a
-          href={demoUrl}
-          className="inline-flex items-center gap-2 bg-blush hover:bg-petal text-blush-text font-bold px-6 py-3 rounded-full text-xs uppercase tracking-widest"
-        >
-          Open experience
-          <ExternalLink className="w-4 h-4" />
-        </a>
-      ) : null}
+    <div className="h-screen w-screen bg-canvas overflow-hidden fixed inset-0 z-[9999]">
+      {/* Floating Back Button */}
       <Link
         href="/explorations/"
-        className="inline-flex items-center gap-2 text-xs font-bold font-outfit uppercase tracking-widest hover:text-petal transition-colors"
+        className="absolute top-[88px] left-[48px] z-40 inline-flex items-center gap-2 text-xs font-bold font-outfit uppercase tracking-widest text-white hover:text-blush transition-all duration-300 bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 shadow-lg cursor-pointer"
       >
-        <ArrowLeft className="w-4 h-4" />
-        Back to Explorations
+        <ArrowLeft className="w-3.5 h-3.5" />
+        Back
       </Link>
+
+      {/* Embedded Iframe Container */}
+      <div className="w-full h-full relative bg-canvas">
+        <iframe
+          src={localDemoUrl}
+          title={exploration.title}
+          className="w-full h-full border-none absolute inset-0 bg-canvas"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+        />
+      </div>
     </div>
   );
 }

@@ -15,9 +15,6 @@ export default function ExplorationsPage() {
     <main className="min-h-screen pt-32 pb-24 relative z-20">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mb-16">
-          <span className="text-xs font-bold font-outfit uppercase tracking-[0.35em] text-blush mb-4 block">
-            Cal AI Labs
-          </span>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-outfit font-extralight mb-6 tracking-tight text-white">
             Explorations
           </h1>

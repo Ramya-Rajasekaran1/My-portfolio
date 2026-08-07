@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { HoverGradientChip } from "@/components/ui/hover-gradient-chip";
 
 export function SkillsAndStats() {
+    const [activeIdx, setActiveIdx] = useState(0);
     const achievements = [
         {
             value: "6+",
@@ -59,7 +61,7 @@ export function SkillsAndStats() {
                     {achievements.map((achievement) => (
                         <div
                             key={achievement.label}
-                            className="clay-card p-6 flex flex-col items-start"
+                            className="bg-neutral-100/60 dark:bg-neutral-900/60 backdrop-blur-md p-6 rounded-[24px] border-none shadow-sm flex flex-col items-start"
                         >
                             <div className="space-y-2 font-outfit w-full">
                                 <p className="text-3xl md:text-4xl font-black text-blush leading-none">
@@ -82,9 +84,20 @@ export function SkillsAndStats() {
                         <span className="w-1.5 h-1.5 rounded-full bg-blush" />
                         Core Competencies
                     </span>
-                    <div className="flex flex-wrap justify-start gap-2.5 md:gap-3.5 w-full">
-                        {skills.map((skill) => (
-                            <HoverGradientChip key={skill.name} text={skill.name} />
+                    <div 
+                        onMouseLeave={() => setActiveIdx(0)}
+                        className="flex flex-wrap justify-start gap-2.5 md:gap-3.5 w-full"
+                    >
+                        {skills.map((skill, idx) => (
+                            <div 
+                                key={skill.name}
+                                onMouseEnter={() => setActiveIdx(idx)}
+                            >
+                                <HoverGradientChip 
+                                    text={skill.name} 
+                                    isHighlighted={idx === activeIdx}
+                                />
+                            </div>
                         ))}
                     </div>
                 </div>

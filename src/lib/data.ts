@@ -5,8 +5,10 @@ import { genAiInclusivityProject } from '@/data/projects/gen-ai-inclusivity';
 // import { networkIntelligenceProject } from '@/data/projects/network-intelligence';
 import { contentVerifyProject } from '@/data/projects/content-verify';
 // import { genAiAccessibilityProject } from '@/data/projects/gen-ai-accessibility';
+import { customerSupportPortalProject } from '@/data/projects/customer-service-portal';
 
 export const projects = [
+    customerSupportPortalProject,
     safehomeProject,
     trackingQualityDashboard,
     genAiInclusivityProject,
@@ -15,5 +17,5 @@ export const projects = [
     contentVerifyProject
 ];
 
-
 export type Project = typeof projects[number];
+
