@@ -209,7 +209,7 @@ export function AccessibilityWidget() {
                             </div>
 
                             {/* Settings */}
-                            <div className="p-6 space-y-6">
+                            <div className="p-6 pb-12 space-y-6">
                                 {/* Font Size */}
                                 <div className="space-y-3">
                                     <div className="flex items-center gap-2 text-neutral-900 dark:text-neutral-100">
@@ -370,12 +370,14 @@ function ToggleOption({
                     onClick={onChange}
                     role="switch"
                     aria-checked={checked}
-                    className={`relative w-12 h-6 rounded-full transition-colors ${checked ? "bg-blush" : "bg-neutral-300 dark:bg-neutral-700"
-                        }`}
+                    className={`flex items-center w-12 h-6 rounded-full p-1 transition-colors focus:outline-none cursor-pointer ${
+                        checked ? "bg-blush" : "bg-neutral-300 dark:bg-neutral-700"
+                    }`}
                 >
                     <motion.div
-                        className="absolute top-1 w-4 h-4 bg-white rounded-full shadow-md"
-                        animate={{ x: checked ? 28 : 4 }}
+                        className="w-4 h-4 bg-white rounded-full shadow-md"
+                        layout
+                        animate={{ x: checked ? 24 : 0 }}
                         transition={{ type: "spring", stiffness: 500, damping: 30 }}
                     />
                 </button>
