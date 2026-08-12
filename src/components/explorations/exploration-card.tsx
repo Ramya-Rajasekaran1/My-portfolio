@@ -12,8 +12,10 @@ interface ExplorationCardProps {
 }
 
 export function ExplorationCard({ exploration, index }: ExplorationCardProps) {
-  const coverSrc = assetPath(exploration.coverImage);
-  const demoHref = assetPath(`/demos/${exploration.slug}/index.html`);
+  const coverSrc = assetPath(`${exploration.coverImage}?v=2`);
+  const isExternal = !!exploration.externalUrl;
+  const launchHref = exploration.externalUrl || `/explorations/${exploration.slug}/`;
+  const launchProps = isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};
 
   return (
     <motion.article
@@ -26,7 +28,8 @@ export function ExplorationCard({ exploration, index }: ExplorationCardProps) {
       <div className="bg-card rounded-card border border-white/5 overflow-hidden transition-all duration-300 hover:border-blush/25">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
           <Link
-            href={`/explorations/${exploration.slug}/`}
+            href={launchHref}
+            {...launchProps}
             className="lg:col-span-7 relative aspect-[4/5] lg:aspect-auto lg:min-h-[420px] overflow-hidden block"
             aria-label={`Open ${exploration.title} exploration`}
           >
@@ -67,7 +70,8 @@ export function ExplorationCard({ exploration, index }: ExplorationCardProps) {
 
             <div className="flex flex-wrap gap-3 pt-2">
               <Link
-                href={`/explorations/${exploration.slug}/`}
+                href={launchHref}
+                {...launchProps}
                 className="inline-flex items-center gap-2 bg-blush hover:bg-petal text-blush-text font-bold px-5 py-2.5 rounded-full text-xs uppercase tracking-widest transition-all duration-300"
               >
                 Launch experience
