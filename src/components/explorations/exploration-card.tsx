@@ -13,9 +13,8 @@ interface ExplorationCardProps {
 
 export function ExplorationCard({ exploration, index }: ExplorationCardProps) {
   const coverSrc = assetPath(`${exploration.coverImage}?v=2`);
-  const isExternal = !!exploration.externalUrl;
-  const launchHref = exploration.externalUrl || `/explorations/${exploration.slug}/`;
-  const launchProps = isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};
+  const launchHref = `/explorations/${exploration.slug}/`;
+  const launchProps = {};
 
   return (
     <motion.article
