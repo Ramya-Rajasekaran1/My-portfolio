@@ -60,11 +60,25 @@ export const calAiRobotExploration: Exploration = {
   externalUrl: 'https://calairobot.netlify.app',
 };
 
+export const bobaTeaExploration: Exploration = {
+  id: 5,
+  title: 'Boba Tea Shop',
+  subtitle: 'Interactive Customizer Experience',
+  description:
+    'An interactive ordering and customizer experience featuring liquid dynamics, ingredient selection animations, and tactile controls.',
+  coverImage: '/images/explorations/boba-tea-cover.jpg',
+  slug: 'boba-tea',
+  tags: ['Creative Tech', 'Tactile UI', 'Interactive Customizer'],
+  stack: ['HTML', 'CSS', 'JavaScript'],
+  externalUrl: 'https://ramya-rajasekaran1.github.io/Bobatea/',
+};
+
 export const explorations = [
   drawingToRealityExploration,
   robotTurntableExploration,
   resilienceInteractiveExploration,
   calAiRobotExploration,
+  bobaTeaExploration,
 ];
 
 

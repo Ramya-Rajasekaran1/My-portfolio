@@ -3,6 +3,7 @@ import { DrawingToRealityExploration } from "@/components/explorations/drawing-t
 import { RobotTurntableExploration } from "@/components/explorations/robot-turntable";
 import { ResilienceInteractiveExploration } from "@/components/explorations/resilience-interactive";
 import { CalAiRobotExploration } from "@/components/explorations/cal-ai-robot";
+import { BobaTeaExploration } from "@/components/explorations/boba-tea";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
@@ -43,6 +44,10 @@ export default async function ExplorationPage({ params }: { params: Promise<{ sl
 
   if (slug === "cal-ai-robot") {
     return <CalAiRobotExploration exploration={exploration} />;
+  }
+
+  if (slug === "boba-tea") {
+    return <BobaTeaExploration exploration={exploration} />;
   }
 
   notFound();
