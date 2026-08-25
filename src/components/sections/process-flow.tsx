@@ -165,7 +165,8 @@ export function ProcessFlow() {
                 if (isAtStartAndScrollingUp || isAtEndAndScrollingDown || isOutOfRange) {
                     document.documentElement.style.scrollSnapType = "";
                 } else {
-                    document.documentElement.style.scrollSnapType = "y mandatory";
+                    // Set to empty to disable scroll snap locking
+                    document.documentElement.style.scrollSnapType = "";
                 }
             }
         };
